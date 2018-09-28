@@ -48,8 +48,7 @@ export class MapService {
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
-        opacity: 0.75,
-        src: 'https://openlayers.org/en/v4.6.4/examples/data/icon.png'
+        src: 'assets/start.svg'
       }),
       stroke: new Stroke({
         width: 6,
@@ -83,7 +82,7 @@ export class MapService {
 
     this.view = new OlView({
       center: fromLonLat([34.790005, 32.080043]),
-      zoom: 18.5,
+      zoom: 19,
       rotation: 3 * Math.PI / 2 // -90
     });
 

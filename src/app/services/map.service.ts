@@ -93,6 +93,7 @@ export class MapService {
     });
     this.map.addLayer(this.imageLayer);
     this.map.addLayer(this.vectorLayer);
+    // this.map.getView().fit(this.extent, this.map.getSize()); // zoom extent
   }
 
   addMarker(lon, lat) {

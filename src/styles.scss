@@ -1,11 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
+@font-face {
+	font-family: 'Almoni';
+	src: url('./assets/fonts/almoni-dl-aaa-regular.ttf');
+}
 body {
     padding: 0;
     margin: 0;
-    * {
-        direction: rtl;
-    }
+    font-family: Almoni;
 }
 #keymanweb_title_bar {
     pointer-events: none;

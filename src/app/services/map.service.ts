@@ -16,6 +16,8 @@ import LineString from 'ol/geom/LineString';
 import Projection from 'ol/proj/Projection.js';
 import { fromLonLat, transformExtent} from 'ol/proj';
 
+import {Config} from './../configs/config';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -34,7 +36,7 @@ export class MapService {
 
   constructor() { }
 
-  initMap(mapImgUrl, minX, minY, maxX, maxY) {
+  initMap() {
     this.source = new OlXYZ({
       url: 'http://tile.osm.org/{z}/{x}/{y}.png'
     });
@@ -48,7 +50,7 @@ export class MapService {
         anchor: [0.5, 46],
         anchorXUnits: 'fraction',
         anchorYUnits: 'pixels',
-        src: 'assets/start.svg'
+        src: 'assets/imgs/start.svg'
       }),
       stroke: new Stroke({
         width: 6,
@@ -62,7 +64,12 @@ export class MapService {
     });
 
     // minX, minY, maxX, maxY
-    this.extent = transformExtent([minX, minY, maxX, maxY], 'EPSG:4326', 'EPSG:3857');
+    this.extent = transformExtent([
+      Config.imageExtent.minX,
+      Config.imageExtent.minY,
+      Config.imageExtent.maxX,
+      Config.imageExtent.maxY
+    ], 'EPSG:4326', 'EPSG:3857');
 
     this.projection = new Projection({
       code: 'xkcd-image',
@@ -71,7 +78,7 @@ export class MapService {
     });
 
     this.staticSource = new Static({
-      url: mapImgUrl,
+      url: Config.initMapUrl,
       projection: this.projection,
       imageExtent: this.extent
     });

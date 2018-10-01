@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { MapService } from './../../services/map.service';
+import { ApiService } from './../../services/api.service';
 
 declare const keyman: any;
 
@@ -9,16 +12,19 @@ declare const keyman: any;
 })
 
 export class HomeComponent implements OnInit {
-  mapImgUrl: String = 'https://i.imgur.com/xYT9Hpn.jpg';
-  minX: Number = 34.788334707804594;
-  minY: Number = 32.07787512303872;
-  maxX: Number = 34.79172649237924;
-  maxY: Number = 32.08222892783535;
-
-  constructor(private _mapService: MapService) {
+  constructor(
+    private _mapService: MapService,
+    private _route: ActivatedRoute,
+    private _api: ApiService
+  ) {
+    this._route.params.subscribe(params => {
+      localStorage.setItem('kioskId', params.kioskId);
+    });
   }
   ngOnInit() {
-    this._mapService.initMap(this.mapImgUrl, this.minX, this.minY, this.maxX, this.maxY);
-    this._mapService.addMarker(34.7898267288336, 32.0804542067765);
+    this._mapService.initMap();
+    this._api.getKioskData().subscribe(res => {
+      this._mapService.addMarker(res.entrances[0].longitude, res.entrances[0].latitude);
+    });
   }
 }

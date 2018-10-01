@@ -1,0 +1,3 @@
+<div class="language-panel">
+    <button *ngFor="let lang of languages" class="language-btn" [ngClass]="{'active': lang.name === currentLanguage.name}" (click)="selectLanguage(lang)">{{lang.displayName}}</button>
+</div>

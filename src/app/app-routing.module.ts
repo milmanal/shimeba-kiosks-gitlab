@@ -14,7 +14,7 @@ const routes: Routes = [
         pathMatch: 'full'
       },
       {
-        path: 'home',
+        path: 'home/:kioskId',
         loadChildren: './views/home/home.module#HomeModule'
       },
     ]

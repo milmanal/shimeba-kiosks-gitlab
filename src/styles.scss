@@ -4,6 +4,16 @@
 	font-family: 'Almoni';
 	src: url('./assets/fonts/almoni-dl-aaa-regular.ttf');
 }
+html[dir="rtl"] {
+    * {
+        direction: rtl;
+    }
+}
+html[dir="ltr"] {
+    * {
+        direction: ltr;
+    }
+}
 body {
     padding: 0;
     margin: 0;

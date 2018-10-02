@@ -11,7 +11,7 @@ export class LanguageService {
 
   constructor(private translate: TranslateService) {
     const {currentLang} = this.translate;
-    this.currentLanguage = this.languages.find(lang => currentLang === lang.name)
+    this.currentLanguage = this.languages.find(lang => currentLang === lang.name);
   }
 
   setLanguage(lang: Language) {

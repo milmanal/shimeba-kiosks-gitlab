@@ -11,13 +11,19 @@ import { LanguageService } from './../../services/language.service';
 export class AppLanguagePanelComponent implements OnInit {
   currentLanguage: Language;
   languages: Language[] = Languages;
+  showAnotherLanguages: Boolean = false;
 
   constructor(private _language: LanguageService) {
   }
 
   selectLanguage(lang) {
-    this.currentLanguage = lang;
-    this._language.setLanguage(lang);
+    if (this.currentLanguage.name === lang.name) {
+      this.showAnotherLanguages = !this.showAnotherLanguages;
+    } else {
+      this.currentLanguage = lang;
+      this._language.setLanguage(lang);
+      this.showAnotherLanguages = !this.showAnotherLanguages;
+    }
   }
 
   ngOnInit() {

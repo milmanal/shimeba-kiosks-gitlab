@@ -17,6 +17,10 @@ const routes: Routes = [
         path: 'home/:kioskId',
         loadChildren: './views/home/home.module#HomeModule'
       },
+      {
+        path: 'search',
+        loadChildren: './views/search/search.module#SearchModule'
+      }
     ]
   },
 ];

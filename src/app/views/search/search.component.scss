@@ -1,0 +1,27 @@
+.search-container {
+    width: 100vw;
+    height: 100vh;
+    .search {
+        display: flex;
+        width: 83%;
+        height: 15vh;
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: solid 5px #4a90e2;
+        .search-icon {
+            width: 10%;
+            background-color: #4a90e2;
+            background-image: url('../../../assets/imgs/search.svg');
+            background-size: 40%;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+        }
+        .search-input {
+            width: 90%;
+            border: none;
+            font-size: 5.6em;
+            font-weight: bold;
+            color: #9b9b9b;
+        }
+    }
+}

@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import * as moment from 'moment';
 import {Languages} from './../_languages';
 import {Language} from '../models';
@@ -8,10 +9,12 @@ import {Language} from '../models';
 export class LanguageService {
   languages: Language[] = Languages;
   currentLanguage: Language;
+  observableLanguage;
 
   constructor(private translate: TranslateService) {
     const {currentLang} = this.translate;
     this.currentLanguage = this.languages.find(lang => currentLang === lang.name);
+    this.observableLanguage= new BehaviorSubject<Language>(this.currentLanguage);
   }
 
   setLanguage(lang: Language) {
@@ -28,6 +31,7 @@ export class LanguageService {
     HTML.setAttributeNode(dirAttr);
     HTML.setAttributeNode(languageAttr);
     this.currentLanguage = lang;
+    this.observableLanguage.next(lang);
     localStorage.setItem('currentLanguage', lang.name);
   }
 

@@ -13,7 +13,8 @@ export class SearchComponent implements OnInit {
   currentLanguage: Language;
   constructor(private _language: LanguageService) { }
   ngOnInit() {
-    console.log('hello');
-    this.currentLanguage = this._language.getCurrentLanguage();
+    this._language.observableLanguage.subscribe(lang => {
+      this.currentLanguage = lang;
+    })
   }
 }

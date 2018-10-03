@@ -19,26 +19,8 @@ body {
     margin: 0;
     font-family: Almoni;
 }
-#keymanweb_title_bar {
-    pointer-events: none;
-    .kmw-title-bar-image {
-        display: none !important;
-    }
-}
-.desktop.kmw-osk-frame {
-    z-index: 9999 !important;
-    width: 100% !important;
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    top: initial !important;
-    height: 400px;
-}
-.kmw-osk-inner-frame {
-    width: 100% !important;
-    height: 400px !important;
-    font-size: 36.5px !important;
-}
-.kmw-footer {
-    display: none;
+.cdk-overlay-container {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }

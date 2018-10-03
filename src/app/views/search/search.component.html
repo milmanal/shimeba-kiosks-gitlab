@@ -1,6 +1,6 @@
 <div class="search-container d-flex flex-column align-items-center justify-content-top">
     <div class="search mt-5">
-        <input type="text" class="search-input px-5" placeholder="{{'search-placeholder-2' | translate}}" dir="rtl">
+        <input type="text" class="search-input px-5" [formControl]="searchTerm" placeholder="{{'search-placeholder-2' | translate}}" [matKeyboard]="currentLanguage.name">
         <div class="search-icon"></div>
     </div>
 </div>

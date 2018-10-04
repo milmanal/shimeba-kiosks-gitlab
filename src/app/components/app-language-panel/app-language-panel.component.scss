@@ -5,13 +5,10 @@
     transform: translateX(-50%);
     display: flex;
     width: 80%;
-    .language-btn-container {
-        flex: 12.5%;
-        height: 75px;
-    }
+    direction: rtl !important;
     .language-btn {
-        width: 100%;
-        height: 100%;
+        width: 12.5%;
+        height: 75px;
         color: #9b9b9b;
         font-size: 2rem;
         background-color: #ffffff;
@@ -21,6 +18,9 @@
         .lang-icon {
             width: 25%;
         }
+    }
+    .hide {
+        display: none;
     }
     .language-btn.active {
         background-color: #6f6f6f;

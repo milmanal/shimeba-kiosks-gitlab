@@ -23,4 +23,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
+    * {
+        direction: ltr !important;
+    }
 }

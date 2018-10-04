@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
@@ -30,6 +30,7 @@ import { AppTranslationModule } from './app-translation.module';
     MatButtonModule,
     MatKeyboardModule,
     FormsModule,
+    ReactiveFormsModule,
     MatIconModule
   ],
   providers: [],

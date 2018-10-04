@@ -43,7 +43,7 @@ export const Languages = [
     },
     {
         displayName: 'Español',
-        shortName: 'PR',
+        shortName: 'ES',
         name: 'es',
         direction: 'ltr'
     }

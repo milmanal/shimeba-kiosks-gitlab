@@ -10,7 +10,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS } from '@ngx-material-keyboard/core';
 
 import { AmharicLayoutConfig } from './../../configs/amharic-keyboard.config';
-import { BrowserModule } from '@angular/platform-browser';
 
 const customLayouts: IKeyboardLayouts = {
   ...keyboardLayouts,

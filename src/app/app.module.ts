@@ -15,6 +15,7 @@ import { AppComponent } from './app.component';
 import { AppLanguagePanelComponent } from './components';
 import { AppTranslationModule } from './app-translation.module';
 
+import 'hammerjs';
 
 @NgModule({
   declarations: [

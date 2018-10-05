@@ -1,4 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { LanguageService } from './../../services/language.service';
 import { ApiService } from './../../services/api.service';
 import { Language, Category } from '../../models';
@@ -23,7 +25,8 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   constructor(
     private _language: LanguageService,
-    private _api: ApiService
+    private _api: ApiService,
+    private _router: Router
   ) { 
     this._api.search(this.searchTerm$)
       .subscribe(results => {
@@ -45,6 +48,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   showMoreResults() {
     this.showMore = !this.showMore;
+  }
+  selectCategory(id) {
+    this._router.navigateByUrl(`/category/${id}`);
   }
   ngOnDestroy() {
     this.languageSubscription.unsubscribe();

@@ -6,7 +6,8 @@ import { LanguageService } from './language.service';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
-
+import 'rxjs/Rx';
+import { filter, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,6 +33,16 @@ export class ApiService {
 
     searchPoi(value) {
         const currentLanguage = this._language.getCurrentLanguage();
+
         return this._httpClient.get(`${this.url}pois?venueid=12&locale=${currentLanguage.name}&query=${value}`);
+    }
+
+    poiByCategory(categoryId): Observable<any> {
+        const currentLanguage = this._language.getCurrentLanguage();
+        
+        return this._httpClient.get<Object[]>(`${this.url}pois?venueid=12&locale=${currentLanguage.name}`)
+            .map(res => res)
+            .concatMap(res => Observable.from(res))
+            .filter(poi => poi.categories.some(id => id === categoryId));
     }
 }

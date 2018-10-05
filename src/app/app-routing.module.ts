@@ -20,6 +20,10 @@ const routes: Routes = [
       {
         path: 'search',
         loadChildren: './views/search/search.module#SearchModule'
+      },
+      {
+        path: 'category/:categoryId',
+        loadChildren: './views/category/category.module#CategoryModule'
       }
     ]
   },

@@ -1,22 +1,27 @@
 export const Categories = [
     {
         icon: 'entrance.svg',
-        name: 'entrance'
+        name: 'entrance',
+        categoryId: 1
     },
     {
         icon: 'info.svg',
-        name: 'info'
+        name: 'info',
+        categoryId: 42
     },
     {
         icon: 'toilets.svg',
-        name: 'toilets'
+        name: 'toilets',
+        categoryId: 2
     },
     {
         icon: 'parking.svg',
-        name: 'parking'
+        name: 'parking',
+        categoryId: 5
     },
     {
         icon: 'food.svg',
-        name: 'food'
+        name: 'food',
+        categoryId: 52
     }
 ]

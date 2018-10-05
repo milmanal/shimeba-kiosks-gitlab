@@ -15,7 +15,7 @@
     </ul>
     <h1 class="search-instruction mt-5 pt-5" translate>search-instruction</h1>
     <div class="d-flex mt-3">
-        <div class="category mx-2 d-flex flex-column align-items-center justify-content-center" *ngFor="let category of categories">
+        <div class="category mx-2 d-flex flex-column align-items-center justify-content-center" *ngFor="let category of categories" (click)="selectCategory(category.categoryId)">
             <img src="assets/imgs/{{category.icon}}" alt="" class="icon">
             <div class="category-name" translate>{{category.name}}</div>
         </div>

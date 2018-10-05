@@ -8,10 +8,16 @@ html[dir="rtl"] {
     * {
         direction: rtl;
     }
+    ul {
+        text-align: right;
+    }
 }
 html[dir="ltr"] {
     * {
         direction: ltr;
+    }
+    ul {
+        text-align: left;
     }
 }
 body {
@@ -26,4 +32,18 @@ body {
     * {
         direction: ltr !important;
     }
+}
+mat-keyboard-container {
+    min-width: 65% !important;
+    padding: unset !important;
+}
+mat-keyboard-container mat-keyboard-key .mat-keyboard-key{
+    padding: 1rem 0.485rem !important;
+    font-size: 25px;
+}
+.mat-keyboard-col{
+	padding: 1px !important;
+}
+.mat-keyboard-wrapper{
+	padding:0 !important;
 }

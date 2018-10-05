@@ -1,7 +1,23 @@
 <div class="search-container d-flex flex-column align-items-center justify-content-top">
     <div class="search mt-5">
-        <input type="text" class="search-input px-5" [(ngModel)]="searchValue" (ngModelChange)="search($event)" placeholder="{{'search-placeholder-2' | translate}}" [matKeyboard]="currentLanguage.name">
+        <input type="text" class="search-input px-5" autofocus [(ngModel)]="searchValue" (ngModelChange)="search($event)" placeholder="{{'search-placeholder-2' | translate}}" [matKeyboard]="currentLanguage.name">
         <div class="search-icon"></div>
     </div>
-    <h1 class="search-instruction mt-5 pt-3" translate>search-instruction</h1>
+    <ul *ngIf="pois" class="search-results" [ngClass]="{'show-more-results': showMore}">
+        <li *ngFor="let poi of pois" class="d-flex align-items-center justify-content-between">
+            <span class="currentLanguage py-2">{{ poi.name }}</span>
+            <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
+        </li>
+        <li class="show-more d-flex align-items-center justify-content-center" *ngIf="pois.length > 6" (click)="showMoreResults()">
+            <div translate class="show-more-label px-2">show-more</div>
+            <img src="assets/imgs/more.svg" alt="more" [ngClass]="{'hide-more-results-icon': showMore}">
+        </li>
+    </ul>
+    <h1 class="search-instruction mt-5 pt-5" translate>search-instruction</h1>
+    <div class="d-flex mt-3">
+        <div class="category mx-2 d-flex flex-column align-items-center justify-content-center" *ngFor="let category of categories">
+            <img src="assets/imgs/{{category.icon}}" alt="" class="icon">
+            <div class="category-name" translate>{{category.name}}</div>
+        </div>
+    </div>
 </div>

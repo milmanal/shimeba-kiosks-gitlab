@@ -11,10 +11,12 @@
             </li>
         </ul>
         <div class="arrows-container d-flex justify-content-between flex-column align-items-center pt-5">
-            <div class="arrow d-flex flex-column justify-content-center align-items-center" (click)="scrollTop()" [ngClass]="{'arrow-active': checkScrollTop()}">
+            <div class="arrow d-flex flex-column justify-content-center align-items-center" (click)="scrollTop()"
+                [ngClass]="{'arrow-active': checkScrollTop()}">
                 <img src="assets/imgs/arrow.svg" alt="arrow-up" class="arrow-icon arrow-up">
             </div>
-            <div class="arrow d-flex justify-content-center flex-column align-items-center" (click)="scrollBottom()" [class.arrow-active]="checkScrollBottom()">
+            <div class="arrow d-flex justify-content-center flex-column align-items-center" (click)="scrollBottom()"
+                [class.arrow-active]="checkScrollBottom()">
                 <img src="assets/imgs/arrow.svg" alt="arrow-down" class="arrow-icon arrow-down">
             </div>
         </div>

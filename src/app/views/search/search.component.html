@@ -4,7 +4,7 @@
         <div class="search-icon"></div>
     </div>
     <ul *ngIf="pois" class="search-results" [ngClass]="{'show-more-results': showMore}">
-        <li *ngFor="let poi of pois" class="d-flex align-items-center justify-content-between">
+        <li *ngFor="let poi of pois" class="d-flex align-items-center justify-content-between" (click)="selectPoi(poi.id)">
             <span class="currentLanguage py-2">{{ poi.name }}</span>
             <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
         </li>

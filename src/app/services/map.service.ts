@@ -33,6 +33,7 @@ export class MapService {
   vectorSource: any = new Vector();
   vectorLayer: any;
   staticSource: any;
+  styles: any;
 
   constructor() { }
 
@@ -45,22 +46,26 @@ export class MapService {
       source: this.source
     });
 
-    this.vectorStyle = new Style({
-      image: new Icon({
-        anchor: [0.5, 46],
-        anchorXUnits: 'fraction',
-        anchorYUnits: 'pixels',
-        src: 'assets/imgs/start.svg'
+    this.styles = {
+      'route': new Style({
+        stroke: new Stroke({
+          width: 6,
+          color: '#0277bd'
+        })
       }),
-      stroke: new Stroke({
-        width: 6,
-        color: '#0277bd'
+      'start': new Style({
+        image: new Icon({
+          aanchor: [0.5, 0.5],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          src: 'assets/imgs/start.svg'
+        })
       })
-    });
+    };
 
     this.vectorLayer = new VectorLayer({
       source: this.vectorSource,
-      style: this.vectorStyle,
+      style: (feature) => this.styles[feature.get('type')]
     });
 
     // minX, minY, maxX, maxY
@@ -80,17 +85,17 @@ export class MapService {
     this.staticSource = new Static({
       url: Config.initMapUrl,
       projection: this.projection,
-      imageExtent: this.extent
+      imageExtent: this.extent,
     });
 
     this.imageLayer = new ImageLayer({
-      source: this.staticSource
+      source: this.staticSource,
     });
 
     this.view = new OlView({
       center: fromLonLat([34.790005, 32.080043]),
       zoom: 19,
-      rotation: 3 * Math.PI / 2 // -90
+      rotation: -92.9 * Math.PI / 180
     });
 
     this.map = new OlMap({
@@ -100,22 +105,31 @@ export class MapService {
     });
     this.map.addLayer(this.imageLayer);
     this.map.addLayer(this.vectorLayer);
-    // this.map.getView().fit(this.extent, this.map.getSize()); // zoom extent
+    // this.map.getView().fit(this.extent); // zoom extent
   }
 
-  addMarker(lon, lat) {
+  addMarker(lon, lat, type) {
+    const lonLatToNumber = [
+      Number(lon),
+      Number(lat)
+    ];
     const marker = new Feature({
-      geometry: new Point(fromLonLat([lon, lat])),
+      geometry: new Point(fromLonLat(lonLatToNumber)),
       population: 4000,
-      rainfall: 500
+      rainfall: 500,
+      type: type
     });
     this.vectorSource.addFeature(marker);
   }
 
-  addRoute(route) {
+  addRoute(route, type) {
     const polyline = new LineString(route).transform('EPSG:4326', 'EPSG:3857');
-    const featurePolyline = new Feature(polyline);
+    const featurePolyline = new Feature({
+      geometry: polyline,
+      type: type
+    });
     this.vectorSource.addFeature(featurePolyline);
+    
   }
 
   changeMapLayer(url) {

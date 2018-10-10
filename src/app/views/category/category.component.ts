@@ -52,6 +52,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
     });
   }
 
+  selectPoi(id) {
+    const kioskId = localStorage.getItem('kioskId');
+    this._router.navigateByUrl(`/direction/${kioskId}/${id}`);
+  }
+
   scrollBottom() {
     this.myScrollContainer.nativeElement.scrollTop =
       this.myScrollContainer.nativeElement.scrollTop + 80;

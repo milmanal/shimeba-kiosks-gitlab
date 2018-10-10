@@ -24,6 +24,10 @@ const routes: Routes = [
       {
         path: 'category/:categoryId',
         loadChildren: './views/category/category.module#CategoryModule'
+      },
+      {
+        path: 'direction/:kioskId/:poiId',
+        loadChildren: './views/direction/direction.module#DirectionModule'
       }
     ]
   },

@@ -30,9 +30,7 @@ export class DirectionComponent implements OnInit {
 
   getDirectionData() {
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
-      res[0].map(direction => {
-        this._mapService.addRoute(direction.route, 'route');
-      });
+      this._mapService.addRoute(res);
       console.log(res)
     })
   }

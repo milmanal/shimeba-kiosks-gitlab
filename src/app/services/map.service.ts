@@ -97,6 +97,7 @@ export class MapService {
       center: fromLonLat([34.790005, 32.080043]),
       zoom: 19,
       rotation: -92.9 * Math.PI / 180
+      // rotation: -90 * Math.PI / 180
     });
 
     this.map = new OlMap({
@@ -124,42 +125,24 @@ export class MapService {
   }
 
   addRoute(direction) {
-    // let currentIndex = 0;
-    // const interval = setInterval(() => {
-    //   if(currentIndex >= direction.length) return clearInterval(interval);
-    //   const polyline = new LineString(
-    //     [
-    //       direction[currentIndex][0].point,
-    //       direction[currentIndex][1].point
-    //     ]
-    //   ).transform('EPSG:4326', 'EPSG:3857');
-    //   const featurePolyline = new Feature({
-    //     geometry: polyline,
-    //     type: 'route'
-    //   });
-    //   this.vectorSource.addFeature(featurePolyline);
-    //   currentIndex++;
-    // }, 100)
-    this.setDirection(direction, 0, 10, 10, this.vectorSource, this.setDirection);
+    this.setDirection(direction, 0, 5, this.vectorSource, this.setDirection);
   }
 
-  setDirection(direction, index, steps, time, vectorSource, fn) {
+  setDirection(direction, index, time, vectorSource, fn) {
     const startPt = fromLonLat(direction[index][0].point);
     const endPt = fromLonLat(direction[index][1].point);
+    const steps = (direction[index][1].distanceCovered - direction[index][0].distanceCovered || 1) * 10;
     const directionX = (endPt[0] - startPt[0]) / steps;
     const directionY = (endPt[1] - startPt[1]) / steps;
-    // console.log(directionX, directionY)
     let i = 0;
-
-    // const distance = direction[index][0].distanceCovered - direction[index][1].distanceCovered;
 
     const interval = setInterval(() => {
       if (i > steps) {
           clearInterval(interval);
           if (fn && (direction.length - 1) > index + 1) {
-            fn(direction, index+1, steps, time, vectorSource, fn)
+            fn(direction, index+1, time, vectorSource, fn)
           } else if(fn) {
-            fn(direction, index+1, steps, time, vectorSource, null)
+            fn(direction, index+1, time, vectorSource, null)
           };
           return;
       }

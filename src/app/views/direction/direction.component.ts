@@ -31,13 +31,14 @@ export class DirectionComponent implements OnInit {
   getDirectionData() {
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
       this._mapService.addRoute(res);
-      console.log(res)
+      console.log(res);
     })
   }
 
   ngOnInit() {
     this._mapService.initMap();
     this._mapService.changeMapLayer('assets/test.png');
+    // this._mapService.changeMapLayer('assets/origin.jpg');
     this._api.getKioskAndPoiData(this.kioskId, this.poiId).subscribe(([kiosk, poi]) => {
       this.kioskData = kiosk;
       this.poiData = poi;

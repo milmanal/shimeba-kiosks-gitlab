@@ -66,37 +66,6 @@ export class ApiService {
     );
   }
 
-  // prebuildDirection(data) {
-  //   const levels = Object.keys(data.pointsOfFloors);
-  //   const instructions = {};
-    
-  //   levels.map(level => {
-  //     data.pointsOfFloors[level].map(poi => {
-  //       if(poi.isShowInList) {
-  //         if(instructions[level] === undefined) {
-  //           instructions[level] = [];
-  //         } else {
-  //           instructions[level][instructions[level].length - 1].route.push([
-  //             Number(poi.longitude),
-  //             Number(poi.latitude),
-  //             poi.distanceCovered
-  //           ]);
-  //         }
-  //         instructions[level].push({
-  //           instruction: poi,
-  //           route: []
-  //         })
-  //       }
-  //       instructions[level][instructions[level].length - 1].route.push([
-  //         Number(poi.longitude),
-  //         Number(poi.latitude),
-  //         poi.distanceCovered
-  //       ]);
-  //     })
-  //   });
-    
-  //   return instructions;
-  // }
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
     const points = [];

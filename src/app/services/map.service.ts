@@ -6,7 +6,7 @@ import OlTileLayer from 'ol/layer/Tile';
 import OlView from 'ol/View';
 import ImageLayer from 'ol/layer/Image.js';
 import Static from 'ol/source/ImageStatic.js';
-import {Style, Icon, Stroke} from 'ol/style';
+import {Style, Icon, Stroke, Text, Fill} from 'ol/style';
 import Vector from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
@@ -124,25 +124,48 @@ export class MapService {
     this.vectorSource.addFeature(marker);
   }
 
-  addRoute(direction) {
-    this.setDirection(direction, 0, 5, this.vectorSource, this.setDirection);
+  addText(text, coord) {
+    this.styles[text] = new Style({
+      text: new Text({
+        font: '40px Calibri,sans-serif',
+        fill: new Fill({ color: '#000' }),
+        stroke: new Stroke({
+          color: '#fff', width: 2
+        }),
+        text: String(text)
+      })
+    });
+    const textMsg = new Feature({
+      geometry: new Point(fromLonLat(coord)),
+      type: String(text)
+    });
+    this.vectorSource.addFeature(textMsg);
   }
 
-  setDirection(direction, index, time, vectorSource, fn) {
+  addRoute(direction) {
+    if(direction.length) {
+      const directionDistance = direction[direction.length - 1][1].distanceCovered - direction[0][0].distanceCovered;
+      this.setDirection(direction, 0, 1500, this.vectorSource, directionDistance, this.setDirection);
+    }
+  }
+
+  setDirection(direction, index, time, vectorSource, distance, fn) {
     const startPt = fromLonLat(direction[index][0].point);
     const endPt = fromLonLat(direction[index][1].point);
-    const steps = (direction[index][1].distanceCovered - direction[index][0].distanceCovered || 1) * 10;
+    const steps = direction[index][1].distanceCovered - direction[index][0].distanceCovered || 1;
     const directionX = (endPt[0] - startPt[0]) / steps;
     const directionY = (endPt[1] - startPt[1]) / steps;
     let i = 0;
+
+    const timeForCurrentStep = time/(distance/steps)/steps;
 
     const interval = setInterval(() => {
       if (i > steps) {
           clearInterval(interval);
           if (fn && (direction.length - 1) > index + 1) {
-            fn(direction, index+1, time, vectorSource, fn)
-          } else if(fn) {
-            fn(direction, index+1, time, vectorSource, null)
+            fn(direction, index+1, time, vectorSource, distance, fn)
+          } else if(fn && direction[index + 1]) {
+            fn(direction, index+1, time, vectorSource, distance, null)
           };
           return;
       }
@@ -158,7 +181,7 @@ export class MapService {
       });
       vectorSource.addFeature(featurePolyline);
       i++;
-    }, time)
+    }, timeForCurrentStep)
   }
   
 

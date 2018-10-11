@@ -29,8 +29,18 @@ export class DirectionComponent implements OnInit {
   }
 
   getDirectionData() {
+    let currentInstr = 1;
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
-      this._mapService.addRoute(res);
+      const interval = setInterval(()=> {
+        if(res[currentInstr]) {
+          console.log(currentInstr ,res[currentInstr].instruction.instructions)
+          this._mapService.addRoute(res[currentInstr].points);
+          this._mapService.addText(currentInstr, [Number(res[currentInstr].instruction.longitude), Number(res[currentInstr].instruction.latitude)])
+        } else {
+          clearInterval(interval);
+        }
+        currentInstr++;
+      }, 2000)
       console.log(res);
     })
   }
@@ -38,7 +48,6 @@ export class DirectionComponent implements OnInit {
   ngOnInit() {
     this._mapService.initMap();
     this._mapService.changeMapLayer('assets/test.png');
-    // this._mapService.changeMapLayer('assets/origin.jpg');
     this._api.getKioskAndPoiData(this.kioskId, this.poiId).subscribe(([kiosk, poi]) => {
       this.kioskData = kiosk;
       this.poiData = poi;

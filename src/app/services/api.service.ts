@@ -68,13 +68,21 @@ export class ApiService {
 
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
-    const points = [];
+    const instructions = [];
+    let currentInstructionIndex = 0;
     for(let floor in pointsOfFloors) {
       for (let i = 0; i < pointsOfFloors[floor].length; i++) {
         const poi = pointsOfFloors[floor][i];
         const nextPoi = pointsOfFloors[floor][i+1];
+        if(pointsOfFloors[floor][i].isShowInList) {
+          currentInstructionIndex++;
+          instructions[currentInstructionIndex] = {
+            instruction: poi,
+            points: []
+          };
+        }
         if (nextPoi) {
-          points.push(
+          instructions[currentInstructionIndex].points.push(
             [
               {
                 point: [
@@ -102,8 +110,9 @@ export class ApiService {
           )
         }
       }
-    }
-    return points;
+    };
+
+    return instructions;
   }
 
   getDirection(kioskData, poiData): Observable<any> {

@@ -1,3 +1,12 @@
 <div class="direction-component">
     <div id="map"></div>
+    <div class="instructions-container">
+        <ul>
+            <div *ngFor="let instr of instructions" id="{{instr && instr.instruction.instructions}}" class="instruction">
+                <li>
+                    {{instr && instr.instruction.instructions}}
+                </li>
+            </div>
+        </ul>
+    </div>
 </div>

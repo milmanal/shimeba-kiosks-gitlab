@@ -66,53 +66,57 @@ export class ApiService {
     );
   }
 
+  buildRoute(floor, instructions, pointsOfFloors, index) {
+    const instr = instructions;
+    for (let i = 0; i < pointsOfFloors[floor].length; i++) {
+      const poi = pointsOfFloors[floor][i];
+      const nextPoi = pointsOfFloors[floor][i+1];
+      if(pointsOfFloors[floor][i].isShowInList) {
+        index++;
+        instr[index] = {
+          instruction: poi,
+          points: []
+        };
+      }
+      if (nextPoi) {
+        instr[index].points.push(
+          [
+            {
+              point: [
+                Number(poi.longitude),
+                Number(poi.latitude)
+              ],
+              distanceCovered: poi.distanceCovered,
+              instructionsType: poi.instructionsType,
+              isShowInList: poi.isShowInList,
+              instructions: poi.instructions,
+              level: floor
+            },
+            {
+              point: [
+                Number(nextPoi.longitude),
+                Number(nextPoi.latitude)
+              ],
+              distanceCovered: nextPoi.distanceCovered,
+              instructionsType: nextPoi.instructionsType,
+              isShowInList: nextPoi.isShowInList,
+              instructions: nextPoi.instructions,
+              level: floor
+            }
+          ]
+        )
+      }
+      if (pointsOfFloors[floor][i].nextLevel) {
+        this.buildRoute(pointsOfFloors[floor][i].nextLevel, instr, pointsOfFloors, index);
+      }
+    }
+    return instr;
+  }
+
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
-    const instructions = [];
-    let currentInstructionIndex = 0;
-    for(let floor in pointsOfFloors) {
-      for (let i = 0; i < pointsOfFloors[floor].length; i++) {
-        const poi = pointsOfFloors[floor][i];
-        const nextPoi = pointsOfFloors[floor][i+1];
-        if(pointsOfFloors[floor][i].isShowInList) {
-          currentInstructionIndex++;
-          instructions[currentInstructionIndex] = {
-            instruction: poi,
-            points: []
-          };
-        }
-        if (nextPoi) {
-          instructions[currentInstructionIndex].points.push(
-            [
-              {
-                point: [
-                  Number(poi.longitude),
-                  Number(poi.latitude)
-                ],
-                distanceCovered: poi.distanceCovered,
-                instructionsType: poi.instructionsType,
-                isShowInList: poi.isShowInList,
-                instructions: poi.instructions,
-                level: floor
-              },
-              {
-                point: [
-                  Number(nextPoi.longitude),
-                  Number(nextPoi.latitude)
-                ],
-                distanceCovered: nextPoi.distanceCovered,
-                instructionsType: nextPoi.instructionsType,
-                isShowInList: nextPoi.isShowInList,
-                instructions: nextPoi.instructions,
-                level: floor
-              }
-            ]
-          )
-        }
-      }
-    };
 
-    return instructions;
+    return this.buildRoute(data.source.level, [], pointsOfFloors, 0);
   }
 
   getDirection(kioskData, poiData): Observable<any> {

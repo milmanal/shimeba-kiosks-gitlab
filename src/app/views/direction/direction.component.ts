@@ -15,6 +15,7 @@ export class DirectionComponent implements OnInit {
   poiId: Number;
   kioskData: any;
   poiData: any;
+  instructions: any;
   constructor(
     private _mapService: MapService,
     private _route: ActivatedRoute,
@@ -31,23 +32,27 @@ export class DirectionComponent implements OnInit {
   getDirectionData() {
     let currentInstr = 1;
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
+      console.log(res)
+      this.instructions = res;
       const interval = setInterval(()=> {
         if(res[currentInstr]) {
-          console.log(currentInstr ,res[currentInstr].instruction.instructions)
+          const instruction = document.getElementById(res[currentInstr].instruction.instructions);
+          if(instruction) {
+            instruction.setAttribute('style', 'display: block');
+          }
           this._mapService.addRoute(res[currentInstr].points);
-          this._mapService.addText(currentInstr, [Number(res[currentInstr].instruction.longitude), Number(res[currentInstr].instruction.latitude)])
+          this._mapService.addInstructionNumber(currentInstr, [Number(res[currentInstr].instruction.longitude), Number(res[currentInstr].instruction.latitude)]);
         } else {
+          this._mapService.setDestinationMarker(this.poiData.entrances[0].longitude, this.poiData.entrances[0].latitude);
           clearInterval(interval);
         }
         currentInstr++;
       }, 2000)
-      console.log(res);
     })
   }
 
   ngOnInit() {
     this._mapService.initMap();
-    this._mapService.changeMapLayer('assets/test.png');
     this._api.getKioskAndPoiData(this.kioskId, this.poiId).subscribe(([kiosk, poi]) => {
       this.kioskData = kiosk;
       this.poiData = poi;

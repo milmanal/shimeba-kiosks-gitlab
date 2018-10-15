@@ -6,7 +6,7 @@ import OlTileLayer from 'ol/layer/Tile';
 import OlView from 'ol/View';
 import ImageLayer from 'ol/layer/Image.js';
 import Static from 'ol/source/ImageStatic.js';
-import {Style, Icon, Stroke, Text, Fill} from 'ol/style';
+import {Style, Icon, Stroke, Text, Fill, Circle} from 'ol/style';
 import Vector from 'ol/source/Vector';
 import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
@@ -56,10 +56,38 @@ export class MapService {
       }),
       'start': new Style({
         image: new Icon({
-          aanchor: [0.5, 0.5],
+          anchor: [0.5, 0.5],
           anchorXUnits: 'fraction',
           anchorYUnits: 'fraction',
           src: 'assets/imgs/start.svg'
+        })
+      }),
+      'destination': new Style({
+        image: new Icon({
+          anchor: [0.45, 0.9],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          src: 'assets/imgs/route-dest.svg'
+        })
+      }),
+      'destinationPoint': new Style({
+        image: new Icon({
+          anchor: [0.5, 0.5],
+          anchorXUnits: 'fraction',
+          anchorYUnits: 'fraction',
+          src: 'assets/imgs/point.svg'
+        })
+      }),
+      'backgroundNumber': new Style({
+        image: new Circle({
+          radius: 25,
+          fill: new Fill({
+            color: '#4a90e2',
+          }),
+          stroke: new Stroke({
+            color: '#fff',
+            width: 1
+          })
         })
       })
     };
@@ -97,7 +125,6 @@ export class MapService {
       center: fromLonLat([34.790005, 32.080043]),
       zoom: 19,
       rotation: -92.9 * Math.PI / 180
-      // rotation: -90 * Math.PI / 180
     });
 
     this.map = new OlMap({
@@ -124,21 +151,47 @@ export class MapService {
     this.vectorSource.addFeature(marker);
   }
 
-  addText(text, coord) {
-    this.styles[text] = new Style({
+  setDestinationMarker(lon, lat) {
+    const lonLatToNumber = [
+      Number(lon),
+      Number(lat)
+    ];
+    const point = new Feature({
+      geometry: new Point(fromLonLat(lonLatToNumber)),
+      population: 4000,
+      rainfall: 500,
+      type: 'destinationPoint'
+    });
+    this.vectorSource.addFeature(point);
+    const marker = new Feature({
+      geometry: new Point(fromLonLat(lonLatToNumber)),
+      population: 4000,
+      rainfall: 500,
+      type: 'destination'
+    });
+    this.vectorSource.addFeature(marker);
+  }
+
+  addInstructionNumber(number, coord) {
+    this.styles[number] = new Style({
       text: new Text({
-        font: '40px Calibri,sans-serif',
-        fill: new Fill({ color: '#000' }),
+        font: '40px Almoni',
+        fill: new Fill({ color: '#fff' }),
         stroke: new Stroke({
           color: '#fff', width: 2
         }),
-        text: String(text)
+        text: String(number)
       })
     });
     const textMsg = new Feature({
       geometry: new Point(fromLonLat(coord)),
-      type: String(text)
+      type: String(number)
     });
+    const background = new Feature({
+      geometry: new Point(fromLonLat(coord)),
+      type: 'backgroundNumber'
+    });
+    this.vectorSource.addFeature(background);
     this.vectorSource.addFeature(textMsg);
   }
 

@@ -7,5 +7,12 @@
   "toilets": "שירותים ציבוריים",
   "info": "שירות ומידע",
   "entrance": "כניסות",
-  "show-more": "תוצאות נוספות"
+  "show-more": "תוצאות נוספות",
+  "level": "קומה",
+  "destination": "הגעת ליעד: ",
+  "start-text": "הנך נמצא מול מסך מידע והתמצאות",
+  "instruction-block-title": "הוראות הגעה",
+  "back": "חזרה >",
+  "send-instruction": "שלח הוראות",
+  "sms-input-box": "הזן מספר נייד"
 }

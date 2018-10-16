@@ -66,19 +66,19 @@ export class ApiService {
     );
   }
 
-  buildRoute(floor, instructions, pointsOfFloors, index) {
+  buildRoute(floor, instructions, pointsOfFloors, index?) {
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
       const nextPoi = pointsOfFloors[floor][i+1];
       if(pointsOfFloors[floor][i].isShowInList) {
-        index++;
+        index === undefined ? index = 0 : index++;
         instr[index] = {
           instruction: poi,
           points: []
         };
       }
-      if (nextPoi) {
+      if (nextPoi && instr[index]) {
         instr[index].points.push(
           [
             {
@@ -116,7 +116,7 @@ export class ApiService {
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
 
-    return this.buildRoute(data.source.level, [], pointsOfFloors, 0);
+    return this.buildRoute(data.source.level, [], pointsOfFloors);
   }
 
   getDirection(kioskData, poiData): Observable<any> {

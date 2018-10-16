@@ -15,6 +15,7 @@ export class DirectionComponent implements OnInit {
   poiId: Number;
   kioskData: any;
   poiData: any;
+  poiLocation: any;
   instructions: any;
   constructor(
     private _mapService: MapService,
@@ -30,19 +31,24 @@ export class DirectionComponent implements OnInit {
   }
 
   getDirectionData() {
-    let currentInstr = 1;
+    let currentInstr = 0;
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
       console.log(res)
       this.instructions = res;
       const interval = setInterval(()=> {
+        if(currentInstr === 0) {
+          document.getElementById('start-instr').setAttribute('style', 'display: block');
+        }
         if(res[currentInstr]) {
           const instruction = document.getElementById(res[currentInstr].instruction.instructions);
+          this._mapService.addRoute(res[currentInstr].points);
           if(instruction) {
             instruction.setAttribute('style', 'display: block');
+            this._mapService.addInstructionNumber(currentInstr+1, [Number(res[currentInstr].instruction.longitude), Number(res[currentInstr].instruction.latitude)]);
           }
-          this._mapService.addRoute(res[currentInstr].points);
-          this._mapService.addInstructionNumber(currentInstr, [Number(res[currentInstr].instruction.longitude), Number(res[currentInstr].instruction.latitude)]);
         } else {
+          document.getElementById('destination-instr').setAttribute('style', 'display: block');
+          document.getElementById('sms-box').setAttribute('style', 'visibility: visible');
           this._mapService.setDestinationMarker(this.poiData.entrances[0].longitude, this.poiData.entrances[0].latitude);
           clearInterval(interval);
         }
@@ -56,6 +62,7 @@ export class DirectionComponent implements OnInit {
     this._api.getKioskAndPoiData(this.kioskId, this.poiId).subscribe(([kiosk, poi]) => {
       this.kioskData = kiosk;
       this.poiData = poi;
+      this.poiLocation = poi.dynamicValues.filter((value) => value.propertyName === 'Location Description');
       this.getDirectionData();
       this._mapService.addMarker(this.kioskData.entrances[0].sLongitude, this.kioskData.entrances[0].sLatitude, 'start');
     })

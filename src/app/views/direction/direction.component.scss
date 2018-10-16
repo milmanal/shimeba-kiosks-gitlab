@@ -5,12 +5,107 @@
         width: 100%;
         height: 100%;
     }
+    .header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 132px;
+        background-color: #358fe9;
+        .destination-icon-header {
+            width: 78px;
+            height: 91px;
+        }
+        .poi-name {
+            font-size: 45px;
+            color: #ffffff;
+            line-height: 1;
+        }
+        .poi-location {
+            font-size: 50px;
+            line-height: 1;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .back-btn {
+            width: 210px;
+            height: 74px;
+            background-color: #fff;
+            font-size: 45px;
+            font-weight: bold;
+            color: #358fe9;
+            border: none;
+        }
+    }
     .instructions-container {
         position: absolute;
         top: 17%;
         left: 6%;
+        width: 475px;
+        .instruction-header {
+            height: 81px;
+            width: 100%;
+            background-color: #fff;
+        }
+        .instruction-footer {
+            visibility: hidden;
+            height: 81px;
+            width: 100%;
+            background-color: #fff;
+            .sms-icon {
+                width: 42px;
+                height: 37px;
+            }
+            .send-instr {
+                font-size: 25px;
+                font-weight: bold;
+                color: #3e6b9c;
+            }
+            .input-block {
+                width: 219px;
+                height: 26px;
+                background-color: rgba(0, 0, 0, 0.28);
+                font-size: 20px;
+                color: #ffffff;
+            }
+        }
+        .instruction-title {
+            font-size: 50px;
+            font-weight: bold;
+            color: #3e6b9c;
+        }
         .instruction {
             display: none;
+            li {
+                list-style: none;
+            }
+            .level {
+                background-color: #3d6faa;
+                height: 41px;
+                font-size: 28px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .text-instr {
+                height: 74px;
+                background-color: #4a90e2;
+                font-size: 22px;
+                font-weight: bold;
+                color: #ffffff;
+            }
+            .instruction-number {
+                padding: 0 17px;
+                height: 46px;
+                width: 46px;
+                border: 1px solid #fff;
+                border-radius: 50%;
+                font-size: 36px;
+                font-weight: bold;
+            }
+            .destination-icon {
+                width: 46px;
+                height: 46px;
+            }
         }
     }
 }

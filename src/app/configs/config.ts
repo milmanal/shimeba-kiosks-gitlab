@@ -11,5 +11,5 @@ export const Config = {
     //     maxX: 34.791677138986535,
     //     maxY: 32.08224432499814
     // },
-    initMapUrl: 'assets/main.png'
+    initMapUrl: 'assets/main_origin.jpg'
 };

@@ -125,7 +125,8 @@ export class MapService {
     this.view = new OlView({
       center: fromLonLat([34.790005, 32.080043]),
       zoom: 19,
-      rotation: -92.9 * Math.PI / 180
+      // rotation: -92.9 * Math.PI / 180
+      rotation: -90 * Math.PI / 180
     });
 
     this.map = new OlMap({

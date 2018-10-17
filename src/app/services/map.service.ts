@@ -12,6 +12,7 @@ import VectorLayer from 'ol/layer/Vector';
 import Feature from 'ol/Feature';
 import Point from 'ol/geom/Point';
 import LineString from 'ol/geom/LineString';
+import { Overlay } from 'ol';
 
 import Projection from 'ol/proj/Projection.js';
 import { fromLonLat, transformExtent} from 'ol/proj';
@@ -50,7 +51,7 @@ export class MapService {
     this.styles = {
       'route': new Style({
         stroke: new Stroke({
-          width: 6,
+          width: 10,
           color: '#0277bd'
         })
       }),

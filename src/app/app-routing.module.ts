@@ -1,40 +1,40 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
 
 const routes: Routes = [
   {
-    path: '',
+    path: "",
     data: {
-      title: 'Home'
+      title: "Home"
     },
     children: [
       {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
+        path: "",
+        redirectTo: "home/105999",
+        pathMatch: "full"
       },
       {
-        path: 'home/:kioskId',
-        loadChildren: './views/home/home.module#HomeModule'
+        path: "home/:kioskId",
+        loadChildren: "./views/home/home.module#HomeModule"
       },
       {
-        path: 'search',
-        loadChildren: './views/search/search.module#SearchModule'
+        path: "search",
+        loadChildren: "./views/search/search.module#SearchModule"
       },
       {
-        path: 'category/:categoryId',
-        loadChildren: './views/category/category.module#CategoryModule'
+        path: "category/:categoryId",
+        loadChildren: "./views/category/category.module#CategoryModule"
       },
       {
-        path: 'direction/:kioskId/:poiId',
-        loadChildren: './views/direction/direction.module#DirectionModule'
+        path: "direction/:kioskId/:poiId",
+        loadChildren: "./views/direction/direction.module#DirectionModule"
       }
     ]
-  },
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

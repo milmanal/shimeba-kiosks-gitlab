@@ -49,10 +49,14 @@ export class DirectionComponent implements OnInit {
           this._mapService.addRoute(res[currentInstr].points);
           if (instruction) {
             instruction.setAttribute("style", "display: block");
-            this._mapService.addInstructionNumber(currentInstr + 1, [
-              Number(res[currentInstr].instruction.longitude),
-              Number(res[currentInstr].instruction.latitude)
-            ]);
+            this._mapService.addInstructionIcon(
+              currentInstr + 1,
+              [
+                Number(res[currentInstr].instruction.longitude),
+                Number(res[currentInstr].instruction.latitude)
+              ],
+              res[currentInstr].instruction.instructionsType
+            );
           }
         } else {
           document

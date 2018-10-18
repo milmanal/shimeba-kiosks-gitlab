@@ -1,5 +1,11 @@
 <div class="language-panel">
-    <button class="language-btn" *ngFor="let lang of languages" [ngClass]="{'active': lang.name === currentLanguage.name, 'hide': !showAnotherLanguages && lang.name !== currentLanguage.name}" (click)="selectLanguage(lang)">
-        <img src="assets/imgs/lang-icon.svg" alt="" *ngIf="lang.name === currentLanguage.name" class="lang-icon"> {{showAnotherLanguages ? lang.displayName : lang.shortName}} 
+    <button class="language-btn" *ngFor="let lang of languages" [ngClass]="{
+            'active': lang.name === currentLanguage.name, 
+            'hide': !showAnotherLanguages && lang.name !== currentLanguage.name && !showAllLanguages,
+            'short': !showAnotherLanguages && lang.name === currentLanguage.name && !showAllLanguages
+        }"
+        (click)="selectLanguage(lang)">
+        <img src="assets/imgs/lang-icon.svg" alt="" *ngIf="lang.name === currentLanguage.name" class="lang-icon">
+        {{showAnotherLanguages || showAllLanguages ? lang.displayName : lang.shortName}}
     </button>
 </div>

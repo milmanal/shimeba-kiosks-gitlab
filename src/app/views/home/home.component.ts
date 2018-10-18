@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { MapService } from './../../services/map.service';
-import { ApiService } from './../../services/api.service';
+import { MapService } from "./../../services/map.service";
+import { ApiService } from "./../../services/api.service";
 
 declare const keyman: any;
 
 @Component({
-  templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  templateUrl: "home.component.html",
+  styleUrls: ["home.component.scss"]
 })
-
 export class HomeComponent implements OnInit {
   constructor(
     private _mapService: MapService,
@@ -19,18 +18,22 @@ export class HomeComponent implements OnInit {
     private _router: Router
   ) {
     this._route.params.subscribe(params => {
-      localStorage.setItem('kioskId', params.kioskId);
+      localStorage.setItem("kioskId", params.kioskId);
     });
   }
 
   startSearch() {
-    this._router.navigateByUrl('/search');
+    this._router.navigateByUrl("/search");
   }
 
   ngOnInit() {
     this._mapService.initMap();
     this._api.getKioskData().subscribe(res => {
-      this._mapService.addMarker(res.entrances[0].longitude, res.entrances[0].latitude, 'start');
+      this._mapService.addMarker(
+        res.entrances[0].longitude,
+        res.entrances[0].latitude,
+        "start"
+      );
     });
   }
 }

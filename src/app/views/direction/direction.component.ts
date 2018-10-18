@@ -5,6 +5,8 @@ import { MapService } from "../../services/map.service";
 import { ApiService } from "../../services/api.service";
 
 import { InstructionIcon } from "./../../configs/instruction-icon";
+import { Subscription } from "rxjs";
+import { LanguageService } from "../../services/language.service";
 
 @Component({
   templateUrl: "direction.component.html",
@@ -18,8 +20,11 @@ export class DirectionComponent implements OnInit {
   poiLocation: any;
   instructions: any;
   routeLoaded: Boolean = false;
+  languageSubscription: Subscription;
   interval: any;
+  initLanguage: any;
   constructor(
+    private _language: LanguageService,
     private _mapService: MapService,
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -101,6 +106,14 @@ export class DirectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.initLanguage = this._language.getCurrentLanguage();
+    this.languageSubscription = this._language.observableLanguage.subscribe(
+      lang => {
+        if(this.initLanguage.name !== lang.name) {
+          location.reload();
+        }
+      }
+    );
     this._mapService.initMap();
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)

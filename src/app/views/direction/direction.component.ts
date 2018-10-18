@@ -31,6 +31,11 @@ export class DirectionComponent implements OnInit {
     });
   }
 
+  backToMain() {
+    const kioskId = localStorage.getItem('kioskId');
+    this._router.navigateByUrl(`/home/${kioskId}`)
+  }
+
   getDirectionData() {
     let currentInstr = 0;
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {

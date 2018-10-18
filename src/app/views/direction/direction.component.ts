@@ -18,6 +18,7 @@ export class DirectionComponent implements OnInit {
   poiLocation: any;
   instructions: any;
   routeLoaded: Boolean = false;
+  interval: any;
   constructor(
     private _mapService: MapService,
     private _route: ActivatedRoute,
@@ -32,6 +33,8 @@ export class DirectionComponent implements OnInit {
   }
 
   backToMain() {
+    clearInterval(this.interval);
+    this._mapService.clearMap();
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/home/${kioskId}`)
   }
@@ -41,44 +44,48 @@ export class DirectionComponent implements OnInit {
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
-      const interval = setInterval(() => {
-        if (currentInstr === 0) {
-          document
-            .getElementById("start-instr")
-            .setAttribute("style", "display: block");
-        }
-        if (res[currentInstr]) {
-          const instruction = document.getElementById(
-            res[currentInstr].instruction.instructions
-          );
-          this._mapService.addRoute(res[currentInstr].points);
-          if (instruction) {
-            instruction.setAttribute("style", "display: block");
-            this._mapService.addInstructionIcon(
-              currentInstr + 1,
-              [
-                Number(res[currentInstr].instruction.longitude),
-                Number(res[currentInstr].instruction.latitude)
-              ],
-              res[currentInstr].instruction.instructionsType
-            );
-          }
-        } else {
-          document
-            .getElementById("destination-instr")
-            .setAttribute("style", "display: block");
-          document
-            .getElementById("sms-box")
-            .setAttribute("style", "display: flex;");
-          this._mapService.setDestinationMarker(
-            this.poiData.entrances[0].longitude,
-            this.poiData.entrances[0].latitude
-          );
-          clearInterval(interval);
-        }
+      this.interval = setInterval(() => {
+        this.routing(res, currentInstr);
         currentInstr++;
       }, 2000);
     });
+  }
+
+  routing(instructions, currentInstr) {
+    if (currentInstr === 0) {
+      document
+        .getElementById("start-instr")
+        .setAttribute("style", "display: block");
+    }
+    if (instructions[currentInstr]) {
+      const instruction = document.getElementById(
+        instructions[currentInstr].instruction.instructions
+      );
+      this._mapService.addRoute(instructions[currentInstr].points);
+      if (instruction) {
+        instruction.setAttribute("style", "display: block");
+        this._mapService.addInstructionIcon(
+          currentInstr + 1,
+          [
+            Number(instructions[currentInstr].instruction.longitude),
+            Number(instructions[currentInstr].instruction.latitude)
+          ],
+          instructions[currentInstr].instruction.instructionsType
+        );
+      }
+    } else {
+      document
+        .getElementById("destination-instr")
+        .setAttribute("style", "display: block");
+      document
+        .getElementById("sms-box")
+        .setAttribute("style", "display: flex;");
+      this._mapService.setDestinationMarker(
+        this.poiData.entrances[0].longitude,
+        this.poiData.entrances[0].latitude
+      );
+      clearInterval(this.interval);
+    }
   }
 
   hasInstructionIcon(instructionType) {

@@ -35,9 +35,12 @@ export class MapService {
   vectorLayer: any;
   staticSource: any;
   styles: any;
-  interval: any;
 
   constructor() {}
+
+  clearMap() {
+    this.vectorSource.clear();
+  }
 
   initMap() {
     this.source = new OlXYZ({

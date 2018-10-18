@@ -35,10 +35,14 @@ export class MapService {
   vectorLayer: any;
   staticSource: any;
   styles: any;
+  intervals = [];
 
   constructor() {}
 
   clearMap() {
+    this.intervals.map(interval => {
+      clearInterval(interval);
+    })
     this.vectorSource.clear();
   }
 
@@ -229,12 +233,13 @@ export class MapService {
         1500,
         this.vectorSource,
         directionDistance,
+        this.intervals,
         this.setDirection
       );
     }
   }
 
-  setDirection(direction, index, time, vectorSource, distance, fn) {
+  setDirection(direction, index, time, vectorSource, distance, intervals, fn) {
     const startPt = fromLonLat(direction[index][0].point);
     const endPt = fromLonLat(direction[index][1].point);
     const steps =
@@ -250,9 +255,9 @@ export class MapService {
       if (i > steps) {
         clearInterval(interval);
         if (fn && direction.length - 1 > index + 1) {
-          fn(direction, index + 1, time, vectorSource, distance, fn);
+          fn(direction, index + 1, time, vectorSource, distance, intervals, fn);
         } else if (fn && direction[index + 1]) {
-          fn(direction, index + 1, time, vectorSource, distance, null);
+          fn(direction, index + 1, time, vectorSource, distance, intervals, null);
         }
         return;
       }
@@ -267,6 +272,7 @@ export class MapService {
       vectorSource.addFeature(featurePolyline);
       i++;
     }, timeForCurrentStep);
+    intervals.push(interval);
   }
 
   changeMapLayer(url) {

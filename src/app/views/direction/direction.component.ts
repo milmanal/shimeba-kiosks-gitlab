@@ -5,7 +5,7 @@ import { MapService } from "../../services/map.service";
 import { ApiService } from "../../services/api.service";
 
 import { InstructionIcon } from "./../../configs/instruction-icon";
-import { Subscription } from "rxjs";
+import { Subscription, interval } from "rxjs";
 import { LanguageService } from "../../services/language.service";
 
 @Component({
@@ -21,8 +21,8 @@ export class DirectionComponent implements OnInit {
   instructions: any;
   routeLoaded: Boolean = false;
   languageSubscription: Subscription;
-  interval: any;
   initLanguage: any;
+  intervalSub: Subscription;
   constructor(
     private _language: LanguageService,
     private _mapService: MapService,
@@ -38,7 +38,7 @@ export class DirectionComponent implements OnInit {
   }
 
   backToMain() {
-    clearInterval(this.interval);
+    this.intervalSub.unsubscribe();
     this._mapService.clearMap();
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/home/${kioskId}`)
@@ -49,10 +49,12 @@ export class DirectionComponent implements OnInit {
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
-      this.interval = setInterval(() => {
+      const curInterval = interval(2000);
+
+      this.intervalSub = curInterval.subscribe(() => {
         this.routing(res, currentInstr);
         currentInstr++;
-      }, 2000);
+      });
     });
   }
 
@@ -89,7 +91,7 @@ export class DirectionComponent implements OnInit {
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
-      clearInterval(this.interval);
+      this.intervalSub.unsubscribe();
     }
   }
 

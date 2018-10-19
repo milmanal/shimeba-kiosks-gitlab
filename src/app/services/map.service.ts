@@ -14,6 +14,8 @@ import Point from "ol/geom/Point";
 import LineString from "ol/geom/LineString";
 import { Overlay } from "ol";
 
+import { interval } from 'rxjs';
+
 import { fromLonLat, transformExtent, Projection } from "ol/proj";
 
 import { Config } from "./../configs/config";
@@ -40,8 +42,20 @@ export class MapService {
   constructor() {}
 
   clearMap() {
+    this.map.setTarget(null);
+    this.map = null;
+    this.source = null;
+    this.layer = null;
+    this.view = null;
+    this.imageLayer = null;
+    this.extent = null;
+    this.projection = null;
+    this.vectorStyle = null;
+    this.vectorSource = new Vector();
+    this.vectorLayer = null;
+    this.staticSource = null;
     this.intervals.map(interval => {
-      clearInterval(interval);
+      interval.unsubscribe();
     })
     this.vectorSource.clear();
   }
@@ -229,7 +243,7 @@ export class MapService {
       this.setDirection(
         direction,
         0,
-        1500,
+        2000,
         this.vectorSource,
         directionDistance,
         this.intervals,
@@ -247,12 +261,11 @@ export class MapService {
     const directionX = (endPt[0] - startPt[0]) / steps;
     const directionY = (endPt[1] - startPt[1]) / steps;
     let i = 0;
-
     const timeForCurrentStep = time / (distance / steps) / steps;
-
-    const interval = setInterval(() => {
+    const currentInterval = interval(timeForCurrentStep);
+    const intervalSub = currentInterval.subscribe(() => {
       if (i > steps) {
-        clearInterval(interval);
+        intervalSub.unsubscribe();
         if (fn && direction.length - 1 > index + 1) {
           fn(direction, index + 1, time, vectorSource, distance, intervals, fn);
         } else if (fn && direction[index + 1]) {
@@ -270,8 +283,8 @@ export class MapService {
       });
       vectorSource.addFeature(featurePolyline);
       i++;
-    }, timeForCurrentStep);
-    intervals.push(interval);
+    });
+    intervals.push(intervalSub);
   }
 
   changeMapLayer(url) {

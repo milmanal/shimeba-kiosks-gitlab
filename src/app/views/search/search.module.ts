@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
-import { SearchRoutingModule } from './search-routing.module';
-
 import { SearchComponent } from './search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS } from '@ngx-material-keyboard/core';
 
 import { AmharicLayoutConfig } from './../../configs/amharic-keyboard.config';
+import { SearchRoutingModule } from './search-routing.module';
 
 const customLayouts: IKeyboardLayouts = {
   ...keyboardLayouts,
@@ -19,11 +18,11 @@ const customLayouts: IKeyboardLayouts = {
 @NgModule({
   imports: [
     CommonModule,
-    SearchRoutingModule,
     TranslateModule,
     MatKeyboardModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SearchRoutingModule
   ],
   providers: [
     { provide: MAT_KEYBOARD_LAYOUTS, useValue: customLayouts }

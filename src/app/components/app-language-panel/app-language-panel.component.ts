@@ -25,6 +25,14 @@ export class AppLanguagePanelComponent implements OnInit {
       ) {
         this.showAllLanguages = false;
       }
+      if (
+        localStorage.getItem("needRefresh") === "true" &&
+        val instanceof NavigationEnd &&
+        val.url.indexOf("home") !== -1
+      ) {
+        localStorage.setItem("needRefresh", "false");
+        location.reload();
+      }
     });
   }
 

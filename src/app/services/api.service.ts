@@ -16,7 +16,6 @@ import { Poi } from './../models';
 })
 export class ApiService {
   url = "https://shimeba-api-staging.azurewebsites.net/api/";
-  // routing/byfloor?lat1=32.0804542067765&lon1=34.7898267288336&level1=0&lat2=32.079351683968326&venueid=12&lon2=34.788963720202446&level2=-1&locale=he&isForWidget=true
   constructor(
     private _httpClient: HttpClient,
     private _language: LanguageService

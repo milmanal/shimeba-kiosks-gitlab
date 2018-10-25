@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { DirectionRoutingModule } from './direction-routing.module';
 
 import { DirectionComponent } from './direction.component';
+import { DirectionRoutingModule } from './direction-routing.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    DirectionRoutingModule,
-    TranslateModule
+    TranslateModule,
+    DirectionRoutingModule
   ],
   declarations: [DirectionComponent]
 })

@@ -44,16 +44,6 @@ export class MapService {
   clearMap() {
     this.map.setTarget(null);
     this.map = null;
-    this.source = null;
-    this.layer = null;
-    this.view = null;
-    this.imageLayer = null;
-    this.extent = null;
-    this.projection = null;
-    this.vectorStyle = null;
-    this.vectorSource = new Vector();
-    this.vectorLayer = null;
-    this.staticSource = null;
     this.intervals.map(interval => {
       interval.unsubscribe();
     })
@@ -243,7 +233,7 @@ export class MapService {
       this.setDirection(
         direction,
         0,
-        2000,
+        1700,
         this.vectorSource,
         directionDistance,
         this.intervals,

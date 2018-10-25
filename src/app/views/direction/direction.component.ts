@@ -38,6 +38,7 @@ export class DirectionComponent implements OnInit {
   }
 
   backToMain() {
+    localStorage.setItem('needRefresh', 'true');
     this.intervalSub.unsubscribe();
     this._mapService.clearMap();
     const kioskId = localStorage.getItem('kioskId');

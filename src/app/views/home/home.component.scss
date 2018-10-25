@@ -1,3 +1,12 @@
+:host /deep/ .mapboxgl-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+#start-point {
+    width: 56px;
+    height: 56px;
+}
 .home-component {
     position: relative;
     .map {
@@ -29,7 +38,7 @@
         z-index: 2;
         display: flex;
         width: 83%;
-        top: 20%;
+        top: 240px;
         left: 50%;
         transform: translateX(-50%);
         height: 15vh;

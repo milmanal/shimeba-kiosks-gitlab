@@ -31,15 +31,7 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this._mapbox.initMap();
     this._api.getKioskData().subscribe(res => {
-      this._mapbox.addStartMarker('assets/imgs/start.svg', res.entrances[0].longitude, res.entrances[0].latitude);
+      this._mapbox.addMarker('start-point', res.entrances[0].longitude, res.entrances[0].latitude);
     });
-    // this._mapService.initMap();
-    // this._api.getKioskData().subscribe(res => {
-    //   this._mapService.addMarker(
-    //     res.entrances[0].longitude,
-    //     res.entrances[0].latitude,
-    //     "start"
-    //   );
-    // });
   }
 }

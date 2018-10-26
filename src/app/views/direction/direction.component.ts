@@ -7,6 +7,7 @@ import { ApiService } from "../../services/api.service";
 import { InstructionIcon } from "./../../configs/instruction-icon";
 import { Subscription, interval } from "rxjs";
 import { LanguageService } from "../../services/language.service";
+import { MapboxService } from "../../services/mapbox.service";
 
 @Component({
   templateUrl: "direction.component.html",
@@ -28,7 +29,8 @@ export class DirectionComponent implements OnInit {
     private _mapService: MapService,
     private _route: ActivatedRoute,
     private _api: ApiService,
-    private _router: Router
+    private _router: Router,
+    private _mapbox: MapboxService
   ) {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
@@ -38,11 +40,11 @@ export class DirectionComponent implements OnInit {
   }
 
   backToMain() {
-    localStorage.setItem('needRefresh', 'true');
+    localStorage.setItem("needRefresh", "true");
     this.intervalSub.unsubscribe();
-    this._mapService.clearMap();
-    const kioskId = localStorage.getItem('kioskId');
-    this._router.navigateByUrl(`/home/${kioskId}`)
+    // this._mapService.clearMap();
+    const kioskId = localStorage.getItem("kioskId");
+    this._router.navigateByUrl(`/home/${kioskId}`);
   }
 
   getDirectionData() {
@@ -69,17 +71,17 @@ export class DirectionComponent implements OnInit {
       const instruction = document.getElementById(
         instructions[currentInstr].instruction.instructions
       );
-      this._mapService.addRoute(instructions[currentInstr].points);
+      this._mapbox.addRouteLine(instructions[currentInstr].points);
       if (instruction) {
         instruction.setAttribute("style", "display: block");
-        this._mapService.addInstructionIcon(
-          currentInstr + 1,
+        this._mapbox.addInstructionIcon(
+          currentInstr+1,
           [
             Number(instructions[currentInstr].instruction.longitude),
             Number(instructions[currentInstr].instruction.latitude)
           ],
           instructions[currentInstr].instruction.instructionsType
-        );
+        )
       }
     } else {
       document
@@ -88,10 +90,14 @@ export class DirectionComponent implements OnInit {
       document
         .getElementById("sms-box")
         .setAttribute("style", "display: flex;");
-      this._mapService.setDestinationMarker(
+      this._mapbox.setDestinationMarker(
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
+      // this._mapService.setDestinationMarker(
+      //   this.poiData.entrances[0].longitude,
+      //   this.poiData.entrances[0].latitude
+      // );
       this.intervalSub.unsubscribe();
     }
   }
@@ -112,12 +118,13 @@ export class DirectionComponent implements OnInit {
     this.initLanguage = this._language.getCurrentLanguage();
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
-        if(this.initLanguage.name !== lang.name) {
+        if (this.initLanguage.name !== lang.name) {
           location.reload();
         }
       }
     );
-    this._mapService.initMap();
+    // this._mapService.initMap();
+    this._mapbox.initMap();
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {
@@ -126,12 +133,17 @@ export class DirectionComponent implements OnInit {
         this.poiLocation = poi.dynamicValues.filter(
           value => value.propertyName === "Location Description"
         );
-        this.getDirectionData();
-        this._mapService.addMarker(
+        this._mapbox.addMarker(
+          'start-point',
           this.kioskData.entrances[0].sLongitude,
-          this.kioskData.entrances[0].sLatitude,
-          "start"
+          this.kioskData.entrances[0].sLatitude
         );
+        this.getDirectionData();
+        // this._mapService.addMarker(
+        //   this.kioskData.entrances[0].sLongitude,
+        //   this.kioskData.entrances[0].sLatitude,
+        //   "start"
+        // );
       });
   }
 }

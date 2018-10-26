@@ -69,7 +69,6 @@ export class ApiService {
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
-      const nextPoi = pointsOfFloors[floor][i+1];
       if(pointsOfFloors[floor][i].isShowInList) {
         index === undefined ? index = 0 : index++;
         instr[index] = {
@@ -77,31 +76,11 @@ export class ApiService {
           points: []
         };
       }
-      if (nextPoi && instr[index]) {
+      if (instr[index]) {
         instr[index].points.push(
           [
-            {
-              point: [
-                Number(poi.longitude),
-                Number(poi.latitude)
-              ],
-              distanceCovered: poi.distanceCovered,
-              instructionsType: poi.instructionsType,
-              isShowInList: poi.isShowInList,
-              instructions: poi.instructions,
-              level: floor
-            },
-            {
-              point: [
-                Number(nextPoi.longitude),
-                Number(nextPoi.latitude)
-              ],
-              distanceCovered: nextPoi.distanceCovered,
-              instructionsType: nextPoi.instructionsType,
-              isShowInList: nextPoi.isShowInList,
-              instructions: nextPoi.instructions,
-              level: floor
-            }
+            Number(poi.longitude),
+            Number(poi.latitude)
           ]
         )
       }

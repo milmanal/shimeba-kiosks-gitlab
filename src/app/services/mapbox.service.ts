@@ -2,14 +2,14 @@ import { Injectable } from "@angular/core";
 import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
 import turf from "turf";
-import { interval } from 'rxjs';
+import { interval } from "rxjs";
 
 @Injectable({
   providedIn: "root"
 })
 export class MapboxService {
-	map;
-	interval;
+  map;
+  interval;
   geojson = {
     type: "FeatureCollection",
     features: [
@@ -73,69 +73,72 @@ export class MapboxService {
       bearing: 93.5,
       center: [34.790005, 32.080043],
       style: this.style
-		});
-		this.map.on('load', () => {
-			this.map.addLayer({
-				id: "lines",
-				type: "line",
-				source: {
-					type: "geojson",
-					data: this.geojson
-				},
-				layout: {
-					"line-cap": "round",
-					"line-join": "round"
-				},
-				paint: {
-					"line-color": "#0277bd",
-					"line-width": 10,
-					"line-opacity": 0.8
-				}
-			});
-		})
-	}
-	
-	clearMap() {
-		if(this.interval) {
-			this.interval.unsubscribe();
-		}
-		this.geojson.features[0].geometry.coordinates = [];
-		this.map.getSource('lines').setData(this.geojson);
-	}
+    });
+    this.map.on("load", () => {
+      this.map.addLayer({
+        id: "lines",
+        type: "line",
+        source: {
+          type: "geojson",
+          data: this.geojson
+        },
+        layout: {
+          "line-cap": "round",
+          "line-join": "round"
+        },
+        paint: {
+          "line-color": "#0277bd",
+          "line-width": 10,
+          "line-opacity": 0.8
+        }
+      });
+    });
+  }
+
+  clearMap() {
+    if (this.interval) {
+      this.interval.unsubscribe();
+    }
+    this.geojson.features[0].geometry.coordinates = [];
+    this.map.getSource("lines").setData(this.geojson);
+  }
 
   addRouteLine(coord) {
-		const steps = 100;
-		let arc = [];
-		let currentGeojson = {
-			type: "FeatureCollection",
-			features: [
-				{
-					type: "Feature",
-					geometry: {
-						type: "LineString",
-						coordinates: coord
-					}
-				}
-			]
-		}
-		const lineDistance = turf.lineDistance(currentGeojson.features[0], 'kilometers');
-		const time = 2000 / steps;
-		let currentI = 0;
-		const currentInterval = interval(time);
-		for (let i = 0; i < lineDistance; i += lineDistance / steps) {
-			let segment = turf.along(currentGeojson.features[0], i, 'kilometers');
-			arc.push(segment.geometry.coordinates);
-		}
-		const intervalSub = currentInterval.subscribe(() => {
-			if(arc[currentI]) {
-				this.geojson.features[0].geometry.coordinates.push(arc[currentI]);
-				this.map.getSource('lines').setData(this.geojson);
-				currentI++;
-			} else {
-				intervalSub.unsubscribe();
-			}
-		});
-		this.interval = intervalSub;
+    const steps = 100;
+    let arc = [];
+    let currentGeojson = {
+      type: "FeatureCollection",
+      features: [
+        {
+          type: "Feature",
+          geometry: {
+            type: "LineString",
+            coordinates: coord
+          }
+        }
+      ]
+    };
+    const lineDistance = turf.lineDistance(
+      currentGeojson.features[0],
+      "kilometers"
+    );
+    const time = 2000 / steps;
+    let currentI = 0;
+    const currentInterval = interval(time);
+    for (let i = 0; i < lineDistance; i += lineDistance / steps) {
+      let segment = turf.along(currentGeojson.features[0], i, "kilometers");
+      arc.push(segment.geometry.coordinates);
+    }
+    const intervalSub = currentInterval.subscribe(() => {
+      if (arc[currentI]) {
+        this.geojson.features[0].geometry.coordinates.push(arc[currentI]);
+        this.map.getSource("lines").setData(this.geojson);
+        currentI++;
+      } else {
+        intervalSub.unsubscribe();
+      }
+    });
+    this.interval = intervalSub;
   }
 
   addMarker(id, lon, lat) {
@@ -163,9 +166,9 @@ export class MapboxService {
         "icon-size": 1
       }
     });
-	}
+  }
 
-	addInstructionIcon(number, coord, instructionType) {
+  addInstructionIcon(number, coord, instructionType) {
     const hasIcon = InstructionIcon.some(
       instruction => instruction.instructionType === instructionType
     );
@@ -199,50 +202,30 @@ export class MapboxService {
       iconEl.src = `assets/imgs/${iconName}`;
       iconEl.classList.add("icon");
       markerEl.appendChild(iconEl);
-		}
-		new mapboxgl.Marker(markerEl)
-			.setLngLat(coord)
-			.addTo(this.map);
-	}
-	setDestinationMarker(lon, lat) {
-		this.map.addImage("destination-point-circle", document.getElementById('destination-point-circle'));
-		this.map.addImage("destination-point", document.getElementById('destination-point'));
-		this.map.addLayer({
-			id: "destination-circle",
-			type: "symbol",
-			source: {
-				type: "geojson",
-				data: {
-					type: "FeatureCollection",
-					features: [
-						{
-							type: "Feature",
-							geometry: {
-								type: "Point",
-								coordinates: [Number(lon), Number(lat)]
-							}
-						}
-					]
-				}
-			},
-			layout: {
-				"icon-image": "destination-point-circle",
-				"icon-size": 1,
-				"icon-allow-overlap": true
-			}
-		});
-		this.map.addLayer({
-			id: "destination-point",
+    }
+    new mapboxgl.Marker(markerEl).setLngLat(coord).addTo(this.map);
+  }
+  setDestinationMarker(lon, lat) {
+    this.map.addImage(
+      "destination-point-circle",
+      document.getElementById("destination-point-circle")
+    );
+    this.map.addImage(
+      "destination-point",
+      document.getElementById("destination-point")
+    );
+    this.map.addLayer({
+      id: "destination-circle",
       type: "symbol",
       source: {
-				type: "geojson",
+        type: "geojson",
         data: {
-					type: "FeatureCollection",
+          type: "FeatureCollection",
           features: [
-						{
-							type: "Feature",
+            {
+              type: "Feature",
               geometry: {
-								type: "Point",
+                type: "Point",
                 coordinates: [Number(lon), Number(lat)]
               }
             }
@@ -250,11 +233,35 @@ export class MapboxService {
         }
       },
       layout: {
-				"icon-image": "destination-point",
-				"icon-size": 1,
-				"icon-offset": [3, 5],
-				"icon-anchor": "bottom"
+        "icon-image": "destination-point-circle",
+        "icon-size": 1,
+        "icon-allow-overlap": true
       }
-		});
+    });
+    this.map.addLayer({
+      id: "destination-point",
+      type: "symbol",
+      source: {
+        type: "geojson",
+        data: {
+          type: "FeatureCollection",
+          features: [
+            {
+              type: "Feature",
+              geometry: {
+                type: "Point",
+                coordinates: [Number(lon), Number(lat)]
+              }
+            }
+          ]
+        }
+      },
+      layout: {
+        "icon-image": "destination-point",
+        "icon-size": 1,
+        "icon-offset": [3, 5],
+        "icon-anchor": "bottom"
+      }
+    });
   }
 }

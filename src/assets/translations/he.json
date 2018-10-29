@@ -1,6 +1,6 @@
 {
-  "search-placeholder": "לאן תרצה להגיע?",
-  "search-placeholder-2": "הקלד שם מחלקה, יחידה, מרפאה…",
+  "search-placeholder-home-page": "לאן תרצה להגיע?",
+  "search-placeholder-search-page": "הקלד שם מחלקה, יחידה, מרפאה…",
   "search-instruction": "הקלידו שם בתיבת החיפוש או בחרו קטגוריה",
   "food": "חנויות מזון ושתיה",
   "parking": "חניונים",
@@ -8,11 +8,19 @@
   "info": "שירות ומידע",
   "entrance": "כניסות",
   "show-more": "תוצאות נוספות",
-  "level": "קומה",
+  "floor": "קומה",
   "destination": "הגעת ליעד: ",
   "start-text": "הנך נמצא מול מסך מידע והתמצאות",
   "instruction-block-title": "הוראות הגעה",
   "back": "חזרה >",
   "send-instruction": "שלח הוראות",
-  "sms-input-box": "הזן מספר נייד"
+  "sms-input-box": "הזן מספר נייד",
+  "search-result-instruction": "תוצאות חיפוש: (בחר למעבר לתוצאה)",
+  "close-mobile": "סגור",
+  "show-all-mobile": "הצג הכל",
+  "header-title-mobile": "הנך נמצא מול מסך מידע והתמצאות",
+  "sms-modal-instruction": "הזינו את הנייד וקבלו מסרון עם כל הפרטים",
+  "sms-input-placeholder": "הזן מספר נייד",
+  "send": "שלח",
+  "you-are-here": "אתה כאן"
 }

@@ -27,7 +27,7 @@
         <ul class="m-0 p-0">
             <div class="instruction" id="start-instr">
                 <li class="level d-flex align-items-center px-3">
-                    {{'level' | translate}} {{kioskData && kioskData.entrances[0].level}}
+                    {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
                 </li>
                 <li class="text-instr d-flex align-items-center px-3" translate>
                     start-text
@@ -51,7 +51,7 @@
             </div>
             <div class="instruction" id="destination-instr">
                 <li class="level d-flex align-items-center px-3">
-                    {{'level' | translate}} {{poiData && poiData.entrances[0].level}}
+                    {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
                 </li>
                 <li class="text-instr d-flex align-items-center px-3">
                     <img src="assets/imgs/destination-panel.svg" alt="destination" class="destination-icon">

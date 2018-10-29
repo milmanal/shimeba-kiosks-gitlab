@@ -8,9 +8,9 @@ import "rxjs/add/operator/distinctUntilChanged";
 import "rxjs/add/operator/switchMap";
 import "rxjs/Rx";
 import { filter, map } from "rxjs/operators";
-import { forkJoin } from 'rxjs';
+import { forkJoin } from "rxjs";
 
-import { Poi } from './../models';
+import { Poi } from "./../models";
 @Injectable({
   providedIn: "root"
 })
@@ -49,9 +49,7 @@ export class ApiService {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(
-        `${this.url}pois?venueid=12&locale=${currentLanguage.name}`
-      )
+      .get<Poi[]>(`${this.url}pois?venueid=12&locale=${currentLanguage.name}`)
       .map(res => res)
       .concatMap(res => Observable.from(res))
       .filter(poi => poi.categories.some(id => id === categoryId));
@@ -60,8 +58,12 @@ export class ApiService {
   getKioskAndPoiData(kioskId, poiId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
     return forkJoin(
-      this._httpClient.get(`${this.url}pois/${kioskId}?locale=${currentLanguage.name}`),
-      this._httpClient.get(`${this.url}pois/${poiId}?locale=${currentLanguage.name}`)
+      this._httpClient.get(
+        `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
+      ),
+      this._httpClient.get(
+        `${this.url}pois/${poiId}?locale=${currentLanguage.name}`
+      )
     );
   }
 
@@ -69,23 +71,29 @@ export class ApiService {
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
-      if(pointsOfFloors[floor][i].isShowInList) {
-        index === undefined ? index = 0 : index++;
+      if (pointsOfFloors[floor][i].isShowInList) {
+        if (instr[index]) {
+          instr[index].points.push([
+            Number(poi.longitude),
+            Number(poi.latitude)
+          ]);
+        }
+        index === undefined ? (index = 0) : index++;
         instr[index] = {
           instruction: poi,
           points: []
         };
       }
       if (instr[index]) {
-        instr[index].points.push(
-          [
-            Number(poi.longitude),
-            Number(poi.latitude)
-          ]
-        )
+        instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
       if (pointsOfFloors[floor][i].nextLevel) {
-        this.buildRoute(pointsOfFloors[floor][i].nextLevel, instr, pointsOfFloors, index);
+        this.buildRoute(
+          pointsOfFloors[floor][i].nextLevel,
+          instr,
+          pointsOfFloors,
+          index
+        );
       }
     }
     return instr;
@@ -100,18 +108,20 @@ export class ApiService {
   getDirection(kioskData, poiData): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
-    return this._httpClient.get(`${this.url}routing/byfloor`, {
-      params: {
-        lat1: kioskData.entrances[0].sLatitude,
-        lon1: kioskData.entrances[0].sLongitude,
-        level1: kioskData.entrances[0].level,
-        venueid: '12',
-        lat2: poiData.entrances[0].sLatitude,
-        lon2: poiData.entrances[0].sLongitude,
-        level2: poiData.entrances[0].level,
-        locale: currentLanguage.name,
-        isForWidget: 'true'
-      }
-    }).map(res => this.prebuildDirection(res));
+    return this._httpClient
+      .get(`${this.url}routing/byfloor`, {
+        params: {
+          lat1: kioskData.entrances[0].sLatitude,
+          lon1: kioskData.entrances[0].sLongitude,
+          level1: kioskData.entrances[0].level,
+          venueid: "12",
+          lat2: poiData.entrances[0].sLatitude,
+          lon2: poiData.entrances[0].sLongitude,
+          level2: poiData.entrances[0].level,
+          locale: currentLanguage.name,
+          isForWidget: "true"
+        }
+      })
+      .map(res => this.prebuildDirection(res));
   }
 }

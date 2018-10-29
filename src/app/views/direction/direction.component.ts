@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { MapService } from "../../services/map.service";
 import { ApiService } from "../../services/api.service";
 
 import { InstructionIcon } from "./../../configs/instruction-icon";
@@ -26,7 +25,6 @@ export class DirectionComponent implements OnInit {
   intervalSub: Subscription;
   constructor(
     private _language: LanguageService,
-    private _mapService: MapService,
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _router: Router,
@@ -40,9 +38,8 @@ export class DirectionComponent implements OnInit {
   }
 
   backToMain() {
-    localStorage.setItem("needRefresh", "true");
     this.intervalSub.unsubscribe();
-    // this._mapService.clearMap();
+    this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/home/${kioskId}`);
   }
@@ -94,10 +91,6 @@ export class DirectionComponent implements OnInit {
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
-      // this._mapService.setDestinationMarker(
-      //   this.poiData.entrances[0].longitude,
-      //   this.poiData.entrances[0].latitude
-      // );
       this.intervalSub.unsubscribe();
     }
   }
@@ -123,7 +116,6 @@ export class DirectionComponent implements OnInit {
         }
       }
     );
-    // this._mapService.initMap();
     this._mapbox.initMap();
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
@@ -139,11 +131,6 @@ export class DirectionComponent implements OnInit {
           this.kioskData.entrances[0].sLatitude
         );
         this.getDirectionData();
-        // this._mapService.addMarker(
-        //   this.kioskData.entrances[0].sLongitude,
-        //   this.kioskData.entrances[0].sLatitude,
-        //   "start"
-        // );
       });
   }
 }

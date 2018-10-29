@@ -1,12 +1,15 @@
 import { Injectable } from "@angular/core";
 import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
+import turf from "turf";
+import { interval } from 'rxjs';
 
 @Injectable({
   providedIn: "root"
 })
 export class MapboxService {
-  map;
+	map;
+	interval;
   geojson = {
     type: "FeatureCollection",
     features: [
@@ -90,25 +93,49 @@ export class MapboxService {
 				}
 			});
 		})
-  }
+	}
+	
+	clearMap() {
+		if(this.interval) {
+			this.interval.unsubscribe();
+		}
+		this.geojson.features[0].geometry.coordinates = [];
+		this.map.getSource('lines').setData(this.geojson);
+	}
 
   addRouteLine(coord) {
-		let currentId = 0;
-		let timer = 2000 / coord.length;
-		const interval = setInterval(() => {
-			if(coord[currentId]) {
-				this.geojson.features[0].geometry.coordinates.push(coord[currentId]);
+		const steps = 100;
+		let arc = [];
+		let currentGeojson = {
+			type: "FeatureCollection",
+			features: [
+				{
+					type: "Feature",
+					geometry: {
+						type: "LineString",
+						coordinates: coord
+					}
+				}
+			]
+		}
+		const lineDistance = turf.lineDistance(currentGeojson.features[0], 'kilometers');
+		const time = 2000 / steps;
+		let currentI = 0;
+		const currentInterval = interval(time);
+		for (let i = 0; i < lineDistance; i += lineDistance / steps) {
+			let segment = turf.along(currentGeojson.features[0], i, 'kilometers');
+			arc.push(segment.geometry.coordinates);
+		}
+		const intervalSub = currentInterval.subscribe(() => {
+			if(arc[currentI]) {
+				this.geojson.features[0].geometry.coordinates.push(arc[currentI]);
 				this.map.getSource('lines').setData(this.geojson);
-				currentId++;
+				currentI++;
 			} else {
-				clearInterval(interval);
+				intervalSub.unsubscribe();
 			}
-		}, timer)
-		// coord.map(coor => {
-		// 	this.geojson.features[0].geometry.coordinates.push(coor);
-		// 	this.map.getSource('lines').setData(this.geojson);
-		// })
-		console.log(this.map.getStyle().sources)
+		});
+		this.interval = intervalSub;
   }
 
   addMarker(id, lon, lat) {

@@ -1,7 +1,6 @@
 import { Component, OnInit, OnChanges } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { MapService } from "./../../services/map.service";
 import { ApiService } from "./../../services/api.service";
 import { MapboxService } from "../../services/mapbox.service";
 
@@ -13,7 +12,6 @@ declare const keyman: any;
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private _mapService: MapService,
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _router: Router,

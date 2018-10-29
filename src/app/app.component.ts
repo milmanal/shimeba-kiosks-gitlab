@@ -1,7 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MapService } from './services/map.service';
-
-declare const keyman: any;
 
 @Component({
   selector: 'app-root',

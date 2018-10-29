@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
     this._mapbox.initMap();
     this._api.getKioskData().subscribe(res => {
       this._mapbox.addMarker('start-point', res.entrances[0].longitude, res.entrances[0].latitude);
+      this._mapbox.addKioskMarker(res.entrances[0].longitude, res.entrances[0].latitude);
     });
   }
 }

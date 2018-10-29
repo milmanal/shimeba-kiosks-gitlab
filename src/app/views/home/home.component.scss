@@ -7,6 +7,17 @@
     width: 56px;
     height: 56px;
 }
+#you-are-here {
+    background-image: url('../../../assets/imgs/u-r-here.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-size: 3vh;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    min-width: 210px;
+    min-height: 104px;
+}
 .home-component {
     position: relative;
     .map {

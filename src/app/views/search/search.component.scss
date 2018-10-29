@@ -48,6 +48,11 @@
     .show-more-results {
         max-height: calc(100% - (140px + 3rem + 75px)) !important;
     }
+    .search-result-instr {
+        font-size: 50px;
+        font-weight: bold;
+        color: #4f4f4f;
+    }
     .search-results {
         position: absolute;
         top: calc(3rem + 140px);

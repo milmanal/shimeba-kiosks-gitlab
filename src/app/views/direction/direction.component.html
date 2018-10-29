@@ -61,10 +61,47 @@
                 </li>
             </div>
         </ul>
-        <div class="instruction-footer align-items-center px-3" id="sms-box">
+        <div class="instruction-footer align-items-center px-3" id="sms-box" (click)="openModal(template)">
             <img src="assets/imgs/sms-icon.svg" alt="sms-icon" class="sms-icon">
             <div class="send-instr px-3" translate>send-instruction</div>
             <div class="input-block d-flex align-items-center justify-content-center" translate>sms-input-box</div>
         </div>
     </div>
 </div>
+<ng-template #template>
+    <div class="p-3">
+        <div class="d-flex justify-content-end">
+            <img src="assets/imgs/close.svg" alt="close" aria-label="Close" (click)="modalRef.hide()">
+        </div>
+        <div class="instruction pt-3 px-3" translate>
+            sms-modal-instruction
+        </div>
+        <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+            <input type="text" class="sms-input px-2" placeholder="{{'sms-input-placeholder' | translate}}" [(ngModel)]="phoneNumber">
+            <button class="send-btn" translate>send</button>
+        </div>
+        <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
+            <div class="d-flex justify-content-between align-items-center key-row">
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(1)">1</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(2)">2</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(3)">3</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center key-row">
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(4)">4</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(5)">5</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(6)">6</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center key-row">
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(7)">7</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(8)">8</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(9)">9</div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center key-row">
+                <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('+')">+</div>
+                <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(0)">0</div>
+                <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('del')"><i
+                        class="material-icons">backspace</i></div>
+            </div>
+        </div>
+    </div>
+</ng-template>

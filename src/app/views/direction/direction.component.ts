@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { ApiService } from "../../services/api.service";
@@ -7,6 +7,10 @@ import { InstructionIcon } from "./../../configs/instruction-icon";
 import { Subscription, interval } from "rxjs";
 import { LanguageService } from "../../services/language.service";
 import { MapboxService } from "../../services/mapbox.service";
+
+
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   templateUrl: "direction.component.html",
@@ -23,18 +27,33 @@ export class DirectionComponent implements OnInit {
   languageSubscription: Subscription;
   initLanguage: any;
   intervalSub: Subscription;
+  modalRef: BsModalRef;
+  phoneNumber: String = '';
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _router: Router,
-    private _mapbox: MapboxService
+    private _mapbox: MapboxService,
+    private _modalService: BsModalService
   ) {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
     });
+  }
+
+  enterNumber(number) {
+    if(number === 'del') {
+      this.phoneNumber = this.phoneNumber.slice(0, -1);
+    } else {
+      this.phoneNumber += number;
+    }
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this._modalService.show(template, {class: 'custom-modal'});
   }
 
   backToMain() {

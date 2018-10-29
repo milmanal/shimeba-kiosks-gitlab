@@ -170,7 +170,6 @@ export class MapboxService {
 
   addKioskMarker(lon, lat) {
     const youAreHere = document.getElementById('you-are-here');
-    console.log(youAreHere)
     new mapboxgl.Marker(youAreHere, {offset: [-45, -75]}).setLngLat([lon, lat]).addTo(this.map);
   }
 

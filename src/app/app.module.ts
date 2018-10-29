@@ -14,6 +14,7 @@ import { AppComponent } from './app.component';
 
 import { AppLanguagePanelComponent } from './components';
 import { AppTranslationModule } from './app-translation.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import 'hammerjs';
 
@@ -23,6 +24,7 @@ import 'hammerjs';
     AppLanguagePanelComponent
   ],
   imports: [
+    ModalModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     AppTranslationModule,

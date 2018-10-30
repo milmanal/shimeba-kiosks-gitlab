@@ -122,7 +122,7 @@ export class MapboxService {
       currentGeojson.features[0],
       "kilometers"
     );
-    const time = 2000 / steps;
+    const time = 1900 / steps;
     let currentI = 0;
     const currentInterval = interval(time);
     for (let i = 0; i < lineDistance; i += lineDistance / steps) {
@@ -136,6 +136,7 @@ export class MapboxService {
         currentI++;
       } else {
         intervalSub.unsubscribe();
+        console.log('done', new Date().getSeconds())
       }
     });
     this.interval = intervalSub;

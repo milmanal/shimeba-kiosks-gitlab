@@ -1,4 +1,4 @@
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 
 import {
   MissingTranslationHandler,
@@ -6,18 +6,17 @@ import {
   TranslateLoader,
   TranslateModule,
   TranslateService
-} from '@ngx-translate/core';
-import {NgModule} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../environments/environment';
-import {LanguageService} from './services/language.service';
-
+} from "@ngx-translate/core";
+import { NgModule } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { LanguageService } from "./services/language.service";
 
 export function createTranslateLoader(http: HttpClient) {
-  return new TranslateHttpLoader(http, `/assets/translations/`, '.json');
+  return new TranslateHttpLoader(http, `/assets/translations/`, ".json");
 }
 
-export class ShimebaMissingTranslationHandler implements MissingTranslationHandler {
+export class ShimebaMissingTranslationHandler
+  implements MissingTranslationHandler {
   handle(params: MissingTranslationHandlerParams) {
     return params.key;
   }
@@ -26,10 +25,13 @@ export class ShimebaMissingTranslationHandler implements MissingTranslationHandl
 const translationOptions = {
   loader: {
     provide: TranslateLoader,
-    useFactory: (createTranslateLoader),
+    useFactory: createTranslateLoader,
     deps: [HttpClient]
   },
-  missingTranslationHandler: {provide: MissingTranslationHandler, useClass: ShimebaMissingTranslationHandler},
+  missingTranslationHandler: {
+    provide: MissingTranslationHandler,
+    useClass: ShimebaMissingTranslationHandler
+  },
   useDefaultLang: true
 };
 
@@ -39,21 +41,23 @@ const translationOptions = {
   providers: [TranslateService, LanguageService]
 })
 export class AppTranslationModule {
-
   private getDefaultLanguage() {
-    let defaultLanguageString: string = localStorage.getItem('currentLanguage');
+    let defaultLanguageString: string = localStorage.getItem("currentLanguage");
 
     if (!defaultLanguageString && navigator) {
-      defaultLanguageString = 'he';
+      defaultLanguageString = "he";
     }
 
-    return this.languageService.languages.find((lang) => lang.name === defaultLanguageString);
+    return this.languageService.languages.find(
+      lang => lang.name === defaultLanguageString
+    );
   }
 
-  constructor(private translate: TranslateService,
-              private languageService: LanguageService) {
-
-    translate.setDefaultLang('en');
+  constructor(
+    private translate: TranslateService,
+    private languageService: LanguageService
+  ) {
+    translate.setDefaultLang("en");
 
     const currentLanguage = this.getDefaultLanguage();
 

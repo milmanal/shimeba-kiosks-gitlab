@@ -4,11 +4,11 @@ import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home/105999",
+    redirectTo: "/home/12/105999",
     pathMatch: "full"
   },
   {
-    path: "home/:kioskId",
+    path: "home/:venueId/:kioskId",
     loadChildren: "./views/home/home.module#HomeModule"
   },
   {

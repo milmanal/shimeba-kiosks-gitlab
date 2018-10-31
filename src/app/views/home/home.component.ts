@@ -19,6 +19,10 @@ export class HomeComponent implements OnInit {
   ) {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
+      const HTML = document.getElementsByTagName('html')[0];
+      const venueAttr = document.createAttribute('venueId');
+      venueAttr.value = params.venueId;
+      HTML.setAttributeNode(venueAttr);
     });
   }
 

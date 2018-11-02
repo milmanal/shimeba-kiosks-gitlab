@@ -1,1 +1,1 @@
-export * from './app-language-panel.component';
+export * from "./app-language-panel.component";

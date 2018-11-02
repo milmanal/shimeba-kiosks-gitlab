@@ -39,6 +39,11 @@ export class AppLanguagePanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    const venueId = localStorage.getItem("venueId");
+    const HTML = document.getElementById("venue-container-language");
+    const venueAttr = document.createAttribute("venueId");
+    venueAttr.value = venueId;
+    HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();
   }
 }

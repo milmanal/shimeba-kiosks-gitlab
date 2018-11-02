@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { ApiService } from "../../services/api.service";
@@ -14,7 +14,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   templateUrl: "direction.component.html",
-  styleUrls: ["direction.component.scss"]
+  styleUrls: ["direction.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class DirectionComponent implements OnInit {
   kioskId: Number;
@@ -60,7 +61,8 @@ export class DirectionComponent implements OnInit {
     this.intervalSub.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
-    this._router.navigateByUrl(`/home/${kioskId}`);
+    const venueId = localStorage.getItem('venueId');
+    this._router.navigateByUrl(`/home/${venueId}/${kioskId}`);
   }
 
   getDirectionData() {
@@ -128,6 +130,11 @@ export class DirectionComponent implements OnInit {
   }
 
   ngOnInit() {
+    const venueId = localStorage.getItem('venueId');
+    const HTML = document.getElementById('venue-container');
+    const venueAttr = document.createAttribute('venueId');
+    venueAttr.value = venueId;
+    HTML.setAttributeNode(venueAttr);
     this.initLanguage = this._language.getCurrentLanguage();
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {

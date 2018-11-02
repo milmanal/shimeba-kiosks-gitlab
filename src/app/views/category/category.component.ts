@@ -39,6 +39,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    const venueId = localStorage.getItem("venueId");
+    const HTML = document.getElementById("venue-container");
+    const venueAttr = document.createAttribute("venueId");
+    venueAttr.value = venueId;
+    HTML.setAttributeNode(venueAttr);
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
         this.currentLanguage = lang;
@@ -53,7 +58,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   selectPoi(id) {
-    const kioskId = localStorage.getItem('kioskId');
+    const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/direction/${kioskId}/${id}`);
   }
 

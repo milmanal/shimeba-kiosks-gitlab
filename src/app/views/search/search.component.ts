@@ -1,21 +1,20 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { LanguageService } from './../../services/language.service';
-import { ApiService } from './../../services/api.service';
-import { Language, Category } from '../../models';
-import { Subscription } from 'rxjs';
-import { Subject } from 'rxjs/Subject';
-import { Categories } from './../../configs/categories';
+import { LanguageService } from "./../../services/language.service";
+import { ApiService } from "./../../services/api.service";
+import { Language, Category } from "../../models";
+import { Subscription } from "rxjs";
+import { Subject } from "rxjs/Subject";
+import { Categories } from "./../../configs/categories";
 
 @Component({
-  templateUrl: 'search.component.html',
-  styleUrls: ['search.component.scss'],
+  templateUrl: "search.component.html",
+  styleUrls: ["search.component.scss"],
   providers: [ApiService]
 })
-
 export class SearchComponent implements OnInit, OnDestroy {
-  searchValue: string = '';
+  searchValue: string = "";
   currentLanguage: Language;
   languageSubscription: Subscription;
   searchTerm$ = new Subject<string>();
@@ -27,20 +26,26 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _language: LanguageService,
     private _api: ApiService,
     private _router: Router
-  ) { 
-    this._api.search(this.searchTerm$)
-      .subscribe(results => {
-        this.pois = results;
-      });
+  ) {
+    this._api.search(this.searchTerm$).subscribe(results => {
+      this.pois = results;
+    });
   }
   ngOnInit() {
-    this.languageSubscription = this._language.observableLanguage.subscribe(lang => {
-      this.currentLanguage = lang;
-    })
+    const venueId = localStorage.getItem("venueId");
+    const HTML = document.getElementById("venue-container");
+    const venueAttr = document.createAttribute("venueId");
+    venueAttr.value = venueId;
+    HTML.setAttributeNode(venueAttr);
+    this.languageSubscription = this._language.observableLanguage.subscribe(
+      lang => {
+        this.currentLanguage = lang;
+      }
+    );
   }
 
   search(ev: any) {
-    if (this.searchValue.length >=2) {
+    if (this.searchValue.length >= 2) {
       this.searchTerm$.next(this.searchValue);
     } else {
       this.pois = [];
@@ -53,7 +58,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this._router.navigateByUrl(`/category/${id}`);
   }
   selectPoi(id) {
-    const kioskId = localStorage.getItem('kioskId');
+    const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/direction/${kioskId}/${id}`);
   }
   ngOnDestroy() {

@@ -2,15 +2,17 @@ import { Injectable } from "@angular/core";
 import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
 import turf from "turf";
-import { interval } from "rxjs";
+import { interval, Subscription } from "rxjs";
+import { Config } from "./../configs/config";
 
 @Injectable({
   providedIn: "root"
 })
 export class MapboxService {
-  map;
-  interval;
-  geojson = {
+  venueId: any;
+  map: any;
+  interval: Subscription;
+  geojson: any = {
     type: "FeatureCollection",
     features: [
       {
@@ -22,56 +24,53 @@ export class MapboxService {
       }
     ]
   };
-  style = {
-    version: 8,
-    name: "Raster Tiles",
-    sources: {
-      customMap: {
-        type: "raster",
-        tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
-        tileSize: 256
-      },
-      overlay: {
-        type: "image",
-        url: "assets/map_99_north.jpg",
-        coordinates: [
-          [34.791717138986535, 32.08206239285578],
-          [34.79141068350503, 32.07787046370873],
-          [34.78832531057368, 32.07803240327738],
-          [34.78863176605523, 32.08222432499814]
-        ]
-      }
-    },
-    layers: [
-      {
-        id: "customMap",
-        type: "raster",
-        source: "customMap",
-        paint: {
-          "raster-fade-duration": 100
-        }
-      },
-      {
-        id: "overlay",
-        source: "overlay",
-        type: "raster",
-        paint: {
-          "raster-opacity": 0.85
-        }
-      }
-    ]
-  };
+  style: Object;
 
   constructor() {
     mapboxgl.accessToken = "undefined";
+    this.venueId = localStorage.getItem("venueId");
+    this.style = {
+      version: 8,
+      name: "Raster Tiles",
+      sources: {
+        mainMap: {
+          type: "raster",
+          tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
+          tileSize: 256
+        },
+        overlayMap: {
+          type: "image",
+          url: Config[this.venueId].initMapUrl,
+          coordinates: Config[this.venueId].mapCorners
+        }
+      },
+      layers: [
+        {
+          id: "mainMap",
+          type: "raster",
+          source: "mainMap",
+          paint: {
+            "raster-fade-duration": 100
+          }
+        },
+        {
+          id: "overlayMap",
+          source: "overlayMap",
+          type: "raster",
+          paint: {
+            "raster-opacity": 0.85
+          }
+        }
+      ]
+    };
   }
   initMap() {
     this.map = new mapboxgl.Map({
       container: "map",
-      zoom: 18,
       // pitch: 60,
-      bearing: 93.5,
-      center: [34.790005, 32.080043],
+      zoom: Config[this.venueId].initZoom,
+      bearing: Config[this.venueId].rotation,
+      center: Config[this.venueId].center,
       style: this.style
     });
     this.map.on("load", () => {
@@ -87,8 +86,8 @@ export class MapboxService {
           "line-join": "round"
         },
         paint: {
-          "line-color": "#0277bd",
-          "line-width": 10,
+          "line-color": Config[this.venueId].routeLineColor,
+          "line-width": Config[this.venueId].routeLineWidth,
           "line-opacity": 0.8
         }
       });
@@ -104,7 +103,7 @@ export class MapboxService {
   }
 
   addRouteLine(coord) {
-    const steps = 100;
+    const steps = 50;
     let arc = [];
     let currentGeojson = {
       type: "FeatureCollection",
@@ -122,7 +121,7 @@ export class MapboxService {
       currentGeojson.features[0],
       "kilometers"
     );
-    const time = 1900 / steps;
+    const time = (Config[this.venueId].timeForTheStep - 100) / steps;
     let currentI = 0;
     const currentInterval = interval(time);
     for (let i = 0; i < lineDistance; i += lineDistance / steps) {
@@ -136,7 +135,7 @@ export class MapboxService {
         currentI++;
       } else {
         intervalSub.unsubscribe();
-        console.log('done', new Date().getSeconds())
+        console.log("done", new Date().getSeconds());
       }
     });
     this.interval = intervalSub;
@@ -170,8 +169,10 @@ export class MapboxService {
   }
 
   addKioskMarker(lon, lat) {
-    const youAreHere = document.getElementById('you-are-here');
-    new mapboxgl.Marker(youAreHere, {offset: [-45, -75]}).setLngLat([lon, lat]).addTo(this.map);
+    const youAreHere = document.getElementById("you-are-here");
+    new mapboxgl.Marker(youAreHere, { offset: [-45, -75] })
+      .setLngLat([lon, lat])
+      .addTo(this.map);
   }
 
   addInstructionIcon(number, coord, instructionType) {

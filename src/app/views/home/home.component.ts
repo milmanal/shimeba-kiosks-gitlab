@@ -4,8 +4,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ApiService } from "./../../services/api.service";
 import { MapboxService } from "../../services/mapbox.service";
 
-declare const keyman: any;
-
 @Component({
   templateUrl: "home.component.html",
   styleUrls: ["home.component.scss"]
@@ -16,25 +14,32 @@ export class HomeComponent implements OnInit {
     private _api: ApiService,
     private _router: Router,
     private _mapbox: MapboxService
-  ) {
-    this._route.params.subscribe(params => {
-      localStorage.setItem("kioskId", params.kioskId);
-      const HTML = document.getElementsByTagName('html')[0];
-      const venueAttr = document.createAttribute('venueId');
-      venueAttr.value = params.venueId;
-      HTML.setAttributeNode(venueAttr);
-    });
-  }
+  ) {}
 
   startSearch() {
     this._router.navigateByUrl("/search");
   }
 
   ngOnInit() {
+    this._route.params.subscribe(params => {
+      localStorage.setItem("kioskId", params.kioskId);
+      localStorage.setItem("venueId", params.venueId);
+      const HTML = document.getElementById("venue-container");
+      const venueAttr = document.createAttribute("venueId");
+      venueAttr.value = params.venueId;
+      HTML.setAttributeNode(venueAttr);
+    });
     this._mapbox.initMap();
     this._api.getKioskData().subscribe(res => {
-      this._mapbox.addMarker('start-point', res.entrances[0].longitude, res.entrances[0].latitude);
-      this._mapbox.addKioskMarker(res.entrances[0].longitude, res.entrances[0].latitude);
+      this._mapbox.addMarker(
+        "start-point",
+        res.entrances[0].longitude,
+        res.entrances[0].latitude
+      );
+      this._mapbox.addKioskMarker(
+        res.entrances[0].longitude,
+        res.entrances[0].latitude
+      );
     });
   }
 }

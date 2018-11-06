@@ -8,6 +8,7 @@ export const Config = {
     ],
     initMapUrl: "assets/map_99_north.jpg",
     initZoom: 18,
+    mobileInitZoom: 16.5,
     rotation: 93.5,
     center: [34.790005, 32.080043],
     routeLineColor: "#0277bd",

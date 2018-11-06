@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: "./views/category/category.module#CategoryModule"
   },
   {
-    path: "direction/:kioskId/:poiId",
+    path: "direction/:venueId/:kioskId/:poiId",
     loadChildren: "./views/direction/direction.module#DirectionModule"
   }
 ];

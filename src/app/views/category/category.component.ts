@@ -27,6 +27,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   categories: Category[] = Categories;
   currentCategoryId: Number;
   currentCategoryName: String;
+  venueId: any;
 
   constructor(
     private _language: LanguageService,
@@ -39,10 +40,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
-    const venueId = localStorage.getItem("venueId");
+    this.venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
-    venueAttr.value = venueId;
+    venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
@@ -59,7 +60,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   selectPoi(id) {
     const kioskId = localStorage.getItem("kioskId");
-    this._router.navigateByUrl(`/direction/${kioskId}/${id}`);
+    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}`);
   }
 
   scrollBottom() {

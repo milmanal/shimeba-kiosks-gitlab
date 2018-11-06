@@ -12,6 +12,7 @@ export class MapboxService {
   venueId: any;
   map: any;
   interval: Subscription;
+  isMobile: Boolean;
   geojson: any = {
     type: "FeatureCollection",
     features: [
@@ -64,11 +65,14 @@ export class MapboxService {
       ]
     };
   }
-  initMap() {
+  initMap(isMobile?: Boolean) {
+    this.isMobile = isMobile;
     this.map = new mapboxgl.Map({
       container: "map",
       // pitch: 60,
-      zoom: Config[this.venueId].initZoom,
+      zoom: isMobile
+        ? Config[this.venueId].mobileInitZoom
+        : Config[this.venueId].initZoom,
       bearing: Config[this.venueId].rotation,
       center: Config[this.venueId].center,
       style: this.style
@@ -212,6 +216,7 @@ export class MapboxService {
     }
     new mapboxgl.Marker(markerEl).setLngLat(coord).addTo(this.map);
   }
+
   setDestinationMarker(lon, lat) {
     this.map.addImage(
       "destination-point-circle",
@@ -269,6 +274,17 @@ export class MapboxService {
         "icon-offset": [3, 5],
         "icon-anchor": "bottom"
       }
+    });
+  }
+
+  zoomToLinePoligon(coordinates) {
+    var bounds = coordinates.reduce(function(bounds, coord) {
+      return bounds.extend(coord);
+    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
+    this.map.fitBounds(bounds, {
+      padding: 20,
+      bearing: Config[this.venueId].rotation
     });
   }
 }

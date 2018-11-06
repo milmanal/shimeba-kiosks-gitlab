@@ -13,6 +13,8 @@ export const Config = {
     center: [34.790005, 32.080043],
     routeLineColor: "#0277bd",
     routeLineWidth: 10,
+    borderLineColor: "#ffffff",
+    borderLineWidth: 5,
     timeForTheStep: 2000
   }
 };

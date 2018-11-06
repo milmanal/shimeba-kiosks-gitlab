@@ -79,7 +79,28 @@ export class MapboxService {
     });
     this.map.on("load", () => {
       this.map.addLayer({
-        id: "lines",
+        id: "secondary-line",
+        type: "line",
+        source: {
+          type: "geojson",
+          data: this.geojson
+        },
+        layout: {
+          "line-cap": "round",
+          "line-join": "round"
+        },
+        paint: {
+          "line-color": Config[this.venueId].borderLineColor,
+          "line-width": isMobile
+            ? (Config[this.venueId].routeLineWidth +
+                Config[this.venueId].borderLineWidth) /
+              1.5
+            : Config[this.venueId].routeLineWidth +
+              Config[this.venueId].borderLineWidth
+        }
+      });
+      this.map.addLayer({
+        id: "main-line",
         type: "line",
         source: {
           type: "geojson",
@@ -91,8 +112,9 @@ export class MapboxService {
         },
         paint: {
           "line-color": Config[this.venueId].routeLineColor,
-          "line-width": Config[this.venueId].routeLineWidth,
-          "line-opacity": 0.8
+          "line-width": isMobile
+            ? Config[this.venueId].routeLineWidth / 1.5
+            : Config[this.venueId].routeLineWidth
         }
       });
     });
@@ -103,7 +125,8 @@ export class MapboxService {
       this.interval.unsubscribe();
     }
     this.geojson.features[0].geometry.coordinates = [];
-    this.map.getSource("lines").setData(this.geojson);
+    this.map.getSource("main-line").setData(this.geojson);
+    this.map.getSource("secondary-line").setData(this.geojson);
   }
 
   addRouteLine(coord) {
@@ -135,7 +158,8 @@ export class MapboxService {
     const intervalSub = currentInterval.subscribe(() => {
       if (arc[currentI]) {
         this.geojson.features[0].geometry.coordinates.push(arc[currentI]);
-        this.map.getSource("lines").setData(this.geojson);
+        this.map.getSource("main-line").setData(this.geojson);
+        this.map.getSource("secondary-line").setData(this.geojson);
         currentI++;
       } else {
         intervalSub.unsubscribe();
@@ -167,7 +191,7 @@ export class MapboxService {
       },
       layout: {
         "icon-image": "start",
-        "icon-size": 1
+        "icon-size": this.isMobile ? 1 / 1.5 : 1
       }
     });
   }
@@ -246,7 +270,7 @@ export class MapboxService {
       },
       layout: {
         "icon-image": "destination-point-circle",
-        "icon-size": 1,
+        "icon-size": this.isMobile ? 1 / 1.5 : 1,
         "icon-allow-overlap": true
       }
     });
@@ -270,7 +294,7 @@ export class MapboxService {
       },
       layout: {
         "icon-image": "destination-point",
-        "icon-size": 1,
+        "icon-size": this.isMobile ? 1 / 1.5 : 1,
         "icon-offset": [3, 5],
         "icon-anchor": "bottom"
       }
@@ -282,9 +306,94 @@ export class MapboxService {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 
-    this.map.fitBounds(bounds, {
+    this.fitBoundsRotated(bounds, {
       padding: 20,
+      offset: [0, 200],
       bearing: Config[this.venueId].rotation
-    });
+    }, null);
+  }
+  fitBoundsRotated(bounds, options, eventData) {
+    options = Object.assign(
+      {
+        padding: {
+          top: 0,
+          bottom: 0,
+          right: 0,
+          left: 0
+        },
+        offset: [0, 0],
+        maxZoom: this.map.transform.maxZoom
+      },
+      options
+    );
+
+    if (typeof options.padding === "number") {
+      const p = options.padding;
+      options.padding = {
+        top: p,
+        bottom: p,
+        right: p,
+        left: p
+      };
+    }
+
+    bounds = mapboxgl.LngLatBounds.convert(bounds);
+
+    const paddingOffset = [
+        options.padding.left - options.padding.right,
+        options.padding.top - options.padding.bottom
+      ],
+      lateralPadding = Math.min(options.padding.right, options.padding.left),
+      verticalPadding = Math.min(options.padding.top, options.padding.bottom);
+    options.offset = [
+      options.offset[0] + paddingOffset[0],
+      options.offset[1] + paddingOffset[1]
+    ];
+
+    options.bearing = options.bearing || this.map.getBearing();
+
+    const offset = mapboxgl.Point.convert(options.offset),
+      tr = this.map.transform,
+      nw = tr.project(bounds.getNorthWest()),
+      se = tr.project(bounds.getSouthEast()),
+      size = se.sub(nw);
+
+    /** START CUSTOM ROTATION HACK **/
+    // Now using a "cropped rectangle" rotation method
+    // https://stackoverflow.com/questions/33866535/how-to-scale-a-rotated-rectangle-to-always-fit-another-rectangle
+    // W = w·|cos φ| + h·|sin φ|
+    // H = w·|sin φ| + h·|cos φ|
+    const theta = options.bearing * (Math.PI / 180),
+      W =
+        size.x * Math.abs(Math.cos(theta)) + size.y * Math.abs(Math.sin(theta)),
+      H =
+        size.x * Math.abs(Math.sin(theta)) + size.y * Math.abs(Math.cos(theta)),
+      rotatedSize = { x: W, y: H },
+      /** END CUSTOM ROTATION HACK **/
+
+      scaleX =
+        (tr.width - lateralPadding * 2 - Math.abs(offset.x) * 2) /
+        rotatedSize.x,
+      scaleY =
+        (tr.height - verticalPadding * 2 - Math.abs(offset.y) * 2) /
+        rotatedSize.y;
+
+    if (scaleY < 0 || scaleX < 0) {
+      if (typeof console !== "undefined")
+        console.warn(
+          "Map cannot fit within canvas with the given bounds, padding, and/or offset."
+        );
+      return this;
+    }
+
+    options.center = tr.unproject(nw.add(se).div(2));
+    options.zoom = Math.min(
+      tr.scaleZoom(tr.scale * Math.min(scaleX, scaleY)),
+      options.maxZoom
+    );
+
+    return options.linear
+      ? this.map.easeTo(options, eventData)
+      : this.map.flyTo(options, eventData);
   }
 }

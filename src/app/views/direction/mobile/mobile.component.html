@@ -5,6 +5,63 @@
         <img src="assets/imgs/route-dest.svg" alt="" id="destination-point">
     </div>
     <div class="direction-component">
+        <div class="header-container">
+            <header class="header d-flex justify-content-between align-items-center px-3">
+                <div class="header-instruction" translate>header-title-mobile</div>
+                <div class="show-instruction-btn d-flex flex-column justify-content-center align-items-center" (click)="showHideInstructionList()">
+                    <div class="label" translate>{{instructionListOpen ? 'close-mobile' : 'show-all-mobile'}}</div>
+                    <img src="assets/imgs/close-mobile.svg" alt="close" class="icon" [ngClass]="{'arrow-down': !instructionListOpen}">
+                </div>
+            </header>
+            <ul class="m-0 p-0 instruction-list" [ngClass]="{'instruction-list-open': instructionListOpen}">
+                <div class="instruction" id="start-instr">
+                    <li class="level d-flex align-items-center px-3">
+                        {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
+                    </li>
+                    <li class="text-instr d-flex align-items-center px-3" translate>
+                        start-text
+                    </li>
+                </div>
+                <div *ngFor="let instr of instructions; let i = index" id="{{instr && instr.instruction.instructions}}"
+                    class="instruction">
+                    <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
+                        {{instr.instruction.level}}
+                    </li>
+                    <li class="text-instr d-flex align-items-center px-3">
+                        <div class="instruction-number d-flex justify-content-center align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
+                            {{i+1}}
+                            <img src="assets/imgs/{{getIconByInstructionType(instr.instruction.instructionsType)}}" alt="instruction-icon"
+                                class="px-1 icon" *ngIf="hasInstructionIcon(instr.instruction.instructionsType)">
+                        </div>
+                        <div class="px-3">
+                            {{instr && instr.instruction.instructions}}
+                        </div>
+                    </li>
+                </div>
+                <div class="instruction" id="destination-instr">
+                    <li class="level d-flex align-items-center px-3">
+                        {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
+                    </li>
+                    <li class="text-instr d-flex align-items-center px-3">
+                        <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
+                        <div class="px-3">
+                            {{'destination' | translate}} {{poiData && poiData.name}}
+                        </div>
+                    </li>
+                </div>
+            </ul>
+        </div>
         <div id="map"></div>
+        <footer class="mobile-footer d-flex justify-content-between align-items-center px-3">
+            <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon-footer">
+            <div class="d-flex flex-column align-items-start px-3">
+                <div class="poi-name">
+                    {{poiData && poiData.name}}
+                </div>
+                <div class="poi-location">
+                    {{poiLocation && poiLocation[0].propertyValue}}
+                </div>
+            </div>
+        </footer>
     </div>
 </div>

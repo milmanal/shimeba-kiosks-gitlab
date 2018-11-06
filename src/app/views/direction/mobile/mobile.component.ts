@@ -36,6 +36,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   intervalSub: Subscription;
   modalRef: BsModalRef;
   phoneNumber: String = "";
+  instructionListOpen: Boolean = true;
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -50,6 +51,10 @@ export class MobileComponent implements OnInit, AfterViewInit {
     });
   }
 
+  showHideInstructionList() {
+    this.instructionListOpen = !this.instructionListOpen;
+  }
+
   getDirectionData() {
     let currentInstr = 0;
     this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
@@ -60,7 +65,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
       res.map(step => {
         step.points.map(poi => allPath.push(poi))
       })
-      console.log(allPath)
       this._mapbox.zoomToLinePoligon(allPath);
       this.intervalSub = curInterval.subscribe(() => {
         console.log("start", new Date().getSeconds());
@@ -71,18 +75,18 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   routing(instructions, currentInstr) {
-    // if (currentInstr === 0) {
-    //   document
-    //     .getElementById("start-instr")
-    //     .setAttribute("style", "display: block");
-    // }
+    if (currentInstr === 0) {
+      document
+        .getElementById("start-instr")
+        .setAttribute("style", "display: block");
+    }
     if (instructions[currentInstr]) {
-      // const instruction = document.getElementById(
-      //   instructions[currentInstr].instruction.instructions
-      // );
+      const instruction = document.getElementById(
+        instructions[currentInstr].instruction.instructions
+      );
       this._mapbox.addRouteLine(instructions[currentInstr].points);
-      // if (instruction) {
-      //   instruction.setAttribute("style", "display: block");
+      if (instruction) {
+        instruction.setAttribute("style", "display: block");
         this._mapbox.addInstructionIcon(
           currentInstr + 1,
           [
@@ -91,14 +95,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
           ],
           instructions[currentInstr].instruction.instructionsType
         );
-      // }
+      }
     } else {
-      // document
-      //   .getElementById("destination-instr")
-      //   .setAttribute("style", "display: block");
-      // document
-      //   .getElementById("sms-box")
-      //   .setAttribute("style", "display: flex;");
+      document
+        .getElementById("destination-instr")
+        .setAttribute("style", "display: block");
       this._mapbox.setDestinationMarker(
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude

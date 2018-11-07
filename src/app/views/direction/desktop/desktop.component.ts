@@ -37,6 +37,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   intervalSub: Subscription;
   modalRef: BsModalRef;
   phoneNumber: String = "";
+  venueId: any;
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -47,7 +48,9 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     public ds: DeviceService
   ) {
     this._route.params.subscribe(params => {
+      this.venueId = params.venueId;
       localStorage.setItem("kioskId", params.kioskId);
+      localStorage.setItem("venueId", params.venueId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
     });
@@ -71,13 +74,12 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     this.intervalSub.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
-    const venueId = localStorage.getItem("venueId");
-    this._router.navigateByUrl(`/home/${venueId}/${kioskId}`);
+    this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}`);
   }
 
   getDirectionData() {
     let currentInstr = 0;
-    this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
+    this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
       const curInterval = interval(2000);
@@ -156,7 +158,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._mapbox.initMap();
+    this._mapbox.initMap(this.venueId);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

@@ -9,6 +9,7 @@ import { MapboxService } from "../../services/mapbox.service";
   styleUrls: ["home.component.scss"]
 })
 export class HomeComponent implements OnInit {
+  venueId: any;
   constructor(
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -24,12 +25,13 @@ export class HomeComponent implements OnInit {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
       localStorage.setItem("venueId", params.venueId);
+      this.venueId = params.venueId;
       const HTML = document.getElementById("venue-container");
       const venueAttr = document.createAttribute("venueId");
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
     });
-    this._mapbox.initMap();
+    this._mapbox.initMap(this.venueId);
     this._api.getKioskData().subscribe(res => {
       this._mapbox.addMarker(
         "start-point",

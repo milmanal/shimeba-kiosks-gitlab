@@ -53,7 +53,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.currentCategoryName = this.categories.find(
       category => category.categoryId === this.currentCategoryId
     ).name;
-    this._api.poiByCategory(this.currentCategoryId).subscribe(poi => {
+    this._api.poiByCategory(this.currentCategoryId, this.venueId).subscribe(poi => {
       this.pois.push(poi);
     });
   }

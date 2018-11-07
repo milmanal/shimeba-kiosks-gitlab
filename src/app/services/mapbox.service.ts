@@ -29,7 +29,10 @@ export class MapboxService {
 
   constructor() {
     mapboxgl.accessToken = "undefined";
-    this.venueId = localStorage.getItem("venueId");
+  }
+  initMap(venueId, isMobile?: Boolean) {
+    this.isMobile = isMobile;
+    this.venueId = venueId;
     this.style = {
       version: 8,
       name: "Raster Tiles",
@@ -64,9 +67,6 @@ export class MapboxService {
         }
       ]
     };
-  }
-  initMap(isMobile?: Boolean) {
-    this.isMobile = isMobile;
     this.map = new mapboxgl.Map({
       container: "map",
       // pitch: 60,
@@ -301,14 +301,14 @@ export class MapboxService {
     });
   }
 
-  zoomToLinePoligon(coordinates) {
+  zoomToLinePoligon(coordinates, offset?) {
     var bounds = coordinates.reduce(function(bounds, coord) {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 
     this.fitBoundsRotated(bounds, {
-      padding: 20,
-      offset: [0, 200],
+      padding: 40,
+      offset: offset || [0, 0],
       bearing: Config[this.venueId].rotation
     }, null);
   }

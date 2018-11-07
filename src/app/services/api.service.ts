@@ -30,26 +30,26 @@ export class ApiService {
     );
   }
 
-  search(terms: Observable<string>) {
+  search(terms: Observable<any>) {
     return terms
       .debounceTime(400)
       .distinctUntilChanged()
       .switchMap(term => this.searchPoi(term));
   }
 
-  searchPoi(value) {
+  searchPoi({value, venueId}) {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient.get(
-      `${this.url}pois?venueid=12&locale=${currentLanguage.name}&query=${value}`
+      `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
     );
   }
 
-  poiByCategory(categoryId): Observable<any> {
+  poiByCategory(categoryId, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(`${this.url}pois?venueid=12&locale=${currentLanguage.name}`)
+      .get<Poi[]>(`${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}`)
       .map(res => res)
       .concatMap(res => Observable.from(res))
       .filter(poi => poi.categories.some(id => id === categoryId));
@@ -105,7 +105,7 @@ export class ApiService {
     return this.buildRoute(data.source.level, [], pointsOfFloors);
   }
 
-  getDirection(kioskData, poiData): Observable<any> {
+  getDirection(kioskData, poiData, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
@@ -114,7 +114,7 @@ export class ApiService {
           lat1: kioskData.entrances[0].sLatitude,
           lon1: kioskData.entrances[0].sLongitude,
           level1: kioskData.entrances[0].level,
-          venueid: "12",
+          venueid: venueId,
           lat2: poiData.entrances[0].sLatitude,
           lon2: poiData.entrances[0].sLongitude,
           level2: poiData.entrances[0].level,

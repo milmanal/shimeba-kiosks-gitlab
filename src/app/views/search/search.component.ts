@@ -17,7 +17,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   searchValue: string = "";
   currentLanguage: Language;
   languageSubscription: Subscription;
-  searchTerm$ = new Subject<string>();
+  searchTerm$ = new Subject<any>();
   pois: Object = [];
   categories: Category[] = Categories;
   showMore: Boolean = false;
@@ -47,7 +47,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   search(ev: any) {
     if (this.searchValue.length >= 2) {
-      this.searchTerm$.next(this.searchValue);
+      this.searchTerm$.next({
+        value: this.searchValue,
+        venueId: this.venueId
+      });
     } else {
       this.pois = [];
     }

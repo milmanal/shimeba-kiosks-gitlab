@@ -37,6 +37,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
   modalRef: BsModalRef;
   phoneNumber: String = "";
   instructionListOpen: Boolean = true;
+  allPath = [];
+  venueId: any;
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -46,26 +48,33 @@ export class MobileComponent implements OnInit, AfterViewInit {
   ) {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
+      localStorage.setItem("venueId", params.venueId);
+      this.venueId = params.venueId;
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
     });
   }
 
   showHideInstructionList() {
-    this.instructionListOpen = !this.instructionListOpen;
+    if(this.instructionListOpen) {
+      this.instructionListOpen = !this.instructionListOpen;
+      this._mapbox.zoomToLinePoligon(this.allPath);
+    } else {
+      this.instructionListOpen = !this.instructionListOpen;
+      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
+    }
   }
 
   getDirectionData() {
     let currentInstr = 0;
-    this._api.getDirection(this.kioskData, this.poiData).subscribe(res => {
+    this._api.getDirection(this.kioskData, this.poiData, this.venueId).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
       const curInterval = interval(2000);
-      const allPath = [];
       res.map(step => {
-        step.points.map(poi => allPath.push(poi))
+        step.points.map(poi => this.allPath.push(poi))
       })
-      this._mapbox.zoomToLinePoligon(allPath);
+      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
       this.intervalSub = curInterval.subscribe(() => {
         console.log("start", new Date().getSeconds());
         this.routing(res, currentInstr);
@@ -122,8 +131,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this._route.params.subscribe(params => {
-      localStorage.setItem("kioskId", params.kioskId);
-      localStorage.setItem("venueId", params.venueId);
       const HTML = document.getElementById("venue-container");
       const venueAttr = document.createAttribute("venueId");
       venueAttr.value = params.venueId;
@@ -140,7 +147,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._mapbox.initMap(true);
+    this._mapbox.initMap(this.venueId, true);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

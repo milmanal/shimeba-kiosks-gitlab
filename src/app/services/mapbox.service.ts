@@ -163,7 +163,6 @@ export class MapboxService {
         currentI++;
       } else {
         intervalSub.unsubscribe();
-        console.log("done", new Date().getSeconds());
       }
     });
     this.interval = intervalSub;
@@ -310,9 +309,10 @@ export class MapboxService {
       padding: 40,
       offset: offset || [0, 0],
       bearing: Config[this.venueId].rotation
-    }, null);
+    });
   }
-  fitBoundsRotated(bounds, options, eventData) {
+
+  fitBoundsRotated(bounds, options) {
     options = Object.assign(
       {
         padding: {
@@ -392,8 +392,14 @@ export class MapboxService {
       options.maxZoom
     );
 
-    return options.linear
-      ? this.map.easeTo(options, eventData)
-      : this.map.flyTo(options, eventData);
+    return options.linear ? this.map.easeTo(options) : this.map.flyTo(options);
+  }
+
+  goToInstruction(instruction) {
+    const coordinates = [instruction.longitude, instruction.latitude];
+    this.map.easeTo({
+      center: coordinates,
+      zoom: 18
+    });
   }
 }

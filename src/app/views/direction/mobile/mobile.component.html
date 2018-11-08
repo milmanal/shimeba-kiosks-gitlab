@@ -3,6 +3,7 @@
         <img src="assets/imgs/start.svg" alt="" id="start-point">
         <img src="assets/imgs/point.svg" alt="" id="destination-point-circle">
         <img src="assets/imgs/route-dest.svg" alt="" id="destination-point">
+        <img src="assets/imgs/route-arrow.svg" alt="" id="route-arrow">
     </div>
     <div class="direction-component">
         <div class="header-container">
@@ -27,7 +28,7 @@
                     <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
                         {{instr.instruction.level}}
                     </li>
-                    <li class="text-instr d-flex align-items-center px-3">
+                    <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(instr.instruction, i)">
                         <div class="instruction-number d-flex justify-content-center align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
                             {{i+1}}
                             <img src="assets/imgs/{{getIconByInstructionType(instr.instruction.instructionsType)}}" alt="instruction-icon"
@@ -42,7 +43,7 @@
                     <li class="level d-flex align-items-center px-3">
                         {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
                     </li>
-                    <li class="text-instr d-flex align-items-center px-3">
+                    <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0])">
                         <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
                             {{'destination' | translate}} {{poiData && poiData.name}}
@@ -51,8 +52,17 @@
                 </div>
             </ul>
         </div>
+        <div class="d-flex justify-content-between align-items-center instruction-btn" *ngIf="!instructionListOpen">
+            <button class="prev d-flex justify-content-center align-items-center mx-1"
+                (click)="prevInstruction()" [disabled]="selectedInstructionIndex === 0">
+                <img src="assets/imgs/prev.svg" alt="prev">
+            </button>
+            <button class="next d-flex justify-content-center align-items-center" [disabled]="!instructions || selectedInstructionIndex >= instructions.length - 1" (click)="nextInstruction()">
+                <img src="assets/imgs/next.svg" alt="next">
+            </button>
+        </div>
         <div id="map"></div>
-        <footer class="mobile-footer d-flex justify-content-between align-items-center px-3">
+        <footer class="mobile-footer d-flex justify-content-start align-items-center px-3">
             <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon-footer">
             <div class="d-flex flex-column align-items-start px-3">
                 <div class="poi-name">

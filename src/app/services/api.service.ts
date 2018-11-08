@@ -71,7 +71,7 @@ export class ApiService {
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
-      if (pointsOfFloors[floor][i].isShowInList) {
+      if (pointsOfFloors[floor][i].isShowInList && pointsOfFloors[floor][i].instructions) {
         if (instr[index]) {
           instr[index].points.push([
             Number(poi.longitude),

@@ -14,7 +14,7 @@ export const Config = {
     routeLineColor: "#0277bd",
     routeLineWidth: 10,
     borderLineColor: "#ffffff",
-    borderLineWidth: 5,
+    borderLineWidth: 7,
     timeForTheStep: 2000
   }
 };

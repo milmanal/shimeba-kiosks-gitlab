@@ -39,6 +39,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   instructionListOpen: Boolean = true;
   allPath = [];
   venueId: any;
+  selectedInstructionIndex: any;
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -56,31 +57,55 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   showHideInstructionList() {
-    if(this.instructionListOpen) {
+    if (this.instructionListOpen) {
       this.instructionListOpen = !this.instructionListOpen;
-      this._mapbox.zoomToLinePoligon(this.allPath);
+      this.selectedInstructionIndex = 0;
+      this._mapbox.goToInstruction(
+        this.instructions[this.selectedInstructionIndex].instruction
+      );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
       this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
     }
   }
 
+  selectInstruction(instr, i) {
+    this.instructionListOpen = false;
+    this.selectedInstructionIndex = i;
+    this._mapbox.goToInstruction(instr);
+  }
+
+  nextInstruction() {
+    this.selectedInstructionIndex++;
+    this._mapbox.goToInstruction(
+      this.instructions[this.selectedInstructionIndex].instruction
+    );
+  }
+
+  prevInstruction() {
+    this.selectedInstructionIndex--;
+    this._mapbox.goToInstruction(
+      this.instructions[this.selectedInstructionIndex].instruction
+    );
+  }
+
   getDirectionData() {
     let currentInstr = 0;
-    this._api.getDirection(this.kioskData, this.poiData, this.venueId).subscribe(res => {
-      this.instructions = res;
-      this.routeLoaded = true;
-      const curInterval = interval(2000);
-      res.map(step => {
-        step.points.map(poi => this.allPath.push(poi))
-      })
-      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
-      this.intervalSub = curInterval.subscribe(() => {
-        console.log("start", new Date().getSeconds());
-        this.routing(res, currentInstr);
-        currentInstr++;
+    this._api
+      .getDirection(this.kioskData, this.poiData, this.venueId)
+      .subscribe(res => {
+        this.instructions = res;
+        this.routeLoaded = true;
+        const curInterval = interval(2000);
+        res.map(step => {
+          step.points.map(poi => this.allPath.push(poi));
+        });
+        this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
+        this.intervalSub = curInterval.subscribe(() => {
+          this.routing(res, currentInstr);
+          currentInstr++;
+        });
       });
-    });
   }
 
   routing(instructions, currentInstr) {

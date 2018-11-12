@@ -308,7 +308,8 @@ export class MapboxService {
     this.fitBoundsRotated(bounds, {
       padding: 60,
       offset: offset || [0, 0],
-      bearing: Config[this.venueId].rotation
+      bearing: Config[this.venueId].rotation,
+      maxZoom: 18
     });
   }
 

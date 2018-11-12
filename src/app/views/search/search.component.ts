@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   languageSubscription: Subscription;
   searchTerm$ = new Subject<any>();
   pois: Object = [];
-  categories: Category[] = Categories;
+  categories: Category[] = [];
   showMore: Boolean = false;
   venueId: any;
 
@@ -38,6 +38,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
+    this.categories = Categories[this.venueId];
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
         this.currentLanguage = lang;

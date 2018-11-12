@@ -5,19 +5,19 @@
             <img src="assets/imgs/cancel.svg" alt="cancel" (click)="back()">
         </div>
         <div class="category-pois d-flex justify-content-between pt-2">
-            <ul class="pois" #categoryPois>
+            <ul class="pois" #categoryPois (scroll)="onScroll()">
                 <li *ngFor="let poi of pois" class="poi d-flex justify-content-between px-4" (click)="selectPoi(poi.id)">
                     <span class="currentLanguage py-2">{{ poi.name }}</span>
                     <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
                 </li>
             </ul>
-            <div class="arrows-container d-flex justify-content-between flex-column align-items-center pt-5">
+            <div class="arrows-container d-flex justify-content-between flex-column align-items-center py-5">
                 <div class="arrow d-flex flex-column justify-content-center align-items-center" (click)="scrollTop()"
-                    [ngClass]="{'arrow-active': checkScrollTop()}">
+                    [ngClass]="{'arrow-active': scrollTopActive}">
                     <img src="assets/imgs/arrow.svg" alt="arrow-up" class="arrow-icon arrow-up">
                 </div>
-                <div class="arrow d-flex justify-content-center flex-column align-items-center" (click)="scrollBottom()"
-                    [class.arrow-active]="checkScrollBottom()">
+                <div class="arrow d-flex justify-content-center flex-column align-items-center mb-5" (click)="scrollBottom()"
+                    [class.arrow-active]="scrollDownActive">
                     <img src="assets/imgs/arrow.svg" alt="arrow-down" class="arrow-icon arrow-down">
                 </div>
             </div>

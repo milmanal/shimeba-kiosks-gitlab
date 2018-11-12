@@ -3,9 +3,7 @@ import {
   OnInit,
   OnDestroy,
   ViewChild,
-  ElementRef,
-  ChangeDetectorRef,
-  AfterViewInit
+  ElementRef
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { LanguageService } from "./../../services/language.service";
@@ -24,10 +22,12 @@ export class CategoryComponent implements OnInit, OnDestroy {
   currentLanguage: Language;
   languageSubscription: Subscription;
   pois: Object[] = [];
-  categories: Category[] = Categories;
+  categories: Category[] = [];
   currentCategoryId: Number;
   currentCategoryName: String;
   venueId: any;
+  scrollTopActive: Boolean = false;
+  scrollDownActive: Boolean = false;
 
   constructor(
     private _language: LanguageService,
@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
+    this.categories = Categories[this.venueId];
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
         this.currentLanguage = lang;
@@ -53,14 +54,29 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.currentCategoryName = this.categories.find(
       category => category.categoryId === this.currentCategoryId
     ).name;
-    this._api.poiByCategory(this.currentCategoryId, this.venueId).subscribe(poi => {
-      this.pois.push(poi);
+    this._api.poiByCategory(this.currentCategoryId, this.venueId).subscribe(pois => {
+      this.pois = pois;
+      setTimeout(() => this.onScroll(), 100);
     });
   }
 
   selectPoi(id) {
     const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}`);
+  }
+
+  onScroll() {
+    let element = this.myScrollContainer.nativeElement;
+    if(element.scrollTop !== 0) {
+      this.scrollTopActive = true;
+    } else {
+      this.scrollTopActive = false;
+    }
+    if(element.scrollTop - element.scrollHeight + element.offsetHeight <=0) {
+      this.scrollDownActive = true;
+    } else {
+      this.scrollDownActive = false;
+    }
   }
 
   scrollBottom() {
@@ -70,16 +86,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
   scrollTop() {
     this.myScrollContainer.nativeElement.scrollTop =
       this.myScrollContainer.nativeElement.scrollTop - 80;
-  }
-  checkScrollTop() {
-    return this.myScrollContainer.nativeElement.scrollTop !== 0;
-  }
-  checkScrollBottom() {
-    const currentScroll =
-      this.myScrollContainer.nativeElement.scrollTop -
-      this.myScrollContainer.nativeElement.scrollHeight +
-      this.myScrollContainer.nativeElement.offsetHeight;
-    return currentScroll <= 0;
   }
   back() {
     this._router.navigateByUrl("/search");

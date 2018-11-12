@@ -30,33 +30,33 @@ export class MapboxService {
   constructor() {
     mapboxgl.accessToken = "undefined";
   }
-  initMap(venueId, isMobile?: Boolean) {
+  initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
     this.isMobile = isMobile;
     this.venueId = venueId;
     this.style = {
       version: 8,
       name: "Raster Tiles",
       sources: {
-        mainMap: {
-          type: "raster",
-          tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
-          tileSize: 256
-        },
         overlayMap: {
           type: "image",
-          url: Config[this.venueId].initMapUrl,
+          url: isDirection ? Config[this.venueId].directionMapUrl : Config[this.venueId].homeMapUrl,
           coordinates: Config[this.venueId].mapCorners
-        }
+        },
+        // mainMap: {
+        //   type: "raster",
+        //   tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
+        //   tileSize: 256
+        // },
       },
       layers: [
-        {
-          id: "mainMap",
-          type: "raster",
-          source: "mainMap",
-          paint: {
-            "raster-fade-duration": 100
-          }
-        },
+        // {
+        //   id: "mainMap",
+        //   type: "raster",
+        //   source: "mainMap",
+        //   paint: {
+        //     "raster-fade-duration": 100
+        //   }
+        // },
         {
           id: "overlayMap",
           source: "overlayMap",
@@ -306,7 +306,7 @@ export class MapboxService {
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 
     this.fitBoundsRotated(bounds, {
-      padding: 40,
+      padding: 60,
       offset: offset || [0, 0],
       bearing: Config[this.venueId].rotation
     });

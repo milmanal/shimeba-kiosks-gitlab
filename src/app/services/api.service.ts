@@ -45,14 +45,22 @@ export class ApiService {
     );
   }
 
+  filterByCategory(pois, categoryId) {
+    const poisByCategory = [];
+    pois.map(poi => {
+      if(poi.categories.some(id => id === categoryId)) {
+        poisByCategory.push(poi);
+      }
+    })
+    return poisByCategory;
+  }
+
   poiByCategory(categoryId, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
       .get<Poi[]>(`${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}`)
-      .map(res => res)
-      .concatMap(res => Observable.from(res))
-      .filter(poi => poi.categories.some(id => id === categoryId));
+      .map(res => this.filterByCategory(res, categoryId));
   }
 
   getKioskAndPoiData(kioskId, poiId): Observable<any> {

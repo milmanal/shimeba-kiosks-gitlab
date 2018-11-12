@@ -172,7 +172,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this._mapbox.initMap(this.venueId, true);
+    this._mapbox.initMap(this.venueId, true, true);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

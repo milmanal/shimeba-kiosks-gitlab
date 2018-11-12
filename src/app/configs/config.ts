@@ -6,7 +6,8 @@ export const Config = {
       [34.78832531057368, 32.07803240327738],
       [34.78863176605523, 32.08222432499814]
     ],
-    initMapUrl: "assets/map_99_north.jpg",
+    homeMapUrl: "assets/map_99_north.jpg",
+    directionMapUrl: "assets/map_99_north.jpg",
     initZoom: 18,
     mobileInitZoom: 16.5,
     rotation: 93.5,

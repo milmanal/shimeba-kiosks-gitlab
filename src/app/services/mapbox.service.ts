@@ -26,6 +26,25 @@ export class MapboxService {
     ]
   };
   style: Object;
+  nextInstruction: Observer<any>;
+
+  steps: any = 100;
+  arc = [];
+  currentRouteStepGeojson = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: []
+        }
+      }
+    ]
+  };
+  lineDistance: any;
+  currentRouteStepIndex = 0;
+
 
   constructor() {
     mapboxgl.accessToken = "undefined";
@@ -44,21 +63,8 @@ export class MapboxService {
             : Config[this.venueId].homeMapUrl,
           coordinates: Config[this.venueId].mapCorners
         }
-        // mainMap: {
-        //   type: "raster",
-        //   tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
-        //   tileSize: 256
-        // },
       },
       layers: [
-        // {
-        //   id: "mainMap",
-        //   type: "raster",
-        //   source: "mainMap",
-        //   paint: {
-        //     "raster-fade-duration": 100
-        //   }
-        // },
         {
           id: "overlayMap",
           source: "overlayMap",
@@ -131,35 +137,14 @@ export class MapboxService {
     this.map.getSource("secondary-line").setData(this.geojson);
   }
 
-  //
-  nextInstruction: Observer<any>;
   nextInstructionHandle = Observable.create((observer) => {
     this.nextInstruction = observer;
   })
-  // 
-
-  // new animation route
-  steps: any = 100;
-  arc = [];
-  currentGeojson = {
-    type: "FeatureCollection",
-    features: [
-      {
-        type: "Feature",
-        geometry: {
-          type: "LineString",
-          coordinates: []
-        }
-      }
-    ]
-  };
-  lineDistance: any;
-  currentI = 0;
 
   addRouteLine(coord) {
-    this.currentGeojson.features[0].geometry.coordinates = coord;
+    this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
     this.lineDistance = turf.lineDistance(
-      this.currentGeojson.features[0],
+      this.currentRouteStepGeojson.features[0],
       "kilometers"
     );
     if (this.lineDistance > 0) {
@@ -169,7 +154,7 @@ export class MapboxService {
         i += this.lineDistance / this.steps
       ) {
         let segment = turf.along(
-          this.currentGeojson.features[0],
+          this.currentRouteStepGeojson.features[0],
           i,
           "kilometers"
         );
@@ -184,25 +169,24 @@ export class MapboxService {
   }
 
   animateRoute() {
-    if (this.arc[this.currentI]) {
+    if (this.arc[this.currentRouteStepIndex]) {
       this.geojson.features[0].geometry.coordinates.push(
-        this.arc[this.currentI]
+        this.arc[this.currentRouteStepIndex]
       );
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
     }
-    this.currentI++;
-    if (this.currentI < this.steps) {
+    this.currentRouteStepIndex++;
+    if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
-      this.currentI = 0;
+      this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
-      this.currentGeojson.features[0].geometry.coordinates = [];
+      this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
       this.arc = [];
       this.nextInstruction.next(null);
     }
   }
-  //
 
   addMarker(id, lon, lat) {
     this.map.addImage("start", document.getElementById(id));

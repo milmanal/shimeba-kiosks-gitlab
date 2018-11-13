@@ -34,7 +34,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   routeLoaded: Boolean = false;
   languageSubscription: Subscription;
   initLanguage: any;
-  intervalSub: Subscription;
+  routeSubscribtion: Subscription;
   modalRef: BsModalRef;
   phoneNumber: String = "";
   venueId: any;
@@ -71,7 +71,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   backToMain() {
-    this.intervalSub.unsubscribe();
+    this.routeSubscribtion.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}`);
@@ -86,7 +86,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         this.routing(res, currentInstr);
         currentInstr++;
       }, 2000)
-      this._mapbox.nextInstructionHandle.subscribe(() => {
+      this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
         this.routing(res, currentInstr);
         currentInstr++;
       })
@@ -126,7 +126,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
-      // this.intervalSub.unsubscribe();
+      this.routeSubscribtion.unsubscribe();
     }
   }
 

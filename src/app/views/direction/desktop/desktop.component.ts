@@ -82,12 +82,14 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
-      const curInterval = interval(2000);
-
-      this.intervalSub = curInterval.subscribe(() => {
+      setTimeout(() => {
         this.routing(res, currentInstr);
         currentInstr++;
-      });
+      }, 2000)
+      this._mapbox.nextInstructionHandle.subscribe(() => {
+        this.routing(res, currentInstr);
+        currentInstr++;
+      })
     });
   }
 
@@ -124,7 +126,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
-      this.intervalSub.unsubscribe();
+      // this.intervalSub.unsubscribe();
     }
   }
 

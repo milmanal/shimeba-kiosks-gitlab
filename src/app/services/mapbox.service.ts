@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
 import turf from "turf";
-import { interval, Subscription } from "rxjs";
+import { interval, Subscription, Observable, Observer } from "rxjs";
 import { Config } from "./../configs/config";
 
 @Injectable({
@@ -131,6 +131,14 @@ export class MapboxService {
     this.map.getSource("secondary-line").setData(this.geojson);
   }
 
+  //
+  nextInstruction: Observer<any>;
+  nextInstructionHandle = Observable.create((observer) => {
+    this.nextInstruction = observer;
+  })
+  // 
+
+  // new animation route
   steps: any = 100;
   arc = [];
   currentGeojson = {
@@ -154,7 +162,7 @@ export class MapboxService {
       this.currentGeojson.features[0],
       "kilometers"
     );
-    if(this.lineDistance > 0) {
+    if (this.lineDistance > 0) {
       for (
         let i = 0;
         i < this.lineDistance;
@@ -168,6 +176,10 @@ export class MapboxService {
         this.arc.push(segment.geometry.coordinates);
       }
       requestAnimationFrame(this.animateRoute.bind(this));
+    } else {
+      setTimeout(() => {
+        this.nextInstruction.next(null);
+      }, 2000)
     }
   }
 
@@ -187,8 +199,10 @@ export class MapboxService {
       this.lineDistance = 0;
       this.currentGeojson.features[0].geometry.coordinates = [];
       this.arc = [];
+      this.nextInstruction.next(null);
     }
   }
+  //
 
   addMarker(id, lon, lat) {
     this.map.addImage("start", document.getElementById(id));

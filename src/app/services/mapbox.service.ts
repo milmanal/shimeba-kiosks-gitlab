@@ -28,7 +28,7 @@ export class MapboxService {
   style: Object;
   nextInstruction: Observer<any>;
 
-  steps: any = 100;
+  steps: any = 50;
   arc = [];
   currentRouteStepGeojson = {
     type: "FeatureCollection",

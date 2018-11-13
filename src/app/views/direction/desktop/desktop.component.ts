@@ -38,6 +38,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   modalRef: BsModalRef;
   phoneNumber: String = "";
   venueId: any;
+  layersCollection: Array<String> = ['museums', 'contours'];
+
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -53,6 +55,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       localStorage.setItem("venueId", params.venueId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
+      // this._mapbox.addingLayers();
+
     });
   }
 
@@ -142,6 +146,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+
     const venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
@@ -157,8 +162,13 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     );
   }
 
+  togglingLayers(clickedLayer) {
+    console.log('clickedLayer:', clickedLayer);
+  }
+
   ngAfterViewInit() {
     this._mapbox.initMap(this.venueId);
+
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {
@@ -173,6 +183,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.kioskData.entrances[0].sLatitude
         );
         this.getDirectionData();
+
       });
+
   }
 }

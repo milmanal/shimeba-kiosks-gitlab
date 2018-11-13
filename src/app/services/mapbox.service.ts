@@ -119,6 +119,49 @@ export class MapboxService {
             : Config[this.venueId].routeLineWidth
         }
       });
+
+      this.map.addSource('10m-bathymetry-81bsvj', {
+        type: 'vector',
+        url: 'mapbox://mapbox.9tm8dx88'
+    });
+
+    this.map.addLayer({
+        "id": "10m-bathymetry-81bsvj",
+        "type": "fill",
+        "source": "10m-bathymetry-81bsvj",
+        "source-layer": "10m-bathymetry-81bsvj",
+        "layout": {},
+        "paint": {
+            "fill-outline-color": "hsla(337, 82%, 62%, 0)",
+            // cubic bezier is a four point curve for smooth and precise styling
+            // adjust the points to change the rate and intensity of interpolation
+            "fill-color": [ "interpolate",
+                [ "cubic-bezier",
+                    0, 0.5,
+                    1, 0.5 ],
+                ["get", "DEPTH"],
+                200,  "#78bced",
+                9000, "#15659f"
+            ]
+        }
+    }, 'barrier_line-land-polygon');
+      // this.map.addLayer({
+      //   id: 'contours',
+      //   type: 'line',
+      //   source: {
+      //     type: this.geojson,
+      //   },
+      //   'source-layer': 'contour',
+      //   layout: {
+      //       'visibility': 'visible',
+      //       'line-join': 'round',
+      //       'line-cap': 'round'
+      //   },
+      //   paint: {
+      //       'line-color': '#877b59',
+      //       'line-width': 1
+      //   }
+      // });
     });
   }
 
@@ -318,6 +361,9 @@ export class MapboxService {
     });
   }
 
+  addingLayers() {
+    this.map.getSource('contours').setData(this.geojson);
+  }
   zoomToLinePoligon(coordinates, offset?) {
     var bounds = coordinates.reduce(function(bounds, coord) {
       return bounds.extend(coord);

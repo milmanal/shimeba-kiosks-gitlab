@@ -33,7 +33,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   routeLoaded: Boolean = false;
   languageSubscription: Subscription;
   initLanguage: any;
-  intervalSub: Subscription;
+  routeSubscribtion: Subscription;
   modalRef: BsModalRef;
   phoneNumber: String = "";
   instructionListOpen: Boolean = true;
@@ -101,10 +101,14 @@ export class MobileComponent implements OnInit, AfterViewInit {
           step.points.map(poi => this.allPath.push(poi));
         });
         this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
-        this.intervalSub = curInterval.subscribe(() => {
+        setTimeout(() => {
           this.routing(res, currentInstr);
           currentInstr++;
-        });
+        }, 2000)
+        this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
+          this.routing(res, currentInstr);
+          currentInstr++;
+        })
       });
   }
 
@@ -138,7 +142,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
-      this.intervalSub.unsubscribe();
+      this.routeSubscribtion.unsubscribe();
     }
   }
 

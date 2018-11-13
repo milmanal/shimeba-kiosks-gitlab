@@ -131,7 +131,7 @@ export class MapboxService {
     this.map.getSource("secondary-line").setData(this.geojson);
   }
 
-  steps: any = 50;
+  steps: any = 100;
   arc = [];
   currentGeojson = {
     type: "FeatureCollection",
@@ -149,7 +149,6 @@ export class MapboxService {
   currentI = 0;
 
   addRouteLine(coord) {
-    console.log(this.currentI, this.lineDistance, this.currentGeojson)
     this.currentGeojson.features[0].geometry.coordinates = coord;
     this.lineDistance = turf.lineDistance(
       this.currentGeojson.features[0],

@@ -85,7 +85,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       const curInterval = interval(2000);
 
       this.intervalSub = curInterval.subscribe(() => {
-        console.log("start", new Date().getSeconds());
         this.routing(res, currentInstr);
         currentInstr++;
       });

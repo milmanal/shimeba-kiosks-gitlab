@@ -154,24 +154,28 @@ export class MapboxService {
       this.currentGeojson.features[0],
       "kilometers"
     );
-    for (
-      let i = 0;
-      i < this.lineDistance;
-      i += this.lineDistance / this.steps
-    ) {
-      let segment = turf.along(
-        this.currentGeojson.features[0],
-        i,
-        "kilometers"
-      );
-      this.arc.push(segment.geometry.coordinates);
+    if(this.lineDistance > 0) {
+      for (
+        let i = 0;
+        i < this.lineDistance;
+        i += this.lineDistance / this.steps
+      ) {
+        let segment = turf.along(
+          this.currentGeojson.features[0],
+          i,
+          "kilometers"
+        );
+        this.arc.push(segment.geometry.coordinates);
+      }
+      requestAnimationFrame(this.animateRoute.bind(this));
     }
-    this.animateRoute();
   }
 
   animateRoute() {
-    if(this.arc[this.currentI]) {
-      this.geojson.features[0].geometry.coordinates.push(this.arc[this.currentI]);
+    if (this.arc[this.currentI]) {
+      this.geojson.features[0].geometry.coordinates.push(
+        this.arc[this.currentI]
+      );
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
     }

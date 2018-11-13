@@ -39,9 +39,11 @@ export class MapboxService {
       sources: {
         overlayMap: {
           type: "image",
-          url: isDirection ? Config[this.venueId].directionMapUrl : Config[this.venueId].homeMapUrl,
+          url: isDirection
+            ? Config[this.venueId].directionMapUrl
+            : Config[this.venueId].homeMapUrl,
           coordinates: Config[this.venueId].mapCorners
-        },
+        }
         // mainMap: {
         //   type: "raster",
         //   tiles: ["https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png"],
@@ -129,43 +131,60 @@ export class MapboxService {
     this.map.getSource("secondary-line").setData(this.geojson);
   }
 
-  addRouteLine(coord) {
-    const steps = 50;
-    let arc = [];
-    let currentGeojson = {
-      type: "FeatureCollection",
-      features: [
-        {
-          type: "Feature",
-          geometry: {
-            type: "LineString",
-            coordinates: coord
-          }
+  steps: any = 50;
+  arc = [];
+  currentGeojson = {
+    type: "FeatureCollection",
+    features: [
+      {
+        type: "Feature",
+        geometry: {
+          type: "LineString",
+          coordinates: []
         }
-      ]
-    };
-    const lineDistance = turf.lineDistance(
-      currentGeojson.features[0],
+      }
+    ]
+  };
+  lineDistance: any;
+  currentI = 0;
+
+  addRouteLine(coord) {
+    console.log(this.currentI, this.lineDistance, this.currentGeojson)
+    this.currentGeojson.features[0].geometry.coordinates = coord;
+    this.lineDistance = turf.lineDistance(
+      this.currentGeojson.features[0],
       "kilometers"
     );
-    const time = (Config[this.venueId].timeForTheStep - 100) / steps;
-    let currentI = 0;
-    const currentInterval = interval(time);
-    for (let i = 0; i < lineDistance; i += lineDistance / steps) {
-      let segment = turf.along(currentGeojson.features[0], i, "kilometers");
-      arc.push(segment.geometry.coordinates);
+    for (
+      let i = 0;
+      i < this.lineDistance;
+      i += this.lineDistance / this.steps
+    ) {
+      let segment = turf.along(
+        this.currentGeojson.features[0],
+        i,
+        "kilometers"
+      );
+      this.arc.push(segment.geometry.coordinates);
     }
-    const intervalSub = currentInterval.subscribe(() => {
-      if (arc[currentI]) {
-        this.geojson.features[0].geometry.coordinates.push(arc[currentI]);
-        this.map.getSource("main-line").setData(this.geojson);
-        this.map.getSource("secondary-line").setData(this.geojson);
-        currentI++;
-      } else {
-        intervalSub.unsubscribe();
-      }
-    });
-    this.interval = intervalSub;
+    this.animateRoute();
+  }
+
+  animateRoute() {
+    if(this.arc[this.currentI]) {
+      this.geojson.features[0].geometry.coordinates.push(this.arc[this.currentI]);
+      this.map.getSource("main-line").setData(this.geojson);
+      this.map.getSource("secondary-line").setData(this.geojson);
+    }
+    this.currentI++;
+    if (this.currentI < this.steps) {
+      requestAnimationFrame(this.animateRoute.bind(this));
+    } else {
+      this.currentI = 0;
+      this.lineDistance = 0;
+      this.currentGeojson.features[0].geometry.coordinates = [];
+      this.arc = [];
+    }
   }
 
   addMarker(id, lon, lat) {

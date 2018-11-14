@@ -320,16 +320,16 @@ export class MapboxService {
     });
   }
 
-  zoomToLinePoligon(coordinates, offset?) {
+  zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
     var bounds = coordinates.reduce(function(bounds, coord) {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 
     this.fitBoundsRotated(bounds, {
-      padding: 60,
+      padding: padding || 60,
       offset: offset || [0, 0],
       bearing: Config[this.venueId].rotation,
-      maxZoom: 18
+      maxZoom: maxZoom || 18
     });
   }
 

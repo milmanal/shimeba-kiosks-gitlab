@@ -38,6 +38,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   modalRef: BsModalRef;
   phoneNumber: String = "";
   venueId: any;
+  allPath: any = [];
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -82,6 +83,15 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
       this.instructions = res;
       this.routeLoaded = true;
+      res.map(step => {
+        step.points.map(poi => this.allPath.push(poi));
+      });
+      this._mapbox.zoomToLinePoligon(this.allPath, [300, 0], 19, {
+        top: 100,
+        left: 60,
+        right: 60,
+        bottom: 60
+      });
       setTimeout(() => {
         this.routing(res, currentInstr);
         currentInstr++;

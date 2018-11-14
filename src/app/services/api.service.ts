@@ -63,6 +63,24 @@ export class ApiService {
       .map(res => this.filterByCategory(res, categoryId));
   }
 
+  poiByDistance(categoryId, venueId) {
+    const currentLanguage = this._language.getCurrentLanguage();
+    const kioskData = JSON.parse(localStorage.getItem('kioskData'));
+    console.log(kioskData)
+    return this._httpClient
+      .get<Poi[]>(`${this.url}pois/category/bydistance`, {
+        params: {
+          venueid: venueId,
+          category: categoryId,
+          lon: kioskData.longitude,
+          lat: kioskData.latitude,
+          level: kioskData.level,
+          locale: currentLanguage.name,
+          isParallel: "false"
+        }
+      });
+  }
+
   getKioskAndPoiData(kioskId, poiId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
     return forkJoin(

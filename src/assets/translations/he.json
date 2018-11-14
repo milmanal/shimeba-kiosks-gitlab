@@ -22,5 +22,6 @@
   "sms-modal-instruction": "הזינו את הנייד וקבלו מסרון עם כל הפרטים",
   "sms-input-placeholder": "הזן מספר נייד",
   "send": "שלח",
-  "you-are-here": "אתה כאן"
+  "you-are-here": "אתה כאן",
+  "byDistance": "(ממוין לפי קרבה)"
 }

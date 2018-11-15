@@ -83,7 +83,6 @@ export class MapboxService {
       ]
     };
 
-    console.log(this.style);
     this.map = new mapboxgl.Map({
       container: "map",
       // pitch: 60,

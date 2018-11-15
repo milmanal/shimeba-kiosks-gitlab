@@ -145,8 +145,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    console.log(this.layersCollection);
-
     const venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
@@ -179,8 +177,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this._mapbox.initMap(this.venueId);
-    console.log();
-
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

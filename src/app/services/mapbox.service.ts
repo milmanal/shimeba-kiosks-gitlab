@@ -3,7 +3,15 @@ import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
 import turf from "turf";
 import { interval, Subscription } from "rxjs";
+import { map } from "rxjs/operator/map";
 import { Config } from "./../configs/config";
+import { LayersConfig } from './../configs/layers.config';
+
+interface Layer {
+  layerId: string;
+  layerName: string;
+  layerImage: string;
+}
 
 @Injectable({
   providedIn: "root"
@@ -26,6 +34,11 @@ export class MapboxService {
     ]
   };
   style: Object;
+  _activeLayer: Layer = {
+    layerId: null,
+    layerName: null,
+    layerImage: null,
+  };
 
   constructor() {
     mapboxgl.accessToken = "undefined";
@@ -69,6 +82,8 @@ export class MapboxService {
         }
       ]
     };
+
+    console.log(this.style);
     this.map = new mapboxgl.Map({
       container: "map",
       // pitch: 60,
@@ -119,50 +134,8 @@ export class MapboxService {
             : Config[this.venueId].routeLineWidth
         }
       });
-
-      this.map.addSource('10m-bathymetry-81bsvj', {
-        type: 'vector',
-        url: 'mapbox://mapbox.9tm8dx88'
     });
 
-    this.map.addLayer({
-        "id": "10m-bathymetry-81bsvj",
-        "type": "fill",
-        "source": "10m-bathymetry-81bsvj",
-        "source-layer": "10m-bathymetry-81bsvj",
-        "layout": {},
-        "paint": {
-            "fill-outline-color": "hsla(337, 82%, 62%, 0)",
-            // cubic bezier is a four point curve for smooth and precise styling
-            // adjust the points to change the rate and intensity of interpolation
-            "fill-color": [ "interpolate",
-                [ "cubic-bezier",
-                    0, 0.5,
-                    1, 0.5 ],
-                ["get", "DEPTH"],
-                200,  "#78bced",
-                9000, "#15659f"
-            ]
-        }
-    }, 'barrier_line-land-polygon');
-      // this.map.addLayer({
-      //   id: 'contours',
-      //   type: 'line',
-      //   source: {
-      //     type: this.geojson,
-      //   },
-      //   'source-layer': 'contour',
-      //   layout: {
-      //       'visibility': 'visible',
-      //       'line-join': 'round',
-      //       'line-cap': 'round'
-      //   },
-      //   paint: {
-      //       'line-color': '#877b59',
-      //       'line-width': 1
-      //   }
-      // });
-    });
   }
 
   clearMap() {
@@ -361,11 +334,52 @@ export class MapboxService {
     });
   }
 
-  addingLayers() {
-    this.map.getSource('contours').setData(this.geojson);
+  getLayers() {
+    return LayersConfig;
   }
+
+  get activeLayer() {
+    return this._activeLayer;
+  }
+
+  set activeLayer(layer) {
+    this._activeLayer = layer;
+  }
+
+  getMap() {
+    return this.map;
+  }
+
+  addLayer(clickedLayer: Layer) {
+    this.map.addLayer({
+      'id': clickedLayer.layerId,
+      type: 'raster',
+      'source': {
+        type: 'image',
+        url: clickedLayer.layerImage,
+        coordinates: Config[this.venueId].mapCorners
+      },
+    });
+  }
+
+  displayLayer(clickedLayer: Layer) {
+    this.map.setLayoutProperty(clickedLayer.layerId, 'visibility', 'visible');
+  }
+
+  hideLayers() {
+    this.getLayers().forEach(layer => {
+      if (this.map.getLayer(layer.layerId)) {
+        this.map.setLayoutProperty(layer.layerId, 'visibility', 'none');
+      }
+    });
+  }
+
+  isLayerVisible(clickedLayer: Layer) {
+    return this.map.getLayer(clickedLayer.layerId) && (this.map.getLayoutProperty(clickedLayer.layerId, 'visibility') === 'visible');
+  }
+
   zoomToLinePoligon(coordinates, offset?) {
-    var bounds = coordinates.reduce(function(bounds, coord) {
+    var bounds = coordinates.reduce(function(bounds: any, coord) {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 

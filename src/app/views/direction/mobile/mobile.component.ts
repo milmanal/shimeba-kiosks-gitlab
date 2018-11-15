@@ -30,6 +30,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   poiData: any;
   poiLocation: any;
   instructions: any;
+  currentInstr: any;
   routeLoaded: Boolean = false;
   languageSubscription: Subscription;
   initLanguage: any;
@@ -72,11 +73,13 @@ export class MobileComponent implements OnInit, AfterViewInit {
   selectInstruction(instr, i) {
     this.instructionListOpen = false;
     this.selectedInstructionIndex = i;
+    this.currentInstr = instr.instructions;
     this._mapbox.goToInstruction(instr);
   }
 
   nextInstruction() {
     this.selectedInstructionIndex++;
+    this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
     this._mapbox.goToInstruction(
       this.instructions[this.selectedInstructionIndex].instruction
     );
@@ -84,6 +87,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   prevInstruction() {
     this.selectedInstructionIndex--;
+    this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
     this._mapbox.goToInstruction(
       this.instructions[this.selectedInstructionIndex].instruction
     );

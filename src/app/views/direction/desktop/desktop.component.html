@@ -70,8 +70,8 @@
         </div>
 
         <div class="toggle-layers">
-            <div *ngFor="let layer of layersCollection" (click)="togglingLayers(layer)">
-                {{layer}}
+            <div *ngFor="let layer of layersCollection" (click)="toggle(layer)">
+                {{layer.layerName}}
             </div>
         </div>
     </div>

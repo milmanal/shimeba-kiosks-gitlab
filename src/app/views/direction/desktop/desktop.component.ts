@@ -38,7 +38,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   modalRef: BsModalRef;
   phoneNumber: String = "";
   venueId: any;
-  layersCollection: Array<String> = ['museums', 'contours'];
+  layersCollection: Array<{}> = this._mapbox.getLayers();
 
   constructor(
     private _language: LanguageService,
@@ -55,7 +55,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       localStorage.setItem("venueId", params.venueId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
-      // this._mapbox.addingLayers();
 
     });
   }
@@ -146,6 +145,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    console.log(this.layersCollection);
 
     const venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
@@ -162,12 +162,24 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     );
   }
 
-  togglingLayers(clickedLayer) {
-    console.log('clickedLayer:', clickedLayer);
+  toggle(layer) {
+    const serviceMap = this._mapbox.getMap();
+
+    if (this._mapbox.isLayerVisible(layer)) {
+      this._mapbox.hideLayers();
+    } else {
+      this._mapbox.hideLayers();
+      if (!serviceMap.getLayer(layer.layerId)) {
+        this._mapbox.addLayer(layer);
+      } else {
+        this._mapbox.displayLayer(layer);
+      }
+    }
   }
 
   ngAfterViewInit() {
     this._mapbox.initMap(this.venueId);
+    console.log();
 
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)

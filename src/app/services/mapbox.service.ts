@@ -27,7 +27,6 @@ export class MapboxService {
   };
   style: Object;
   nextInstruction: Observer<any>;
-
   steps: any = 50;
   arc = [];
   currentRouteStepGeojson = {
@@ -49,6 +48,7 @@ export class MapboxService {
   constructor() {
     mapboxgl.accessToken = "undefined";
   }
+
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
     this.isMobile = isMobile;
     this.venueId = venueId;
@@ -85,6 +85,7 @@ export class MapboxService {
       center: Config[this.venueId].center,
       style: this.style
     });
+
     this.map.on("load", () => {
       this.map.addLayer({
         id: "secondary-line",
@@ -104,7 +105,7 @@ export class MapboxService {
                 Config[this.venueId].borderLineWidth) /
               1.5
             : Config[this.venueId].routeLineWidth +
-              Config[this.venueId].borderLineWidth
+              Config[this.venueId].borderLineWidth,
         }
       });
       this.map.addLayer({
@@ -116,14 +117,69 @@ export class MapboxService {
         },
         layout: {
           "line-cap": "round",
-          "line-join": "round"
+          "line-join": "round",
         },
         paint: {
           "line-color": Config[this.venueId].routeLineColor,
           "line-width": isMobile
             ? Config[this.venueId].routeLineWidth / 1.5
-            : Config[this.venueId].routeLineWidth
+            : Config[this.venueId].routeLineWidth,
         }
+      });
+      this.map.loadImage(Config[this.venueId].arrowOnRouteUrl, (error, image) => {
+        if (error) {
+          throw error;
+        }
+        this.map.addImage('chevron', image);
+        this.map.addLayer({
+            "id": "arrows",
+            "type": "symbol",
+            "source": {
+                "type": "geojson",
+                "data": {
+                    "type": "FeatureCollection",
+                    "features": [{
+                        "type": "Feature",
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [0, 0]
+                        }
+                    }]
+                }
+            },
+            "layout": {
+              'symbol-placement': 'line',
+              'symbol-spacing': isMobile ? 30 : 42,
+              'icon-allow-overlap': true,
+              'icon-ignore-placement': true,
+              'icon-rotation-alignment': 'map',
+              'icon-image': 'chevron',
+              'icon-size': .5,
+              'icon-anchor': 'center'
+            }
+        });
+        // this.map.addSource('arrows', {
+        //   "type": "image",
+        //   url: url,
+        //   coordinates: [
+        //     // [34.7898267288336, 32.0804542067765],
+        //     // [34.78982551955119, 32.08043515908821],
+        //     // [34.789824310268855, 32.08041611139993],
+        //     // [34.789823100987014, 32.08039706371163]
+
+        //     [34.791717138986535, 32.08206239285578],
+        //     [34.79141068350503, 32.07787046370873],
+        //     [34.78832531057368, 32.07803240327738],
+        //     [34.78863176605523, 32.08222432499814]
+        //   ],
+        // });
+        // this.map.addLayer({
+        //   id: "radar-layer",
+        //   "type": "raster",
+        //   "source": "arrows",
+        //   "paint": {
+        //   }
+        // });
       });
     });
   }
@@ -135,6 +191,7 @@ export class MapboxService {
     this.geojson.features[0].geometry.coordinates = [];
     this.map.getSource("main-line").setData(this.geojson);
     this.map.getSource("secondary-line").setData(this.geojson);
+    this.map.getSource("arrows").setData(this.geojson);
   }
 
   nextInstructionHandle = Observable.create((observer) => {
@@ -164,10 +221,9 @@ export class MapboxService {
     } else {
       setTimeout(() => {
         this.nextInstruction.next(null);
-      }, 2000)
+      }, 2000);
     }
   }
-
   animateRoute() {
     if (this.arc[this.currentRouteStepIndex]) {
       this.geojson.features[0].geometry.coordinates.push(
@@ -175,6 +231,7 @@ export class MapboxService {
       );
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
+      this.map.getSource("arrows").setData(this.geojson);
     }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
@@ -213,6 +270,38 @@ export class MapboxService {
         "icon-size": this.isMobile ? 1 / 1.5 : 1
       }
     });
+    // this.map.loadImage(
+    //   'assets/imgs/play-button.png', (error, image) => {
+    //   if (error) {
+    //     throw error;
+    //   }
+
+    //   console.log(image);
+    //   this.map.addImage('cat', image);
+    //   this.map.addLayer({
+    //       "id": "arrow",
+    //       "type": "symbol",
+    //       "source": {
+    //           "type": "geojson",
+    //           data: {
+    //             type: "FeatureCollection",
+    //             features: [
+    //               {
+    //                 type: "Feature",
+    //                 geometry: {
+    //                   type: "Point",
+    //                   coordinates: [Number(lon), Number(lat)]
+    //                 }
+    //               }
+    //             ]
+    //           }
+    //       },
+    //       "layout": {
+    //           "icon-image": "cat",
+    //           "icon-size": 0.2
+    //       }
+    //   });
+    // });
   }
 
   addKioskMarker(lon, lat) {

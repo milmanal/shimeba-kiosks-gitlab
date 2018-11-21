@@ -62,7 +62,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
 
   sendSms() {
     const sendParams = {
-      text: this._router.url,
+      text: window.location.href,
       recipientNumber: this.phoneNumber,
       senderName: 'Ichilov Hospital',
     };

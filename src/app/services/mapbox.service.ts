@@ -3,7 +3,15 @@ import mapboxgl from "mapbox-gl";
 import { InstructionIcon } from "./../configs/instruction-icon";
 import turf from "turf";
 import { interval, Subscription, Observable, Observer } from "rxjs";
+import { map } from "rxjs/operator/map";
 import { Config } from "./../configs/config";
+import { LayersConfig } from './../configs/layers.config';
+
+interface Layer {
+  layerId: string;
+  layerName: string;
+  layerImage: string;
+}
 
 @Injectable({
   providedIn: "root"
@@ -44,6 +52,11 @@ export class MapboxService {
   lineDistance: any;
   currentRouteStepIndex = 0;
 
+  _activeLayer: Layer = {
+    layerId: null,
+    layerName: null,
+    layerImage: null,
+  };
 
   constructor() {
     mapboxgl.accessToken = "undefined";
@@ -75,6 +88,7 @@ export class MapboxService {
         }
       ]
     };
+
     this.map = new mapboxgl.Map({
       container: "map",
       // pitch: 60,
@@ -160,6 +174,7 @@ export class MapboxService {
         });
       });
     });
+
   }
 
   clearMap() {
@@ -385,6 +400,51 @@ export class MapboxService {
         "icon-anchor": "bottom"
       }
     });
+  }
+
+  
+  getLayers() {
+    return LayersConfig;
+  }
+
+  get activeLayer() {
+    return this._activeLayer;
+  }
+
+  set activeLayer(layer) {
+    this._activeLayer = layer;
+  }
+
+  getMap() {
+    return this.map;
+  }
+
+  addLayer(clickedLayer: Layer) {
+    this.map.addLayer({
+      'id': clickedLayer.layerId,
+      type: 'raster',
+      'source': {
+        type: 'image',
+        url: clickedLayer.layerImage,
+        coordinates: Config[this.venueId].mapCorners
+      },
+    });
+  }
+
+  displayLayer(clickedLayer: Layer) {
+    this.map.setLayoutProperty(clickedLayer.layerId, 'visibility', 'visible');
+  }
+
+  hideLayers() {
+    this.getLayers().forEach(layer => {
+      if (this.map.getLayer(layer.layerId)) {
+        this.map.setLayoutProperty(layer.layerId, 'visibility', 'none');
+      }
+    });
+  }
+
+  isLayerVisible(clickedLayer: Layer) {
+    return this.map.getLayer(clickedLayer.layerId) && (this.map.getLayoutProperty(clickedLayer.layerId, 'visibility') === 'visible');
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {

@@ -8,7 +8,7 @@
     <div class="direction-component">
         <div class="header-container">
             <header class="header d-flex justify-content-between align-items-center px-3">
-                <div class="header-instruction" translate>header-title-mobile</div>
+                <div class="header-instruction" translate>{{!currentInstr ? 'Header' : currentInstr}}</div>
                 <div class="show-instruction-btn d-flex flex-column justify-content-center align-items-center" (click)="showHideInstructionList()">
                     <div class="label" translate>{{instructionListOpen ? 'close-mobile' : 'show-all-mobile'}}</div>
                     <img src="assets/imgs/close-mobile.svg" alt="close" class="icon" [ngClass]="{'arrow-down': !instructionListOpen}">
@@ -57,7 +57,9 @@
                 (click)="prevInstruction()" [disabled]="selectedInstructionIndex === 0">
                 <img src="assets/imgs/prev.svg" alt="prev">
             </button>
-            <button class="next d-flex justify-content-center align-items-center" [disabled]="!instructions || selectedInstructionIndex >= instructions.length - 1" (click)="nextInstruction()">
+            <button class="next d-flex justify-content-center align-items-center" 
+                [disabled]="!instructions || selectedInstructionIndex >= instructions.length - 1" 
+                (click)="nextInstruction()">
                 <img src="assets/imgs/next.svg" alt="next">
             </button>
         </div>

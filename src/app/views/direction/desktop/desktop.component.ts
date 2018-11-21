@@ -39,6 +39,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   phoneNumber: String = "";
   venueId: any;
   allPath: any = [];
+  layersCollection: Array<{}> = this._mapbox.getLayers();
 
   constructor(
     private _language: LanguageService,
@@ -55,6 +56,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       localStorage.setItem("venueId", params.venueId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
+
     });
   }
 
@@ -178,6 +180,21 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     );
   }
 
+  toggle(layer) {
+    const serviceMap = this._mapbox.getMap();
+
+    if (this._mapbox.isLayerVisible(layer)) {
+      this._mapbox.hideLayers();
+    } else {
+      this._mapbox.hideLayers();
+      if (!serviceMap.getLayer(layer.layerId)) {
+        this._mapbox.addLayer(layer);
+      } else {
+        this._mapbox.displayLayer(layer);
+      }
+    }
+  }
+
   ngAfterViewInit() {
     this._mapbox.initMap(this.venueId);
     this._api
@@ -194,6 +211,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.kioskData.entrances[0].sLatitude
         );
         this.getDirectionData();
+
       });
+
   }
 }

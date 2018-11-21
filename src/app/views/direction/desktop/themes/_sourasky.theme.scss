@@ -175,6 +175,17 @@
       }
     }
   }
+
+  .toggle-layers {
+    font-size: 25px;
+    position: absolute;
+    top: 155px;
+    right: 30px;
+    background: #4a90e2;
+    color: #fff;
+    height: auto;
+    padding: 18px;
+  }
 }
 @keyframes fadein {
   from {

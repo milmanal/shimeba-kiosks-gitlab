@@ -1,3 +1,5 @@
+@import 'variables';
+
 .language-panel {
   position: fixed;
   bottom: 0;
@@ -9,11 +11,13 @@
   .language-btn {
     width: 12.5%;
     height: 75px;
-    color: #9b9b9b;
-    font-size: 2rem;
-    background-color: #ffffff;
+    color: $gray-text-1;
+    font-family: $OSHebrew;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: $color-white;
     box-shadow: 0 -5px 7px 0 rgba(0, 0, 0, 0.5);
-    border-color: #ffffff;
+    border-color: $color-white;
     cursor: pointer;
     .lang-icon {
       width: 25%;

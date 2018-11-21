@@ -80,7 +80,7 @@
             <div class="d-flex justify-content-between align-items-center px-3 pt-3">
                 <input type="text" class="sms-input px-2" placeholder="{{'sms-input-placeholder' | translate}}"
                     [(ngModel)]="phoneNumber">
-                <button class="send-btn" translate>send</button>
+                <button (click)="sendSms()" class="send-btn" translate>send</button>
             </div>
             <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
                 <div class="d-flex justify-content-between align-items-center key-row">

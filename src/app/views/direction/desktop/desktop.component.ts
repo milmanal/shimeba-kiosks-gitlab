@@ -39,6 +39,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   phoneNumber: String = "";
   venueId: any;
   allPath: any = [];
+
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -55,6 +56,15 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
     });
+  }
+
+  sendSms() {
+    const sendParams = {
+      text: this._router.url,
+      recipientNumber: this.phoneNumber,
+      senderName: 'Ichilov Hospital',
+    };
+    return this._api.sendSms(sendParams);
   }
 
   enterNumber(number) {

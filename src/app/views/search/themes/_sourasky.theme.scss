@@ -1,3 +1,5 @@
+@import 'variables';
+
 .search-container {
   width: 100%;
   height: 100%;
@@ -6,7 +8,7 @@
     width: 83%;
     height: 140px;
     border-radius: 4px;
-    background-color: #ffffff;
+    background-color: $color-white;
     border: solid 5px #4a90e2;
     .search-icon {
       width: 10%;
@@ -21,7 +23,12 @@
       border: none;
       font-size: 4.6em;
       font-weight: bold;
-      color: #9b9b9b;
+      color: $gray-text-1;
+      font-family: $OSHebrew;
+
+      ::-webkit-input-placeholder {
+        color: $gray-text-1;
+      }
     }
   }
   .search-instruction {
@@ -39,7 +46,7 @@
     .category-name {
       font-size: 30px;
       font-weight: 500;
-      color: #343434;
+      color: $gray-text-3;
     }
     .icon {
       height: 47px;

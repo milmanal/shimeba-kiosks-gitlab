@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import "variables";
+
+
 :host /deep/ .mapboxgl-canvas {
   position: absolute;
   top: 0;
@@ -11,12 +15,13 @@
   background-image: url("../../../assets/imgs/u-r-here.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-size: 3vh;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
   min-width: 210px;
-  min-height: 104px;
+  min-height: 111px;
 }
 .home-component {
   position: relative;
@@ -68,12 +73,18 @@
       background-repeat: no-repeat;
       background-position: 50% 50%;
     }
+    
     .search-input {
       width: 90%;
       border: none;
       font-size: 5.6em;
       font-weight: bold;
-      color: #9b9b9b;
+      color: $gray-text-1;
+      font-family: $OSHebrew;
+
+      ::-webkit-input-placeholder {
+        color: $gray-text-1;
+      }
     }
   }
 }

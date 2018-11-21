@@ -27,7 +27,7 @@ export class MapboxService {
   };
   style: Object;
   nextInstruction: Observer<any>;
-  steps: any = 50;
+  steps: any = 30;
   arc = [];
   currentRouteStepGeojson = {
     type: "FeatureCollection",
@@ -158,28 +158,6 @@ export class MapboxService {
               'icon-anchor': 'center'
             }
         });
-        // this.map.addSource('arrows', {
-        //   "type": "image",
-        //   url: url,
-        //   coordinates: [
-        //     // [34.7898267288336, 32.0804542067765],
-        //     // [34.78982551955119, 32.08043515908821],
-        //     // [34.789824310268855, 32.08041611139993],
-        //     // [34.789823100987014, 32.08039706371163]
-
-        //     [34.791717138986535, 32.08206239285578],
-        //     [34.79141068350503, 32.07787046370873],
-        //     [34.78832531057368, 32.07803240327738],
-        //     [34.78863176605523, 32.08222432499814]
-        //   ],
-        // });
-        // this.map.addLayer({
-        //   id: "radar-layer",
-        //   "type": "raster",
-        //   "source": "arrows",
-        //   "paint": {
-        //   }
-        // });
       });
     });
   }
@@ -321,7 +299,7 @@ export class MapboxService {
       markerEl.id = `marker${number}`;
       markerEl.classList.add("marker-number");
       markerEl.classList.add("d-flex");
-      markerEl.classList.add("justify-content-center");
+      markerEl.classList.add("justify-content-around");
       markerEl.classList.add("align-items-center");
 
       const textNode = document.createTextNode(number);
@@ -331,7 +309,7 @@ export class MapboxService {
       markerEl.id = `marker${number}`;
       markerEl.classList.add("marker-number");
       markerEl.classList.add("d-flex");
-      markerEl.classList.add("justify-content-center");
+      markerEl.classList.add("justify-content-around");
       markerEl.classList.add("align-items-center");
       markerEl.classList.add("marker-number-icon");
 

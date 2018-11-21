@@ -1,3 +1,5 @@
+@import 'variables';
+
 .category-container {
   width: 100%;
   height: 100%;
@@ -6,12 +8,13 @@
     height: 140px;
     border-radius: 4px;
     box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
-    background-color: #ffffff;
+    background-color: $color-white;
     border: solid 5px #4a90e2;
     .category-name {
       font-size: 80px;
-      font-weight: 500;
-      color: #4a4a4a;
+      font-weight: bold;
+      font-family: $OSHebrew;
+      color: $gray-text-1;
     }
   }
   .category-pois {
@@ -57,7 +60,8 @@
       display: block;
       line-height: 1;
       font-size: 42px;
-      font-weight: 500;
+      font-family: $OSHebrew;
+      font-weight: 300;
       color: #4a4a4a;
     }
     .secondaryLanguage {

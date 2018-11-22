@@ -15,7 +15,10 @@ export class AppLanguagePanelComponent implements OnInit {
   showAnotherLanguages: Boolean = false;
   showAllLanguages: Boolean = false;
 
-  constructor(private _route: Router, private _language: LanguageService) {
+  constructor(
+    private _route: Router,
+    private _language: LanguageService
+  ) {
     this._route.events.subscribe(val => {
       if (val instanceof NavigationEnd && val.url.indexOf("home") !== -1) {
         this.showAllLanguages = true;

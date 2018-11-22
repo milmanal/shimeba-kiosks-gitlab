@@ -35,7 +35,8 @@ export class MapboxService {
   };
   style: Object;
   nextInstruction: Observer<any>;
-  steps: any = 30;
+  steps: any = 35;
+  progress: any = 0;
   arc = [];
   currentRouteStepGeojson = {
     type: "FeatureCollection",
@@ -51,7 +52,7 @@ export class MapboxService {
   };
   lineDistance: any;
   currentRouteStepIndex = 0;
-
+  startTime: number;
   _activeLayer: Layer = {
     layerId: null,
     layerName: null,
@@ -101,6 +102,8 @@ export class MapboxService {
     });
 
     this.map.on("load", () => {
+      this.startTime = performance.now();
+
       this.map.addLayer({
         id: "secondary-line",
         type: "line",
@@ -173,6 +176,8 @@ export class MapboxService {
             }
         });
       });
+
+      // this.animateRoute();
     });
 
   }
@@ -183,8 +188,8 @@ export class MapboxService {
     }
     this.geojson.features[0].geometry.coordinates = [];
     this.map.getSource("main-line").setData(this.geojson);
-    this.map.getSource("secondary-line").setData(this.geojson);
-    this.map.getSource("arrows").setData(this.geojson);
+    // this.map.getSource("secondary-line").setData(this.geojson);
+    // this.map.getSource("arrows").setData(this.geojson);
   }
 
   nextInstructionHandle = Observable.create((observer) => {
@@ -198,6 +203,7 @@ export class MapboxService {
       "kilometers"
     );
     if (this.lineDistance > 0) {
+      requestAnimationFrame(this.animateRoute.bind(this));
       for (
         let i = 0;
         i < this.lineDistance;
@@ -210,14 +216,31 @@ export class MapboxService {
         );
         this.arc.push(segment.geometry.coordinates);
       }
-      requestAnimationFrame(this.animateRoute.bind(this));
     } else {
       setTimeout(() => {
         this.nextInstruction.next(null);
       }, 2000);
     }
   }
+  times = [];
+  fps: any;
+
+  refreshLoop() {
+    window.requestAnimationFrame(() => {
+      const now = performance.now();
+      while (this.times.length > 0 && this.times[0] <= now - 1000) {
+        this.times.shift();
+      }
+      this.times.push(now);
+      this.fps = this.times.length;
+      this.refreshLoop();
+      console.log(this.fps);
+    });
+  }
+
+
   animateRoute() {
+    // this.startTime = performance.now() - this.progress;
     if (this.arc[this.currentRouteStepIndex]) {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
@@ -225,6 +248,9 @@ export class MapboxService {
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
       this.map.getSource("arrows").setData(this.geojson);
+      this.refreshLoop();
+
+      // console.log(this.startTime);
     }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
@@ -263,38 +289,6 @@ export class MapboxService {
         "icon-size": this.isMobile ? 1 / 1.5 : 1
       }
     });
-    // this.map.loadImage(
-    //   'assets/imgs/play-button.png', (error, image) => {
-    //   if (error) {
-    //     throw error;
-    //   }
-
-    //   console.log(image);
-    //   this.map.addImage('cat', image);
-    //   this.map.addLayer({
-    //       "id": "arrow",
-    //       "type": "symbol",
-    //       "source": {
-    //           "type": "geojson",
-    //           data: {
-    //             type: "FeatureCollection",
-    //             features: [
-    //               {
-    //                 type: "Feature",
-    //                 geometry: {
-    //                   type: "Point",
-    //                   coordinates: [Number(lon), Number(lat)]
-    //                 }
-    //               }
-    //             ]
-    //           }
-    //       },
-    //       "layout": {
-    //           "icon-image": "cat",
-    //           "icon-size": 0.2
-    //       }
-    //   });
-    // });
   }
 
   addKioskMarker(lon, lat) {

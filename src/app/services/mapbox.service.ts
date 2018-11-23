@@ -56,7 +56,10 @@ export class MapboxService {
     layerImage: null,
   };
 
-  steps = 30;
+  times = [];
+  fps: any;
+
+  steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * 2);
   startTime = 0;
 
 
@@ -212,7 +215,6 @@ export class MapboxService {
       "kilometers"
     );
 
-    console.log('this.lineDistance', this.lineDistance);
     if (this.lineDistance > 0) {
       requestAnimationFrame(this.animateRoute.bind(this));
 
@@ -234,72 +236,35 @@ export class MapboxService {
       }, 2000);
     }
   }
-  // times = [];
-  // fps: any;
-
-  // refreshLoop() {
-  //   const now = performance.now();
-  //   while (this.times.length > 0 && this.times[0] <= now - 1000) {
-  //     this.times.shift();
-  //   }
-  //   this.times.push(now);
-  //   this.fps = this.times.length;
-  //   requestAnimationFrame(this.refreshLoop.bind(this));
-  //   console.log(this.fps);
-  // }
-
+  
   animateRoute(timestamp) {
-    const progress = timestamp - this.startTime;
-    // console.log('progress: ', progress, 'this.steps * 1000', this.steps * 360);
-    if (progress > this.steps * 360) {
-      this.startTime = timestamp;
-      this.geojson.features[0].geometry.coordinates = [];
-    } else {
+    const now = performance.now();
+    while (this.times.length > 0 && this.times[0] <= now - 1000) {
+      this.times.shift();
+    }
+    this.times.push(now);
+    this.fps = this.times.length;
+
+    if (this.arc[this.currentRouteStepIndex]) {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
-
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
       this.map.getSource("arrows").setData(this.geojson);
-      // if (this.arc[this.currentRouteStepIndex]) {
-        
-      // }
     }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
+      console.log(this.fps);
+      localStorage.setItem('fps', this.fps);
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
-      // this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
+      this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
       this.arc = [];
       this.nextInstruction.next(null);
     }
-
-
-
-
-    // if (this.arc[this.currentRouteStepIndex]) {
-    //   this.geojson.features[0].geometry.coordinates.push(
-    //     this.arc[this.currentRouteStepIndex]
-    //   );
-    //   this.map.getSource("main-line").setData(this.geojson);
-    //   this.map.getSource("secondary-line").setData(this.geojson);
-    //   this.map.getSource("arrows").setData(this.geojson);
-
-    //   // console.log(difference);
-    // }
-    // this.currentRouteStepIndex++;
-    // if (this.currentRouteStepIndex < this.steps) {
-    //   requestAnimationFrame(this.animateRoute.bind(this));
-    // } else {
-    //   this.currentRouteStepIndex = 0;
-    //   this.lineDistance = 0;
-    //   this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
-    //   this.arc = [];
-    //   this.nextInstruction.next(null);
-    // }
   }
 
   addMarker(id, lon, lat) {

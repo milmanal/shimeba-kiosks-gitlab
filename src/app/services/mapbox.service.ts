@@ -59,7 +59,7 @@ export class MapboxService {
   times = [];
   fps: any;
 
-  steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
+  steps = 0;
   startTime = 0;
 
 
@@ -209,6 +209,7 @@ export class MapboxService {
   })
 
   addRouteLine(coord) {
+    this.steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
     this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
     this.lineDistance = turf.lineDistance(
       this.currentRouteStepGeojson.features[0],
@@ -237,7 +238,7 @@ export class MapboxService {
     }
   }
   
-  animateRoute(timestamp) {
+  animateRoute() {
     const now = performance.now();
     while (this.times.length > 0 && this.times[0] <= now - 1000) {
       this.times.shift();
@@ -259,7 +260,6 @@ export class MapboxService {
     } else {
       console.log(this.fps);
       localStorage.setItem('fps', this.fps);
-      this.steps = this.fps * Config[this.venueId].drawTime;
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
       this.currentRouteStepGeojson.features[0].geometry.coordinates = [];

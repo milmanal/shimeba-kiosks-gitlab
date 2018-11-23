@@ -5,7 +5,7 @@ import turf from "turf";
 import { interval, Subscription, Observable, Observer } from "rxjs";
 import { map } from "rxjs/operator/map";
 import { Config } from "./../configs/config";
-import { LayersConfig } from './../configs/layers.config';
+import { LayersConfig } from "./../configs/layers.config";
 
 interface Layer {
   layerId: string;
@@ -35,7 +35,7 @@ export class MapboxService {
   };
   style: Object;
   nextInstruction: Observer<any>;
-  steps: any = 35;
+  steps: any = !localStorage.getItem('fps') ? 60 : (localStorage.getItem('fps') * 2);
   progress: any = 0;
   arc = [];
   currentRouteStepGeojson = {
@@ -56,7 +56,7 @@ export class MapboxService {
   _activeLayer: Layer = {
     layerId: null,
     layerName: null,
-    layerImage: null,
+    layerImage: null
   };
 
   constructor() {
@@ -122,7 +122,7 @@ export class MapboxService {
                 Config[this.venueId].borderLineWidth) /
               1.5
             : Config[this.venueId].routeLineWidth +
-              Config[this.venueId].borderLineWidth,
+              Config[this.venueId].borderLineWidth
         }
       });
       this.map.addLayer({
@@ -134,52 +134,56 @@ export class MapboxService {
         },
         layout: {
           "line-cap": "round",
-          "line-join": "round",
+          "line-join": "round"
         },
         paint: {
           "line-color": Config[this.venueId].routeLineColor,
           "line-width": isMobile
             ? Config[this.venueId].routeLineWidth / 1.5
-            : Config[this.venueId].routeLineWidth,
+            : Config[this.venueId].routeLineWidth
         }
       });
-      this.map.loadImage(Config[this.venueId].arrowOnRouteUrl, (error, image) => {
-        if (error) {
-          throw error;
-        }
-        this.map.addImage('chevron', image);
-        this.map.addLayer({
-            "id": "arrows",
-            "type": "symbol",
-            "source": {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": [{
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [0, 0]
-                        }
-                    }]
-                }
+      this.map.loadImage(
+        Config[this.venueId].arrowOnRouteUrl,
+        (error, image) => {
+          if (error) {
+            throw error;
+          }
+          this.map.addImage("chevron", image);
+          this.map.addLayer({
+            id: "arrows",
+            type: "symbol",
+            source: {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [0, 0]
+                    }
+                  }
+                ]
+              }
             },
-            "layout": {
-              'symbol-placement': 'line',
-              'symbol-spacing': isMobile ? 30 : 42,
-              'icon-allow-overlap': true,
-              'icon-ignore-placement': true,
-              'icon-rotation-alignment': 'map',
-              'icon-image': 'chevron',
-              'icon-size': .5,
-              'icon-anchor': 'center'
+            layout: {
+              "symbol-placement": "line",
+              "symbol-spacing": isMobile ? 30 : 42,
+              "icon-allow-overlap": true,
+              "icon-ignore-placement": true,
+              "icon-rotation-alignment": "map",
+              "icon-image": "chevron",
+              "icon-size": 0.5,
+              "icon-anchor": "center"
             }
-        });
-      });
+          });
+        }
+      );
 
       // this.animateRoute();
     });
-
   }
 
   clearMap() {
@@ -188,15 +192,16 @@ export class MapboxService {
     }
     this.geojson.features[0].geometry.coordinates = [];
     this.map.getSource("main-line").setData(this.geojson);
-    // this.map.getSource("secondary-line").setData(this.geojson);
-    // this.map.getSource("arrows").setData(this.geojson);
+    this.map.getSource("secondary-line").setData(this.geojson);
+    this.map.getSource("arrows").setData(this.geojson);
   }
 
-  nextInstructionHandle = Observable.create((observer) => {
+  nextInstructionHandle = Observable.create(observer => {
     this.nextInstruction = observer;
-  })
+  });
 
   addRouteLine(coord) {
+    console.log(this.steps)
     this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
     this.lineDistance = turf.lineDistance(
       this.currentRouteStepGeojson.features[0],
@@ -225,22 +230,13 @@ export class MapboxService {
   times = [];
   fps: any;
 
-  refreshLoop() {
-    window.requestAnimationFrame(() => {
-      const now = performance.now();
-      while (this.times.length > 0 && this.times[0] <= now - 1000) {
-        this.times.shift();
-      }
-      this.times.push(now);
-      this.fps = this.times.length;
-      this.refreshLoop();
-      console.log(this.fps);
-    });
-  }
-
-
   animateRoute() {
-    // this.startTime = performance.now() - this.progress;
+    const now = performance.now();
+    while (this.times.length > 0 && this.times[0] <= now - 1000) {
+      this.times.shift();
+    }
+    this.times.push(now);
+    this.fps = this.times.length;
     if (this.arc[this.currentRouteStepIndex]) {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
@@ -248,7 +244,6 @@ export class MapboxService {
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
       this.map.getSource("arrows").setData(this.geojson);
-      this.refreshLoop();
 
       // console.log(this.startTime);
     }
@@ -256,6 +251,7 @@ export class MapboxService {
     if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
+      localStorage.setItem('fps', this.fps);
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
       this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
@@ -396,7 +392,6 @@ export class MapboxService {
     });
   }
 
-  
   getLayers() {
     return LayersConfig;
   }
@@ -415,30 +410,34 @@ export class MapboxService {
 
   addLayer(clickedLayer: Layer) {
     this.map.addLayer({
-      'id': clickedLayer.layerId,
-      type: 'raster',
-      'source': {
-        type: 'image',
+      id: clickedLayer.layerId,
+      type: "raster",
+      source: {
+        type: "image",
         url: clickedLayer.layerImage,
         coordinates: Config[this.venueId].mapCorners
-      },
+      }
     });
   }
 
   displayLayer(clickedLayer: Layer) {
-    this.map.setLayoutProperty(clickedLayer.layerId, 'visibility', 'visible');
+    this.map.setLayoutProperty(clickedLayer.layerId, "visibility", "visible");
   }
 
   hideLayers() {
     this.getLayers().forEach(layer => {
       if (this.map.getLayer(layer.layerId)) {
-        this.map.setLayoutProperty(layer.layerId, 'visibility', 'none');
+        this.map.setLayoutProperty(layer.layerId, "visibility", "none");
       }
     });
   }
 
   isLayerVisible(clickedLayer: Layer) {
-    return this.map.getLayer(clickedLayer.layerId) && (this.map.getLayoutProperty(clickedLayer.layerId, 'visibility') === 'visible');
+    return (
+      this.map.getLayer(clickedLayer.layerId) &&
+      this.map.getLayoutProperty(clickedLayer.layerId, "visibility") ===
+        "visible"
+    );
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {

@@ -59,7 +59,7 @@ export class MapboxService {
   times = [];
   fps: any;
 
-  steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * 2);
+  steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
   startTime = 0;
 
 
@@ -259,6 +259,7 @@ export class MapboxService {
     } else {
       console.log(this.fps);
       localStorage.setItem('fps', this.fps);
+      this.steps = this.fps * Config[this.venueId].drawTime;
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
       this.currentRouteStepGeojson.features[0].geometry.coordinates = [];

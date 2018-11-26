@@ -14,11 +14,19 @@ export class LanguageService {
   constructor(private translate: TranslateService) {
     const { currentLang } = this.translate;
     this.currentLanguage = this.languages.find(
-      lang => currentLang === lang.name
+      lang => {
+        console.log(lang);
+        return currentLang === lang.name;
+      }
     );
     this.observableLanguage = new BehaviorSubject<Language>(
       this.currentLanguage
     );
+
+    console.log(this.currentLanguage);
+    console.log(currentLang);
+
+    console.log(this.languages);
   }
 
   setLanguage(lang: Language) {

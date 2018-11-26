@@ -205,6 +205,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         this.poiLocation = poi.dynamicValues.filter(
           value => value.propertyName === "Location Description"
         );
+
+        console.log('this.poiData', this.poiData);
         this._mapbox.addMarker(
           "start-point",
           this.kioskData.entrances[0].sLongitude,

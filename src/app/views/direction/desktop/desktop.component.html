@@ -18,11 +18,15 @@
                     </div>
                 </div>
             </div>
-            <button translate class="back-btn" (click)="backToMain()">back</button>
+            <button translate class="back-btn" (click)="backToMain()">
+                    back
+                <img src="assets/imgs/back-arrow.png" alt="back">
+            </button>
         </header>
         <div class="instructions-container" [ngClass]="{'loaded': routeLoaded}">
             <div class="instruction-header d-flex align-items-center px-3">
-                <img src="assets/imgs/directionswalk.svg" alt="directionswalk">
+                <img *ngIf="initLanguage.direction === 'ltr'" src="assets/imgs/walk-right.png" alt="directionswalk-right">
+                <img *ngIf="initLanguage.direction === 'rtl'" src="assets/imgs/directionswalk.svg" alt="directionswalk">
                 <div class="instruction-title px-3" translate>instruction-block-title</div>
             </div>
             <ul class="m-0 p-0">
@@ -30,17 +34,18 @@
                     <li class="level d-flex align-items-center px-3">
                         {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
                     </li>
-                    <li class="text-instr d-flex align-items-center px-3" translate>
+                    <li class="text-instr start-text-instruction d-flex align-items-center" translate>
                         start-text
                     </li>
                 </div>
-                <div *ngFor="let instr of instructions; let i = index" id="{{instr && instr.instruction.instructions}}"
+                <div *ngFor="let instr of instructions; let i = index" 
+                    id="{{instr && instr.instruction.instructions}}"
                     class="instruction">
                     <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
                         {{instr.instruction.level}}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3">
-                        <div class="instruction-number d-flex justify-content-center align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
+                        <div class="instruction-number d-flex justify-content-around align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
                             {{i+1}}
                             <img src="assets/imgs/{{getIconByInstructionType(instr.instruction.instructionsType)}}" alt="instruction-icon"
                                 class="px-1 icon" *ngIf="hasInstructionIcon(instr.instruction.instructionsType)">

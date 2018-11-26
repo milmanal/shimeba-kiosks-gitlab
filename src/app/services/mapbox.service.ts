@@ -200,8 +200,8 @@ export class MapboxService {
     }
     this.geojson.features[0].geometry.coordinates = [];
     this.map.getSource("main-line").setData(this.geojson);
-    // this.map.getSource("secondary-line").setData(this.geojson);
-    // this.map.getSource("arrows").setData(this.geojson);
+    this.map.getSource("secondary-line").setData(this.geojson);
+    this.map.getSource("arrows").setData(this.geojson);
   }
 
   nextInstructionHandle = Observable.create((observer) => {

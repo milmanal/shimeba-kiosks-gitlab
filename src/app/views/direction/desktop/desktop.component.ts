@@ -98,7 +98,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       res.map(step => {
         step.points.map(poi => this.allPath.push(poi));
       });
-      this._mapbox.zoomToLinePoligon(this.allPath, [300, 40], 19, {
+      this._mapbox.zoomToLinePoligon(this.allPath, [300, 40], 17.8, {
         top: 100,
         left: 60,
         right: 60,

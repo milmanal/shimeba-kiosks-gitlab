@@ -105,6 +105,7 @@ export class MapboxService {
 
     this.map = new mapboxgl.Map({
       container: "map",
+      minZoom: 1,
       // pitch: 60,
       zoom: isMobile
         ? Config[this.venueId].mobileInitZoom

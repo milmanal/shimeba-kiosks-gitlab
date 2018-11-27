@@ -62,7 +62,7 @@ export const AmharicLayoutConfig = {
       ["/", "?"],
       ["Shift", "Shift"]
     ],
-    [[" ", " "]]
+    [[" ", " ", " ", " "]],
   ],
   lang: ["am"]
 };

@@ -32,9 +32,10 @@
     }
   }
   .search-instruction {
-    font-size: 3.1rem;
+    font-size: 50px;
     font-weight: bold;
     color: #545454;
+    font-family: $OSHebrew;
   }
   .category {
     width: 230px;
@@ -44,9 +45,10 @@
     border: solid 1px #4a90e2;
     cursor: pointer;
     .category-name {
-      font-size: 30px;
-      font-weight: 500;
+      font-size: 29px;
+      font-weight: normal;
       color: $gray-text-3;
+      font-family: $OSHebrew;
     }
     .icon {
       height: 47px;

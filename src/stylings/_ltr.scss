@@ -1,3 +1,5 @@
+@import 'variables';
+
 html[dir="ltr"] #venue-container[venueid="12"] {
 
     header {
@@ -79,5 +81,13 @@ html[dir="ltr"] #venue-container[venueid="12"] {
                 padding: 0 7px !important;
             }
         }
+    }
+
+    #you-are-here {
+        font-family: $OSSimple !important;
+        font-size: 30px !important;
+        min-width: 224px !important;
+        min-height: 113px !important;
+        background-size: 224px 115px !important;
     }
 }

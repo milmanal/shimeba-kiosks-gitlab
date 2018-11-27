@@ -15,13 +15,14 @@
   background-image: url("../../../assets/imgs/u-r-here.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 30px;
+  font-family: $almoni;
+  font-size: 45px;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
-  min-width: 210px;
-  min-height: 111px;
+  min-width: 180px;
+  min-height: 99px;
+  z-index: 1;
 }
 .home-component {
   position: relative;

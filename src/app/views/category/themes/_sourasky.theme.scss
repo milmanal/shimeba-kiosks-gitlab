@@ -54,14 +54,15 @@
     padding: 0;
     .poi {
       list-style: none;
+      // line-height: 1;
     }
     .currentLanguage {
       width: 45%;
       display: block;
-      line-height: 1;
       font-family: $OSHebrew;
       color: #4f4f4f;
       font-size: 50px;
+      line-height: 1;
       font-weight: 300;
       font-style: normal;
       font-stretch: normal;
@@ -72,9 +73,10 @@
       width: 45%;
       display: block;
       line-height: 1;
-      font-size: 42px;
-      font-weight: 500;
-      color: #b1b1b1;
+      font-family: $OSHebrew;
+      font-size: 50px;
+      font-weight: 300;
+      color: #4f4f4f;
       text-align: right;
     }
     &::-webkit-scrollbar {

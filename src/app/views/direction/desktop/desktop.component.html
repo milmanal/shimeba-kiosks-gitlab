@@ -14,7 +14,7 @@
                         {{poiData && poiData.name}}
                     </div>
                     <div class="poi-location">
-                        {{poiLocation && poiLocation[0].propertyValue}}
+                        {{poiLocation && (!poiLocation[0].propertyValue ? '' : poiLocation[0].propertyValue)}}
                     </div>
                 </div>
             </div>

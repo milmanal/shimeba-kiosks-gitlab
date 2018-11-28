@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 @import 'ltr';
+@import 'variables';
 
 @font-face {
   font-family: "Almoni";
@@ -50,6 +51,30 @@ body {
     direction: ltr !important;
   }
 }
+
+.mat-keyboard-row {
+  &:last-child {
+    justify-content: center;
+    
+    .mat-keyboard-col {
+      flex: .5;
+
+      &:first-child {
+        button:before {
+          content: 'Space';
+          font-family: $OSHebrew;
+          font-size: 25px;
+        }
+      }
+    }
+
+    .mat-keyboard-col:last-child{
+      display: none;
+    }
+  }
+}
+
+
 mat-keyboard-container {
   min-width: 65% !important;
   padding: unset !important;

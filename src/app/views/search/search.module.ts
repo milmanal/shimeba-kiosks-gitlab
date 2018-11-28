@@ -16,7 +16,7 @@ import { SearchRoutingModule } from "./search-routing.module";
 
 const customLayouts: IKeyboardLayouts = {
   ...keyboardLayouts,
-  "Amharic Layout": AmharicLayoutConfig
+  "Amharic Layout": AmharicLayoutConfig,
 };
 
 console.log(customLayouts);

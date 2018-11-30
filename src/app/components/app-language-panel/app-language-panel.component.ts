@@ -3,6 +3,7 @@ import { Languages } from "./../../_languages";
 import { Language } from "../../models";
 import { LanguageService } from "./../../services/language.service";
 import { Router, NavigationEnd } from "@angular/router";
+import { DeviceService } from './../../services/device.service';
 
 @Component({
   selector: "app-language-panel",
@@ -17,7 +18,8 @@ export class AppLanguagePanelComponent implements OnInit {
 
   constructor(
     private _route: Router,
-    private _language: LanguageService
+    private _language: LanguageService,
+    public ds: DeviceService
   ) {
     this._route.events.subscribe(val => {
       if (val instanceof NavigationEnd && val.url.indexOf("home") !== -1) {

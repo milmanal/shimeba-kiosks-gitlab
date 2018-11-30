@@ -22,11 +22,6 @@ export class LanguageService {
     this.observableLanguage = new BehaviorSubject<Language>(
       this.currentLanguage
     );
-
-    console.log(this.currentLanguage);
-    console.log(currentLang);
-
-    console.log(this.languages);
   }
 
   setLanguage(lang: Language) {

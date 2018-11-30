@@ -35,3 +35,41 @@
     width: 130px;
   }
 }
+
+.if-mobile-then {
+  &.language-panel {
+    transform: none;
+    width: 100%;
+    left: 0;
+    bottom: 121px;
+    flex-direction: column;
+
+    button {
+      font-size: 12px;
+      font-family: $OSHebrew;
+      width: 100%;
+      max-width: 90px;
+      height: 30px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 15px;
+
+      img {
+        width: 16px !important;
+      }
+    }
+
+    button.active {
+      bottom: 91px;
+      position: fixed;
+      display: flex;
+      border-color: transparent;
+      justify-content: space-around;
+      padding: 0px 0px;
+
+      &.short {
+        max-width: 52px;
+      }
+    }
+  }
+}

@@ -59,8 +59,9 @@ export class MapboxService {
   times = [];
   fps: any;
 
-  steps = 0;
+  steps = 50;
   startTime = 0;
+  speedFactor = 6;
 
 
   constructor() {
@@ -117,7 +118,9 @@ export class MapboxService {
 
 
     this.map.on("load", () => {
+
       this.startTime = performance.now();
+
       this.map.addLayer({
         id: "secondary-line",
         type: "line",
@@ -211,7 +214,7 @@ export class MapboxService {
   })
 
   addRouteLine(coord) {
-    this.steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
+    // this.steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
     this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
     this.lineDistance = turf.lineDistance(
       this.currentRouteStepGeojson.features[0],
@@ -241,27 +244,38 @@ export class MapboxService {
   }
   
   animateRoute() {
-    const now = performance.now();
-    while (this.times.length > 0 && this.times[0] <= now - 1000) {
-      this.times.shift();
-    }
-    this.times.push(now);
-    this.fps = this.times.length;
+    // const now = performance.now();
+    // while (this.times.length > 0 && this.times[0] <= now - 1000) {
+    //   this.times.shift();
+    // }
+    // this.times.push(now);
+    // this.fps = this.times.length;
 
-    if (this.arc[this.currentRouteStepIndex]) {
+    if (performance.now() >= this.startTime + this.speedFactor) {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
+
+      console.log(this.startTime);
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
       this.map.getSource("arrows").setData(this.geojson);
+      this.startTime = performance.now();
     }
+
+    // if (this.arc[this.currentRouteStepIndex]) {
+    //   this.geojson.features[0].geometry.coordinates.push(
+    //     this.arc[this.currentRouteStepIndex]
+    //   );
+    //   this.map.getSource("main-line").setData(this.geojson);
+    //   this.map.getSource("secondary-line").setData(this.geojson);
+    //   this.map.getSource("arrows").setData(this.geojson);
+    // }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
-      console.log(this.fps);
-      localStorage.setItem('fps', this.fps);
+      // localStorage.setItem('fps', this.fps);
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
       this.currentRouteStepGeojson.features[0].geometry.coordinates = [];

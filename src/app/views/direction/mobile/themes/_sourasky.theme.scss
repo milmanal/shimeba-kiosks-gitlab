@@ -6,8 +6,9 @@
   width: 35px;
   border: 1px solid #fff;
   border-radius: 50%;
-  font-size: 22px;
-  font-weight: bold;
+  font-size: 25px !important;
+  font-family: $OSHebrew;
+  font-weight: bold !important;
   background-color: #358fe9;
   color: #fff;
   animation: fadein 1s;
@@ -106,7 +107,8 @@
           width: 32px;
           border-radius: 50%;
           font-size: 25px;
-          font-weight: bold;
+          font-family: $OSHebrew;
+          font-weight: 800;
           background-color: #4a90e2;
           color: #ffffff;
         }

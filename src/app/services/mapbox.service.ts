@@ -115,6 +115,7 @@ export class MapboxService {
       style: this.style
     });
 
+
     this.map.on("load", () => {
       this.startTime = performance.now();
       this.map.addLayer({
@@ -447,7 +448,7 @@ export class MapboxService {
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
-    var bounds = coordinates.reduce(function(bounds, coord) {
+    const bounds = coordinates.reduce((bounds, coord) => {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
 

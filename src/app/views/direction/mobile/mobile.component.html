@@ -8,7 +8,7 @@
     <div class="direction-component">
         <div class="header-container">
             <header class="header d-flex justify-content-between align-items-center px-3">
-                <div class="header-instruction" translate>{{!currentInstr ? 'Header' : currentInstr}}</div>
+                <div class="header-instruction" translate>{{!currentInstr ? 'start-text' : currentInstr}}</div>
                 <div class="show-instruction-btn d-flex flex-column justify-content-center align-items-center" (click)="showHideInstructionList()">
                     <div class="label" translate>{{instructionListOpen ? 'close-mobile' : 'show-all-mobile'}}</div>
                     <img src="assets/imgs/close-mobile.svg" alt="close" class="icon" [ngClass]="{'arrow-down': !instructionListOpen}">

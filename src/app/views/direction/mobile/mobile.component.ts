@@ -101,6 +101,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
         this.instructions = res;
         this.routeLoaded = true;
         const curInterval = interval(2000);
+        
         res.map(step => {
           step.points.map(poi => this.allPath.push(poi));
         });
@@ -123,10 +124,13 @@ export class MobileComponent implements OnInit, AfterViewInit {
         .setAttribute("style", "display: block");
     }
     if (instructions[currentInstr]) {
+
       const instruction = document.getElementById(
         instructions[currentInstr].instruction.instructions
       );
       this._mapbox.addRouteLine(instructions[currentInstr].points);
+      console.log(instructions);
+
       if (instruction) {
         instruction.setAttribute("style", "display: block");
         this._mapbox.addInstructionIcon(

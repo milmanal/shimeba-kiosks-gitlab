@@ -6,6 +6,7 @@
   left: 50%;
   transform: translateX(-50%);
   display: flex;
+  z-index: 1;
   width: 83%;
   direction: rtl !important;
   .language-btn {
@@ -19,6 +20,9 @@
     box-shadow: 0 -5px 7px 0 rgba(0, 0, 0, 0.5);
     border-color: $color-white;
     cursor: pointer;
+    right: 12.5%;
+    position: relative;
+
     .lang-icon {
       width: 25%;
     }
@@ -30,6 +34,9 @@
     background-color: #6f6f6f;
     color: white;
     border-color: #6f6f6f;
+    position: fixed;
+    bottom: 0;
+    right: 0;
   }
   .short {
     width: 130px;

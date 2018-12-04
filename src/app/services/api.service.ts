@@ -48,12 +48,12 @@ export class ApiService {
         },
         error => {
           console.log(`Error:`, error);
-        });
+        }
+      );
   }
 
   searchPoi({value, venueId}) {
     const currentLanguage = this._language.getCurrentLanguage();
-
     return this._httpClient.get(
       `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
     );

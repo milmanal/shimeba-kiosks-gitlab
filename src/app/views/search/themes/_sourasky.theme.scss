@@ -10,6 +10,8 @@
     border-radius: 4px;
     background-color: $color-white;
     border: solid 5px #4a90e2;
+    position: relative;
+
     .search-icon {
       width: 10%;
       background-color: #4a90e2;
@@ -18,6 +20,17 @@
       background-repeat: no-repeat;
       background-position: 50% 50%;
     }
+
+    .no-search-result-message {
+      color: #545454;
+      font-family: $OSHebrew;
+      font-size: 2rem;
+      font-weight: bold;
+      position: absolute;
+      top: 100%;
+      padding: 15px 0;
+    }
+
     .search-input {
       width: 90%;
       border: none;
@@ -37,6 +50,11 @@
     color: #545454;
     font-family: $OSHebrew;
   }
+
+  .categories-wrapper {
+    margin-top: 180px !important;
+  }
+
   .category {
     width: 230px;
     height: 120px;

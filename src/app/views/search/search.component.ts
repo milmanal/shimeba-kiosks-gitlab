@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   categories: Category[] = [];
   showMore: Boolean = false;
   venueId: any;
+  noSearchResult: Boolean;
 
   constructor(
     private _language: LanguageService,
@@ -30,6 +31,12 @@ export class SearchComponent implements OnInit, OnDestroy {
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
       this.pois = results;
+      if (this.pois['length'] === 0) {
+        this.noSearchResult = true;
+      } else {
+        this.noSearchResult = false;
+      }
+      console.log(this.noSearchResult);
     });
   }
   ngOnInit() {
@@ -47,12 +54,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   search(ev: any) {
-    if (this.searchValue.length >= 2) {
+    if (this.searchValue.length >= 1) {
       this.searchTerm$.next({
         value: this.searchValue,
         venueId: this.venueId
       });
     } else {
+      this.noSearchResult = false;
       this.pois = [];
     }
   }

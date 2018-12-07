@@ -1,4 +1,26 @@
 {
   "you-are-here": "You are here",
-  "no-search-result": "No results"
+  "no-search-result": "No results",
+  
+  "where-do-you-want-to-go": "Where do you want to go?",
+  "type-the-name-of-dep": "Type the name of a department, unit, clinic...",
+  "placeholder-search": "Type a name in the search bar or choose a category",
+  "stores-food-drink": "Stores for food and drink",
+  "parking-lots": "Parking lots",
+  "public-bathrooms": "Public bathrooms",
+  "services-info": "Services and information",
+  "entrance": "Entrances",
+  "additional-res": "Additional results",
+  "floor": "Floor",
+  "you-have-arrived": "You have arrived at your destination:",
+  "you-are-looking-info": "You are looking at an information and orientation screen",
+  "instr-for-arrival": "Instructions for arrival",
+  "back": "Back",
+  "send-instr": "Send instructions",
+  "enter-mob-number": "Enter a mobile phone number",
+  "search-result": "Search results: (click to go to the result)",
+  "close": "Close",
+  "show-all": "Show all",
+  "information-orientation-screen": "You are looking at an information and orientation screen",
+  "enter-mob-number-and-recieve-sms": "Enter your mobile phone number and receive an SMS with all of the details"
 }

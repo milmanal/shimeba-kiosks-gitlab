@@ -1,3 +1,26 @@
 {
-    "": ""
-}
+    "you-are-here": "Вы сдесь",
+    "no-search-result": "Нет рузультатов",
+    
+    "where-do-you-want-to-go": "Onde você quer ir?",
+    "type-the-name-of-dep": "Digite o nome do Departamento, Unidade, Clínica etc.",
+    "placeholder-search": "Digite o nome na caixa de pesquisa ou selecione categoria",
+    "stores-food-drink": "Lojas de Comida e Bebida",
+    "parking-lots": "Estacionamentos",
+    "public-bathrooms": "Banheiro Público",
+    "services-info": "Serviços e Informações",
+    "entrance": "Entradas",
+    "additional-res": "Outros resultados",
+    "floor": "andar",
+    "you-have-arrived": "Chegou ao destino:",
+    "you-are-looking-info": "Você está frente à tela de Informações e Localização",
+    "instr-for-arrival": "Como chegar",
+    "back": "Voltar",
+    "send-instr": "Enviar instruções",
+    "enter-mob-number": "Insira número do celular",
+    "search-result": "Resultados da pesquisa: (selecione para passar ao resultado)",
+    "close": "Fechar",
+    "show-all": "Mostrar tudo",
+    "information-orientation-screen": "Você está frente à tela de Informações e Localização",
+    "enter-mob-number-and-recieve-sms": "Insira o número do celular e receba uma mensagem com todos os dados"
+  }

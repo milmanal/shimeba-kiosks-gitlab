@@ -1,3 +1,35 @@
 {
-    "": ""
-}
+    "you-are-here": "Вы сдесь",
+    "no-search-result": "Нет рузультатов",
+    
+    "where-do-you-want-to-go": "ወዴት መሄድ ይፈልጋሉ?",
+    "type-the-name-of-dep": "የሕክምና ክፍል፣ ዩኒት፣ ክሊኒክ፣ ወዘተ… ይጻፉ",
+    "placeholder-search": "በመፈለጊያ አሞሌው ውስጥ ስሙን ይጻፉ ወይም ፈርጁን ይምረጡ",
+    "stores-food-drink": "የምግብና መጠጥ መሸጫ ሱቆች",
+    "parking-lots": "የመኪና ማቆሚያ ቦታዎች",
+    "public-bathrooms": "የሕዝብ መጸዳጃ ቤቶች",
+    "services-info": "አገልግሎቶችና መረጃ",
+    "entrance": "መግቢያዎች",
+    "additional-res": "ተጨማሪ ውጤቶች",
+    "floor": "ወለል",
+    "you-have-arrived": "መዳረሻዎ ላይ ደርሰዋል፡",
+    "you-are-looking-info": "አሁን የሚያዩት የመረጃና የገለጻ ስክሪን ነው",
+    "instr-for-arrival": "የመድረሻ መመሪያዎች",
+    "back": "ተመለስ",
+    "send-instr": "መመሪያዎች ላክ",
+    "enter-mob-number": "የሞይባል ስልክ ቁጥር አስገባ",
+    "search-result": "ውጤቶችን ፈልግ፡ (ወደ ውጤቱ ለመሄድ ጠቅ አድርግ)",
+    "close": "ዝጋ",
+    "show-all": "ሁሉንም አሳይ",
+    "information-orientation-screen": "አሁን የሚያዩት የመረጃና የገለጻ ስክሪን ነው",
+    "enter-mob-number-and-recieve-sms": "የሞይባል ስልክ ቁጥርዎን ያስገቡና ዝርዝር መረጃ የያዘ አጭር የጽሁፍ መልእክት ይደርስዎታል"
+  }
+
+
+
+
+
+
+
+
+

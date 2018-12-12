@@ -5,10 +5,10 @@
   "where-do-you-want-to-go": "Where do you want to go?",
   "type-the-name-of-dep": "Type the name of a department, unit, clinic...",
   "placeholder-search": "Type a name in the search bar or choose a category",
-  "stores-food-drink": "Stores for food and drink",
-  "parking-lots": "Parking lots",
-  "public-bathrooms": "Public bathrooms",
-  "services-info": "Services and information",
+  "food": "Food & Stores",
+  "parking": "Parking lots",
+  "toilets": "Toilets",
+  "info": "Information",
   "entrance": "Entrances",
   "additional-res": "Additional results",
   "floor": "Floor",
@@ -22,5 +22,7 @@
   "close": "Close",
   "show-all": "Show all",
   "information-orientation-screen": "You are looking at an information and orientation screen",
-  "enter-mob-number-and-recieve-sms": "Enter your mobile phone number and receive an SMS with all of the details"
+  "enter-mob-number-and-recieve-sms": "Enter your mobile phone number and receive an SMS with all of the details",
+
+  "send": "Send"
 }

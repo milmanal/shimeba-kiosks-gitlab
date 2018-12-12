@@ -30,7 +30,7 @@
             <div class="instruction-header d-flex align-items-center px-3">
                 <img *ngIf="initLanguage.direction === 'ltr'" src="assets/imgs/walk-right.png" alt="directionswalk-right">
                 <img *ngIf="initLanguage.direction === 'rtl'" src="assets/imgs/directionswalk.svg" alt="directionswalk">
-                <div class="instruction-title px-3" translate>instruction-block-title</div>
+                <div class="instruction-title px-3" translate>instr-for-arrival</div>
             </div>
             <ul class="m-0 p-0">
                 <div class="instruction" id="start-instr">
@@ -38,7 +38,7 @@
                         {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
                     </li>
                     <li class="text-instr start-text-instruction d-flex align-items-center" translate>
-                        start-text
+                        you-are-looking-info
                     </li>
                 </div>
                 <div *ngFor="let instr of instructions; let i = index" 
@@ -65,15 +65,15 @@
                     <li class="text-instr d-flex align-items-center px-3">
                         <img src="assets/imgs/destination-panel.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
-                            {{'destination' | translate}} {{poiData && poiData.name}}
+                            {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
                         </div>
                     </li>
                 </div>
             </ul>
             <div class="instruction-footer align-items-center px-3" id="sms-box" (click)="openModal(template)">
                 <img src="assets/imgs/sms-icon.svg" alt="sms-icon" class="sms-icon">
-                <div class="send-instr px-3" translate>send-instruction</div>
-                <div class="input-block d-flex align-items-center justify-content-center" translate>sms-input-box</div>
+                <div class="send-instr px-3" translate>send-instr</div>
+                <div class="input-block d-flex align-items-center justify-content-center" translate>send-instr</div>
             </div>
         </div>
 
@@ -89,10 +89,10 @@
                 <img src="assets/imgs/close.svg" alt="close" aria-label="Close" (click)="modalRef.hide()">
             </div>
             <div class="instruction pt-3 px-3" translate>
-                sms-modal-instruction
+                enter-mob-number-and-recieve-sms
             </div>
             <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-                <input type="text" class="sms-input px-2" placeholder="{{'sms-input-placeholder' | translate}}"
+                <input type="text" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
                     [(ngModel)]="phoneNumber">
                 <button (click)="sendSms()" class="send-btn" translate>send</button>
             </div>

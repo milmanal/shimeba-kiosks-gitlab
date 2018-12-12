@@ -1,7 +1,8 @@
 <div id="venue-container">
     <div class="category-container d-flex flex-column align-items-center justify-content-between">
         <div class="category-info mt-5 px-5 d-flex justify-content-between align-items-center">
-            <h1 class="category-name d-flex" translate>{{currentCategoryName}} <p *ngIf="currentCategoryId === 1 || currentCategoryId === 2" translate>byDistance</p></h1>
+                <!-- <p *ngIf="currentCategoryId === 1 || currentCategoryId === 2" translate>search-result</p> -->
+            <h1 class="category-name d-flex" translate>{{currentCategoryName}} </h1>
             <img src="assets/imgs/cancel.svg" alt="cancel" (click)="back()">
         </div>
         <div class="category-pois d-flex justify-content-between pt-2">

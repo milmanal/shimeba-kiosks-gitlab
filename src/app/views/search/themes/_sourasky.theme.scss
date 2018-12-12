@@ -49,10 +49,14 @@
     font-weight: bold;
     color: #545454;
     font-family: $OSHebrew;
+
+    &.visibility-hidden {
+      visibility: hidden;
+    }
   }
 
   .categories-wrapper {
-    margin-top: 180px !important;
+    margin-top: 95px !important;
   }
 
   .category {

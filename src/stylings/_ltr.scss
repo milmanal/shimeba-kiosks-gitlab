@@ -91,3 +91,52 @@ html[dir="ltr"] #venue-container[venueid="12"] {
         background-size: 224px 115px !important;
     }
 }
+
+html[lang="ru"] #venue-container[venueid="12"] {
+    .search-container {
+        .search-input {
+            font-size: 38px !important;
+        }
+    }
+   
+    .search-result-instr {
+        font-family: $OSHebrew;
+        font-size: 36px !important;
+    }
+
+    .home-component {
+        .search-input {
+            font-size: 72px !important;
+        }
+    }
+}
+
+html[lang="en"] #venue-container[venueid="12"] {
+    .search-container {
+        .search-input {
+            font-size: 41px !important;
+        }
+    }
+
+    .search-result-instr {
+        font-family: $OSHebrew;
+    }
+
+    .home-component {
+        .search-input {
+            font-size: 68px !important;
+        }
+    }
+}
+
+html[lang="he"] #venue-container[venueid="12"] {
+    .search-container {
+        .search-input {
+            font-size: 60px !important;
+        }
+    }
+
+    .search-result-instr {
+        font-family: $OSHebrew;
+    }
+}

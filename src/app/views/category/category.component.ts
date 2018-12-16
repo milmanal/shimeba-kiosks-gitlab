@@ -45,6 +45,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
+    console.log(this.venueId);
     this.categories = Categories[this.venueId];
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {

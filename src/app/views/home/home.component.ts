@@ -10,6 +10,11 @@ import { MapboxService } from "../../services/mapbox.service";
 })
 export class HomeComponent implements OnInit {
   venueId: any;
+  startPointImages: Object = {
+      '12': 'assets/imgs/start.svg',
+      '13': 'assets/imgs/yafe/start-yafe.svg'
+  };
+  startPointImgByVenueId: string;
   constructor(
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -23,6 +28,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this._route.params.subscribe(params => {
+      this.startPointImgByVenueId = this.startPointImages[params.venueId];
+      console.log(params.venueId);
       localStorage.setItem("kioskId", params.kioskId);
       localStorage.setItem("venueId", params.venueId);
       this.venueId = params.venueId;

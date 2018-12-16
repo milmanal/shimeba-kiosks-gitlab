@@ -40,6 +40,27 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   venueId: any;
   allPath: any = [];
   layersCollection: Array<{}> = this._mapbox.getLayers();
+  imgByVenueId = {
+    '12': [
+      'assets/imgs/start.svg',
+      'assets/imgs/point.svg',
+      'assets/imgs/route-dest.svg',
+      'assets/imgs/destination-panel.svg',
+      'assets/imgs/back-arrow.png',
+      'assets/imgs/yafe/bullet.svg'
+    ],
+
+    '13': [
+      'assets/imgs/yafe/start-yafe.svg',
+      'assets/imgs/yafe/point.svg',
+      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
+    ]
+  };
+
+  applyImgsByVenueId: any;
 
   constructor(
     private _language: LanguageService,
@@ -178,6 +199,9 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         }
       }
     );
+
+    this.applyImgsByVenueId = this.imgByVenueId[venueId];
+    console.log(this.applyImgsByVenueId);
   }
 
   toggle(layer) {
@@ -196,6 +220,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.venueId);
     this._mapbox.initMap(this.venueId);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)

@@ -15,20 +15,24 @@ export class AppLanguagePanelComponent implements OnInit {
   languages: Language[] = Languages;
   showAnotherLanguages: Boolean = false;
   showAllLanguages: Boolean = false;
+  langPannelToTheBottom: Boolean = false;
 
   constructor(
     private _route: Router,
     private _language: LanguageService,
     public ds: DeviceService
   ) {
+
     this._route.events.subscribe(val => {
       if (val instanceof NavigationEnd && val.url.indexOf("home") !== -1) {
         this.showAllLanguages = true;
+        this.langPannelToTheBottom = false;
       } else if (
         val instanceof NavigationEnd &&
         val.url.indexOf("home") === -1
       ) {
         this.showAllLanguages = false;
+        this.langPannelToTheBottom = true;
       }
     });
   }
@@ -49,6 +53,7 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
+    console.log('init');
     this.currentLanguage = this._language.getCurrentLanguage();
   }
 }

@@ -1,0 +1,92 @@
+@import 'variables';
+
+.category-container {
+  width: 100%;
+  height: 100%;
+  .category-info {
+    width: 83%;
+    height: 140px;
+    border-radius: 4px;
+    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
+    background-color: $color-white;
+    border: solid 5px #4a90e2;
+    .category-name {
+      font-size: 80px;
+      font-weight: bold;
+      font-family: $OSHebrew;
+      color: $gray-text-1;
+    }
+  }
+  .category-pois {
+    width: 83%;
+    height: calc(100% - (140px + 3rem));
+  }
+  .arrow {
+    width: 99px;
+    height: 99px;
+    background-color: #b0b6be;
+  }
+  .arrow-active {
+    width: 99px;
+    height: 99px;
+    background-color: #4a90e2;
+  }
+  .arrows-container {
+    height: 100%;
+    width: 10%;
+  }
+  .arrow-icon {
+    width: 37%;
+  }
+  .arrow-up {
+    transform: rotate(90deg);
+  }
+  .arrow-down {
+    transform: rotate(-90deg);
+  }
+  .pois {
+    width: 90%;
+    height: 100%;
+    background-color: #f5f7f8;
+    border: solid 1px #979797;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0;
+    .poi {
+      list-style: none;
+      // line-height: 1;
+    }
+    .currentLanguage {
+      width: 45%;
+      display: block;
+      font-family: $OSHebrew;
+      color: #4f4f4f;
+      font-size: 50px;
+      line-height: 1;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      letter-spacing: normal;
+      text-align: right;
+    }
+    .secondaryLanguage {
+      width: 45%;
+      display: block;
+      line-height: 1;
+      font-family: $OSHebrew;
+      font-size: 50px;
+      font-weight: 300;
+      color: #4f4f4f;
+      text-align: right;
+    }
+    &::-webkit-scrollbar {
+      width: 1em;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: #8ec5d9;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: #ecedee;
+    }
+  }
+}

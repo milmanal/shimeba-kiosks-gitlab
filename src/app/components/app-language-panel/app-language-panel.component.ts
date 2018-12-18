@@ -16,6 +16,7 @@ export class AppLanguagePanelComponent implements OnInit {
   showAnotherLanguages: Boolean = false;
   showAllLanguages: Boolean = false;
   langPannelToTheBottom: Boolean = false;
+  isRoutePage: Boolean = false;
 
   constructor(
     private _route: Router,
@@ -27,6 +28,7 @@ export class AppLanguagePanelComponent implements OnInit {
       if (val instanceof NavigationEnd && val.url.indexOf("home") !== -1) {
         this.showAllLanguages = true;
         this.langPannelToTheBottom = false;
+        this.isRoutePage = false;
       } else if (
         val instanceof NavigationEnd &&
         val.url.indexOf("home") === -1
@@ -34,6 +36,12 @@ export class AppLanguagePanelComponent implements OnInit {
         this.showAllLanguages = false;
         this.langPannelToTheBottom = true;
       }
+
+      if (val instanceof NavigationEnd && val.url.indexOf("direction") !== -1) {
+        this.isRoutePage = true;
+      }
+
+      console.log(this.isRoutePage);
     });
   }
 

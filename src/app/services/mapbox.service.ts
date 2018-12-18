@@ -58,7 +58,6 @@ export class MapboxService {
 
   times = [];
   fps: any;
-
   steps = 0;
   startTime = 0;
 
@@ -75,8 +74,6 @@ export class MapboxService {
   // }
 
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
-    
-    // requestAnimationFrame(this.refreshLoop.bind(this));
     this.isMobile = isMobile;
     this.venueId = venueId;
     this.style = {
@@ -201,9 +198,14 @@ export class MapboxService {
       this.interval.unsubscribe();
     }
     this.geojson.features[0].geometry.coordinates = [];
-    this.map.getSource("main-line").setData(this.geojson);
-    this.map.getSource("secondary-line").setData(this.geojson);
-    this.map.getSource("arrows").setData(this.geojson);
+    if (this.venueId === 12 ) {
+      this.map.getSource("main-line").setData(this.geojson);
+      this.map.getSource("secondary-line").setData(this.geojson);
+      this.map.getSource("arrows").setData(this.geojson);
+    } else {
+      this.map.getSource("main-line").setData(this.geojson);
+      this.map.getSource("arrows").setData(this.geojson);
+    }
   }
 
   nextInstructionHandle = Observable.create((observer) => {
@@ -252,15 +254,20 @@ export class MapboxService {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
-      this.map.getSource("main-line").setData(this.geojson);
-      this.map.getSource("secondary-line").setData(this.geojson);
-      this.map.getSource("arrows").setData(this.geojson);
+
+      if (this.venueId === 12 ) {
+        this.map.getSource("main-line").setData(this.geojson);
+        this.map.getSource("secondary-line").setData(this.geojson);
+        this.map.getSource("arrows").setData(this.geojson);
+      } else {
+        this.map.getSource("main-line").setData(this.geojson);
+        this.map.getSource("arrows").setData(this.geojson);
+      }
     }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
-      console.log(this.fps);
       localStorage.setItem('fps', this.fps);
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
@@ -448,6 +455,8 @@ export class MapboxService {
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
+    console.log(padding);
+
     const bounds = coordinates.reduce((bounds, coord) => {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
@@ -497,6 +506,7 @@ export class MapboxService {
       options.offset[0] + paddingOffset[0],
       options.offset[1] + paddingOffset[1]
     ];
+    console.log(options.offset);
 
     options.bearing = options.bearing || this.map.getBearing();
 

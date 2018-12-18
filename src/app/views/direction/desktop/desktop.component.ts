@@ -39,24 +39,16 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   phoneNumber: String = "";
   venueId: any;
   allPath: any = [];
+  neededIstrType: any = [];
+
   layersCollection: Array<{}> = this._mapbox.getLayers();
   imgByVenueId = {
     '12': [
-      'assets/imgs/start.svg',
-      'assets/imgs/point.svg',
-      'assets/imgs/route-dest.svg',
-      'assets/imgs/destination-panel.svg',
-      'assets/imgs/back-arrow.png',
-      'assets/imgs/yafe/bullet.svg'
+      'assets/imgs/cancel.svg',
     ],
 
     '13': [
-      'assets/imgs/yafe/start-yafe.svg',
-      'assets/imgs/yafe/point.svg',
-      'assets/imgs/yafe/destination-reached.png',
-      'assets/imgs/yafe/destination-panel.png',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+      'assets/imgs/yafe/cancel.svg',
     ]
   };
 
@@ -110,16 +102,37 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}`);
   }
+  ARRAY: any;
 
   getDirectionData() {
     let currentInstr = 0;
+    const arrayWithNeededInstuctionsType = [];
+    const centeredRouteDependsOnDirection = this.initLanguage.direction === 'rtl' ? [-300, -40] : [300, 40];
     this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
       this.instructions = res;
+      let order = 'left';
+
+      this.ARRAY = this.instructions.map(item => {
+        if (
+          item.instruction.instructionsType === 5 ||
+          item.instruction.instructionsType === 6 ||
+          item.instruction.instructionsType === 7 ||
+          item.instruction.instructionsType === 8
+        ) {
+          order = order === 'left' ? 'right' : 'left';
+          return {
+            ...item,
+            order
+          };
+        }
+        return item;
+      });
+      console.log('ARRAY', this.ARRAY);
       this.routeLoaded = true;
       res.map(step => {
         step.points.map(poi => this.allPath.push(poi));
       });
-      this._mapbox.zoomToLinePoligon(this.allPath, [300, 40], 18.2, {
+      this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18.2, {
         top: 100,
         left: 60,
         right: 60,
@@ -138,6 +151,9 @@ export class DesktopComponent implements OnInit, AfterViewInit {
 
   routing(instructions, currentInstr) {
     if (currentInstr === 0) {
+      document
+        .getElementsByClassName('instructions-container')[0]
+        .classList.add('load-background');
       document
         .getElementById("start-instr")
         .setAttribute("style", "display: block");

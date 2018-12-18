@@ -3,9 +3,8 @@
 
 .marker-number {
   padding: 0 17px;
-  height: 46px;
-  width: 46px;
-  border: 1px solid #fff;
+  height: 41px;
+  width: 41px;
   border-radius: 50%;
   font-size: 36px;
   font-weight: bold;
@@ -57,6 +56,7 @@
     left: 0;
     width: 100%;
     height: 132px;
+    z-index: 1;
     // background-color: #358fe9;
     // box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
     .destination-icon-header {
@@ -65,12 +65,13 @@
     }
 
     .poi-data-name {
-      max-width: 585px;
-      width: 100%;
+      max-width: 645px;
+      // width: 100%;
       padding-bottom: 30px;
       margin-top: 75px;
       border-bottom: 5px solid #fff;
       margin-left: 30px;
+      width: 34%;
     }
     .poi-name {
       font-size: 50px;
@@ -102,18 +103,29 @@
       }
     }
   }
+  .load-background {
+    background: -webkit-linear-gradient(left, #00729a 0%, #9accef 95%, #9accef 26%);
+  }
+
   .loaded {
     left: 18% !important;
+    
+    padding-top: 200px;
+    padding-left: 64px;
+    padding-right: 30px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-49%);
+    transform: translateX(-49%);
+    width: 730px;
+    transition: all 3s ease;
+    z-index: 0;
   }
   .instructions-container {
-    padding-top: 40px;
-    position: absolute;
-    top: 17%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 575px;
-    transition: left 3s ease;
-    
+    // display: none;
+
     ul {
       padding-left: 65px !important;
     }
@@ -147,7 +159,7 @@
         font-family: $OSHebrew;
       }
       .input-block {
-        width: 219px;
+        width: 289px;
         height: 26px;
         background-color: #9accef;
         font-size: 18px;
@@ -190,7 +202,8 @@
         top: 35px;
       }
 
-      &.outer-image {
+      &.right.outer-image {
+        
         &:before {
           width: 42px;
           border-top: 3px dotted #fff;
@@ -209,8 +222,28 @@
             left: -34px;
           }
         }
+      }
 
-        
+      &.left.outer-image {
+        &:before {
+          border-top: 3px dotted #fff;
+          border-right: 0;
+          border-left: 3px dotted #fff;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:after {
+            left: -73px;
+          }
+
+          &:before {
+            width: 0;
+          }
+        }
       }
 
       .start-text-instruction {
@@ -264,11 +297,11 @@
         height: 88px;
         padding-right: 32px;
         font-family: $OSHebrew;
-        font-size: 22px;
+        font-size: 28px;
         font-weight: 600;
         font-style: normal;
         font-stretch: normal;
-        line-height: 1.2;
+        line-height: normal;
         letter-spacing: normal;
         color: #ffffff;
       }

@@ -39,10 +39,10 @@
                         you-are-looking-info
                     </li>
                 </div>
-                <div *ngFor="let instr of instructions; let i = index" 
+                <div *ngFor="let instr of ARRAY; let i = index"
                     id="{{instr && instr.instruction.instructions}}"
-                    class="instruction" [ngClass]="{'outer-image': instr.instruction.instructionsType === 5 || instr.instruction.instructionsType === 6 || instr.instruction.instructionsType === 7 || instr.instruction.instructionsType === 8}">
-                    
+                    [ngClass]="{'outer-image': instr.instruction.instructionsType === 5 || instr.instruction.instructionsType === 6 || instr.instruction.instructionsType === 7 || instr.instruction.instructionsType === 8}"
+                    class="instruction {{instr.order}}">
                     <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
                         {{instr.instruction.level}}
                     </li>

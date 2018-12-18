@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables-yafe';
 
 .category-container {
   width: 100%;
@@ -9,7 +9,7 @@
     border-radius: 4px;
     box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
     background-color: $color-white;
-    border: solid 5px #4a90e2;
+    border: solid 5px $main-color;
     .category-name {
       font-size: 80px;
       font-weight: bold;
@@ -29,7 +29,7 @@
   .arrow-active {
     width: 99px;
     height: 99px;
-    background-color: #4a90e2;
+    background-color: $main-color-light;
   }
   .arrows-container {
     height: 100%;
@@ -83,7 +83,7 @@
       width: 1em;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: #8ec5d9;
+      background-color: $main-color-light;
     }
     &::-webkit-scrollbar-track {
       background-color: #ecedee;

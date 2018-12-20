@@ -44,11 +44,21 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   layersCollection: Array<{}> = this._mapbox.getLayers();
   imgByVenueId = {
     '12': [
-      'assets/imgs/cancel.svg',
+      'assets/imgs/start.svg',
+      'assets/imgs/point.svg',
+      'assets/imgs/route-dest.svg',
+      'assets/imgs/destination-panel.svg',
+      'assets/imgs/back-arrow.png',
+      'assets/imgs/yafe/bullet.svg'
     ],
 
     '13': [
-      'assets/imgs/yafe/cancel.svg',
+      'assets/imgs/yafe/start-yafe.svg',
+      'assets/imgs/yafe/route-disk.svg',
+      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
     ]
   };
 

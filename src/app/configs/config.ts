@@ -28,7 +28,7 @@ export const Config = {
       [34.78832531057368, 32.07803240327738],
       [34.78863176605523, 32.08222432499814]
     ],
-    homeMapUrl: "assets/map-yafe.png",
+    homeMapUrl: "assets/map-yafe1.png",
     directionMapUrl: "assets/map-yafe.png",
     arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
     drawTime: 1.5,

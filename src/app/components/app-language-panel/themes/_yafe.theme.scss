@@ -1,0 +1,95 @@
+@import 'variables-yafe';
+
+&.lang-panel-bottom {
+  .language-panel {
+    top: unset !important;
+    bottom: 0;
+  }
+}
+
+&.hide-lang-pannel {
+  display: none;
+}
+.language-panel {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  z-index: 1;
+  width: 83%;
+  direction: rtl !important;
+  .language-btn {
+    width: 12.5%;
+    height: 75px;
+    color: $color-white;
+    font-family: $OSHebrew;
+    font-size: 30px;
+    font-weight: bold;
+    background-color: #83bfde;
+    box-shadow: 0 0px 7px 0 rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 0, 0, 0.3);
+    border-top: 0;
+    border-bottom: 0;
+    cursor: pointer;
+    right: 12.5%;
+    position: relative;
+
+    .lang-icon {
+      width: 25%;
+    }
+  }
+  .hide {
+    display: none;
+  }
+  .language-btn.active {
+    background-color: $main-color;
+    color: white;
+    border-color: #6f6f6f;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+  }
+  .short {
+    width: 130px;
+  }
+}
+
+.if-mobile-then {
+  &.language-panel {
+    transform: none;
+    width: 100%;
+    left: 0;
+    bottom: 121px;
+    flex-direction: column;
+    z-index: 2;
+
+    button {
+      font-size: 12px;
+      font-family: $OSHebrew;
+      width: 100%;
+      max-width: 90px;
+      height: 30px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 3px 15px;
+
+      img {
+        width: 16px !important;
+      }
+    }
+
+    button.active {
+      bottom: 91px;
+      position: fixed;
+      display: flex;
+      border-color: transparent;
+      justify-content: space-around;
+      padding: 0px 0px;
+
+      &.short {
+        max-width: 52px;
+      }
+    }
+  }
+}

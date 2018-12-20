@@ -3,8 +3,10 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 @import 'ltr';
+@import 'rtl-yafe';
 @import 'hebrew';
 @import 'variables';
+@import 'variables-yafe';
 
 @font-face {
   font-family: "Almoni";
@@ -46,6 +48,10 @@ body {
     width: 100%;
     margin: 0;
     max-width: 100%;
+  }
+
+  .mat-button-wrapper {
+    font-family: $OSHebrew;
   }
 
   * {

@@ -25,5 +25,33 @@ export const Categories = {
       name: "food",
       categoryId: 52
     }
+  ],
+
+  "13": [
+    {
+      icon: "yafe/entrance-yafe.svg",
+      name: "entrance",
+      categoryId: 1
+    },
+    {
+      icon: "yafe/info-yafe.svg",
+      name: "info",
+      categoryId: 42
+    },
+    {
+      icon: "yafe/toilets-yafe.svg",
+      name: "toilets",
+      categoryId: 2
+    },
+    {
+      icon: "yafe/parking-yafe.svg",
+      name: "parking",
+      categoryId: 5
+    },
+    {
+      icon: "yafe/food-yafe.svg",
+      name: "food",
+      categoryId: 52
+    }
   ]
 };

@@ -73,7 +73,7 @@ export class ApiService {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(`${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}`)
+      .get<Poi[]>(`${this.url}pois?venueid=${12}&locale=${currentLanguage.name}`)
       .map(res => this.filterByCategory(res, categoryId));
   }
 
@@ -84,7 +84,7 @@ export class ApiService {
     return this._httpClient
       .get<Poi[]>(`${this.url}pois/category/bydistance`, {
         params: {
-          venueid: venueId,
+          venueid: '12',
           category: categoryId,
           lon: kioskData.longitude,
           lat: kioskData.latitude,
@@ -154,7 +154,7 @@ export class ApiService {
           lat1: kioskData.entrances[0].sLatitude,
           lon1: kioskData.entrances[0].sLongitude,
           level1: kioskData.entrances[0].level,
-          venueid: venueId,
+          venueid: '12',
           lat2: poiData.entrances[0].sLatitude,
           lon2: poiData.entrances[0].sLongitude,
           level2: poiData.entrances[0].level,

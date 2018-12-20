@@ -28,6 +28,16 @@ export class CategoryComponent implements OnInit, OnDestroy {
   venueId: any;
   scrollTopActive: Boolean = false;
   scrollDownActive: Boolean = false;
+  applyImgsByVenueId: any;
+  imgByVenueId = {
+    '12': [
+      'assets/imgs/cancel.svg',
+    ],
+
+    '13': [
+      'assets/imgs/yafe/cancel.svg',
+    ]
+  };
 
   constructor(
     private _language: LanguageService,
@@ -41,10 +51,12 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this.venueId = localStorage.getItem("venueId");
+    this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
+    console.log(this.venueId);
     this.categories = Categories[this.venueId];
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {

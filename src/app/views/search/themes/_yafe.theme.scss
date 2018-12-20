@@ -1,4 +1,4 @@
-@import 'variables';
+@import 'variables-yafe';
 
 .search-container {
   width: 100%;
@@ -9,13 +9,12 @@
     height: 140px;
     border-radius: 4px;
     background-color: $color-white;
-    border: solid 5px #4a90e2;
+    border: solid 5px $main-color;
     position: relative;
-    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
 
     .search-icon {
       width: 10%;
-      background-color: #4a90e2;
+      background-color: $main-color;
       background-image: url("../../../assets/imgs/search.svg");
       background-size: 40%;
       background-repeat: no-repeat;
@@ -35,13 +34,13 @@
     .search-input {
       width: 90%;
       border: none;
-      font-size: 4.6em;
+      font-size: 70px;
       font-weight: bold;
-      color: $gray-text-1;
+      color: #9b9b9b;
       font-family: $OSHebrew;
 
       &::-webkit-input-placeholder {
-        color: $gray-text-1;
+        color: #9b9b9b;
       }
     }
   }
@@ -65,7 +64,7 @@
     height: 120px;
     border-radius: 5px;
     background-color: #ffffff;
-    border: solid 1px #4a90e2;
+    border: solid 1px $main-color;
     cursor: pointer;
     .category-name {
       font-size: 29px;

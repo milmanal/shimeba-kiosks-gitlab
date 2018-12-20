@@ -1,15 +1,15 @@
 <div id="venue-container">
     <div class="d-none" id="icons-container">
-        <img src="assets/imgs/start.svg" alt="" id="start-point">
-        <img src="assets/imgs/point.svg" alt="" id="destination-point-circle">
-        <img src="assets/imgs/route-dest.svg" alt="" id="destination-point">
+        <img [src]="applyImgsByVenueId[0]" alt="" id="start-point">
+        <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle">
+        <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point">
     </div>
-    
+    <!-- <pre>{{applyImgsByVenueId[0]}}</pre> -->
     <div class="direction-component">
         <div id="map"></div>
         <header class="header d-flex align-items-center justify-content-between px-4">
-            <div class="d-flex align-items-center">
-                <img src="assets/imgs/destination-panel.svg" alt="destination" class="destination-icon-header">
+            <div class="d-flex align-items-center poi-data-name">
+                <img [src]="applyImgsByVenueId[3]" alt="destination" class="destination-icon-header">
                 <div class="d-flex flex-column align-items-start px-4">
                     <div class="poi-name">
                         {{poiData && poiData.name}}
@@ -20,10 +20,8 @@
                 </div>
             </div>
             <button translate class="back-btn" (click)="backToMain()">
-                    back
-                <img src="assets/imgs/back-arrow.png" alt="back">
-
-                
+                back
+                <img [src]="applyImgsByVenueId[4]" alt="back">
             </button>
         </header>
         <div class="instructions-container" [ngClass]="{'loaded': routeLoaded}">
@@ -41,9 +39,10 @@
                         you-are-looking-info
                     </li>
                 </div>
-                <div *ngFor="let instr of instructions; let i = index" 
+                <div *ngFor="let instr of ARRAY; let i = index"
                     id="{{instr && instr.instruction.instructions}}"
-                    class="instruction">
+                    [ngClass]="{'outer-image': instr.instruction.instructionsType === 5 || instr.instruction.instructionsType === 6 || instr.instruction.instructionsType === 7 || instr.instruction.instructionsType === 8}"
+                    class="instruction {{instr.order}}">
                     <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
                         {{instr.instruction.level}}
                     </li>
@@ -63,7 +62,7 @@
                         {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3">
-                        <img src="assets/imgs/destination-panel.svg" alt="destination" class="destination-icon">
+                        <img [src]="applyImgsByVenueId[2]" alt="destination" class="destination-icon">
                         <div class="px-3">
                             {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
                         </div>

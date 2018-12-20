@@ -117,7 +117,12 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   getDirectionData() {
     let currentInstr = 0;
     const arrayWithNeededInstuctionsType = [];
-    const centeredRouteDependsOnDirection = this.initLanguage.direction === 'rtl' ? [-300, -40] : [300, 40];
+    let centeredRouteDependsOnDirection = [];
+    if (this.venueId === '12') {
+      centeredRouteDependsOnDirection = [300, 40];
+    } else {
+      centeredRouteDependsOnDirection = this.initLanguage.direction === 'rtl' ? [-300, -40] : [300, 40];
+    }
     this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
       this.instructions = res;
       let order = 'left';
@@ -142,6 +147,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       res.map(step => {
         step.points.map(poi => this.allPath.push(poi));
       });
+      console.log('centeredRouteDependsOnDirection', centeredRouteDependsOnDirection);
       this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18.2, {
         top: 100,
         left: 60,
@@ -246,8 +252,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.venueId);
-    this._mapbox.initMap(this.venueId);
+    const urlString = window.location.href.includes('direction');
+    this._mapbox.initMap(this.venueId, null, urlString);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

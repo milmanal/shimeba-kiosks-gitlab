@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
       console.log(params.venueId);
@@ -38,7 +39,7 @@ export class HomeComponent implements OnInit {
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
     });
-    this._mapbox.initMap(this.venueId);
+    this._mapbox.initMap(this.venueId, null, urlString);
     this._api.getKioskData().subscribe(res => {
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
       this._mapbox.addMarker(

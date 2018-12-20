@@ -76,6 +76,7 @@ export class MapboxService {
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
     this.isMobile = isMobile;
     this.venueId = venueId;
+    console.log('isDirection', isDirection);
     this.style = {
       version: 8,
       name: "Raster Tiles",

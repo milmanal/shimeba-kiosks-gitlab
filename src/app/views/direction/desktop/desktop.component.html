@@ -59,7 +59,7 @@
                 </div>
                 <div class="instruction" id="destination-instr">
                     <li class="level d-flex align-items-center px-3">
-                        {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
+                        {{'floor' | translate}} <span style="direction: ltr;padding: 0 5px;">{{poiData && poiData.entrances[0].level}}</span>
                     </li>
                     <li class="text-instr d-flex align-items-center px-3">
                         <img [src]="applyImgsByVenueId[2]" alt="destination" class="destination-icon">

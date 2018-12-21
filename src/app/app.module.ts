@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatButtonModule } from "@angular/material/button";
@@ -13,13 +13,14 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 import { AppLanguagePanelComponent } from "./components";
+import { LoaderComponent } from './components/loader/loader-component';
 import { AppTranslationModule } from "./app-translation.module";
 import { ModalModule } from "ngx-bootstrap/modal";
-
+import { LoaderInterceptorService } from './services/loader-intercepter.service';
 import "hammerjs";
 
 @NgModule({
-  declarations: [AppComponent, AppLanguagePanelComponent],
+  declarations: [AppComponent, AppLanguagePanelComponent, LoaderComponent],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,
@@ -33,7 +34,13 @@ import "hammerjs";
     ReactiveFormsModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptorService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   exports: [AppTranslationModule]
 })

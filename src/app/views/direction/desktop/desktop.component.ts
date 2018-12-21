@@ -233,7 +233,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     );
 
     this.applyImgsByVenueId = this.imgByVenueId[venueId];
-    console.log(this.applyImgsByVenueId);
   }
 
   toggle(layer) {

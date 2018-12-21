@@ -1,26 +1,31 @@
 <div id="venue-container">
     <div class="d-none" id="icons-container">
-        <img src="assets/imgs/start.svg" alt="" id="start-point">
+        <!-- <img src="assets/imgs/start.svg" alt="" id="start-point">
         <img src="assets/imgs/point.svg" alt="" id="destination-point-circle">
         <img src="assets/imgs/route-dest.svg" alt="" id="destination-point">
-        <img src="assets/imgs/route-arrow.svg" alt="" id="route-arrow">
+        <img src="assets/imgs/route-arrow.svg" alt="" id="route-arrow"> -->
+        <img [src]="applyImgsByVenueId[0]" alt="" id="start-point">
+        <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle">
+        <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point">
     </div>
     <div class="direction-component">
         <div class="header-container">
             <header class="header d-flex justify-content-between align-items-center px-3">
-                <div class="header-instruction" translate>{{!currentInstr ? 'start-text' : currentInstr}}</div>
+                <!-- <div class="header-instruction" translate>{{!currentInstr ? 'start' : currentInstr}}</div> -->
+                <div class="header-instruction" translate>{{!currentInstr ? poiData && poiData.name : currentInstr}}</div>
                 <div class="show-instruction-btn d-flex flex-column justify-content-center align-items-center" (click)="showHideInstructionList()">
-                    <div class="label" translate>{{instructionListOpen ? 'close-mobile' : 'show-all-mobile'}}</div>
+                    <div class="label" translate>{{instructionListOpen ? 'close' : 'show-all'}}</div>
                     <img src="assets/imgs/close-mobile.svg" alt="close" class="icon" [ngClass]="{'arrow-down': !instructionListOpen}">
                 </div>
             </header>
             <ul class="m-0 p-0 instruction-list" [ngClass]="{'instruction-list-open': instructionListOpen}">
                 <div class="instruction" id="start-instr">
                     <li class="level d-flex align-items-center px-3">
+                        
                         {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3" translate>
-                        start-text
+                        you-are-looking-info
                     </li>
                 </div>
                 <div *ngFor="let instr of instructions; let i = index" id="{{instr && instr.instruction.instructions}}"
@@ -46,7 +51,7 @@
                     <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0])">
                         <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
-                            {{'destination' | translate}} {{poiData && poiData.name}}
+                            {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
                         </div>
                     </li>
                 </div>

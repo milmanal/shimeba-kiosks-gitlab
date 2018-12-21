@@ -455,7 +455,7 @@ export class MapboxService {
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
-    console.log(padding);
+    console.log(offset);
 
     const bounds = coordinates.reduce((bounds, coord) => {
       return bounds.extend(coord);

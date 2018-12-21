@@ -4,7 +4,7 @@ import { Routes, RouterModule, ExtraOptions } from "@angular/router";
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/home/13/105999",
+    redirectTo: "/home/12/105999",
     pathMatch: "full"
   },
   {

@@ -5,7 +5,7 @@
     "where-do-you-want-to-go": "Onde você quer ir?",
     "type-the-name-of-dep": "Digite o nome do Departamento, Unidade, Clínica etc.",
     "placeholder-search": "Digite o nome na caixa de pesquisa ou selecione categoria",
-    "food": "Lojas de Comida e Bebida",
+    "food": "Alimentos e Lojas",
     "parking": "Estacionamentos",
     "toilets": "Banheiro Público",
     "info": "Serviços e Informações",
@@ -13,14 +13,14 @@
     "additional-res": "Outros resultados",
     "floor": "andar",
     "you-have-arrived": "Chegou ao destino:",
-    "you-are-looking-info": "Você está frente à tela de Informações e Localização",
+    "you-are-looking-info": "Comece em: quiosque de informação",
     "instr-for-arrival": "Como chegar",
     "back": "Voltar",
     "send-instr": "Enviar instruções",
-    "enter-mob-number": "Insira número do celular",
+    "enter-mob-number": "Número de telefone",
     "search-result": "Resultados da pesquisa: (selecione para passar ao resultado)",
     "close": "Fechar",
     "show-all": "Mostrar tudo",
     "information-orientation-screen": "Você está frente à tela de Informações e Localização",
-    "enter-mob-number-and-recieve-sms": "Insira o número do celular e receba uma mensagem com todos os dados"
+    "enter-mob-number-and-recieve-sms": "Digite seu número e receba um SMS com todas as informações"
   }

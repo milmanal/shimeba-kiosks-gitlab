@@ -88,6 +88,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
+      console.log('this.allPath::::', this.allPath);
       this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
     }
   }

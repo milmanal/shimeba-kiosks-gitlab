@@ -4,6 +4,7 @@
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
 @import 'ltr';
 @import 'rtl-yafe';
+@import 'rtl-hagalil';
 @import 'hebrew';
 @import 'variables';
 @import 'variables-yafe';
@@ -39,6 +40,78 @@ body {
   text-align: -webkit-auto !important;
   font-family: Almoni;
 }
+
+body.hide-darkness {
+  .modal-backdrop {
+    display: none;
+  }
+
+  .custom-modal {
+    margin: -50px 43px;
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    font-family: $OSHebrew;
+
+    .sms-input {
+      font-size: 40px;
+      color: #4a4a4a;
+      height: 78px;
+
+      &::-webkit-input-placeholder {
+        color: #4a4a4a;
+      }
+    }
+
+    .send-btn {
+      height: 78px;
+      color: #fff;
+      background: #88cc1f;
+    }
+
+    .custom-keyboard {
+      height: auto;
+    }
+
+    .key-row {
+      margin-bottom: 5px;
+    }
+
+    .key-btn {
+      height: 78px !important;
+      font-size: 60px !important;
+      font-weight: bold;
+      color: #fff;
+      background: #62abd0 !important;
+      border-radius: 4px;
+
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+
+    }
+
+    .instruction {
+      color: #37557a;
+      font-size: 30px;
+      font-weight: bold;
+      position: relative;
+      display: flex;
+      align-items: center;
+
+      &:before {
+        content: '';
+        min-width: 50px;
+        height: 50px;
+        margin: 0 15px;
+        background: url('assets/imgs/hagalil/emojy.svg') no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+
+}
+
 .cdk-overlay-container {
   position: fixed;
   bottom: 0;

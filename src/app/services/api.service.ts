@@ -17,7 +17,7 @@ import { Poi } from "./../models";
 })
 
 export class ApiService {
-  url = 'https://shimeba-api-staging.azurewebsites.net/api/';
+  url = 'https://shimeba-api.azurewebsites.net/api/';
 
   constructor(
     private _httpClient: HttpClient,
@@ -59,22 +59,21 @@ export class ApiService {
     );
   }
 
-  filterByCategory(pois, categoryId) {
-    const poisByCategory = [];
-    pois.map(poi => {
-      if(poi.categories.some(id => id === categoryId)) {
-        poisByCategory.push(poi);
-      }
-    })
-    return poisByCategory;
-  }
+  // filterByCategory(pois, categoryId) {
+  //   const poisByCategory = [];
+  //   pois.map(poi => {
+  //     if(poi.categories.some(id => id === categoryId)) {
+  //       poisByCategory.push(poi);
+  //     }
+  //   })
+  //   return poisByCategory;
+  // }
 
   poiByCategory(categoryId, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(`${this.url}pois?venueid=${12}&locale=${currentLanguage.name}`)
-      .map(res => this.filterByCategory(res, categoryId));
+      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${12}&locale=${currentLanguage.name}`);
   }
 
   poiByDistance(categoryId, venueId) {

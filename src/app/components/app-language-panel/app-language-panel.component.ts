@@ -40,8 +40,6 @@ export class AppLanguagePanelComponent implements OnInit {
       if (val instanceof NavigationEnd && val.url.indexOf("direction") !== -1) {
         this.isRoutePage = true;
       }
-
-      console.log(this.isRoutePage);
     });
   }
 
@@ -61,7 +59,6 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
-    console.log('init');
     this.currentLanguage = this._language.getCurrentLanguage();
   }
 }

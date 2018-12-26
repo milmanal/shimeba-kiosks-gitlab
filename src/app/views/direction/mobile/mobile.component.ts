@@ -59,6 +59,15 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/destination-panel.png',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
+    ],
+
+    '14': [
+      'assets/imgs/yafe/start-yafe.svg',
+      'assets/imgs/yafe/route-disk.svg',
+      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
     ]
   };
 
@@ -88,8 +97,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
-      console.log('this.allPath::::', this.allPath);
-      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
+      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200], null, {
+        top: 0,
+        left: 60,
+        right: 60,
+        bottom: 60
+      });
     }
   }
 
@@ -128,7 +141,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
         res.map(step => {
           step.points.map(poi => this.allPath.push(poi));
         });
-        this._mapbox.zoomToLinePoligon(this.allPath, [0, 200]);
+        this._mapbox.zoomToLinePoligon(this.allPath, [0, 200], null, {
+          top: 0,
+          left: 60,
+          right: 60,
+          bottom: 60
+        });
         setTimeout(() => {
           this.routing(res, currentInstr);
           currentInstr++;

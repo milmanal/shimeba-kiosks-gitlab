@@ -15,7 +15,6 @@ export class LanguageService {
     const { currentLang } = this.translate;
     this.currentLanguage = this.languages.find(
       lang => {
-        console.log(lang);
         return currentLang === lang.name;
       }
     );

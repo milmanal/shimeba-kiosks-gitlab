@@ -9,12 +9,14 @@
     border-radius: 4px;
     box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
     background-color: $color-white;
-    border: solid 5px $main-color;
+    border: solid 5px #4e769f;
+
     .category-name {
       font-size: 80px;
       font-weight: bold;
       font-family: $OSHebrew;
       color: $gray-text-1;
+      
     }
   }
   .category-pois {

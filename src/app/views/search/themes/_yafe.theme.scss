@@ -11,6 +11,7 @@
     background-color: $color-white;
     border: solid 5px $main-color;
     position: relative;
+    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
 
     .search-icon {
       width: 10%;
@@ -38,6 +39,10 @@
       font-weight: bold;
       color: #9b9b9b;
       font-family: $OSHebrew;
+
+      &:focus {
+        outline: none;
+      }
 
       &::-webkit-input-placeholder {
         color: #9b9b9b;

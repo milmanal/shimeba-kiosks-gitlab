@@ -12,7 +12,8 @@ export class HomeComponent implements OnInit {
   venueId: any;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
-      '13': 'assets/imgs/yafe/start-yafe.svg'
+      '13': 'assets/imgs/yafe/start-yafe.svg',
+      '14': 'assets/imgs/hagalil/start.svg'
   };
   startPointImgByVenueId: string;
   constructor(

@@ -1,9 +1,8 @@
 @import 'variables-yafe';
 
-html[dir="rtl"] #venue-container[venueid="14"],
-html[dir="rtl"] #venue-container[venueid="13"] {
+html[dir="rtl"] #venue-container[venueid="14"] {
     .instructions-container {
-        background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 8%, #00729a 95%);
+        background: -webkit-linear-gradient(left, #70a9d8 0%, #70a9d8 8%, #375378 95%);
         padding-right: 64px;
         padding-left: 30px;
 
@@ -51,7 +50,7 @@ html[dir="rtl"] #venue-container[venueid="13"] {
       
           &:after {
             content: '';
-            background: $main-color;
+            background: #88cc1f;
             width: 18px;
             height: 18px;
             border-radius: 50%;
@@ -127,7 +126,7 @@ html[dir="rtl"] #venue-container[venueid="13"] {
     }
 
     .direction-component {
-        background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 79%, #00729a 96%);
+        background: -webkit-linear-gradient(left, #70a9d8 0%, #70a9d8 79%, #375378 96%);
 
         .header .back-btn img {
             transform: unset;

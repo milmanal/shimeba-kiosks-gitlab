@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-@import "variables";
+@import "variables-yafe";
 
 
 :host /deep/ .mapboxgl-canvas {
@@ -8,20 +8,21 @@
   left: 0;
 }
 #start-point {
-  width: 15px;
-  height: 56px;
+  width: 15px !important;
+  height: 15px !important;
 }
 #you-are-here {
-  background-image: url("../../../assets/imgs/u-r-here.svg");
+  background-image: url("../../../assets/imgs/hagalil/u-r-here.svg");
   background-repeat: no-repeat;
-  background-size: cover;
-  font-family: $almoni;
-  font-size: 45px;
+  background-size: 300px 111px;
+  font-size: 40px;
   font-weight: bold;
   color: #ffffff;
   text-align: center;
-  min-width: 180px;
   min-height: 99px;
+  width: auto;
+  font-family: Open Sans Hebrew, sans-serif;
+  min-width: 285px;
   z-index: 1;
 }
 .home-component {
@@ -39,16 +40,12 @@
     object-fit: contain;
     transform: rotate(-180deg);
     opacity: 0.64;
-    background-image: linear-gradient(
-        rgba(255, 255, 255, 0),
-        rgba(255, 255, 255, 0)
-      ),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.81));
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #ffffff);
     z-index: 1;
   }
   .overlay {
     position: absolute;
-    top: 0;
+    top: 75px;
     left: 0;
     width: 100vw;
     height: calc(100vh - 75px);
@@ -65,10 +62,10 @@
     height: 15vh;
     border-radius: 4px;
     background-color: #ffffff;
-    border: solid 5px #4a90e2;
+    border: solid 5px #696969;
     .search-icon {
       width: 10%;
-      background-color: #4a90e2;
+      background-color: #696969;
       background-image: url("../../../assets/imgs/search.svg");
       background-size: 40%;
       background-repeat: no-repeat;
@@ -78,9 +75,9 @@
     .search-input {
       width: 90%;
       border: none;
-      font-size: 80px;
+      font-size: 5.6em;
       font-weight: bold;
-      color: $gray-text-1;
+      background-color: #fff;
       font-family: $OSHebrew;
 
       &:focus {
@@ -88,7 +85,7 @@
       }
 
       &::-webkit-input-placeholder {
-        color: $gray-text-1;
+        color: #696969;
       }
     }
   }

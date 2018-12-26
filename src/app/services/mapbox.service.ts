@@ -455,8 +455,6 @@ export class MapboxService {
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
-    console.log(offset);
-
     const bounds = coordinates.reduce((bounds, coord) => {
       return bounds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
@@ -506,7 +504,6 @@ export class MapboxService {
       options.offset[0] + paddingOffset[0],
       options.offset[1] + paddingOffset[1]
     ];
-    console.log(options.offset);
 
     options.bearing = options.bearing || this.map.getBearing();
 

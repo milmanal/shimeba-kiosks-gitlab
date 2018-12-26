@@ -80,6 +80,10 @@
       color: $main-color;
       font-family: $OSHebrew;
 
+      &:focus {
+        outline: none;
+      }
+
       &::-webkit-input-placeholder {
         color: $main-color;
       }

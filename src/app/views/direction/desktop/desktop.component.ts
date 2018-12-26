@@ -24,6 +24,7 @@ import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
   styleUrls: ["desktop.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
+
 export class DesktopComponent implements OnInit, AfterViewInit {
   kioskId: Number;
   poiId: Number;
@@ -55,6 +56,15 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     '13': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
+      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
+    ],
+
+    '14': [
+      'assets/imgs/yafe/start-yafe.svg',
+      'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/yafe/destination-reached.png',
       'assets/imgs/yafe/destination-panel.png',
       'assets/imgs/yafe/back-arrow.svg',
@@ -104,6 +114,13 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     this.modalRef = this._modalService.show(template, {
       class: "custom-modal"
     });
+
+    if (this.venueId !== '12') {
+      const smsModalIsOppened = document.getElementsByTagName('body');
+      if (smsModalIsOppened.item(0).classList.contains('modal-open')) {
+        smsModalIsOppened.item(0).classList.add('hide-darkness');
+      }
+    }
   }
 
   backToMain() {
@@ -142,12 +159,10 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         }
         return item;
       });
-      console.log('ARRAY', this.ARRAY);
       this.routeLoaded = true;
       res.map(step => {
         step.points.map(poi => this.allPath.push(poi));
       });
-      console.log('centeredRouteDependsOnDirection', centeredRouteDependsOnDirection);
       this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18.2, {
         top: 100,
         left: 60,
@@ -157,11 +172,11 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       setTimeout(() => {
         this.routing(res, currentInstr);
         currentInstr++;
-      }, 2000)
+      }, 2000);
       this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
         this.routing(res, currentInstr);
         currentInstr++;
-      })
+      });
     });
   }
 
@@ -262,7 +277,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           value => value.propertyName === "Location Description"
         );
 
-        console.log('this.poiData', this.poiData);
         this._mapbox.addMarker(
           "start-point",
           this.kioskData.entrances[0].sLongitude,

@@ -53,5 +53,33 @@ export const Categories = {
       name: "food",
       categoryId: 52
     }
+  ],
+
+  "14": [
+    {
+      icon: "hagalil/entrance.svg",
+      name: "entrance",
+      categoryId: 1
+    },
+    {
+      icon: "hagalil/info.svg",
+      name: "info",
+      categoryId: 42
+    },
+    {
+      icon: "hagalil/toilets.svg",
+      name: "toilets",
+      categoryId: 2
+    },
+    {
+      icon: "hagalil/parking.svg",
+      name: "parking",
+      categoryId: 5
+    },
+    {
+      icon: "hagalil/food.svg",
+      name: "food",
+      categoryId: 52
+    }
   ]
 };

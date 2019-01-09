@@ -4,9 +4,11 @@ import { TranslateModule } from "@ngx-translate/core";
 
 import { HomeComponent } from "./home.component";
 import { HomeRoutingModule } from "./home-routing.module";
+import { SharedModule } from '../../shared.module';
+
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, HomeRoutingModule],
-  declarations: [HomeComponent]
+  imports: [CommonModule, TranslateModule, HomeRoutingModule, SharedModule],
+  declarations: [HomeComponent],
 })
 export class HomeModule {}

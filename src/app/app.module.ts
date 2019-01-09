@@ -12,7 +12,6 @@ import { MatKeyboardModule } from "@ngx-material-keyboard/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { AppLanguagePanelComponent } from "./components";
 import { LoaderComponent } from './components/loader/loader-component';
 import { AppTranslationModule } from "./app-translation.module";
 import { ModalModule } from "ngx-bootstrap/modal";
@@ -20,7 +19,7 @@ import { LoaderInterceptorService } from './services/loader-intercepter.service'
 import "hammerjs";
 
 @NgModule({
-  declarations: [AppComponent, AppLanguagePanelComponent, LoaderComponent],
+  declarations: [AppComponent, LoaderComponent],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,
@@ -32,7 +31,7 @@ import "hammerjs";
     MatKeyboardModule,
     FormsModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     {

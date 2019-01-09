@@ -13,13 +13,12 @@ import {
 
 import { AmharicLayoutConfig } from "./../../configs/amharic-keyboard.config";
 import { SearchRoutingModule } from "./search-routing.module";
+import { SharedModule } from "../../shared.module";
 
 const customLayouts: IKeyboardLayouts = {
   ...keyboardLayouts,
   "Amharic Layout": AmharicLayoutConfig,
 };
-
-console.log(customLayouts);
 
 @NgModule({
   imports: [
@@ -28,9 +27,10 @@ console.log(customLayouts);
     MatKeyboardModule,
     FormsModule,
     ReactiveFormsModule,
-    SearchRoutingModule
+    SearchRoutingModule,
+    SharedModule
   ],
   providers: [{ provide: MAT_KEYBOARD_LAYOUTS, useValue: customLayouts }],
-  declarations: [SearchComponent]
+  declarations: [SearchComponent],
 })
 export class SearchModule {}

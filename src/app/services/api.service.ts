@@ -40,7 +40,7 @@ export class ApiService {
       .switchMap(term => this.searchPoi(term));
   }
 
-  sendSms (params) {
+  sendSms (params: object) {
     return this._httpClient.post(`${this.url}send/sms`, params)
       .subscribe(
         data => {
@@ -48,6 +48,7 @@ export class ApiService {
         },
         error => {
           console.log(`Error:`, error);
+          console.log(`Parameters:`, params);
         }
       );
   }
@@ -73,17 +74,17 @@ export class ApiService {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${12}&locale=${currentLanguage.name}`);
+      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${venueId}&locale=${currentLanguage.name}`);
   }
 
   poiByDistance(categoryId, venueId) {
     const currentLanguage = this._language.getCurrentLanguage();
     const kioskData = JSON.parse(localStorage.getItem('kioskData'));
-    console.log(kioskData)
+    console.log('kioskData: ', kioskData);
     return this._httpClient
       .get<Poi[]>(`${this.url}pois/category/bydistance`, {
         params: {
-          venueid: '12',
+          venueid: venueId,
           category: categoryId,
           lon: kioskData.longitude,
           lat: kioskData.latitude,
@@ -153,7 +154,7 @@ export class ApiService {
           lat1: kioskData.entrances[0].sLatitude,
           lon1: kioskData.entrances[0].sLongitude,
           level1: kioskData.entrances[0].level,
-          venueid: '12',
+          venueid: venueId,
           lat2: poiData.entrances[0].sLatitude,
           lon2: poiData.entrances[0].sLongitude,
           level2: poiData.entrances[0].level,

@@ -1,4 +1,4 @@
-<div id="venue-container-language" [ngClass]="{'lang-panel-bottom' : langPannelToTheBottom, 'hide-lang-pannel': isRoutePage}">
+<div id="venue-container-language">
     <div class="language-panel" [ngClass]="{'if-mobile-then': ds.isMobile()}">
         <button class="language-btn" *ngFor="let lang of languages" [ngClass]="{
                 'active': lang.name === currentLanguage.name, 

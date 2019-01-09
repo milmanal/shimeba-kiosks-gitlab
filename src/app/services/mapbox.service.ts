@@ -198,7 +198,7 @@ export class MapboxService {
       this.interval.unsubscribe();
     }
     this.geojson.features[0].geometry.coordinates = [];
-    if (this.venueId === 12 ) {
+    if (this.venueId === '12' ) {
       this.map.getSource("main-line").setData(this.geojson);
       this.map.getSource("secondary-line").setData(this.geojson);
       this.map.getSource("arrows").setData(this.geojson);
@@ -241,7 +241,7 @@ export class MapboxService {
       }, 2000);
     }
   }
-  
+
   animateRoute() {
     const now = performance.now();
     while (this.times.length > 0 && this.times[0] <= now - 1000) {
@@ -254,8 +254,9 @@ export class MapboxService {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
+      
 
-      if (this.venueId === 12 ) {
+      if (this.venueId === '12' ) {
         this.map.getSource("main-line").setData(this.geojson);
         this.map.getSource("secondary-line").setData(this.geojson);
         this.map.getSource("arrows").setData(this.geojson);

@@ -7,9 +7,11 @@ import { DirectionRoutingModule } from "./direction-routing.module";
 import { FormsModule } from "@angular/forms";
 import { DesktopComponent } from "./desktop/desktop.component";
 import { MobileComponent } from "./mobile/mobile.component";
+import { SharedModule } from '../../shared.module';
+
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, FormsModule, DirectionRoutingModule],
+  imports: [CommonModule, TranslateModule, FormsModule, DirectionRoutingModule, SharedModule],
   declarations: [DirectionComponent, DesktopComponent, MobileComponent],
   exports: [DesktopComponent, MobileComponent]
 })

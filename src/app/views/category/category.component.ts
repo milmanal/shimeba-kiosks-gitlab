@@ -8,6 +8,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { LanguageService } from "./../../services/language.service";
 import { ApiService } from "./../../services/api.service";
+import { DeviceService } from "./../../services/device.service";
 import { Language, Category } from "../../models";
 import { Subscription } from "rxjs";
 import { Categories } from "./../../configs/categories";
@@ -33,17 +34,16 @@ export class CategoryComponent implements OnInit, OnDestroy {
     '12': [
       'assets/imgs/cancel.svg',
     ],
-
     '13': [
       'assets/imgs/yafe/cancel.svg',
     ],
-    
     '14': [
       'assets/imgs/hagalil/cancel.svg',
     ]
   };
 
   constructor(
+    public ds: DeviceService,
     private _language: LanguageService,
     private _api: ApiService,
     private _route: ActivatedRoute,

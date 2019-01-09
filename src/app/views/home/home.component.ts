@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 
 import { ApiService } from "./../../services/api.service";
 import { MapboxService } from "../../services/mapbox.service";
+import { DeviceService } from '../../services/device.service';
 
 @Component({
   templateUrl: "home.component.html",
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   };
   startPointImgByVenueId: string;
   constructor(
+    public ds: DeviceService,
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _router: Router,
@@ -31,7 +33,6 @@ export class HomeComponent implements OnInit {
     const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
-      console.log(params.venueId);
       localStorage.setItem("kioskId", params.kioskId);
       localStorage.setItem("venueId", params.venueId);
       this.venueId = params.venueId;
@@ -39,6 +40,7 @@ export class HomeComponent implements OnInit {
       const venueAttr = document.createAttribute("venueId");
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
+
     });
     this._mapbox.initMap(this.venueId, null, urlString);
     this._api.getKioskData().subscribe(res => {

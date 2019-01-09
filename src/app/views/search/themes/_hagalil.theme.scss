@@ -3,6 +3,11 @@
 .search-container {
   width: 100%;
   height: 100%;
+
+  .visibility-hidden {
+    visibility: hidden;
+  }
+
   .search {
     display: flex;
     width: 83%;
@@ -54,10 +59,6 @@
     font-weight: bold;
     color: #9b9b9b;
     font-family: $OSHebrew;
-
-    &.visibility-hidden {
-      visibility: hidden;
-    }
   }
 
   .categories-wrapper {
@@ -65,8 +66,9 @@
   }
 
   .category {
+    position: relative;
     width: 230px;
-    height: 120px;
+    height: 140px;
     border-radius: 5px;
     background-color: #ffffff;
     border: solid 1px $main-color;
@@ -74,20 +76,20 @@
     position: relative;
 
     .category-name {
-      font-size: 22px;
+      font-size: 29px;
       font-weight: normal;
       color: $gray-text-3;
       font-family: $OSHebrew;
-      position: absolute;
-      width: 100%;
       text-align: center;
-      line-height: 22px;
-      bottom: 10px;
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      line-height: 29px;
     }
     .icon {
-      top: 15px;
-      position: absolute;
       height: 47px;
+      position: absolute;
+      top: 17px;
     }
   }
   .show-more-results {
@@ -101,7 +103,7 @@
   .search-results {
     position: absolute;
     top: calc(3rem + 140px);
-    max-height: 500px;
+    max-height: 470px;
     overflow-y: auto;
     overflow-x: hidden;
     width: 83%;

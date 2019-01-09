@@ -1,43 +1,42 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Languages } from "./../../_languages";
-import { Language } from "../../models";
-import { LanguageService } from "./../../services/language.service";
-import { Router, NavigationEnd } from "@angular/router";
+import { Component, OnInit, Input } from '@angular/core';
+import { Languages } from './../../_languages';
+import { Language } from '../../models';
+import { LanguageService } from './../../services/language.service';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
 
 @Component({
-  selector: "app-language-panel",
-  templateUrl: "./app-language-panel.component.html",
-  styleUrls: ["./app-language-panel.component.scss"]
+  selector: 'app-language-panel',
+  templateUrl: './app-language-panel.component.html',
+  styleUrls: ['./app-language-panel.component.scss']
 })
 export class AppLanguagePanelComponent implements OnInit {
   currentLanguage: Language;
   languages: Language[] = Languages;
   showAnotherLanguages: Boolean = false;
   showAllLanguages: Boolean = false;
-  langPannelToTheBottom: Boolean = false;
   isRoutePage: Boolean = false;
+  venueId: any;
 
   constructor(
-    private _route: Router,
+    private _route: ActivatedRoute,
+    private _router: Router,
     private _language: LanguageService,
     public ds: DeviceService
   ) {
 
-    this._route.events.subscribe(val => {
-      if (val instanceof NavigationEnd && val.url.indexOf("home") !== -1) {
+    this._router.events.subscribe(val => {
+      if (val instanceof NavigationEnd && val.url.indexOf('home') !== -1) {
         this.showAllLanguages = true;
-        this.langPannelToTheBottom = false;
         this.isRoutePage = false;
       } else if (
         val instanceof NavigationEnd &&
-        val.url.indexOf("home") === -1
+        val.url.indexOf('home') === -1
       ) {
         this.showAllLanguages = false;
-        this.langPannelToTheBottom = true;
       }
 
-      if (val instanceof NavigationEnd && val.url.indexOf("direction") !== -1) {
+      if (val instanceof NavigationEnd && val.url.indexOf('direction') !== -1) {
         this.isRoutePage = true;
       }
     });
@@ -54,9 +53,9 @@ export class AppLanguagePanelComponent implements OnInit {
   }
 
   ngOnInit() {
-    const venueId = localStorage.getItem("venueId");
-    const HTML = document.getElementById("venue-container-language");
-    const venueAttr = document.createAttribute("venueId");
+    const venueId = localStorage.getItem('venueId');
+    const HTML = document.getElementById('venue-container-language');
+    const venueAttr = document.createAttribute('venueId');
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();

@@ -7,6 +7,7 @@ import { Language, Category } from "../../models";
 import { Subscription } from "rxjs";
 import { Subject } from "rxjs/Subject";
 import { Categories } from "./../../configs/categories";
+import { DeviceService } from "../../services/device.service";
 
 @Component({
   templateUrl: "search.component.html",
@@ -23,8 +24,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   showMore: Boolean = false;
   venueId: any;
   noSearchResult: Boolean;
+  langPannelToTheBottom: Boolean = false;
 
   constructor(
+    public ds: DeviceService,
     private _language: LanguageService,
     private _api: ApiService,
     private _router: Router

@@ -16,15 +16,15 @@
 }
 .language-panel {
   position: fixed;
-  top: 0;
-  left: 50%;
+  bottom: 0;
+  left: 56%;
   transform: translateX(-50%);
   display: flex;
   z-index: 1;
   width: 83%;
   direction: rtl !important;
   .language-btn {
-    width: 12.5%;
+    width: 14.5%;
     height: 75px;
     color: #62abd0;
     font-family: $OSHebrew;
@@ -36,7 +36,7 @@
     border-top: 0;
     border-bottom: 0;
     cursor: pointer;
-    right: 12.5%;
+    right: 14.5%;
     position: relative;
 
     .lang-icon {
@@ -50,7 +50,7 @@
     background-color: #62abd0;
     color: white;
     border-color: #6f6f6f;
-    position: fixed;
+    position: absolute;
     bottom: 0;
     right: 0;
   }

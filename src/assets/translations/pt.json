@@ -1,6 +1,7 @@
 {
-    "you-are-here": "Вы сдесь",
-    "no-search-result": "Нет рузультатов",
+    "you-are-here": "você está aqui",
+    "no-search-result": "sem resultados",
+    "send": "mandar",
     
     "where-do-you-want-to-go": "Onde você quer ir?",
     "type-the-name-of-dep": "Digite o nome do Departamento, Unidade, Clínica etc.",

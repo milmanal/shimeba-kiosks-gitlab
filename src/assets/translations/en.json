@@ -1,7 +1,8 @@
 {
   "you-are-here": "You are here",
   "no-search-result": "No results",
-  
+  "send": "Send",
+
   "where-do-you-want-to-go": "Where do you want to go?",
   "type-the-name-of-dep": "Type the name of a department, unit, clinic...",
   "placeholder-search": "Type a name in the search bar or choose a category",
@@ -24,5 +25,5 @@
   "information-orientation-screen": "You are looking at an information and orientation screen",
   "enter-mob-number-and-recieve-sms": "Enter your number and receive an SMS with all of the details",
 
-  "send": "Send"
+  
 }

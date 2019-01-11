@@ -41,7 +41,7 @@ export class ApiService {
   }
 
   sendSms (params: object) {
-    return this._httpClient.post(`${this.url}send/sms`, params)
+    return this._httpClient.post(`${this.url}send/sms`, {params: params})
       .subscribe(
         data => {
           console.log(`POST Success:`, data);

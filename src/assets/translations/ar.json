@@ -1,7 +1,8 @@
 {
-    "you-are-here": "Вы сдесь",
-    "no-search-result": "Нет рузультатов",
-    
+    "you-are-here": "أنت هنا",
+    "no-search-result": "لا نتائج",
+    "send": "إرسال",
+
     "where-do-you-want-to-go": "إلى أين تريد الوصول؟",
     "type-the-name-of-dep": "أدخل اسم القسم، الوحدة، العيادة...",
     "placeholder-search": "أدخلوا اسما في خانة البحث أو اختاروا فئة",

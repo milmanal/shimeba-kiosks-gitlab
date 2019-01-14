@@ -1,3 +1,5 @@
+<app-loader></app-loader>
+
 <div id="venue-container">
     <div class="d-none" id="icons-container">
         <img [src]="applyImgsByVenueId[0]" alt="" id="start-point">
@@ -82,6 +84,7 @@
             </div>
         </div> -->
     </div>
+
     <ng-template #template class="testing">
         <div class="p-3">
             <div class="d-flex justify-content-end">
@@ -91,10 +94,11 @@
                 enter-mob-number-and-recieve-sms
             </div>
             <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-                <input type="text" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
+                <input type="number" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
                     [(ngModel)]="phoneNumber">
                 <button (click)="sendSms()" class="send-btn" translate>send</button>
             </div>
+            <span *ngIf="validationMessage" style="display: block;color: red;font-size: 24px;padding: 10px 15px 0;">This field is required</span>
             <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
                 <div class="d-flex justify-content-between align-items-center key-row">
                     <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(1)">1</div>

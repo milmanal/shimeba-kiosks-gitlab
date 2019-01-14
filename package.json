@@ -32,6 +32,7 @@
     "mapbox-gl": "^0.50.0",
     "moment": "^2.22.2",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-toastr": "^9.1.1",
     "ol": "^5.2.0",
     "rxjs": "~6.2.0",
     "rxjs-compat": "^6.3.3",

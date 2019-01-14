@@ -7,5 +7,8 @@ import { DeviceService } from "./services/device.service";
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent {
-  constructor(public ds: DeviceService) {}
+  constructor(
+    public ds: DeviceService,
+    ) {
+    }
 }

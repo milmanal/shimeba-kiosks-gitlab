@@ -12,14 +12,16 @@ import { MatKeyboardModule } from "@ngx-material-keyboard/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
-import { LoaderComponent } from './components/loader/loader-component';
 import { AppTranslationModule } from "./app-translation.module";
 import { ModalModule } from "ngx-bootstrap/modal";
 import { LoaderInterceptorService } from './services/loader-intercepter.service';
+import {
+  ToastrModule,
+} from 'ngx-toastr';
 import "hammerjs";
 
 @NgModule({
-  declarations: [AppComponent, LoaderComponent],
+  declarations: [AppComponent],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,
@@ -32,6 +34,11 @@ import "hammerjs";
     FormsModule,
     ReactiveFormsModule,
     MatIconModule,
+    ToastrModule.forRoot({
+      timeOut: 2000,
+      positionClass: 'toast-center-center',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     {

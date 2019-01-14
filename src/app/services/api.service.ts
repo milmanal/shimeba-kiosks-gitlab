@@ -9,6 +9,7 @@ import "rxjs/add/operator/switchMap";
 import "rxjs/Rx";
 import { filter, map } from "rxjs/operators";
 import { forkJoin } from "rxjs";
+import { ToastrService } from 'ngx-toastr';
 
 import { Poi } from "./../models";
 
@@ -18,10 +19,15 @@ import { Poi } from "./../models";
 
 export class ApiService {
   url = 'https://shimeba-api.azurewebsites.net/api/';
-
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'text/plain',
+    })
+  };
   constructor(
     private _httpClient: HttpClient,
-    private _language: LanguageService
+    private _language: LanguageService,
+    public toastr: ToastrService
   ) {}
 
   getKioskData(): Observable<any> {
@@ -32,6 +38,9 @@ export class ApiService {
       `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
     );
   }
+  showSuccess() {
+    this.toastr.success('Success');
+  }
 
   search(terms: Observable<any>) {
     return terms
@@ -40,15 +49,19 @@ export class ApiService {
       .switchMap(term => this.searchPoi(term));
   }
 
-  sendSms (params: object) {
-    return this._httpClient.post(`${this.url}send/sms`, {params: params})
+  sendSms (params) {
+    return this._httpClient.post(`${this.url}send/sms`, {}, {
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      params: params
+    })
       .subscribe(
         data => {
-          console.log(`POST Success:`, data);
+          return this.showSuccess();
         },
         error => {
           console.log(`Error:`, error);
-          console.log(`Parameters:`, params);
         }
       );
   }

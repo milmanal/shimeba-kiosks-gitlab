@@ -73,6 +73,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   };
 
   applyImgsByVenueId: any;
+  validationMessage: Boolean = false;
 
   constructor(
     private _language: LanguageService,
@@ -81,7 +82,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     private _router: Router,
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
-    public ds: DeviceService
+    public ds: DeviceService,
   ) {
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
@@ -99,7 +100,14 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       recipientNumber: this.phoneNumber,
       senderName: 'Ichilov Hospital',
     };
-    return this._api.sendSms(sendParams);
+
+    if (!sendParams.recipientNumber) {
+      this.validationMessage = true;
+      return this.validationMessage;
+    }
+    this.validationMessage = false;
+    // this.phoneNumber = '';
+    return this._api.sendSms(sendParams) && this.modalRef.hide();
   }
 
   enterNumber(number) {

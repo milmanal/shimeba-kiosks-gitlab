@@ -54,6 +54,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    this._route.params.subscribe(params => {
+      localStorage.setItem("venueId", params.venueId);
+    });
     this.venueId = localStorage.getItem("venueId");
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
     const HTML = document.getElementById("venue-container");
@@ -111,7 +114,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.myScrollContainer.nativeElement.scrollTop - 80;
   }
   back() {
-    this._router.navigateByUrl("/search");
+    this._router.navigateByUrl(`/search/${this.venueId}`);
   }
 
   ngOnDestroy() {

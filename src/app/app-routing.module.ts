@@ -12,11 +12,11 @@ const routes: Routes = [
     loadChildren: "./views/home/home.module#HomeModule"
   },
   {
-    path: "search",
+    path: "search/:venueId",
     loadChildren: "./views/search/search.module#SearchModule"
   },
   {
-    path: "category/:categoryId",
+    path: "category/:categoryId/:venueId",
     loadChildren: "./views/category/category.module#CategoryModule"
   },
   {

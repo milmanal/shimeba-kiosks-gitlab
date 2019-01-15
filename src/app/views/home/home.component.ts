@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   startSearch() {
-    this._router.navigateByUrl("/search");
+    this._router.navigateByUrl(`/search/${this.venueId}`);
   }
 
   ngOnInit() {

@@ -1,4 +1,3 @@
-<app-loader></app-loader>
 
 <div id="venue-container">
     <div class="d-none" id="icons-container">
@@ -125,3 +124,6 @@
         </div>
     </ng-template>
 </div>
+<app-loader></app-loader>
+<app-language-panel *ngIf="ds.isDesktop() && venueId === '12'"></app-language-panel>
+<app-language-panel *ngIf="ds.isMobile()"></app-language-panel>

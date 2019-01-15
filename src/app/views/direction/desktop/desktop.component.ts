@@ -56,17 +56,17 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     '13': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-reached.svg',
       'assets/imgs/yafe/destination-panel.png',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ],
 
     '14': [
-      'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/hagalil/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.png',
-      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/hagalil/route-disk.svg',
+      'assets/imgs/hagalil/destination.svg',
+      'assets/imgs/hagalil/destination.png',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ]

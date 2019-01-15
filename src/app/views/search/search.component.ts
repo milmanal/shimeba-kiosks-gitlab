@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 
 import { LanguageService } from "./../../services/language.service";
 import { ApiService } from "./../../services/api.service";
@@ -30,6 +30,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     public ds: DeviceService,
     private _language: LanguageService,
     private _api: ApiService,
+    private _route: ActivatedRoute,
     private _router: Router
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
@@ -43,6 +44,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
   ngOnInit() {
+    this._route.params.subscribe(params => {
+      localStorage.setItem("venueId", params.venueId);
+    });
     this.venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
@@ -71,7 +75,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.showMore = !this.showMore;
   }
   selectCategory(id) {
-    this._router.navigateByUrl(`/category/${id}`);
+    this._router.navigateByUrl(`/category/${id}/${this.venueId}`);
   }
   selectPoi(id) {
     const kioskId = localStorage.getItem("kioskId");

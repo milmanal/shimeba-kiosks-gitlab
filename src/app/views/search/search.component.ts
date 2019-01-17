@@ -19,7 +19,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   currentLanguage: Language;
   languageSubscription: Subscription;
   searchTerm$ = new Subject<any>();
-  pois: Object = [];
+  pois: any = [];
   categories: Category[] = [];
   showMore: Boolean = false;
   venueId: any;

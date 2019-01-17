@@ -9,6 +9,7 @@ import { DeviceService } from '../../services/device.service';
   templateUrl: "home.component.html",
   styleUrls: ["home.component.scss"]
 })
+
 export class HomeComponent implements OnInit {
   venueId: any;
   startPointImages: Object = {

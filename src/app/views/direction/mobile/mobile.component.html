@@ -48,7 +48,7 @@
                     <li class="level d-flex align-items-center px-3">
                         {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
                     </li>
-                    <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0])">
+                    <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0], null)">
                         <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
                             {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
@@ -82,3 +82,5 @@
         </footer>
     </div>
 </div>
+<app-language-panel *ngIf="ds.isDesktop() && venueId === '12'"></app-language-panel>
+<app-language-panel *ngIf="ds.isMobile()"></app-language-panel>

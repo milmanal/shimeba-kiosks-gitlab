@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --prod",
+    "postinstall": "npm run build -- --prod",
     "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer dist/shimeba/stats.json"
   },
   "private": true,

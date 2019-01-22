@@ -18,27 +18,16 @@ import { LoaderInterceptorService } from './services/loader-intercepter.service'
 import { ErrorService } from './services/error.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
+import { AppSuccessModalComponent } from './components/success-modal/success.modal';
 
 import {
   ToastrModule,
 } from 'ngx-toastr';
 import "hammerjs";
 
-const interceptors = [
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: LoaderInterceptorService,
-    multi: true
-  },
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: ErrorInterceptor,
-    multi: true
-  },
-];
 
 @NgModule({
-  declarations: [AppComponent, AppErrorModalComponent],
+  declarations: [AppComponent, AppErrorModalComponent, AppSuccessModalComponent],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,
@@ -66,7 +55,7 @@ const interceptors = [
     ErrorService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AppErrorModalComponent],
+  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent],
   exports: [AppTranslationModule]
 })
 export class AppModule {}

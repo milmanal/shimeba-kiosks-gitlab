@@ -73,7 +73,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     this.currentCategoryName = this.categories.find(
       category => category.categoryId === this.currentCategoryId
     ).name;
-    if(this.currentCategoryId === 2 || this.currentCategoryId === 1) {
+    if (this.currentCategoryId === 2 || this.currentCategoryId === 1) {
       this._api.poiByDistance(this.currentCategoryId, this.venueId).subscribe(pois => {
         this.pois = pois;
         setTimeout(() => this.onScroll(), 100);

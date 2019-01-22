@@ -9,6 +9,25 @@
 @import 'variables';
 @import 'variables-yafe';
 
+.error-modal-outer {
+  max-width: 1200px;
+  margin-top: 21%;
+
+  &:before {
+    content: '';
+    position: fixed;
+    display: block;
+    background: #4277ba;
+    opacity: .2;
+    left: -100%;
+    right: -100%;
+    bottom: -1000%;
+    top: -1000%;
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 @font-face {
   font-family: "Almoni";
   src: url("./assets/fonts/almoni-dl-aaa-regular.ttf");

@@ -40,7 +40,6 @@ export class SearchComponent implements OnInit, OnDestroy {
       } else {
         this.noSearchResult = false;
       }
-      console.log(this.noSearchResult);
     });
   }
   ngOnInit() {

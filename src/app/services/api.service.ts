@@ -93,7 +93,6 @@ export class ApiService {
   poiByDistance(categoryId, venueId) {
     const currentLanguage = this._language.getCurrentLanguage();
     const kioskData = JSON.parse(localStorage.getItem('kioskData'));
-    console.log('kioskData: ', kioskData);
     return this._httpClient
       .get<Poi[]>(`${this.url}pois/category/bydistance`, {
         params: {
@@ -153,8 +152,9 @@ export class ApiService {
   }
 
   prebuildDirection(data) {
-    const pointsOfFloors = data.pointsOfFloors;
+    console.log('data: ', data);
 
+    const pointsOfFloors = data.pointsOfFloors;
     return this.buildRoute(data.source.level, [], pointsOfFloors);
   }
 
@@ -175,6 +175,8 @@ export class ApiService {
           isForWidget: "true"
         }
       })
-      .map(res => this.prebuildDirection(res));
+      .map(res => {
+        return this.prebuildDirection(res);
+      });
   }
 }

@@ -3,7 +3,8 @@ import {
   OnInit,
   TemplateRef,
   ViewEncapsulation,
-  AfterViewInit
+  AfterViewInit,
+  ViewChild
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -15,8 +16,10 @@ import { Subscription, interval } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
 
-import { BsModalService } from "ngx-bootstrap/modal";
+import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
+import { ToastrService } from 'ngx-toastr';
+import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
 
 @Component({
   selector: "direction-desktop",
@@ -37,12 +40,15 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   initLanguage: any;
   routeSubscribtion: Subscription;
   modalRef: BsModalRef;
-  phoneNumber: String = "";
+  phoneNumber: String = '';
   venueId: any;
   allPath: any = [];
   neededIstrType: any = [];
-
+  applyImgsByVenueId: any;
+  validationMessage: Boolean = false;
+  ARRAY: any;
   layersCollection: Array<{}> = this._mapbox.getLayers();
+
   imgByVenueId = {
     '12': [
       'assets/imgs/start.svg',
@@ -66,14 +72,11 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/destination.svg',
-      'assets/imgs/hagalil/destination.png',
+      'assets/imgs/hagalil/destination.svg',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ]
   };
-
-  applyImgsByVenueId: any;
-  validationMessage: Boolean = false;
 
   constructor(
     private _language: LanguageService,
@@ -83,6 +86,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
+    public toastr: ToastrService,
   ) {
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
@@ -92,6 +96,10 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       this.poiId = Number(params.poiId);
 
     });
+  }
+
+  showSuccess() {
+    this.toastr.success('Success');
   }
 
   sendSms() {
@@ -131,13 +139,30 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     }
   }
 
+  openErrorModal() {
+    const initialState = {
+      list: [
+        'Open a modal with component',
+        'Pass your data',
+        'Do something else',
+        '...'
+      ],
+      title: 'Modal with component'
+    };
+    this.modalRef = this._modalService.show(AppErrorModalComponent, {
+      class: 'error-modal-outer',
+      ignoreBackdropClick: true,
+      animated: true
+    });
+    // this.modalRef.content.closeBtnName = 'Ok';
+  }
+
   backToMain() {
     this.routeSubscribtion.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
     this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}`);
   }
-  ARRAY: any;
 
   getDirectionData() {
     let currentInstr = 0;
@@ -148,44 +173,47 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     } else {
       centeredRouteDependsOnDirection = this.initLanguage.direction === 'rtl' ? [-300, -40] : [300, 40];
     }
-    this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(res => {
-      this.instructions = res;
-      let order = 'left';
+    this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(
+      res => {
+        this.instructions = res;
+        let order = 'left';
 
-      this.ARRAY = this.instructions.map(item => {
-        if (
-          item.instruction.instructionsType === 5 ||
-          item.instruction.instructionsType === 6 ||
-          item.instruction.instructionsType === 7 ||
-          item.instruction.instructionsType === 8
-        ) {
-          order = order === 'left' ? 'right' : 'left';
-          return {
-            ...item,
-            order
-          };
-        }
-        return item;
-      });
-      this.routeLoaded = true;
-      res.map(step => {
-        step.points.map(poi => this.allPath.push(poi));
-      });
-      this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18.2, {
-        top: 100,
-        left: 60,
-        right: 60,
-        bottom: 60
-      });
-      setTimeout(() => {
-        this.routing(res, currentInstr);
-        currentInstr++;
-      }, 2000);
-      this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
-        this.routing(res, currentInstr);
-        currentInstr++;
-      });
-    });
+        this.ARRAY = this.instructions.map(item => {
+          if (
+            item.instruction.instructionsType === 5 ||
+            item.instruction.instructionsType === 6 ||
+            item.instruction.instructionsType === 7 ||
+            item.instruction.instructionsType === 8
+          ) {
+            order = order === 'left' ? 'right' : 'left';
+            return {
+              ...item,
+              order
+            };
+          }
+          return item;
+        });
+        this.routeLoaded = true;
+        res.map(step => {
+          step.points.map(poi => this.allPath.push(poi));
+        });
+        this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18.2, {
+          top: 100,
+          left: 60,
+          right: 60,
+          bottom: 60
+        });
+        setTimeout(() => {
+          this.routing(res, currentInstr);
+          currentInstr++;
+        }, 2000);
+        this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
+          this.routing(res, currentInstr);
+          currentInstr++;
+        });
+      },
+      error => this.openErrorModal()
+    );
   }
 
   routing(instructions, currentInstr) {
@@ -281,9 +309,12 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       .subscribe(([kiosk, poi]) => {
         this.kioskData = kiosk;
         this.poiData = poi;
-        this.poiLocation = poi.dynamicValues.filter(
-          value => value.propertyName === "Location Description"
-        );
+
+        if (poi.dynamicValues.length > 0) {
+          this.poiLocation = poi.dynamicValues.filter(
+            value => value.propertyName === "Location Description"
+          );
+        }
 
         this._mapbox.addMarker(
           "start-point",
@@ -291,6 +322,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.kioskData.entrances[0].sLatitude
         );
         this.getDirectionData();
+        console.log('after view init');
 
       });
 

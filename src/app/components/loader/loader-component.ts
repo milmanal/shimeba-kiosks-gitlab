@@ -13,7 +13,7 @@ export interface LoaderState {
   styleUrls: ['./loader-component.scss']
 })
 export class LoaderComponent implements OnInit, OnDestroy {
-  show = false;
+  show = true;
   private subscription: Subscription;
   constructor(private loaderService: LoaderService) { }
   ngOnInit() {
@@ -21,11 +21,8 @@ export class LoaderComponent implements OnInit, OnDestroy {
     .subscribe((state: LoaderState) => {
       this.show = state.show;
     });
-
-    console.log(this.show);
   }
   ngOnDestroy() {
-    console.log(this.show);
     this.subscription.unsubscribe();
   }
 }

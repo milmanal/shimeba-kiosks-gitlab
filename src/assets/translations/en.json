@@ -23,5 +23,13 @@
   "close": "Close",
   "show-all": "Show all",
   "information-orientation-screen": "You are looking at an information and orientation screen",
-  "enter-mob-number-and-recieve-sms": "Enter your number and receive an SMS with all of the details"
+  "enter-mob-number-and-recieve-sms": "Enter your number and receive an SMS with all of the details",
+
+  "ok": "OK",
+  "we_are_sorry": "We are sorry!",
+  "server_call_fails": "Looks like our server doesn't feel at its best right now.",
+  "try_again": "Please try again or choose another destination.",
+
+  "success": "Success!",
+  "success_send_sms_msg": "The sms has been send."
 }

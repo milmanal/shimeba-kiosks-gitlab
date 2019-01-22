@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/shimeba
 
 # dependencies
 /node_modules

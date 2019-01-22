@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnDestroy, ViewChild } from "@angular/core";
 import { DeviceService } from "./services/device.service";
 
 @Component({
@@ -9,6 +9,5 @@ import { DeviceService } from "./services/device.service";
 export class AppComponent {
   constructor(
     public ds: DeviceService,
-    ) {
-    }
+    ) {}
 }

@@ -170,7 +170,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
         instructions[currentInstr].instruction.instructions
       );
       this._mapbox.addRouteLine(instructions[currentInstr].points);
-      console.log(instructions);
 
       if (instruction) {
         instruction.setAttribute("style", "display: block");

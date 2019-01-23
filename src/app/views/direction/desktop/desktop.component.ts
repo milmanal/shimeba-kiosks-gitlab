@@ -166,7 +166,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
 
   getDirectionData() {
     let currentInstr = 0;
-    const arrayWithNeededInstuctionsType = [];
     let centeredRouteDependsOnDirection = [];
     if (this.venueId === '12') {
       centeredRouteDependsOnDirection = [300, 40];

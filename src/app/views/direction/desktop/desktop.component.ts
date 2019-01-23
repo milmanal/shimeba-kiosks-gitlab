@@ -321,8 +321,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.kioskData.entrances[0].sLatitude
         );
         this.getDirectionData();
-        console.log('after view init');
-
       });
 
   }

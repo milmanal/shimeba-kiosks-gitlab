@@ -3,6 +3,7 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse
 import { ErrorService } from '../services/error.service';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/observable/throw';
 
 
 @Injectable()
@@ -12,17 +13,12 @@ export class ErrorInterceptor implements HttpInterceptor {
         request: HttpRequest<any>,
         next: HttpHandler
     ): Observable<HttpEvent<any>> {
-        return next.handle(request).do(() => { }, (response) => {
+        return next.handle(request).do(() => {}, (response) => {
             if (response instanceof HttpErrorResponse) {
-                if (response.status === 401) {
-                    return;
-                }
                 if (response.status === 400 && response.error) {
                     this.errorService.addErrors(Array.isArray(response.error) ? response.error : [response.error]);
                     return;
                 }
-                console.log('response: ', response);
-
                 this.errorService.addErrors([`Your generic error message`]);
             }
 

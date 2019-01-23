@@ -1,24 +1,21 @@
-import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
-import { Observable, throwError } from "rxjs";
-import { LanguageService } from "./language.service";
-import { catchError, retry } from 'rxjs/operators';
-import "rxjs/add/operator/debounceTime";
-import "rxjs/add/operator/distinctUntilChanged";
-import "rxjs/add/operator/switchMap";
-import "rxjs/Rx";
-import { filter, map } from "rxjs/operators";
-import { forkJoin } from "rxjs";
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, timer, forkJoin } from 'rxjs';
+import { LanguageService } from './language.service';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
+import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
 import { AppSuccessModalComponent } from '../components/success-modal/success.modal';
 
 
-import { Poi } from "./../models";
+import { Poi } from './../models';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Injectable({
-  providedIn: "root"
+  providedIn: 'root'
 })
 
 export class ApiService {
@@ -26,7 +23,7 @@ export class ApiService {
   url = 'https://shimeba-api.azurewebsites.net/api/';
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'text/plain',
+      'Content-Type': 'text/plain',
     })
   };
   constructor(
@@ -34,11 +31,11 @@ export class ApiService {
     private _language: LanguageService,
     private _modalService: BsModalService,
     public toastr: ToastrService
-  ) {}
+  ) { }
 
   getKioskData(): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
-    const kioskId = localStorage.getItem("kioskId");
+    const kioskId = localStorage.getItem('kioskId');
 
     return this._httpClient.get(
       `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
@@ -50,10 +47,8 @@ export class ApiService {
       ignoreBackdropClick: true,
       animated: true
     });
-
-    return setTimeout(() => {
-      this.modalRef.hide();
-    }, 3000);
+    const source = timer(3000);
+    return source.subscribe(val => this.modalRef.hide());
   }
 
   search(terms: Observable<any>) {
@@ -63,7 +58,7 @@ export class ApiService {
       .switchMap(term => this.searchPoi(term));
   }
 
-  sendSms (params) {
+  sendSms(params) {
     return this._httpClient.post(`${this.url}send/sms`, {}, {
       headers: {
         'Content-Type': 'text/plain'
@@ -80,7 +75,7 @@ export class ApiService {
       );
   }
 
-  searchPoi({value, venueId}) {
+  searchPoi({ value, venueId }) {
     const currentLanguage = this._language.getCurrentLanguage();
     return this._httpClient.get(
       `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
@@ -116,7 +111,7 @@ export class ApiService {
           lat: kioskData.latitude,
           level: kioskData.level,
           locale: currentLanguage.name,
-          isParallel: "false"
+          isParallel: 'false'
         }
       });
   }
@@ -173,7 +168,7 @@ export class ApiService {
   getDirection(kioskData, poiData, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
-    return this._httpClient
+    const source = this._httpClient
       .get(`${this.url}routing/byfloor`, {
         params: {
           lat1: kioskData.entrances[0].sLatitude,
@@ -184,11 +179,9 @@ export class ApiService {
           lon2: poiData.entrances[0].sLongitude,
           level2: poiData.entrances[0].level,
           locale: currentLanguage.name,
-          isForWidget: "true"
+          isForWidget: 'true'
         }
-      })
-      .map(res => {
-        return this.prebuildDirection(res);
       });
+    return source.pipe(map(res => this.prebuildDirection(res)));
   }
 }

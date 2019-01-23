@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -9,16 +8,10 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 
 export class AppSuccessModalComponent {
-    venueId: any;
 
-    constructor(
-        public _router: Router,
-        public bsModalRef: BsModalRef) {
-        this.venueId = localStorage.getItem('venueId');
-    }
+    constructor(public bsModalRef: BsModalRef) {}
 
-    goToSearchScreen() {
-        this.bsModalRef.hide();
-        return this._router.navigateByUrl(`/search/${this.venueId}`);
-    }
+    // closeModal() {
+    //     return this.bsModalRef.hide();
+    // }
 }

@@ -1,0 +1,44 @@
+
+@import 'variables.scss';
+
+.success-modal-inner {
+    padding: 30px;
+
+    .modal-body {
+        .modal-body-inner {
+            align-items: flex-start;
+        }
+        
+        img {
+            padding-top: 10px;
+            display: block;
+        }
+
+        div {
+            padding-left: 15px;
+            font-size: 35px;
+            font-family: $OSHebrew;
+            font-weight: bold;
+            color: #37557B;
+        }
+    }
+
+    .modal-footer {
+        border: 0;
+
+        button {
+            background: #37557B;
+            font-size: 35px;
+            width: 150px;
+            color: #fff;
+            border-radius: 0;
+            height: 60px;
+            font-weight: bold;
+            display: flex;
+            padding: 0;
+            justify-content: center;
+            align-items: center;
+            font-family: $OSHebrew;
+        }
+    }
+}

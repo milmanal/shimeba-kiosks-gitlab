@@ -10,18 +10,18 @@ export class ErrorInterceptor implements HttpInterceptor {
     constructor(private errorService: ErrorService) {}
     intercept(
         request: HttpRequest<any>,
-        next: HttpHandler): Observable<HttpEvent<any>> {
+        next: HttpHandler
+    ): Observable<HttpEvent<any>> {
         return next.handle(request).do(() => { }, (response) => {
             if (response instanceof HttpErrorResponse) {
-                console.log('errorrrrrrrrr: ');
                 if (response.status === 401) {
                     return;
                 }
-
                 if (response.status === 400 && response.error) {
                     this.errorService.addErrors(Array.isArray(response.error) ? response.error : [response.error]);
                     return;
                 }
+                console.log('response: ', response);
 
                 this.errorService.addErrors([`Your generic error message`]);
             }

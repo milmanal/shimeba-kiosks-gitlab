@@ -11,13 +11,18 @@ import { filter, map } from "rxjs/operators";
 import { forkJoin } from "rxjs";
 import { ToastrService } from 'ngx-toastr';
 
+import { AppSuccessModalComponent } from '../components/success-modal/success.modal';
+
+
 import { Poi } from "./../models";
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Injectable({
   providedIn: "root"
 })
 
 export class ApiService {
+  modalRef: BsModalRef;
   url = 'https://shimeba-api.azurewebsites.net/api/';
   httpOptions = {
     headers: new HttpHeaders({
@@ -27,6 +32,7 @@ export class ApiService {
   constructor(
     private _httpClient: HttpClient,
     private _language: LanguageService,
+    private _modalService: BsModalService,
     public toastr: ToastrService
   ) {}
 
@@ -38,8 +44,16 @@ export class ApiService {
       `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
     );
   }
-  showSuccess() {
-    this.toastr.success('Success');
+  openSuccessModal() {
+    this.modalRef = this._modalService.show(AppSuccessModalComponent, {
+      class: 'success-modal-outer',
+      ignoreBackdropClick: true,
+      animated: true
+    });
+
+    return setTimeout(() => {
+      this.modalRef.hide();
+    }, 3000);
   }
 
   search(terms: Observable<any>) {
@@ -58,7 +72,7 @@ export class ApiService {
     })
       .subscribe(
         data => {
-          return this.showSuccess();
+          return this.openSuccessModal();
         },
         error => {
           console.log(`Error:`, error);
@@ -69,7 +83,7 @@ export class ApiService {
   searchPoi({value, venueId}) {
     const currentLanguage = this._language.getCurrentLanguage();
     return this._httpClient.get(
-      `${this.url}pois?venueid=${12}&locale=${currentLanguage.name}&query=${value}`
+      `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
     );
   }
 
@@ -87,7 +101,7 @@ export class ApiService {
     const currentLanguage = this._language.getCurrentLanguage();
 
     return this._httpClient
-      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${12}&locale=${currentLanguage.name}`);
+      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${venueId}&locale=${currentLanguage.name}`);
   }
 
   poiByDistance(categoryId, venueId) {
@@ -96,7 +110,7 @@ export class ApiService {
     return this._httpClient
       .get<Poi[]>(`${this.url}pois/category/bydistance`, {
         params: {
-          venueid: '12',
+          venueid: venueId,
           category: categoryId,
           lon: kioskData.longitude,
           lat: kioskData.latitude,
@@ -152,8 +166,6 @@ export class ApiService {
   }
 
   prebuildDirection(data) {
-    console.log('data: ', data);
-
     const pointsOfFloors = data.pointsOfFloors;
     return this.buildRoute(data.source.level, [], pointsOfFloors);
   }
@@ -167,7 +179,7 @@ export class ApiService {
           lat1: kioskData.entrances[0].sLatitude,
           lon1: kioskData.entrances[0].sLongitude,
           level1: kioskData.entrances[0].level,
-          venueid: '12',
+          venueid: venueId,
           lat2: poiData.entrances[0].sLatitude,
           lon2: poiData.entrances[0].sLongitude,
           level2: poiData.entrances[0].level,

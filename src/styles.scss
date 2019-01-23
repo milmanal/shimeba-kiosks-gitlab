@@ -28,6 +28,25 @@
   }
 }
 
+.success-modal-outer {
+  max-width: 600px;
+  margin-top: 21%;
+
+  &:before {
+    content: '';
+    position: fixed;
+    display: block;
+    background: #4277ba;
+    opacity: .4;
+    left: -1000%;
+    right: -1000%;
+    bottom: -1000%;
+    top: -1000%;
+    min-width: auto;
+    min-height: auto;
+  }
+}
+
 @font-face {
   font-family: "Almoni";
   src: url("./assets/fonts/almoni-dl-aaa-regular.ttf");

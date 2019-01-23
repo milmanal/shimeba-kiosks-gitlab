@@ -59,7 +59,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '13': [
+    '19': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
       'assets/imgs/yafe/destination-reached.svg',
@@ -68,7 +68,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '14': [
+    '18': [
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/destination.svg',
@@ -139,23 +139,23 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     }
   }
 
-  openErrorModal() {
-    const initialState = {
-      list: [
-        'Open a modal with component',
-        'Pass your data',
-        'Do something else',
-        '...'
-      ],
-      title: 'Modal with component'
-    };
-    this.modalRef = this._modalService.show(AppErrorModalComponent, {
-      class: 'error-modal-outer',
-      ignoreBackdropClick: true,
-      animated: true
-    });
-    // this.modalRef.content.closeBtnName = 'Ok';
-  }
+  // openErrorModal() {
+  //   const initialState = {
+  //     list: [
+  //       'Open a modal with component',
+  //       'Pass your data',
+  //       'Do something else',
+  //       '...'
+  //     ],
+  //     title: 'Modal with component'
+  //   };
+  //   this.modalRef = this._modalService.show(AppErrorModalComponent, {
+  //     class: 'error-modal-outer',
+  //     ignoreBackdropClick: true,
+  //     animated: true
+  //   });
+  //   // this.modalRef.content.closeBtnName = 'Ok';
+  // }
 
   backToMain() {
     this.routeSubscribtion.unsubscribe();
@@ -211,8 +211,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.routing(res, currentInstr);
           currentInstr++;
         });
-      },
-      error => this.openErrorModal()
+      }
     );
   }
 

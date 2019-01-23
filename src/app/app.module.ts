@@ -26,6 +26,22 @@ import {
 import "hammerjs";
 
 
+const interceptors = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptorService,
+    multi: true
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorInterceptor,
+    multi: true
+  }
+];
+
+const services = [
+  ErrorService
+];
+
 @NgModule({
   declarations: [AppComponent, AppErrorModalComponent, AppSuccessModalComponent],
   imports: [
@@ -47,12 +63,8 @@ import "hammerjs";
     }),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptorService,
-      multi: true
-    },
-    ErrorService
+    interceptors,
+    services
   ],
   bootstrap: [AppComponent],
   entryComponents: [AppErrorModalComponent, AppSuccessModalComponent],

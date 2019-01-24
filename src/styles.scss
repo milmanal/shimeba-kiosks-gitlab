@@ -2,12 +2,14 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
+@import 'variables';
+@import 'variables-yafe';
 @import 'ltr';
 @import 'rtl-yafe';
 @import 'rtl-hagalil';
 @import 'hebrew';
-@import 'variables';
-@import 'variables-yafe';
+@import 'amh';
+
 
 .error-modal-outer {
   max-width: 1200px;
@@ -51,6 +53,20 @@
   font-family: "Almoni";
   src: url("./assets/fonts/almoni-dl-aaa-regular.ttf");
 }
+
+@font-face {
+  font-family: "Noto Bold";
+  src: url("./assets/fonts/NotoSansEthiopic-Bold.ttf");
+}
+@font-face {
+  font-family: "Noto Regular";
+  src: url("./assets/fonts/NotoSansEthiopic-Regular.ttf");
+}
+@font-face {
+  font-family: "Noto SemiBold";
+  src: url("./assets/fonts/NotoSansEthiopic-SemiBold.ttf");
+}
+
 html[dir="rtl"] {
   * {
     direction: rtl;

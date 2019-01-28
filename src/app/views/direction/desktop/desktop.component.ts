@@ -210,6 +210,9 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           this.routing(res, currentInstr);
           currentInstr++;
         });
+      },
+      error => {
+        console.log(error, 'Err');
       }
     );
   }
@@ -313,7 +316,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
             value => value.propertyName === "Location Description"
           );
         }
-
         this._mapbox.addMarker(
           "start-point",
           this.kioskData.entrances[0].sLongitude,

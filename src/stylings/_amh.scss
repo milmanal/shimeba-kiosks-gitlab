@@ -1,23 +1,25 @@
 @import 'variables';
 
-.search-container {
-    .search {
-        input, div {
+html[lang="am"] {
+    .search-container {
+        .search {
+            input, div {
+                font-family: $noto-b !important;
+            }
+        }
+    
+        ul + h1 {
             font-family: $noto-b !important;
         }
-    }
-
-    ul + h1 {
-        font-family: $noto-b !important;
-    }
-
-    h1 {
-        color: #9b9b9b !important;
-    }
-
-    .category-name {
-        font-family: $noto-r !important;
-        top: 62% !important;
-        font-size: 20px !important;
+    
+        h1 {
+            color: #9b9b9b !important;
+        }
+    
+        .category-name {
+            font-family: $noto-r !important;
+            top: 62% !important;
+            font-size: 20px !important;
+        }
     }
 }

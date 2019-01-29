@@ -4,11 +4,11 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm run build -- --prod",
+    "postinstall": "npm run build",
     "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer dist/shimeba/stats.json"
   },
   "private": true,

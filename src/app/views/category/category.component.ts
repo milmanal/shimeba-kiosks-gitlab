@@ -5,7 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
 import { LanguageService } from "./../../services/language.service";
 import { ApiService } from "./../../services/api.service";
 import { DeviceService } from "./../../services/device.service";
@@ -27,9 +27,11 @@ export class CategoryComponent implements OnInit, OnDestroy {
   currentCategoryId: Number;
   currentCategoryName: String;
   venueId: any;
+  langId: any;
   scrollTopActive: Boolean = false;
   scrollDownActive: Boolean = false;
   applyImgsByVenueId: any;
+  navigationSubscription;
   imgByVenueId = {
     '12': [
       'assets/imgs/cancel.svg',
@@ -49,27 +51,33 @@ export class CategoryComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router
   ) {
-    this._route.params.subscribe(params => {
-      this.currentCategoryId = Number(params.categoryId);
-    });
+    // this._route.params.subscribe(params => {
+    //   this.currentCategoryId = Number(params.categoryId);
+    // });
+
+    // this.navigationSubscription = this._router.events.subscribe((evt: any) => {
+    //   if (evt instanceof NavigationEnd) {
+    //     console.log(evt);
+    //   }
+    // });
   }
   ngOnInit() {
     this._route.params.subscribe(params => {
+      this.currentCategoryId = Number(params.categoryId);
       localStorage.setItem("venueId", params.venueId);
+      localStorage.setItem("langId", params.langId);
+      this.langId = params.langId;
     });
     this.venueId = localStorage.getItem("venueId");
+    // this.langId = localStorage.getItem("langId");
+    // this.langId = params.langId;
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
-    console.log(this.venueId);
     this.categories = Categories[this.venueId];
-    this.languageSubscription = this._language.observableLanguage.subscribe(
-      lang => {
-        this.currentLanguage = lang;
-      }
-    );
+    this.languageSubscription = this._language.observableLanguage.subscribe(lang => this.currentLanguage = lang);
     this.currentCategoryName = this.categories.find(
       category => category.categoryId === this.currentCategoryId
     ).name;
@@ -88,17 +96,17 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   selectPoi(id) {
     const kioskId = localStorage.getItem("kioskId");
-    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}`);
+    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
 
   onScroll() {
-    let element = this.myScrollContainer.nativeElement;
-    if(element.scrollTop !== 0) {
+    const element = this.myScrollContainer.nativeElement;
+    if (element.scrollTop !== 0) {
       this.scrollTopActive = true;
     } else {
       this.scrollTopActive = false;
     }
-    if(element.scrollTop - element.scrollHeight + element.offsetHeight <=0) {
+    if (element.scrollTop - element.scrollHeight + element.offsetHeight <= 0) {
       this.scrollDownActive = true;
     } else {
       this.scrollDownActive = false;
@@ -114,10 +122,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.myScrollContainer.nativeElement.scrollTop - 80;
   }
   back() {
-    this._router.navigateByUrl(`/search/${this.venueId}`);
+    this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
   }
 
   ngOnDestroy() {
     this.languageSubscription.unsubscribe();
+    // if (this.navigationSubscription) {
+    //   this.navigationSubscription.unsubscribe();
+    // }
   }
 }

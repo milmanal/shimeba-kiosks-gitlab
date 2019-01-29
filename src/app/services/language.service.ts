@@ -1,9 +1,10 @@
-import { Injectable } from "@angular/core";
-import { TranslateService } from "@ngx-translate/core";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
-import * as moment from "moment";
-import { Languages } from "./../_languages";
-import { Language } from "../models";
+import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import * as moment from 'moment';
+import { Languages } from './../_languages';
+import { Language } from '../models';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable()
 export class LanguageService {
@@ -11,7 +12,11 @@ export class LanguageService {
   currentLanguage: Language;
   observableLanguage;
 
-  constructor(private translate: TranslateService) {
+  constructor(
+    private translate: TranslateService,
+    public _router: Router,
+    public _route: ActivatedRoute,
+  ) {
     const { currentLang } = this.translate;
     this.currentLanguage = this.languages.find(
       lang => {
@@ -26,19 +31,19 @@ export class LanguageService {
   setLanguage(lang: Language) {
     this.translate.use(lang.name);
     moment.locale(lang.name);
-    const HTML = document.getElementsByTagName("html")[0];
+    const HTML = document.getElementsByTagName('html')[0];
 
-    const dirAttr = document.createAttribute("dir");
+    const dirAttr = document.createAttribute('dir');
     dirAttr.value = lang.direction;
 
-    const languageAttr = document.createAttribute("lang");
+    const languageAttr = document.createAttribute('lang');
     languageAttr.value = lang.name;
 
     HTML.setAttributeNode(dirAttr);
     HTML.setAttributeNode(languageAttr);
     this.currentLanguage = lang;
     this.observableLanguage.next(lang);
-    localStorage.setItem("currentLanguage", lang.name);
+    localStorage.setItem('currentLanguage', lang.name);
   }
 
   getCurrentLanguage() {

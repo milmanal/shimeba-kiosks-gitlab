@@ -10,15 +10,17 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 export class AppErrorModalComponent {
     venueId: any;
+    langId: any;
 
     constructor(
         public _router: Router,
         public bsModalRef: BsModalRef) {
         this.venueId = localStorage.getItem('venueId');
+        this.langId = localStorage.getItem('langId');
     }
 
     goToSearchScreen() {
         this.bsModalRef.hide();
-        return this._router.navigateByUrl(`/search/${this.venueId}`);
+        return this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
     }
 }

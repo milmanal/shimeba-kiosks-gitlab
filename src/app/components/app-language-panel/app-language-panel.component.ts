@@ -4,6 +4,8 @@ import { Language } from '../../models';
 import { LanguageService } from './../../services/language.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
+import { from } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-language-panel',
@@ -38,25 +40,38 @@ export class AppLanguagePanelComponent implements OnInit {
   }
 
   selectLanguage(lang) {
+    const replaceable = `/${this.currentLanguage.name}`;
+    const url = this._router.url;
+    const urlWithChangedLangId = url.replace(replaceable, `/${lang.name}`);
     if (this.currentLanguage.name === lang.name) {
       this.showAnotherLanguages = !this.showAnotherLanguages;
     } else {
       this.currentLanguage = lang;
       this._language.setLanguage(lang);
       this.showAnotherLanguages = !this.showAnotherLanguages;
+      // console.log('url', urlWithChangedLangId);
+      this._router.navigateByUrl(urlWithChangedLangId);
     }
   }
 
   ngOnInit() {
-    if (window.location.href.includes('/home')) {
-      this.showAllLanguages = true;
-    }
-
     const venueId = localStorage.getItem('venueId');
     const HTML = document.getElementById('venue-container-language');
     const venueAttr = document.createAttribute('venueId');
+
+    if (window.location.href.includes('/home')) {
+      this.showAllLanguages = true;
+      this.showAnotherLanguages = true;
+    }
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();
+
+    this._route.params.subscribe(params => {
+      const sourceLangArray = from(this.languages);
+      const langs = sourceLangArray.pipe(filter(lang => lang.name === params.langId));
+      langs.subscribe(val => this.selectLanguage(val));
+      this.showAnotherLanguages = !this.showAnotherLanguages;
+    });
   }
 }

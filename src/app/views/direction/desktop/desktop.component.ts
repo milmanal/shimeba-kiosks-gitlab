@@ -92,6 +92,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       this.venueId = params.venueId;
       localStorage.setItem("kioskId", params.kioskId);
       localStorage.setItem("venueId", params.venueId);
+      localStorage.setItem("langId", params.langId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
 

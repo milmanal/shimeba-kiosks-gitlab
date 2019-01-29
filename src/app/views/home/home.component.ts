@@ -12,6 +12,7 @@ import { DeviceService } from '../../services/device.service';
 
 export class HomeComponent implements OnInit {
   venueId: any;
+  langId: any;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
       '19': 'assets/imgs/yafe/start-yafe.svg',
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   startSearch() {
-    this._router.navigateByUrl(`/search/${this.venueId}`);
+    this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
   }
 
   ngOnInit() {
@@ -36,6 +37,9 @@ export class HomeComponent implements OnInit {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
       localStorage.setItem("kioskId", params.kioskId);
       localStorage.setItem("venueId", params.venueId);
+      localStorage.setItem("langId", params.langId);
+      this.langId = params.langId;
+      console.log(this.langId);
       this.venueId = params.venueId;
       const HTML = document.getElementById("venue-container");
       const venueAttr = document.createAttribute("venueId");

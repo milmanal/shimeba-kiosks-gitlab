@@ -1,13 +1,13 @@
-import { Component, OnInit, OnChanges } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
-import { ApiService } from "./../../services/api.service";
-import { MapboxService } from "../../services/mapbox.service";
+import { ApiService } from './../../services/api.service';
+import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
 
 @Component({
-  templateUrl: "home.component.html",
-  styleUrls: ["home.component.scss"]
+  templateUrl: 'home.component.html',
+  styleUrls: ['home.component.scss']
 })
 
 export class HomeComponent implements OnInit {
@@ -15,8 +15,8 @@ export class HomeComponent implements OnInit {
   langId: any;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
-      '19': 'assets/imgs/yafe/start-yafe.svg',
-      '18': 'assets/imgs/hagalil/start.svg'
+      '18': 'assets/imgs/yafe/start-yafe.svg',
+      '19': 'assets/imgs/hagalil/start.svg'
   };
   startPointImgByVenueId: string;
   constructor(
@@ -35,14 +35,13 @@ export class HomeComponent implements OnInit {
     const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
-      localStorage.setItem("kioskId", params.kioskId);
-      localStorage.setItem("venueId", params.venueId);
-      localStorage.setItem("langId", params.langId);
+      localStorage.setItem('kioskId', params.kioskId);
+      localStorage.setItem('venueId', params.venueId);
+      localStorage.setItem('langId', params.langId);
       this.langId = params.langId;
-      console.log(this.langId);
       this.venueId = params.venueId;
-      const HTML = document.getElementById("venue-container");
-      const venueAttr = document.createAttribute("venueId");
+      const HTML = document.getElementById('venue-container');
+      const venueAttr = document.createAttribute('venueId');
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
 
@@ -51,7 +50,7 @@ export class HomeComponent implements OnInit {
     this._api.getKioskData().subscribe(res => {
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
       this._mapbox.addMarker(
-        "start-point",
+        'start-point',
         res.entrances[0].longitude,
         res.entrances[0].latitude
       );

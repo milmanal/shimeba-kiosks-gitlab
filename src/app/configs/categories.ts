@@ -27,7 +27,7 @@ export const Categories = {
     }
   ],
 
-  "19": [
+  "18": [
     {
       icon: "yafe/entrance-yafe.svg",
       name: "entrance",
@@ -55,7 +55,7 @@ export const Categories = {
     }
   ],
 
-  "18": [
+  "19": [
     {
       icon: "hagalil/entrance.svg",
       name: "entrance",

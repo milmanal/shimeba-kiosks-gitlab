@@ -1,17 +1,17 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
-import { LanguageService } from "./../../services/language.service";
-import { ApiService } from "./../../services/api.service";
-import { Language, Category } from "../../models";
-import { Subscription } from "rxjs";
-import { Subject } from "rxjs/Subject";
-import { Categories } from "./../../configs/categories";
-import { DeviceService } from "../../services/device.service";
+import { LanguageService } from './../../services/language.service';
+import { ApiService } from './../../services/api.service';
+import { Language, Category } from '../../models';
+import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Categories } from './../../configs/categories';
+import { DeviceService } from '../../services/device.service';
 
 @Component({
-  templateUrl: "search.component.html",
-  styleUrls: ["search.component.scss"],
+  templateUrl: 'search.component.html',
+  styleUrls: ['search.component.scss'],
   providers: [ApiService]
 })
 export class SearchComponent implements OnInit, OnDestroy {
@@ -45,14 +45,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   ngOnInit() {
     this._route.params.subscribe(params => {
-      localStorage.setItem("venueId", params.venueId);
-      localStorage.setItem("langId", params.langId);
+      localStorage.setItem('venueId', params.venueId);
+      localStorage.setItem('langId', params.langId);
       this.langId = params.langId;
-      console.log('search component: ', this.langId);
     });
-    this.venueId = localStorage.getItem("venueId");
-    const HTML = document.getElementById("venue-container");
-    const venueAttr = document.createAttribute("venueId");
+    this.venueId = localStorage.getItem('venueId');
+    const HTML = document.getElementById('venue-container');
+    const venueAttr = document.createAttribute('venueId');
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
     this.categories = Categories[this.venueId];
@@ -81,7 +80,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this._router.navigateByUrl(`/category/${id}/${this.venueId}/${this.langId}`);
   }
   selectPoi(id) {
-    const kioskId = localStorage.getItem("kioskId");
+    const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}`);
   }
   ngOnDestroy() {

@@ -23,3 +23,19 @@ html[lang="am"] {
         }
     }
 }
+
+html[lang="fr"],
+html[lang="pt"],
+html[lang="es"] {
+    .search-container {
+
+        h1 {
+            color: #9b9b9b !important;
+        }
+
+        .category-name {
+            // top: 62% !important;
+            font-size: 24px !important;
+        }
+    }
+}

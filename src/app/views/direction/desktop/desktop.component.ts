@@ -59,7 +59,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '19': [
+    '18': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
       'assets/imgs/yafe/destination-reached.svg',
@@ -68,7 +68,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '18': [
+    '19': [
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/route-disk.svg',
       'assets/imgs/hagalil/destination.svg',

@@ -4,21 +4,21 @@ import {
   OnDestroy,
   ViewChild,
   ElementRef
-} from "@angular/core";
-import { ActivatedRoute, Router, NavigationEnd } from "@angular/router";
-import { LanguageService } from "./../../services/language.service";
-import { ApiService } from "./../../services/api.service";
-import { DeviceService } from "./../../services/device.service";
-import { Language, Category } from "../../models";
-import { Subscription } from "rxjs";
-import { Categories } from "./../../configs/categories";
+} from '@angular/core';
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { LanguageService } from './../../services/language.service';
+import { ApiService } from './../../services/api.service';
+import { DeviceService } from './../../services/device.service';
+import { Language, Category } from '../../models';
+import { Subscription } from 'rxjs';
+import { Categories } from './../../configs/categories';
 
 @Component({
-  templateUrl: "category.component.html",
-  styleUrls: ["category.component.scss"]
+  templateUrl: 'category.component.html',
+  styleUrls: ['category.component.scss']
 })
 export class CategoryComponent implements OnInit, OnDestroy {
-  @ViewChild("categoryPois")
+  @ViewChild('categoryPois')
   private myScrollContainer: ElementRef;
   currentLanguage: Language;
   languageSubscription: Subscription;
@@ -36,10 +36,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
     '12': [
       'assets/imgs/cancel.svg',
     ],
-    '19': [
+    '18': [
       'assets/imgs/yafe/cancel.svg',
     ],
-    '18': [
+    '19': [
       'assets/imgs/hagalil/cancel.svg',
     ]
   };
@@ -64,16 +64,16 @@ export class CategoryComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this._route.params.subscribe(params => {
       this.currentCategoryId = Number(params.categoryId);
-      localStorage.setItem("venueId", params.venueId);
-      localStorage.setItem("langId", params.langId);
+      localStorage.setItem('venueId', params.venueId);
+      localStorage.setItem('langId', params.langId);
       this.langId = params.langId;
     });
-    this.venueId = localStorage.getItem("venueId");
-    // this.langId = localStorage.getItem("langId");
+    this.venueId = localStorage.getItem('venueId');
+    // this.langId = localStorage.getItem('langId');
     // this.langId = params.langId;
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
-    const HTML = document.getElementById("venue-container");
-    const venueAttr = document.createAttribute("venueId");
+    const HTML = document.getElementById('venue-container');
+    const venueAttr = document.createAttribute('venueId');
     venueAttr.value = this.venueId;
     HTML.setAttributeNode(venueAttr);
     this.categories = Categories[this.venueId];
@@ -95,7 +95,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   selectPoi(id) {
-    const kioskId = localStorage.getItem("kioskId");
+    const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
 

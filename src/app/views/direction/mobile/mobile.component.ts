@@ -52,7 +52,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '19': [
+    '18': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
       'assets/imgs/yafe/destination-reached.png',
@@ -61,7 +61,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/yafe/bullet.svg'
     ],
 
-    '18': [
+    '19': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
       'assets/imgs/yafe/destination-reached.png',

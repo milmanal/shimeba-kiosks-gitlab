@@ -162,7 +162,8 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     this.routeSubscribtion.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
-    this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}`);
+    const langId = localStorage.getItem("langId");
+    this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}/${langId}`);
   }
 
   getDirectionData() {

@@ -81,7 +81,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
   selectPoi(id) {
     const kioskId = localStorage.getItem('kioskId');
-    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}`);
+    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
   ngOnDestroy() {
     this.languageSubscription.unsubscribe();

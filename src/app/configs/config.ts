@@ -32,7 +32,7 @@ export const Config = {
     directionMapUrl: 'assets/hilelyafe_route.png',
     arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
     drawTime: 1.5,
-    initZoom: 17.7,
+    initZoom: 18,
     mobileInitZoom: 16.5,
     rotation: 10,
     center: [34.896645694971085, 32.45076827468581],

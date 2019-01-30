@@ -27,12 +27,12 @@ export class AppLanguagePanelComponent implements OnInit {
     public ds: DeviceService
   ) {
     this._router.events.subscribe(val => {
+      console.log(val);
       if (val instanceof NavigationEnd && val.url.indexOf('home') !== -1) {
-        this.showAllLanguages = true;
-        this.isRoutePage = false;
-      } else if (val instanceof NavigationEnd && val.url.indexOf('home') === -1) {
         this.showAllLanguages = false;
+        this.isRoutePage = false;
       }
+      
       if (val instanceof NavigationEnd && val.url.indexOf('direction') !== -1) {
         this.isRoutePage = true;
       }
@@ -43,13 +43,19 @@ export class AppLanguagePanelComponent implements OnInit {
     const replaceable = `/${this.currentLanguage.name}`;
     const url = this._router.url;
     const urlWithChangedLangId = url.replace(replaceable, `/${lang.name}`);
+
+    console.log('this.currentLanguage.name', this.currentLanguage.name);
+    console.log('lang.name', lang.name);
+    console.log('this.showAnotherLanguages', this.showAnotherLanguages);
+
     if (this.currentLanguage.name === lang.name) {
       this.showAnotherLanguages = !this.showAnotherLanguages;
     } else {
       this.currentLanguage = lang;
       this._language.setLanguage(lang);
       this.showAnotherLanguages = !this.showAnotherLanguages;
-      // console.log('url', urlWithChangedLangId);
+      this.showAllLanguages = !this.showAllLanguages;
+
       this._router.navigateByUrl(urlWithChangedLangId);
     }
   }
@@ -58,10 +64,11 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueId = localStorage.getItem('venueId');
     const HTML = document.getElementById('venue-container-language');
     const venueAttr = document.createAttribute('venueId');
+    this.showAllLanguages = !this.showAllLanguages;
 
     if (window.location.href.includes('/home')) {
       this.showAllLanguages = true;
-      this.showAnotherLanguages = true;
+      // this.showAnotherLanguages = true;
     }
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);

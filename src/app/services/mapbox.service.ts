@@ -104,7 +104,7 @@ export class MapboxService {
         : Config[this.venueId].initZoom,
       bearing: Config[this.venueId].rotation,
       center: Config[this.venueId].center,
-      style: this.style
+      style: this.style,
     });
 
 

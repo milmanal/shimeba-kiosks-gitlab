@@ -34,7 +34,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router
   ) {
-    console.log('search')
     this._api.search(this.searchTerm$).subscribe(results => {
       this.pois = results;
       if (this.pois['length'] === 0) {

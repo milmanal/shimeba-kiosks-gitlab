@@ -1,11 +1,6 @@
 @import 'variables-yafe';
 
-.lang-panel-bottom {
-  .language-panel {
-    top: unset !important;
-    bottom: 0;
-  }
-}
+
 
 &.hide-lang-pannel {
   display: none;
@@ -85,6 +80,11 @@
     &:focus {
       outline: none;
     }
+  }
+
+  &.lang-panel-bottom {
+    top: unset !important;
+    bottom: 0;
   }
 }
 

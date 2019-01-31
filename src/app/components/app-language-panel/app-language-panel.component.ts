@@ -17,6 +17,7 @@ export class AppLanguagePanelComponent implements OnInit {
   languages: Language[] = Languages;
   showAnotherLanguages: Boolean = false;
   showAllLanguages: Boolean = false;
+  languagePanelOnTheBottom: Boolean = true;
   isRoutePage: Boolean = false;
   venueId: any;
 
@@ -65,11 +66,11 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueId = localStorage.getItem('venueId');
     const HTML = document.getElementById('venue-container-language');
     const venueAttr = document.createAttribute('venueId');
-
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
+      this.languagePanelOnTheBottom = false;
     }
-
+    console.log('languagePanelOnTheBottom', this.languagePanelOnTheBottom);
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();

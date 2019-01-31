@@ -13,7 +13,12 @@
     <div class="d-none">
         <img [src]="startPointImgByVenueId" alt="" id="start-point">
         <div id="you-are-here" class="pb-5 px-3 d-flex justify-content-center align-items-center">
-            {{'you-are-here' | translate }}
+            <div class="pseudo-elem">
+                {{'you-are-here' | translate }}
+
+                <div class="before"></div>
+                <div class="after"></div>
+            </div>
         </div>
     </div>
 </div>

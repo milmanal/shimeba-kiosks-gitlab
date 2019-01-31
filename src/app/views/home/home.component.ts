@@ -54,10 +54,50 @@ export class HomeComponent implements OnInit {
         res.entrances[0].longitude,
         res.entrances[0].latitude
       );
-      this._mapbox.addKioskMarker(
-        res.entrances[0].longitude,
-        res.entrances[0].latitude
-      );
+
+      this._route.params.subscribe(params => {
+        let offsetOptons = [0, 0];
+        switch (params.langId) {
+          case 'es': {
+            offsetOptons = [-67, -85];
+            break;
+          }
+          case 'pt': {
+            offsetOptons = [-110, -85];
+            break;
+          }
+          case 'fr': {
+            offsetOptons = [-42, -85];
+            break;
+          }
+          case 'am': {
+            offsetOptons = [-36, -85];
+            break;
+          }
+          case 'ar': {
+            offsetOptons = [-30, -85];
+            break;
+          }
+          case 'ru': {
+            offsetOptons = [-60, -85];
+            break;
+          }
+          case 'he': {
+            offsetOptons = [-40, -85];
+            break;
+          }
+          case 'en': {
+            offsetOptons = [-95, -85];
+            break;
+          }
+        }
+
+        this._mapbox.addKioskMarker(
+          res.entrances[0].longitude,
+          res.entrances[0].latitude,
+          offsetOptons
+        );
+      });
     });
   }
 }

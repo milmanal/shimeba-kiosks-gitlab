@@ -15,3 +15,16 @@ html[lang="he"] #venue-container[venueid="12"] {
         }
     }
 }
+
+html[lang="he"] #venue-container[venueid="18"] {
+    .home-component {
+        .search-input  {
+            font-family: $OSHebrewBold !important;
+        }
+
+        #you-are-here {
+            font-weight: bold;
+            font-family: $OSHebrewBold;
+        }
+    }
+}

@@ -22,6 +22,18 @@ html[lang="am"] {
             font-size: 20px !important;
         }
     }
+
+    #you-are-here {
+        font-family: $noto-b !important;
+    }
+}
+
+html[lang="am"] #venue-container[venueid="18"] {
+    .home-component {
+        .search-input  {
+            font-family: $noto-b !important;
+        }
+    }
 }
 
 html[lang="fr"],

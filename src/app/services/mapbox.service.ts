@@ -295,9 +295,10 @@ export class MapboxService {
     });
   }
 
-  addKioskMarker(lon, lat) {
+  addKioskMarker(lon, lat, offset: number[]) {
     const youAreHere = document.getElementById('you-are-here');
-    new mapboxgl.Marker(youAreHere, { offset: [-38, -75] })
+    console.log(offset);
+    new mapboxgl.Marker(youAreHere, { offset: offset })
       .setLngLat([lon, lat])
       .addTo(this.map);
   }

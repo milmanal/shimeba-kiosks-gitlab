@@ -9,6 +9,11 @@
 @import 'rtl-hagalil';
 @import 'hebrew';
 @import 'amh';
+@import 'ar';
+@import 'es';
+@import 'fr';
+@import 'pt';
+@import 'ru';
 
 
 .error-modal-outer {
@@ -66,6 +71,55 @@
   font-family: "Noto SemiBold";
   src: url("./assets/fonts/NotoSansEthiopic-SemiBold.ttf");
 }
+
+@font-face {
+  font-family: "Noto Medium";
+  src: url("./assets/fonts/NotoSansEthiopic-Medium.ttf");
+}
+
+
+
+@font-face {
+  font-family: "Lucida";
+  src: url("./assets/fonts/LucidaGrande.ttf");
+}
+
+@font-face {
+  font-family: "Lucida Bold";
+  src: url("./assets/fonts/LucidaGrande-Bold.ttf");
+}
+
+@font-face {
+  font-family: "Mariad Arabic";
+  src: url("./assets/fonts/myriad-arabic-bold-2.ttf");
+}
+
+@font-face {
+  font-family: "OS Hebrew Bold";
+  src: url("./assets/fonts/open-sans-hebrew-bold.ttf");
+}
+
+@font-face {
+  font-family: "OS Hebrew";
+  src: url("./assets/fonts/open-sans-hebrew.ttf");
+}
+
+@font-face {
+  font-family: "OS Regular";
+  src: url("./assets/fonts/OpenSans-Regular.ttf");
+}
+
+@font-face {
+  font-family: "OS Semibold";
+  src: url("./assets/fonts/OpenSansSemibold.ttf");
+}
+
+@font-face {
+  font-family: "ArialMT";
+  src: url("./assets/fonts/ARIALMT.ttf");
+}
+
+
 
 html[dir="rtl"] {
   * {

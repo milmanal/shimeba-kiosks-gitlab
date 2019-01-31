@@ -1,0 +1,19 @@
+@import 'variables';
+
+html[lang="ar"] #venue-container[venueid="18"] {
+    .home-component {
+        .search-input  {
+            font-family: $mariad !important;
+            font-size: 100px !important;
+        }
+
+        #you-are-here {
+            font-family: $mariad;
+            font-size: 45px;
+
+            .pseudo-elem {
+                padding: 0 40px !important; 
+            }
+        }
+    }
+}

@@ -1,0 +1,14 @@
+@import 'variables';
+
+html[lang="ru"] #venue-container[venueid="18"] {
+    .home-component {
+
+        #you-are-here {
+            font-family: $OSSimple;
+
+            // .pseudo-elem {
+            //     padding: 0 40px !important; 
+            // }
+        }
+    }
+}

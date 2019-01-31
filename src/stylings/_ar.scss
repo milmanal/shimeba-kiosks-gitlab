@@ -16,4 +16,25 @@ html[lang="ar"] #venue-container[venueid="18"] {
             }
         }
     }
+
+    .search-container {
+        .search-input {
+            font-size: 80px !important;
+            font-family: $mariad !important;
+        }
+
+        .search-instruction {
+            font-family: $mariad !important;
+            margin-bottom: 0;
+            font-size: 55px !important;
+        }
+
+        .category-name {
+            font-family: $mariad-r !important;
+            font-size: 30px !important;
+            line-height: .73 !important;
+            padding: 0 15px;
+            bottom: 7px !important;
+        }
+    }
 }

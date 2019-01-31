@@ -1,8 +1,8 @@
 <div id="venue-container">
     <div class="search-container d-flex flex-column align-items-center justify-content-top">
         <div class="search mt-5">
-            <input type="text" class="search-input px-5" autofocus [(ngModel)]="searchValue" (ngModelChange)="search($event)"
-                placeholder="{{'type-the-name-of-dep' | translate}}" [matKeyboard]="currentLanguage.name">
+            <input type="text" class="search-input px-5" [(ngModel)]="searchValue" (ngModelChange)="search($event)"
+                placeholder="{{'type-the-name-of-dep' | translate}}" [matKeyboard]="currentLanguage.name" appAutofocus>
             <div class="search-icon"></div>
             <div class="no-search-result-message" *ngIf="noSearchResult" translate>no-search-result</div>
         </div>

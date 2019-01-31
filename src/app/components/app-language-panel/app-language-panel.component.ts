@@ -15,7 +15,7 @@ import { filter } from 'rxjs/operators';
 export class AppLanguagePanelComponent implements OnInit {
   currentLanguage: Language;
   languages: Language[] = Languages;
-  showAnotherLanguages: Boolean = false;
+  showAnotherLanguages: Boolean = true;
   showAllLanguages: Boolean = false;
   languagePanelOnTheBottom: Boolean = true;
   isRoutePage: Boolean = false;
@@ -29,7 +29,6 @@ export class AppLanguagePanelComponent implements OnInit {
   ) {
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
-      console.log('home page');
     }
     // this._router.events.subscribe(val => {
     //   if (val instanceof NavigationEnd && val.url.includes('/home')) {
@@ -56,7 +55,6 @@ export class AppLanguagePanelComponent implements OnInit {
     } else {
       this.currentLanguage = lang;
       this._language.setLanguage(lang);
-      this.showAnotherLanguages = !this.showAnotherLanguages;
       this.showAllLanguages = false;
       this._router.navigateByUrl(urlWithChangedLangId);
     }
@@ -69,8 +67,8 @@ export class AppLanguagePanelComponent implements OnInit {
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
       this.languagePanelOnTheBottom = false;
+      this.showAnotherLanguages = false;
     }
-    console.log('languagePanelOnTheBottom', this.languagePanelOnTheBottom);
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();
@@ -81,7 +79,6 @@ export class AppLanguagePanelComponent implements OnInit {
       langs.subscribe(val => {
         this.selectLanguage(val);
       });
-      this.showAnotherLanguages = !this.showAnotherLanguages;
     });
   }
 }

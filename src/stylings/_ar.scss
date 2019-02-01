@@ -36,5 +36,24 @@ html[lang="ar"] #venue-container[venueid="18"] {
             padding: 0 15px;
             bottom: 7px !important;
         }
+
+        .search-results {
+            ul li {
+                .currentLanguage {
+                    font-family: $mariad !important;
+                    font-weight: 500 !important;
+                    font-size: 42px !important;
+                }
+
+                .secondaryLanguage {
+                    color: #b1b1b1 !important;
+                    font-family: $OSHebrewRegular !important;
+                }
+
+                .show-more-label {
+                    font-family: $mariad !important;
+                }
+            }
+        }
     }
 }

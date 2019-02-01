@@ -41,5 +41,19 @@ html[lang="he"] #venue-container[venueid="18"] {
             font-family: $OSHebrew !important;
             font-size: 29px !important;
         }
+
+        .search-results {
+            ul li {
+                .currentLanguage {
+                    font-family: $OSHebrewRegular !important;
+                    font-weight: 500 !important;
+                    font-size: 42px !important;
+                }
+
+                .show-more-label {
+                    font-family: $OSHebrewBold !important;
+                }
+            }
+        }
     }
 }

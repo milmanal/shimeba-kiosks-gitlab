@@ -29,6 +29,25 @@ html[lang="am"] #venue-container[venueid="18"] {
             font-family: $noto-b !important;
         }
     }
+
+    .search-results {
+        ul li {
+            .currentLanguage {
+                font-family: $noto-r !important;
+                // font-weight: 500 !important;
+                font-size: 40px !important;
+            }
+
+            .secondaryLanguage {
+                color: #4a4a4a !important;
+                font-family: $OSHebrewRegular !important;
+            }
+
+            .show-more-label {
+                font-family: $noto-b !important;
+            }
+        }
+    }
 }
 
 html[lang="fr"],

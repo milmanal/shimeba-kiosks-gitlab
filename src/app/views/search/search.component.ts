@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Pipe, PipeTransform } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { LanguageService } from './../../services/language.service';
@@ -8,6 +8,29 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 import { Categories } from './../../configs/categories';
 import { DeviceService } from '../../services/device.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
+@Pipe({
+  name: 'highlight'
+})
+export class HighlightSearch implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  transform(value: any, args: any): any {
+    if (!args) {
+      return value;
+    }
+    const re = new RegExp(args, 'gi');
+    const match = value.match(re);
+
+    if (!match) {
+      return value;
+    }
+
+    const replacedValue = value.replace(re, `<mark class="highlighted">${match[0]}</mark>`);
+    return this.sanitizer.bypassSecurityTrustHtml(replacedValue);
+  }
+}
 
 @Component({
   templateUrl: 'search.component.html',
@@ -16,6 +39,7 @@ import { DeviceService } from '../../services/device.service';
 })
 export class SearchComponent implements OnInit, OnDestroy {
   searchValue = '';
+  searchTerm: string;
   currentLanguage: Language;
   languageSubscription: Subscription;
   searchTerm$ = new Subject<any>();
@@ -43,6 +67,11 @@ export class SearchComponent implements OnInit, OnDestroy {
       }
     });
   }
+
+  updateSearch(e) {
+    this.searchValue = e.target.value;
+  }
+
   ngOnInit() {
     this._route.params.subscribe(params => {
       localStorage.setItem('venueId', params.venueId);

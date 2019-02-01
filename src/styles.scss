@@ -16,6 +16,14 @@
 @import 'ru';
 
 
+.highlighted {
+  padding: 0 !important;
+  background-color: transparent;
+  color: #4a4a4a;
+  font-family: $OSRegular;
+  font-weight: 500;
+}
+
 .error-modal-outer {
   max-width: 1200px;
   margin-top: 21%;
@@ -76,8 +84,6 @@
   font-family: "Noto Medium";
   src: url("./assets/fonts/NotoSansEthiopic-Medium.ttf");
 }
-
-
 
 @font-face {
   font-family: "Lucida";

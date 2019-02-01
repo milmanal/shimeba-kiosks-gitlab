@@ -96,7 +96,7 @@
     }
   }
   .show-more-results {
-    max-height: calc(100% - (140px + 3rem + 75px)) !important;
+    max-height: calc(100% - 220px - 75px - 10px) !important;
   }
   .search-result-instr {
     font-size: 50px;
@@ -105,13 +105,16 @@
   }
   .search-results {
     position: absolute;
-    top: calc(3rem + 140px);
-    max-height: 470px;
+    top: 220px;
+    max-height: 445px;
+    height: auto;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 83%;
-    background-color: #fff;
-    padding: 0;
+    width: 1664px;
+    margin: 0 !important;
+    border-left: 1px solid;
+    padding: 0 40px;
+
     &::-webkit-scrollbar {
       width: 1em;
     }
@@ -121,41 +124,51 @@
     &::-webkit-scrollbar-track {
       background-color: #ecedee;
     }
+
+    ul {
+      padding: 0 !important;
+      margin: 0;
+    }
+
     li {
       list-style: none;
+      display: block !important;
+      line-height: 73px;
     }
     .currentLanguage {
-      width: 45%;
-      display: block;
-      line-height: 1;
+      width: 50%;
+      padding: 0 !important;
+      display: inline-block;
+      font-size: 40px;
+      font-weight: 600;
+      color: #4a4a4a;
+      font-family: $OSSimple;
+    }
+    .secondaryLanguage {
+      width: 50%;
+      display: inline-block;
+      line-height: 48px;
       font-size: 42px;
       font-weight: 500;
       color: #4a4a4a;
-      font-family: $OSHebrew;
-    }
-    .secondaryLanguage {
-      width: 45%;
-      display: block;
-      line-height: 1;
-      font-size: 42px;
-      font-weight: 500;
-      color: #b1b1b1;
       text-align: right;
       font-family: $OSHebrew;
     }
     .show-more {
       position: sticky;
       background-color: #f1f1f1;
-      display: block;
-      width: 100%;
+      display: flex !important;
+      width: 1664px;
       height: 75px;
       bottom: 0;
+      margin: -40px;
       font-family: $OSHebrew;
 
       .show-more-label {
         font-size: 50px;
         font-weight: bold;
-        color: #0277bd;
+        font-family: $OSSimple;
+        color: #0e7aa2;
       }
       .hide-more-results-icon {
         transform: rotate(180deg);

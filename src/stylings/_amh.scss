@@ -48,6 +48,26 @@ html[lang="am"] #venue-container[venueid="18"] {
             }
         }
     }
+
+    .category-container {
+        .category-name  {
+            font-family: $noto-sb !important;
+            font-size: 70px !important;
+        }
+
+        .pois {
+            .currentLanguage {
+                color: #4f4f4f !important;
+                font-size: 40px !important;
+                font-family: $noto-r !important;
+            }
+
+            .secondaryLanguage {
+                color: #959393 !important;
+                font-family: $OSHebrewLight !important;
+            }
+        }
+    }
 }
 
 html[lang="fr"],

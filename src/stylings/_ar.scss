@@ -56,4 +56,23 @@ html[lang="ar"] #venue-container[venueid="18"] {
             }
         }
     }
+
+    .category-container {
+        .category-name  {
+            font-family: $mariad !important;
+        }
+
+        .pois {
+            .currentLanguage {
+                color: #4f4f4f !important;
+                font-size: 42px !important;
+                font-family: $mariad !important;
+            }
+
+            .secondaryLanguage {
+                color: #959393 !important;
+                font-family: $OSHebrewLight !important;
+            }
+        }
+    }
 }

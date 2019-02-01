@@ -56,4 +56,18 @@ html[lang="he"] #venue-container[venueid="18"] {
             }
         }
     }
+
+    .category-container {
+        .category-name  {
+            font-family: $OSHebrewBold !important;
+        }
+
+        .pois {
+            .currentLanguage {
+                font-family: $OSHebrewRegular !important;
+                font-size: 50px !important;
+                width: 100% !important;
+            }
+        }
+    }
 }

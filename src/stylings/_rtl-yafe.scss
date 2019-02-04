@@ -1,6 +1,6 @@
 @import 'variables-yafe';
 
-html[dir="rtl"] #venue-container[venueid="19"] {
+html[dir="rtl"] #venue-container[venueid="18"] {
     .instructions-container {
         background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 8%, #00729a 95%);
         padding-right: 64px;
@@ -17,7 +17,7 @@ html[dir="rtl"] #venue-container[venueid="19"] {
 
         ul {
             padding-left: 0 !important;
-            padding-right: 65px !important;
+            padding-right: 110px !important;
 
             li div + div {
                 position: absolute;

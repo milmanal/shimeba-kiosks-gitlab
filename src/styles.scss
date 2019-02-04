@@ -115,6 +115,12 @@
 }
 
 @font-face {
+  font-family: "OS Hebrew Extra";
+  src: url("./assets/fonts/OpenSansHebrew-ExtraBold.ttf");
+}
+
+
+@font-face {
   font-family: "OS Hebrew Light";
   src: url("./assets/fonts/opensanshebrew-light.ttf");
 }
@@ -175,16 +181,25 @@ body.hide-darkness {
   }
 
   .custom-modal {
-    margin: -50px 43px;
+    margin: -60px 43px;
     width: 600px;
     max-width: 100%;
     height: auto;
     font-family: $OSHebrew;
 
+    .modal-content {
+      background-color: #fff;
+      padding: 0 7px;
+    }
+
     .sms-input {
       font-size: 40px;
       color: #4a4a4a;
       height: 78px;
+      background: #d8d8d8;
+      font-family: $OSHebrewExtra;
+      width: 340px;
+      padding-left: 15px !important;
 
       &::-webkit-input-placeholder {
         color: #4a4a4a;
@@ -195,6 +210,13 @@ body.hide-darkness {
       height: 78px;
       color: #fff;
       background: #88cc1f;
+      width: 163px;
+      font-family: $mariad;
+      font-size: 40px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 10px;
     }
 
     .custom-keyboard {
@@ -212,6 +234,8 @@ body.hide-darkness {
       color: #fff;
       background: #62abd0 !important;
       border-radius: 4px;
+      font-family: $OSHebrewExtra;
+      max-width: 165px;
 
       &:not(:last-child) {
         margin-right: 5px;
@@ -225,7 +249,9 @@ body.hide-darkness {
       font-weight: bold;
       position: relative;
       display: flex;
+      font-family: $OSSimple;
       align-items: center;
+      padding: 15px 0 0 !important;
 
       &:before {
         content: '';

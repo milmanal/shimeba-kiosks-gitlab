@@ -75,4 +75,18 @@ html[lang="ar"] #venue-container[venueid="18"] {
             }
         }
     }
+
+    .loaded {
+        padding-right: 0;
+
+        ul {
+            direction: ltr;
+            padding-right: 100px;
+        }
+
+        .instruction-footer {
+            left: 0;
+            right: 75px;
+        }
+    }
 }

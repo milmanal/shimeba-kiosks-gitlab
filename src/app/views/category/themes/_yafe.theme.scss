@@ -62,9 +62,9 @@
     border: solid 1px #979797;
     overflow-x: hidden;
     overflow-y: auto;
-    margin: 0;
+    margin: 1px 0 0 0;
     position: relative;
-    z-index: -1;
+    z-index: 0;
     padding: 30px 75px 0 45px !important;
 
     li.poi {

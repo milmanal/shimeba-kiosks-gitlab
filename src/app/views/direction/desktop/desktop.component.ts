@@ -187,6 +187,10 @@ export class DesktopComponent implements OnInit, AfterViewInit {
             item.instruction.instructionsType === 8
           ) {
             order = order === 'left' ? 'right' : 'left';
+            console.log({
+              ...item,
+              order
+            });
             return {
               ...item,
               order
@@ -194,6 +198,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
           }
           return item;
         });
+
         this.routeLoaded = true;
         res.map(step => {
           step.points.map(poi => this.allPath.push(poi));
@@ -230,7 +235,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     }
     if (instructions[currentInstr]) {
       const instruction = document.getElementById(
-        instructions[currentInstr].instruction.instructions
+        instructions[currentInstr].instruction.instructions + currentInstr
       );
       this._mapbox.addRouteLine(instructions[currentInstr].points);
       if (instruction) {

@@ -4,15 +4,18 @@
   width: 100%;
   height: 100%;
   .category-info {
-    width: 83%;
-    height: 140px;
+    width: 1664px;
+    max-height: 140px;
+    height: 100%;
     border-radius: 4px;
-    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
     background-color: $color-white;
     border: solid 5px #4e769f;
+    margin-top: 80px !important;
 
     .category-name {
       font-size: 80px;
+      margin: 0;
       font-weight: bold;
       font-family: $OSHebrew;
       color: $gray-text-1;
@@ -20,8 +23,9 @@
     }
   }
   .category-pois {
-    width: 83%;
-    height: calc(100% - (140px + 3rem));
+    padding: 0 !important;
+    width: 1664px;
+    height: calc(100% - (140px - 75px));
   }
   .arrow {
     width: 99px;
@@ -35,7 +39,13 @@
   }
   .arrows-container {
     height: 100%;
-    width: 10%;
+    padding: 0 !important;
+    position: relative;
+    z-index: 1;
+
+    .arrow {
+      margin: 0 !important;
+    }
   }
   .arrow-icon {
     width: 37%;
@@ -47,39 +57,42 @@
     transform: rotate(-90deg);
   }
   .pois {
-    width: 90%;
+    width: 100%;
     height: 100%;
     background-color: #f5f7f8;
     border: solid 1px #979797;
     overflow-x: hidden;
     overflow-y: auto;
-    padding: 0;
-    .poi {
+    margin: 1px 0 0 0;
+    position: relative;
+    z-index: 0;
+    padding: 30px 75px 0 45px !important;
+
+    li.poi {
       list-style: none;
-      margin-bottom: 50px;
-      // line-height: 1;
+      line-height: 50px;
+      padding: 0 !important;
+      margin-bottom: 40px; 
     }
     .currentLanguage {
-      width: 45%;
-      display: block;
-      font-family: $OSHebrew;
+      width: 50%;
+      padding: 0 !important;
+      display: inline-block;
+      font-family: $OSRegular;
       color: #4f4f4f;
-      font-size: 50px;
-      line-height: 1;
-      font-weight: 300;
+      font-size: 48px;
+      font-weight: normal;
       font-style: normal;
       font-stretch: normal;
       letter-spacing: normal;
-      // text-align: right;
     }
     .secondaryLanguage {
-      width: 45%;
-      display: block;
-      line-height: 1;
-      font-family: $OSHebrew;
-      font-size: 50px;
+      width: 50%;
+      display: inline-block;
+      font-family: $OSHebrewLight;
+      font-size: 42px;
       font-weight: 300;
-      color: #4f4f4f;
+      color: #959393;
       text-align: right;
     }
     &::-webkit-scrollbar {

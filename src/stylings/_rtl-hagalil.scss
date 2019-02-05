@@ -16,21 +16,16 @@ html[dir="rtl"] #venue-container[venueid="19"] {
         }
 
         ul {
-            padding-left: 0 !important;
-            padding-right: 65px !important;
+          padding-left: 0 !important;
+          padding-right: 110px !important;
 
-            li div + div {
-                position: absolute;
-                right: 52px;
-            }
-
-            #destination-instr {
-                div {
-                    position: absolute;
-                    right: 52px;
-                    padding-left: 0 !important;
-                }
-            }
+          #destination-instr {
+              div {
+                  position: absolute;
+                  right: 52px;
+                  padding-left: 0 !important;
+              }
+          }
         }
 
         .instruction {

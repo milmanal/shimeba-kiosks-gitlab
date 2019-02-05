@@ -127,7 +127,49 @@
     // display: none;
 
     ul {
-      padding-left: 65px !important;
+      padding-left: 110px !important;
+      height: 90%;
+      direction: rtl;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar-button:single-button {
+        background-color: #62abd0;
+        display: block;
+        height: 28px;
+        width: 28px;
+      }
+
+      /* Up */
+      &::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url(http://kelioniuakademija.lt/img/up.png);
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+
+      /* Down */
+      &::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url(https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png);
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+
+
+      &::-webkit-scrollbar {
+        width: 28px;
+        background: #0e7aa2;
+        border-radius: 15px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 15px;
+        background-color: #62abd0;
+        background-image: url(https://karafetov.com/images/manu.png);
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
     }
 
     .instruction-header {
@@ -141,18 +183,21 @@
 
     .instruction-footer {
       display: none;
-      height: 50px !important;
-      width: 100%;
+      width: 596px;
       justify-content: space-around;
       background-color: #fff;
-      margin-top: 72px;
+      position: absolute;
+      bottom: 0;
+      height: 50px;
+      left: 75px;
+      padding: 0 10px !important;
 
       .sms-icon {
         width: 42px;
         height: 37px;
       }
       .send-instr {
-        font-size: 18px;
+        font-size: 23px;
         font-weight: bold;
         color: $main-color;
         padding-right: 16px !important;
@@ -164,7 +209,7 @@
         background-color: #9accef;
         font-size: 18px;
         color: #0e7aa2;
-        font-family: $OSHebrew;
+        font-family: $OSHebrewRegular;
       }
     }
     .instruction-title {

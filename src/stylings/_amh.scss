@@ -23,7 +23,8 @@ html[lang="am"] {
     }
 }
 
-html[lang="am"] #venue-container[venueid="18"] {
+html[lang="am"] #venue-container[venueid="18"],
+html[lang="am"] #venue-container[venueid="19"] {
     .home-component {
         .search-input  {
             font-family: $noto-b !important;

@@ -17,6 +17,7 @@
     border: solid 5px #4a90e2;
     position: relative;
     box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
+    z-index: 2;
 
     .search-icon {
       width: 10%;
@@ -29,7 +30,7 @@
 
     .no-search-result-message {
       color: #545454;
-      font-family: $OSHebrew;
+      font-family: $OSHebrewBold;
       font-size: 2rem;
       font-weight: bold;
       position: absolute;
@@ -40,10 +41,10 @@
     .search-input {
       width: 90%;
       border: none;
-      font-size: 4.6em;
+      font-size: 70px;
       font-weight: bold;
       color: $gray-text-1;
-      font-family: $OSHebrew;
+      font-family: $OSHebrewBold;
 
       &:focus {
         outline: none;
@@ -81,7 +82,8 @@
       font-family: $OSHebrew;
       text-align: center;
       position: absolute;
-      top: 50%;
+      bottom: 10px;
+      padding: 0 10px;
       width: 100%;
       line-height: 29px;
     }

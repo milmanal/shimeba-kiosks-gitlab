@@ -1,61 +1,95 @@
 @import 'variables-yafe';
 
-&.lang-panel-bottom {
-  .language-panel {
-    top: unset !important;
-    bottom: 0;
 
-    .language-btn.active {
-      background: #4e769f;
-    }
-  }
-}
 
 &.hide-lang-pannel {
   display: none;
 }
+
 .language-panel {
   position: fixed;
-  bottom: 0;
-  left: 56%;
-  transform: translateX(-50%);
+  top: 0;
+  justify-content: space-between;
+  padding: 0 378px 0 125px;
   display: flex;
   z-index: 1;
-  width: 83%;
+  width: 100%;
+  height: 75px;
   direction: rtl !important;
+
   .language-btn {
-    width: 14.5%;
+    width: 200px;
     height: 75px;
-    color: #62abd0;
-    font-family: $OSHebrew;
+    color: #fff;
+    font-family: $OSSemi;
     font-size: 30px;
-    font-weight: bold;
-    background-color: #fff;
-    box-shadow: 0 0px 7px 0 rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    background-color: #83bfde;
+    box-shadow: 0 -5px 7px 0 rgba(0, 0, 0, 0.3);
     border-color: rgba(0, 0, 0, 0.3);
-    border-top: 0;
-    border-bottom: 0;
-    cursor: pointer;
-    right: 14.5%;
-    position: relative;
+    border: 0;
+
+    &:nth-of-type(1) {
+      font-family: $OSHebrewBold;
+    }
+
+    &:nth-of-type(3) {
+      font-family: $OSSemi;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    &:nth-of-type(4) {
+      font-size: 45px;
+      font-family: $arial;
+      font-weight: normal;
+    }
+
+    &:nth-of-type(5) {
+      font-family: $noto-m;
+      font-weight: 500;
+    }
 
     .lang-icon {
-      width: 25%;
+      width: 48px;
     }
   }
   .hide {
     display: none;
   }
   .language-btn.active {
-    background-color: #62abd0;
+    background-color: #4e769f;
     color: white;
     border-color: #6f6f6f;
     position: absolute;
     bottom: 0;
-    right: 0;
+    width: 253px;
+    right: 125px;
+    // display: flex;
+    // justify-content: space-evenly;
+    // align-items: center;
   }
   .short {
-    width: 130px;
+    width: 130px !important;
+    background: #4e769f !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &.lang-panel-bottom {
+    top: unset !important;
+    bottom: 0;
+    height: unset !important;
+
+    .language-btn {
+      box-shadow: none !important;
+    }
   }
 }
 

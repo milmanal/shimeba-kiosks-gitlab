@@ -3,11 +3,14 @@
 }
 
 #venue-container[venueid="18"] {
-  @import "./themes/yafe.theme";
+  // @import "./themes/yafe.theme";
+  @import "./themes/sourasky.theme";
+
 }
 
 #venue-container[venueid="19"] {
-  @import "./themes/hagalil.theme";
+  // @import "./themes/hagalil.theme";
+  @import "./themes/sourasky.theme";
 }
 #venue-container {
   width: 100%;

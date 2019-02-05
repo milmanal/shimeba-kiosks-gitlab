@@ -13,7 +13,7 @@
     width: 14.5%;
     height: 75px;
     color: $gray-text-1;
-    font-family: $OSHebrew;
+    font-family: $OSSemi;
     font-size: 30px;
     font-weight: bold;
     background-color: $color-white;
@@ -23,8 +23,29 @@
     right: 14.5%;
     position: relative;
 
+    &:nth-of-type(1) {
+      font-family: $OSHebrewBold;
+    }
+
+    &:nth-of-type(3) {
+      font-family: $OSSemi;
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    &:nth-of-type(4) {
+      font-size: 45px;
+      font-family: $arial;
+      font-weight: normal;
+    }
+
+    &:nth-of-type(5) {
+      font-family: $noto-m;
+      font-weight: 500;
+    }
+
     .lang-icon {
-      width: 25%;
+      width: 48px;
     }
   }
   .hide {

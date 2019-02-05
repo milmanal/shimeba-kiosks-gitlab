@@ -82,33 +82,6 @@ html[dir="ltr"] #venue-container[venueid="12"] {
             }
         }
     }
-
-    // #you-are-here {
-    //     font-family: $OSSimple !important;
-    //     font-size: 30px !important;
-    //     min-width: 224px !important;
-    //     min-height: 113px !important;
-    //     background-size: 224px 115px !important;
-    // }
-}
-
-html[lang="ru"] #venue-container[venueid="12"] {
-    .search-container {
-        .search-input {
-            font-size: 38px !important;
-        }
-    }
-   
-    .search-result-instr {
-        font-family: $OSHebrew;
-        font-size: 36px !important;
-    }
-
-    .home-component {
-        .search-input {
-            font-size: 72px !important;
-        }
-    }
 }
 
 html[lang="en"] #venue-container[venueid="12"] {

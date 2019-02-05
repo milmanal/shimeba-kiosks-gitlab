@@ -1,5 +1,10 @@
 <div id="venue-container-language">
-    <div class="language-panel" [ngClass]="{'if-mobile-then': ds.isMobile(), 'lang-panel-bottom': venueId !== 12 && languagePanelOnTheBottom}">
+    <div class="language-panel" 
+    [ngClass]="{
+        'if-mobile-then': ds.isMobile(), 
+        'lang-panel-bottom': venueId !== 12 && languagePanelOnTheBottom, 
+        'hagalil-panel-color': languagePanelHagalil
+    }">
         <button class="language-btn" *ngFor="let lang of languages" [ngClass]="{
                 'active': lang.name === currentLanguage.name, 
                 'hide': !showAnotherLanguages && lang.name !== currentLanguage.name && !showAllLanguages,

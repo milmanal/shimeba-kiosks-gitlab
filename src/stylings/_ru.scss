@@ -1,14 +1,47 @@
 @import 'variables';
 
-html[lang="ru"] #venue-container[venueid="18"] {
+html[lang="ru"] #venue-container[venueid="18"],
+html[lang="ru"] #venue-container[venueid="19"] {
     .home-component {
 
         #you-are-here {
             font-family: $OSSimple;
+        }
+    }
+}
 
-            // .pseudo-elem {
-            //     padding: 0 40px !important; 
-            // }
+html[lang="ru"] #venue-container[venueid="12"] {
+    .search-container {
+        .search-input {
+            font-family: $OSSimple !important;
+        }
+
+        .search-instruction,
+        .category-name {
+            font-family: $OSSimple !important;
+        }
+
+        .category-name {
+            top: unset !important;
+            bottom: 10px;
+            padding: 0 10px;
+        }
+    }
+   
+    .search-result-instr {
+        font-family: $OSSimple;
+        font-size: 36px !important;
+    }
+
+    .home-component {
+        .search-input {
+            font-size: 72px !important;
+            font-family: $OSSimple !important;
+        }
+
+        .search,
+        #you-are-here {
+            font-family: $OSSimple !important;
         }
     }
 }

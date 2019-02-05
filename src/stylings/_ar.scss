@@ -1,6 +1,7 @@
 @import 'variables';
 
-html[lang="ar"] #venue-container[venueid="18"] {
+html[lang="ar"] #venue-container[venueid="18"],
+html[lang="ar"] #venue-container[venueid="19"] {
     .home-component {
         .search-input  {
             font-family: $mariad !important;

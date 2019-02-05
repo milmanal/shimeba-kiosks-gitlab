@@ -10,16 +10,17 @@
 
   .search {
     display: flex;
-    width: 83%;
+    width: 1664px;
     height: 140px;
     border-radius: 4px;
     background-color: $color-white;
-    border: solid 5px #4e769f;
+    border: 3px solid #4e769f;
     position: relative;
-    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .5);
+    margin-top: 80px !important;
 
     .search-icon {
-      width: 10%;
+      min-width: 141px !important;
       background-color: #4e769f;
       background-image: url("../../../assets/imgs/search.svg");
       background-size: 40%;
@@ -28,8 +29,8 @@
     }
 
     .no-search-result-message {
-      color: #545454;
-      font-family: $OSHebrew;
+      color: #9b9b9b;
+      font-family: $OSHebrewBold;
       font-size: 2rem;
       font-weight: bold;
       position: absolute;
@@ -38,12 +39,12 @@
     }
 
     .search-input {
-      width: 90%;
+      width: 100%;
       border: none;
       font-size: 70px;
       font-weight: bold;
       color: #9b9b9b;
-      font-family: $OSHebrew;
+      font-family: $OSHebrewBold;
 
       &:focus {
         outline: none;
@@ -58,42 +59,44 @@
     font-size: 50px;
     font-weight: bold;
     color: #9b9b9b;
-    font-family: $OSHebrew;
+    padding: 0 !important;
+    margin-top: 229px !important;
+    font-family: $OSSimple;
   }
 
   .categories-wrapper {
-    margin-top: 95px !important;
+    margin-top: 15px !important;
   }
 
   .category {
     position: relative;
     width: 230px;
-    height: 140px;
+    height: 120px;
     border-radius: 5px;
     background-color: #ffffff;
     border: solid 1px $main-color;
     cursor: pointer;
-    position: relative;
+    margin: 0 7px !important;
 
     .category-name {
-      font-size: 29px;
+      font-size: 22px;
       font-weight: normal;
       color: $gray-text-3;
-      font-family: $OSHebrew;
+      font-family: $OSRegular;
       text-align: center;
       position: absolute;
-      top: 50%;
+      bottom: 10px;
       width: 100%;
-      line-height: 29px;
+      line-height: 0.95;
     }
     .icon {
-      height: 47px;
+      height: 41px;
       position: absolute;
-      top: 17px;
+      top: 21px;
     }
   }
   .show-more-results {
-    max-height: calc(100% - (140px + 3rem + 75px)) !important;
+    max-height: calc(100% - 220px - 75px - 10px) !important;
   }
   .search-result-instr {
     font-size: 50px;
@@ -102,13 +105,16 @@
   }
   .search-results {
     position: absolute;
-    top: calc(3rem + 140px);
-    max-height: 470px;
+    top: 220px;
+    max-height: 445px;
+    height: auto;
     overflow-y: auto;
     overflow-x: hidden;
-    width: 83%;
-    background-color: #fff;
-    padding: 0;
+    width: 1664px;
+    margin: 0 !important;
+    outline: 1px solid rgba(0, 0, 0, .25);
+    padding: 0 40px;
+
     &::-webkit-scrollbar {
       width: 1em;
     }
@@ -118,40 +124,48 @@
     &::-webkit-scrollbar-track {
       background-color: #ecedee;
     }
+    ul {
+      padding: 0 !important;
+      margin: 0;
+    }
+
     li {
       list-style: none;
+      line-height: 73px;
     }
     .currentLanguage {
-      width: 45%;
-      display: block;
-      line-height: 1;
+      width: 50%;
+      padding: 0 !important;
+      display: inline-block;
+      font-size: 40px;
+      font-weight: 600;
+      color: #4a4a4a;
+      font-family: $OSSimple;
+    }
+    .secondaryLanguage {
+      width: 50%;
+      display: inline-block;
+      line-height: 48px;
       font-size: 42px;
       font-weight: 500;
       color: #4a4a4a;
-      font-family: $OSHebrew;
-    }
-    .secondaryLanguage {
-      width: 45%;
-      display: block;
-      line-height: 1;
-      font-size: 42px;
-      font-weight: 500;
-      color: #b1b1b1;
       text-align: right;
       font-family: $OSHebrew;
     }
     .show-more {
       position: sticky;
       background-color: #f1f1f1;
-      display: block;
-      width: 100%;
+      display: flex !important;
+      width: 1664px;
       height: 75px;
       bottom: 0;
+      margin: -40px;
       font-family: $OSHebrew;
 
       .show-more-label {
         font-size: 50px;
         font-weight: bold;
+        font-family: $OSSimple;
         color: #0277bd;
       }
       .hide-more-results-icon {

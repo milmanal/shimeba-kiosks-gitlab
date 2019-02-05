@@ -20,6 +20,7 @@ export class AppLanguagePanelComponent implements OnInit {
   languagePanelOnTheBottom: Boolean = true;
   isRoutePage: Boolean = false;
   venueId: any;
+  languagePanelHagalil: Boolean = false;
 
   constructor(
     private _route: ActivatedRoute,
@@ -64,9 +65,12 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueId = localStorage.getItem('venueId');
     const HTML = document.getElementById('venue-container-language');
     const venueAttr = document.createAttribute('venueId');
+    this.languagePanelHagalil = venueId === '19' ? true : false;
+    console.log(this.languagePanelHagalil);
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
       this.languagePanelOnTheBottom = false;
+      this.languagePanelHagalil = false;
       this.showAnotherLanguages = false;
     }
     venueAttr.value = venueId;

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { SearchComponent, HighlightSearch } from './search.component';
+import { SearchComponent } from './search.component';
+// import { HighlightSearch } from '../../pipes/highlight.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IKeyboardLayouts, keyboardLayouts, MAT_KEYBOARD_LAYOUTS, MatKeyboardModule} from '@ngx-material-keyboard/core';
 
@@ -27,6 +28,6 @@ const customLayouts: IKeyboardLayouts = {
     SharedModule
   ],
   providers: [{ provide: MAT_KEYBOARD_LAYOUTS, useValue: customLayouts }],
-  declarations: [SearchComponent, HighlightSearch],
+  declarations: [SearchComponent],
 })
 export class SearchModule {}

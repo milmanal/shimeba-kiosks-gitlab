@@ -1,42 +1,23 @@
-import { Component, OnInit, OnDestroy, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+
+import { Language, Category } from '../../models';
 
 import { LanguageService } from './../../services/language.service';
 import { ApiService } from './../../services/api.service';
-import { Language, Category } from '../../models';
+import { DeviceService } from '../../services/device.service';
+
 import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
+
 import { Categories } from './../../configs/categories';
-import { DeviceService } from '../../services/device.service';
-import { DomSanitizer } from '@angular/platform-browser';
-
-@Pipe({
-  name: 'highlight'
-})
-export class HighlightSearch implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
-
-  transform(value: any, args: any): any {
-    if (!args) {
-      return value;
-    }
-    const re = new RegExp(args, 'gi');
-    const match = value.match(re);
-
-    if (!match) {
-      return value;
-    }
-
-    const replacedValue = value.replace(re, `<mark class="highlighted">${match[0]}</mark>`);
-    return this.sanitizer.bypassSecurityTrustHtml(replacedValue);
-  }
-}
 
 @Component({
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss'],
   providers: [ApiService]
 })
+
 export class SearchComponent implements OnInit, OnDestroy {
   searchValue = '';
   searchTerm: string;
@@ -56,7 +37,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _language: LanguageService,
     private _api: ApiService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
       this.pois = results;
@@ -68,7 +49,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
-  updateSearch(e) {
+  updateSearch(e: any) {
     this.searchValue = e.target.value;
   }
 
@@ -102,16 +83,20 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.pois = [];
     }
   }
+
   showMoreResults() {
     this.showMore = !this.showMore;
   }
+
   selectCategory(id) {
     this._router.navigateByUrl(`/category/${id}/${this.venueId}/${this.langId}`);
   }
+
   selectPoi(id) {
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
+
   ngOnDestroy() {
     this.languageSubscription.unsubscribe();
   }

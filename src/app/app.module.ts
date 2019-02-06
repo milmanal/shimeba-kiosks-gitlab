@@ -1,29 +1,30 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatButtonModule } from "@angular/material/button";
-import { MatIconModule } from "@angular/material/icon";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { MatKeyboardModule } from "@ngx-material-keyboard/core";
+import { MatKeyboardModule } from '@ngx-material-keyboard/core';
 
-import { AppRoutingModule } from "./app-routing.module";
-import { AppComponent } from "./app.component";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
-import { AppTranslationModule } from "./app-translation.module";
-import { ModalModule } from "ngx-bootstrap/modal";
+import { AppTranslationModule } from './app-translation.module';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoaderInterceptorService } from './services/loader-intercepter.service';
 import { ErrorService } from './services/error.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
 import { AppSuccessModalComponent } from './components/success-modal/success.modal';
 
+
 import {
   ToastrModule,
 } from 'ngx-toastr';
-import "hammerjs";
+import 'hammerjs';
 
 
 const interceptors = [

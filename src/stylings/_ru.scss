@@ -19,6 +19,12 @@ html[lang="ru"] #venue-container[venueid="19"] {
             font-family: $OSSimple;
         }
     }
+
+    .search-container {
+        .search-input {
+            font-family: $OSSimple !important;
+        }
+    }
 }
 
 html[lang="ru"] #venue-container[venueid="12"] {

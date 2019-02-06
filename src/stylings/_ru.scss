@@ -1,5 +1,16 @@
 @import 'variables';
 
+html[lang="ru"] #venue-container[venueid="12"] {
+    .search-container {
+        .category-name {
+            top: unset !important;
+            bottom: 10px;
+            padding: 0 10px;
+            font-family: $OSSimple !important;
+        }
+    }
+}
+
 html[lang="ru"] #venue-container[venueid="18"],
 html[lang="ru"] #venue-container[venueid="19"] {
     .home-component {

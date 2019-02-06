@@ -1,5 +1,17 @@
 @import 'variables';
 
+html[lang="ar"] #venue-container[venueid="12"] {
+    .search-container {
+        .category-name {
+            font-family: $mariad-r !important;
+            font-size: 30px !important;
+            line-height: .73 !important;
+            padding: 0 15px;
+            bottom: 7px !important;
+        }
+    }
+}
+
 html[lang="ar"] #venue-container[venueid="18"],
 html[lang="ar"] #venue-container[venueid="19"] {
     .home-component {

@@ -14,6 +14,13 @@ html[lang="he"] #venue-container[venueid="12"] {
             }
         }
     }
+
+    .search-container {
+        .category-name {
+            font-family: $OSHebrew !important;
+            font-size: 29px !important;
+        }
+    }
 }
 
 html[lang="he"] #venue-container[venueid="18"],

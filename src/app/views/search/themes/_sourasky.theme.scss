@@ -69,28 +69,28 @@
   .category {
     position: relative;
     width: 230px;
-    height: 140px;
+    height: 120px;
     border-radius: 5px;
     background-color: #ffffff;
     border: solid 1px #4a90e2;
     cursor: pointer;
+    margin: 0 7px !important;
     
     .category-name {
-      font-size: 29px;
+      font-size: 22px;
       font-weight: normal;
       color: $gray-text-3;
       font-family: $OSHebrew;
       text-align: center;
       position: absolute;
       bottom: 10px;
-      padding: 0 10px;
       width: 100%;
-      line-height: 29px;
+      line-height: 0.95;
     }
     .icon {
-      height: 47px;
+      height: 41px;
       position: absolute;
-      top: 17px;
+      top: 21px;
     }
   }
   .show-more-results {

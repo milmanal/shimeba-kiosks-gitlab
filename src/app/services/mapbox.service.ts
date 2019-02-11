@@ -234,6 +234,7 @@ export class MapboxService {
   }
 
   animateRoute() {
+    console.log('animate');
     const now = performance.now();
     while (this.times.length > 0 && this.times[0] <= now - 1000) {
       this.times.shift();
@@ -245,7 +246,6 @@ export class MapboxService {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
-
       if (this.venueId === '12' ) {
         this.map.getSource('main-line').setData(this.geojson);
         this.map.getSource('secondary-line').setData(this.geojson);

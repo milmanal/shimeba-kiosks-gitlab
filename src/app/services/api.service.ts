@@ -167,17 +167,19 @@ export class ApiService {
 
   getDirection(kioskData, poiData, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
+    console.log(kioskData);
+    console.log(poiData);
 
     const source = this._httpClient
       .get(`${this.url}routing/byfloor`, {
         params: {
-          lat1: kioskData.entrances[0].sLatitude,
-          lon1: kioskData.entrances[0].sLongitude,
-          level1: kioskData.entrances[0].level,
+          lat1: '32.45195315136141',
+          lon1: '34.89711441099644',
+          level1: '0',
           venueid: venueId,
-          lat2: poiData.entrances[0].sLatitude,
-          lon2: poiData.entrances[0].sLongitude,
-          level2: poiData.entrances[0].level,
+          lat2: '32.45194579544156',
+          lon2: '34.89589065313339',
+          level2: '0',
           locale: currentLanguage.name,
           isForWidget: 'true'
         }

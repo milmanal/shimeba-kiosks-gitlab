@@ -92,14 +92,15 @@
       height: 74px;
       background-color: $main-color;
       font-size: 45px;
-      font-weight: bold;
-      font-family: $OSHebrew;
+      font-family: $OSHebrewBold;
       color: $color-white;
       border: none;
 
       img {
         transform: rotate(180deg);
         margin-top: -4px;
+        margin-right: -10px;
+        margin-left: 11px;
       }
     }
   }
@@ -193,22 +194,23 @@
       padding: 0 10px !important;
 
       .sms-icon {
-        width: 42px;
-        height: 37px;
+        width: 40px;
+        height: 35px;
       }
       .send-instr {
-        font-size: 23px;
+        font-size: 18px;
         font-weight: bold;
-        color: #62abd0;
+        color: #0e7aa2;
         padding-right: 16px !important;
-        font-family: $OSHebrew;
+        padding-left: 0 !important;
+        font-family: $OSHebrewBold;
       }
       .input-block {
         width: 289px;
-        height: 26px;
+        height: 28px;
         background-color: #9accef;
         font-size: 18px;
-        color: #fff;
+        color: #0e7aa2;
         font-family: $OSHebrewRegular;
       }
     }

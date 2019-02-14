@@ -92,4 +92,28 @@ html[lang="he"] #venue-container[venueid="19"] {
             right: 75px;
         }
     }
+
+    .direction-component {
+
+        .instruction-footer {
+      
+            .send-instr {
+                font-size: 20px !important;
+                font-family: $OSHebrewBold;
+            }
+            .input-block {
+                font-size: 20px !important;
+                font-family: $OSHebrewRegular;
+            }
+        }
+
+        .header {
+            .back-btn {
+                img {
+                    margin-left: -19px !important;
+                    margin-right: 11px !important;
+                }
+            }
+        }
+    }
 }

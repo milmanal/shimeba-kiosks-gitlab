@@ -129,6 +129,47 @@ export class ApiService {
   }
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
+    // const instr = instructions;
+    // for (let i = 0; i < pointsOfFloors[floor].length; i++) {
+    //   const poi = pointsOfFloors[floor][i];
+    //   if (index === undefined) {
+    //     index === undefined ? (index = 0) : index++;
+    //     instr[index] = {
+    //       instruction: poi,
+    //       points: []
+    //     };
+    //   }
+    //   if (i === 0) {
+    //     poi.isShowInList = false;
+    //   }
+    //   if (poi.isShowInList && poi.instructions) {
+    //     if (instr[index]) {
+    //       instr[index].points.push([
+    //         Number(poi.longitude),
+    //         Number(poi.latitude)
+    //       ]);
+    //     }
+    //     index === undefined ? (index = 0) : index++;
+    //     instr[index] = {
+    //       instruction: poi,
+    //       points: []
+    //     };
+    //   }
+    //   if (instr[index]) {
+    //     instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
+    //   }
+    //   if (poi.nextLevel) {
+    //     this.buildRoute(
+    //       poi.nextLevel,
+    //       instr,
+    //       pointsOfFloors,
+    //       index
+    //     );
+    //   }
+    // }
+    // console.log(instr);
+    // return instr;
+
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
@@ -158,6 +199,7 @@ export class ApiService {
       }
     }
     return instr;
+
   }
 
   prebuildDirection(data) {
@@ -173,17 +215,42 @@ export class ApiService {
     const source = this._httpClient
       .get(`${this.url}routing/byfloor`, {
         params: {
-          lat1: '32.45195315136141',
-          lon1: '34.89711441099644',
-          level1: '0',
+          lat1: kioskData.entrances[0].sLatitude,
+          lon1: kioskData.entrances[0].sLongitude,
+          level1: kioskData.entrances[0].level,
           venueid: venueId,
-          lat2: '32.45194579544156',
-          lon2: '34.89589065313339',
-          level2: '0',
+          lat2: poiData.entrances[0].sLatitude,
+          lon2: poiData.entrances[0].sLongitude,
+          level2: poiData.entrances[0].level,
           locale: currentLanguage.name,
           isForWidget: 'true'
         }
       });
     return source.pipe(map(res => this.prebuildDirection(res)));
   }
+
+  // getDirection(kioskData, poiData, venueId): Observable<any> {
+  //   const currentLanguage = this._language.getCurrentLanguage();
+  //   console.log(kioskData);
+  //   console.log(poiData);
+
+  //   const source = this._httpClient
+  //     .get(`${this.url}routing/byfloor`, {
+  //       params: {
+  //         lat1: '32.45195315136141',
+  //         lon1: '34.89711441099644',
+  //         level1: '0',
+  //         venueid: '18',
+  //         lat2: '32.45194579544156',
+  //         lon2: '34.89589065313339',
+  //         level2: '0',
+  //         locale: currentLanguage.name,
+  //         isForWidget: 'true'
+  //       }
+  //     });
+  //   return source.pipe(map(res => {
+  //     console.log(this.prebuildDirection(res));
+  //     return  this.prebuildDirection(res);
+  //   }));
+  // }
 }

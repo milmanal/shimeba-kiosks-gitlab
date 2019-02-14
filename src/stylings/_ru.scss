@@ -25,6 +25,31 @@ html[lang="ru"] #venue-container[venueid="19"] {
             font-family: $OSSimple !important;
         }
     }
+
+    .direction-component {
+
+        .instruction-footer {
+      
+            .send-instr {
+                
+            }
+            .input-block {
+                
+            }
+        }
+
+        .header {
+            .back-btn {
+                font-family: $OSSimple;
+                font-weight: bold;
+
+                img {
+                    margin-right: -5px !important;
+                    margin-left: 0px !important;
+                }
+            }
+        }
+    }
 }
 
 html[lang="ru"] #venue-container[venueid="12"] {

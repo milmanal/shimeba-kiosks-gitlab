@@ -16,13 +16,7 @@
 @import 'ru';
 
 
-.highlighted {
-  padding: 0 !important;
-  background-color: transparent;
-  color: #4a4a4a;
-  font-family: $OSRegular;
-  font-weight: 500;
-}
+
 
 .error-modal-outer {
   max-width: 1200px;
@@ -175,6 +169,60 @@ body {
   font-family: Almoni;
 }
 
+.highlighted {
+  padding: 0 !important;
+  background-color: transparent;
+  color: #4a4a4a;
+  font-family: $OSRegular;
+  font-weight: 500;
+}
+
+html[lang="he"] {
+  .highlighted {
+    font-family: $OSHebrewLight;
+  }
+}
+
+html[lang="ar"] {
+  body.hide-darkness {
+    .custom-modal {
+      .instruction {
+        font-family: $mariad;
+        font-size: 35px;
+      }
+
+      .send-btn, .sms-input {
+        font-family: $mariad;
+        font-size: 40px !important;
+      }
+    }
+  }
+
+  .highlighted {
+    font-family: $mariad-r;
+  }
+}
+
+html[lang="am"] {
+  body.hide-darkness {
+    .custom-modal {
+      .instruction {
+        font-family: $noto-b;
+        font-size: 28px;
+      }
+
+      .send-btn, .sms-input {
+        font-family: $noto-b;
+        font-size: 40px !important;
+      }
+    }
+  }
+
+  .highlighted {
+    font-family: $noto-r;
+  }
+}
+
 body.hide-darkness {
   .modal-backdrop {
     display: none;
@@ -189,7 +237,7 @@ body.hide-darkness {
 
     .modal-content {
       background-color: #fff;
-      padding: 0 7px;
+      padding: 0 7px 15px;
     }
 
     .sms-input {
@@ -211,12 +259,12 @@ body.hide-darkness {
       color: #fff;
       background: #88cc1f;
       width: 163px;
-      font-family: $mariad;
-      font-size: 40px !important;
+      font-family: $OSHebrewBold;
+      font-size: 30px !important;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding-top: 10px;
+      // padding-top: 10px;
     }
 
     .custom-keyboard {
@@ -249,7 +297,7 @@ body.hide-darkness {
       font-weight: bold;
       position: relative;
       display: flex;
-      font-family: $OSSimple;
+      font-family: $OSHebrewBold;
       align-items: center;
       padding: 15px 0 0 !important;
 
@@ -302,7 +350,7 @@ body.hide-darkness {
       }
     }
 
-    .mat-keyboard-col:last-child{
+    .mat-keyboard-col:nth-of-type(2){
       display: none;
     }
   }
@@ -329,6 +377,7 @@ mat-keyboard-container mat-keyboard-key .mat-keyboard-key {
   height: 515px;
   border: solid 1px #4a90e2;
   transform: translate(0, 50%) !important;
+
   .modal-content {
     width: 100%;
     height: 100%;

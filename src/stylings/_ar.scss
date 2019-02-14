@@ -102,4 +102,31 @@ html[lang="ar"] #venue-container[venueid="19"] {
             right: 75px;
         }
     }
+
+    .direction-component {
+
+        .instruction-footer {
+      
+            .send-instr {
+                font-size: 22px !important;
+                font-family: $mariad;
+            }
+            .input-block {
+                font-size: 22px !important;
+                font-family: $mariad-r;
+            }
+        }
+
+        .header {
+            .back-btn {
+                font-size: 50px !important;
+                font-family: $mariad;
+
+                img {
+                    margin-right: 20px !important;
+                    margin-left: -35px !important;
+                }
+            }
+        }
+    }
 }

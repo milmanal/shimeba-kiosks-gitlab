@@ -34,7 +34,7 @@ html[lang="am"] #venue-container[venueid="19"] {
     .search-results {
         ul li {
             .currentLanguage {
-                font-family: $noto-r !important;
+                font-family: $noto-b !important;
                 // font-weight: 500 !important;
                 font-size: 40px !important;
             }
@@ -66,6 +66,33 @@ html[lang="am"] #venue-container[venueid="19"] {
             .secondaryLanguage {
                 color: #959393 !important;
                 font-family: $OSHebrewLight !important;
+            }
+        }
+    }
+
+    .direction-component {
+
+        .instruction-footer {
+      
+            .send-instr {
+                font-size: 14px !important;
+                font-family: $noto-b;
+            }
+            .input-block {
+                font-size: 14px !important;
+                font-family: $noto-r;
+            }
+        }
+
+        .header {
+            .back-btn {
+                font-size: 40px !important;
+                font-family: $noto-b;
+
+                img {
+                    margin-right: -5px !important;
+                    margin-left: 10px !important;
+                }
             }
         }
     }

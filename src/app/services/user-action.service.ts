@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class UserActionService {
   langId: any;
 
   constructor(
-    private _router: Router
+    private _router: Router,
   ) {
     this.venueId = localStorage.getItem('venueId');
     this.kioskId = localStorage.getItem('kioskId');
@@ -27,7 +28,6 @@ export class UserActionService {
   }
 
   goToMainScreen() {
-    console.log('main screen');
     this._router.navigateByUrl(`/home/${this.venueId}/${this.kioskId}/${this.langId}`);
   }
 }

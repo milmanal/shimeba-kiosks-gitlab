@@ -23,5 +23,12 @@
     "close": "Cerrar",
     "show-all": "Ver Todo",
     "information-orientation-screen": "Usted se encuentra frente a la pantalla de información y orientación",
-    "enter-mob-number-and-recieve-sms": "¿Demasiado para recordar? Continuar la navegación con tu teléfono"
+    "enter-mob-number-and-recieve-sms": "¿Demasiado para recordar? Continuar la navegación con tu teléfono",
+
+    "ok": "DE ACUERDO",
+    "we_are_sorry": "¡Lo sentimos!",
+    "server_call_fails": "Parece que nuestro servidor no se siente en su mejor momento",
+    "try_again": "Por favor, inténtelo de nuevo o elegir otro destino",
+  
+    "success_send_sms_msg": "SMS fue enviado con éxito"
   }

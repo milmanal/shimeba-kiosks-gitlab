@@ -23,5 +23,12 @@
     "close": "Fermé",
     "show-all": "Présentez tout",
     "information-orientation-screen": "Vous êtes devant un écran d'informations et de repères",
-    "enter-mob-number-and-recieve-sms": "Trop de choses à retenir? Continuer la navigation avec votre téléphone"
+    "enter-mob-number-and-recieve-sms": "Trop de choses à retenir? Continuer la navigation avec votre téléphone",
+
+    "ok": "D'accord",
+    "we_are_sorry": "Nous sommes désolés!",
+    "server_call_fails": "On dirait que notre serveur ne se sent pas à son meilleur moment",
+    "try_again": "S'il vous plaît essayer de nouveau ou choisir une autre destination",
+  
+    "success_send_sms_msg": "SMS a été envoyé avec succès"
   }

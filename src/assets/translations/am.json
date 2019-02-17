@@ -23,5 +23,13 @@
     "close": "ዝጋ",
     "show-all": "ሁሉንም አሳይ",
     "information-orientation-screen": "አሁን የሚያዩት የመረጃና የገለጻ ስክሪን ነው",
-    "enter-mob-number-and-recieve-sms": "ለማስታወስ በጣም ብዙ? በስልክዎ አሰሳ ይቀጥሉ"
+    "enter-mob-number-and-recieve-sms": "ለማስታወስ በጣም ብዙ? በስልክዎ አሰሳ ይቀጥሉ",
+
+    "ok": "እሺ",
+    "we_are_sorry": "እናዝናለን!",
+    "server_call_fails": "የእኛ አገልጋይ አሁን በውስጡ የተሻለ ጥሩ ስሜት አይደለም ይመስላል",
+    "try_again": "እንደገና ይሞክሩ ወይም ሌላ መድረሻ ይምረጡ",
+  
+    "success": "Success!",
+    "success_send_sms_msg": "ኤስ ኤም ኤስ በተሳካ ሁኔታ ተልኳል"
   }

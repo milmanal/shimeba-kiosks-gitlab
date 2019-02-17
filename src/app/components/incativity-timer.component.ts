@@ -3,7 +3,6 @@ import { Subject, timer, Subscription, config } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import { UserActionService } from '../services/user-action.service';
 import { Config } from '../configs/config';
-import { Router, NavigationEnd } from '@angular/router';
 import { MapboxService } from '../services/mapbox.service';
 
 @Component({
@@ -12,7 +11,6 @@ import { MapboxService } from '../services/mapbox.service';
     styles: []
 })
 export class AppInactivityTimerComponent implements OnDestroy, OnInit {
-
     endTime: number;
     unsubscribe$: Subject<void> = new Subject();
     timerSubscription: Subscription;
@@ -44,7 +42,9 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
             (value) => { },
             err => console.log('Error Occur ---> InactivityTimerComponent: ', err),
             () => {
-                this._mapbox.clearMap();
+                if (window.location.href.includes('/direction')) {
+                    this._mapbox.clearMap();
+                }
                 this._userActionService.goToMainScreen();
             }
         );

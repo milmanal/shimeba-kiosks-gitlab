@@ -23,5 +23,12 @@
     "close": "مغلق",
     "show-all": "اعرض الكل",
     "information-orientation-screen": "أنت موجود أمام شاشة معلومات وتوجيه",
-    "enter-mob-number-and-recieve-sms": "الكثير لتذكر؟ استمر في التنقل مع هاتفك"
+    "enter-mob-number-and-recieve-sms": "الكثير لتذكر؟ استمر في التنقل مع هاتفك",
+
+    "ok": "حسنا",
+    "we_are_sorry": "نحن اسفون!",
+    "server_call_fails": "يبدو خادمنا لا يشعر بأنه في أفضل حالاتها في الوقت الراهن",
+    "try_again": "يرجى المحاولة مرة أخرى أو اختيار وجهة أخرى",
+  
+    "success_send_sms_msg": "تم إرسال SMS بنجاح"
   }

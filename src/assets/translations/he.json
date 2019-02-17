@@ -23,7 +23,14 @@
   "close": "סגור",
   "show-all": "הצג הכל",
   "information-orientation-screen": "הנך נמצא מול מסך מידע והתמצאות",
-  "enter-mob-number-and-recieve-sms": "יותר מדי לזכור? שלחו סמס והמשיכו את הניווט בטלפון"
+  "enter-mob-number-and-recieve-sms": "יותר מדי לזכור? שלחו סמס והמשיכו את הניווט בטלפון",
+
+  "ok": "בסדר",
+  "we_are_sorry": "אנחנו מצטערים!",
+  "server_call_fails": "נראה כאילו השרת שלנו לא מרגיש במיטבו עכשיו",
+  "try_again": "נסה שוב או לבחור יעד אחר",
+
+  "success_send_sms_msg": "SMS נשלח בהצלחה"
 }
 
 

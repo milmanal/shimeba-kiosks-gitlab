@@ -1,10 +1,8 @@
 import {
   Component,
   OnInit,
-  TemplateRef,
   ViewEncapsulation,
   AfterViewInit,
-  ViewChild
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -12,14 +10,13 @@ import { ApiService } from "../../../services/api.service";
 import { DeviceService } from "./../../../services/device.service";
 
 import { InstructionIcon } from "./../../../configs/instruction-icon";
-import { Subscription, interval } from "rxjs";
+import { Subscription, interval, timer } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
 
 import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
-import { ToastrService } from 'ngx-toastr';
-import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
+import { AppSendSmsModalComponent } from "../../../components/send-sms";
 
 @Component({
   selector: "direction-desktop",
@@ -86,7 +83,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
-    public toastr: ToastrService,
   ) {
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
@@ -95,41 +91,18 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       localStorage.setItem("langId", params.langId);
       this.kioskId = Number(params.kioskId);
       this.poiId = Number(params.poiId);
-
+      const bodyTag = document.getElementsByTagName("body")[0];
+      const venueAttr = document.createAttribute("venueId");
+      venueAttr.value = this.venueId;
+      bodyTag.setAttributeNode(venueAttr);
     });
   }
 
-  showSuccess() {
-    this.toastr.success('Success');
-  }
-
-  sendSms() {
-    const sendParams = {
-      text: window.location.href,
-      recipientNumber: this.phoneNumber,
-      senderName: 'Ichilov Hospital',
-    };
-
-    if (!sendParams.recipientNumber) {
-      this.validationMessage = true;
-      return this.validationMessage;
-    }
-    this.validationMessage = false;
-    // this.phoneNumber = '';
-    return this._api.sendSms(sendParams) && this.modalRef.hide();
-  }
-
-  enterNumber(number) {
-    if (number === "del") {
-      this.phoneNumber = this.phoneNumber.slice(0, -1);
-    } else {
-      this.phoneNumber += number;
-    }
-  }
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this._modalService.show(template, {
-      class: "custom-modal"
+  openModal() {
+    this._modalService.show(AppSendSmsModalComponent, {
+      class: `custom-modal custom-modal-${this.venueId}`,
+      ignoreBackdropClick: false,
+      animated: true
     });
 
     if (this.venueId !== '12') {
@@ -139,24 +112,6 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       }
     }
   }
-
-  // openErrorModal() {
-  //   const initialState = {
-  //     list: [
-  //       'Open a modal with component',
-  //       'Pass your data',
-  //       'Do something else',
-  //       '...'
-  //     ],
-  //     title: 'Modal with component'
-  //   };
-  //   this.modalRef = this._modalService.show(AppErrorModalComponent, {
-  //     class: 'error-modal-outer',
-  //     ignoreBackdropClick: true,
-  //     animated: true
-  //   });
-  //   // this.modalRef.content.closeBtnName = 'Ok';
-  // }
 
   backToMain() {
     this.routeSubscribtion.unsubscribe();
@@ -256,10 +211,14 @@ export class DesktopComponent implements OnInit, AfterViewInit {
       document
         .getElementById("sms-box")
         .setAttribute("style", "display: flex;");
+
       this._mapbox.setDestinationMarker(
         this.poiData.entrances[0].longitude,
         this.poiData.entrances[0].latitude
       );
+
+      const timeOut = timer(2000);
+      timeOut.subscribe(() => this.openModal());
       this.routeSubscribtion.unsubscribe();
     }
   }
@@ -282,6 +241,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
     const venueAttr = document.createAttribute("venueId");
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
+
     this.initLanguage = this._language.getCurrentLanguage();
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {

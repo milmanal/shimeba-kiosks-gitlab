@@ -71,7 +71,7 @@
                     </li>
                 </div>
             </ul>
-            <div class="instruction-footer align-items-center px-3" id="sms-box" (click)="openModal(template)">
+            <div class="instruction-footer align-items-center px-3" id="sms-box" (click)="openModal()">
                 <img src="assets/imgs/sms-icon.svg" alt="sms-icon" class="sms-icon">
                 <div class="send-instr px-3" translate>send-instr</div>
                 <div class="input-block d-flex align-items-center justify-content-center" translate>enter-mob-number</div>
@@ -85,7 +85,7 @@
         </div> -->
     </div>
 
-    <ng-template #template class="testing">
+    <!-- <ng-template #template class="testing">
         <div class="p-3">
             <div class="d-flex justify-content-end">
                 <img src="assets/imgs/close.svg" alt="close" aria-label="Close" (click)="modalRef.hide()">
@@ -98,7 +98,6 @@
                     [(ngModel)]="phoneNumber" required>
                 <button (click)="sendSms()" class="send-btn" translate>send</button>
             </div>
-            <!-- <span *ngIf="validationMessage" style="display: block;color: red;font-size: 24px;padding: 10px 15px 0;">This field is required</span> -->
             <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
                 <div class="d-flex justify-content-between align-items-center key-row">
                     <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(1)">1</div>
@@ -123,7 +122,7 @@
                 </div>
             </div>
         </div>
-    </ng-template>
+    </ng-template> -->
 </div>
 <app-loader></app-loader>
 <app-language-panel *ngIf="ds.isDesktop() && venueId === '12'"></app-language-panel>

@@ -18,7 +18,8 @@ export const Config = {
     routeLineWidth: 10,
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
-    timeForTheStep: 2000
+    timeForTheStep: 2000,
+    inactivityDuration: 40
   },
 
   '18': {
@@ -40,7 +41,8 @@ export const Config = {
     routeLineWidth: 12,
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
-    timeForTheStep: 2000
+    timeForTheStep: 2000,
+    inactivityDuration: 40
   },
 
   '19': {
@@ -62,6 +64,7 @@ export const Config = {
     routeLineWidth: 12,
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
-    timeForTheStep: 2000
+    timeForTheStep: 2000,
+    inactivityDuration: 10
   }
 };

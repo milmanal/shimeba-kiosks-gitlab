@@ -66,7 +66,6 @@ export class AppLanguagePanelComponent implements OnInit {
     const HTML = document.getElementById('venue-container-language');
     const venueAttr = document.createAttribute('venueId');
     this.languagePanelHagalil = venueId === '19' ? true : false;
-    console.log(this.languagePanelHagalil);
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
       this.languagePanelOnTheBottom = false;

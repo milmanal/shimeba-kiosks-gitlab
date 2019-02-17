@@ -139,6 +139,200 @@
   src: url("./assets/fonts/ARIALMT.ttf");
 }
 
+html[lang="ar"] {
+  body.hide-darkness {
+    .custom-modal {
+      .instruction {
+        font-family: $mariad;
+        font-size: 35px;
+      }
+
+      .send-btn, .sms-input {
+        font-family: $mariad;
+        font-size: 40px !important;
+      }
+    }
+  }
+
+  .highlighted {
+    font-family: $mariad-r;
+  }
+}
+
+html[lang="am"] {
+  body.hide-darkness {
+    .custom-modal {
+      .instruction {
+        font-family: $noto-b;
+        font-size: 28px;
+      }
+
+      .send-btn, .sms-input {
+        font-family: $noto-b;
+        font-size: 40px !important;
+      }
+    }
+  }
+
+  .highlighted {
+    font-family: $noto-r;
+  }
+}
+
+
+
+body[venueid="18"] {
+  .modal-backdrop {
+    display: none;
+  }
+}
+
+.custom-modal {
+  &.custom-modal-12 {
+    width: 482px;
+    height: 515px;
+    border: solid 1px #4a90e2;
+    transform: translate(0, 50%) !important;
+  
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      background-color: #f0f0f0;
+      .instruction {
+        font-size: 40px;
+        color: #707070;
+        line-height: 1;
+      }
+      .sms-input {
+        width: 75%;
+        height: 43px;
+        background-color: #ffffff;
+        border: none;
+        font-size: 35px;
+        color: #bfbdc0;
+      }
+      .send-btn {
+        border: none;
+        width: 22%;
+        background-color: #4a90e2;
+        height: 43px;
+        font-size: 27px;
+        font-weight: bold;
+        color: #ffffff;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      }
+      .custom-keyboard {
+        width: 100%;
+        height: 269px;
+        .key-row {
+          direction: ltr;
+          flex: 1;
+          .key-btn {
+            background-color: white;
+            border: 1px solid #f0f0f0;
+            flex: 1;
+            height: 100%;
+            font-size: 35px;
+          }
+          .gray-btn {
+              background-color: #B9BCC0;
+          }
+        }
+      }
+    }
+  }
+
+
+  &.custom-modal-18,
+  &.custom-modal-19 {
+    margin: -60px 43px;
+    width: 600px;
+    max-width: 100%;
+    height: auto;
+    font-family: $OSHebrew;
+    transform: translate(0,50%)!important;
+  
+    .modal-content {
+      background-color: #fff;
+      padding: 0 7px 15px;
+    }
+  
+    .sms-input {
+      font-size: 40px;
+      color: #4a4a4a;
+      height: 78px;
+      background: #d8d8d8;
+      font-family: $OSHebrewExtra;
+      width: 340px;
+      padding-left: 15px !important;
+      border: none;
+  
+      &::-webkit-input-placeholder {
+        color: #4a4a4a;
+      }
+    }
+  
+    .send-btn {
+      height: 78px;
+      color: #fff;
+      background: #88cc1f;
+      width: 163px;
+      font-family: $OSHebrewBold;
+      font-size: 30px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // padding-top: 10px;
+      border: 0;
+    }
+  
+    .custom-keyboard {
+      height: auto;
+    }
+  
+    .key-row {
+      margin-bottom: 5px;
+    }
+  
+    .key-btn {
+      height: 78px !important;
+      font-size: 60px !important;
+      font-weight: bold;
+      color: #fff;
+      background: #62abd0 !important;
+      border-radius: 4px;
+      font-family: $OSHebrewExtra;
+      max-width: 165px;
+      flex: 1;
+  
+      &:not(:last-child) {
+        margin-right: 5px;
+      }
+  
+    }
+  
+    .instruction {
+      color: #37557a;
+      font-size: 30px;
+      font-weight: bold;
+      position: relative;
+      display: flex;
+      font-family: $OSHebrewBold;
+      align-items: center;
+      padding: 15px 0 0 !important;
+      line-height: 1;
+  
+      &:before {
+        content: '';
+        min-width: 50px;
+        height: 50px;
+        margin: 0 15px;
+        background: url('./assets/imgs/hagalil/emojy.svg') no-repeat;
+        background-size: 100%;
+      }
+    }
+  }
+}
 
 
 html[dir="rtl"] {
@@ -223,97 +417,6 @@ html[lang="am"] {
   }
 }
 
-body.hide-darkness {
-  .modal-backdrop {
-    display: none;
-  }
-
-  .custom-modal {
-    margin: -60px 43px;
-    width: 600px;
-    max-width: 100%;
-    height: auto;
-    font-family: $OSHebrew;
-
-    .modal-content {
-      background-color: #fff;
-      padding: 0 7px 15px;
-    }
-
-    .sms-input {
-      font-size: 40px;
-      color: #4a4a4a;
-      height: 78px;
-      background: #d8d8d8;
-      font-family: $OSHebrewExtra;
-      width: 340px;
-      padding-left: 15px !important;
-
-      &::-webkit-input-placeholder {
-        color: #4a4a4a;
-      }
-    }
-
-    .send-btn {
-      height: 78px;
-      color: #fff;
-      background: #88cc1f;
-      width: 163px;
-      font-family: $OSHebrewBold;
-      font-size: 30px !important;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      // padding-top: 10px;
-    }
-
-    .custom-keyboard {
-      height: auto;
-    }
-
-    .key-row {
-      margin-bottom: 5px;
-    }
-
-    .key-btn {
-      height: 78px !important;
-      font-size: 60px !important;
-      font-weight: bold;
-      color: #fff;
-      background: #62abd0 !important;
-      border-radius: 4px;
-      font-family: $OSHebrewExtra;
-      max-width: 165px;
-
-      &:not(:last-child) {
-        margin-right: 5px;
-      }
-
-    }
-
-    .instruction {
-      color: #37557a;
-      font-size: 30px;
-      font-weight: bold;
-      position: relative;
-      display: flex;
-      font-family: $OSHebrewBold;
-      align-items: center;
-      padding: 15px 0 0 !important;
-
-      &:before {
-        content: '';
-        min-width: 50px;
-        height: 50px;
-        margin: 0 15px;
-        background: url('assets/imgs/hagalil/emojy.svg') no-repeat;
-        background-size: 100%;
-      }
-    }
-  }
-
-}
-
 .cdk-overlay-container {
   position: fixed;
   bottom: 0;
@@ -372,56 +475,4 @@ mat-keyboard-container mat-keyboard-key .mat-keyboard-key {
 .mat-keyboard-wrapper {
   padding: 0 !important;
 }
-.custom-modal {
-  width: 482px;
-  height: 515px;
-  border: solid 1px #4a90e2;
-  transform: translate(0, 50%) !important;
 
-  .modal-content {
-    width: 100%;
-    height: 100%;
-    background-color: #f0f0f0;
-    .instruction {
-      font-size: 40px;
-      color: #707070;
-      line-height: 1;
-    }
-    .sms-input {
-      width: 75%;
-      height: 43px;
-      background-color: #ffffff;
-      border: none;
-      font-size: 35px;
-      color: #bfbdc0;
-    }
-    .send-btn {
-      border: none;
-      width: 22%;
-      background-color: #4a90e2;
-      height: 43px;
-      font-size: 27px;
-      font-weight: bold;
-      color: #ffffff;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
-    }
-    .custom-keyboard {
-      width: 100%;
-      height: 269px;
-      .key-row {
-        direction: ltr;
-        flex: 1;
-        .key-btn {
-          background-color: white;
-          border: 1px solid #f0f0f0;
-          flex: 1;
-          height: 100%;
-          font-size: 35px;
-        }
-        .gray-btn {
-            background-color: #B9BCC0;
-        }
-      }
-    }
-  }
-}

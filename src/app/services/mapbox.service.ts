@@ -213,7 +213,6 @@ export class MapboxService {
       this.currentRouteStepGeojson.features[0],
       'kilometers'
     );
-    console.log('lineDistance', this.lineDistance);
     if (this.lineDistance >= 0) {
       requestAnimationFrame(this.animateRoute.bind(this));
 
@@ -299,7 +298,6 @@ export class MapboxService {
 
   addKioskMarker(lon, lat, offset: number[]) {
     const youAreHere = document.getElementById('you-are-here');
-    console.log(offset);
     new mapboxgl.Marker(youAreHere, { offset: offset })
       .setLngLat([lon, lat])
       .addTo(this.map);

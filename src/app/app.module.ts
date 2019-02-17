@@ -25,6 +25,8 @@ import {
   ToastrModule,
 } from 'ngx-toastr';
 import 'hammerjs';
+import { AppInactivityTimerComponent } from './components/incativity-timer.component';
+import { AppSendSmsModalComponent } from './components/send-sms';
 
 
 const interceptors = [
@@ -44,7 +46,7 @@ const services = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, AppErrorModalComponent, AppSuccessModalComponent],
+  declarations: [AppComponent, AppErrorModalComponent, AppSuccessModalComponent, AppInactivityTimerComponent, AppSendSmsModalComponent],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,
@@ -68,7 +70,7 @@ const services = [
     services
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent],
+  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent, AppSendSmsModalComponent],
   exports: [AppTranslationModule]
 })
 export class AppModule {}

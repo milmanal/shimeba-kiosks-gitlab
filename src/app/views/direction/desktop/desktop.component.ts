@@ -3,6 +3,7 @@ import {
   OnInit,
   ViewEncapsulation,
   AfterViewInit,
+  OnDestroy,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -25,7 +26,7 @@ import { AppSendSmsModalComponent } from "../../../components/send-sms";
   encapsulation: ViewEncapsulation.None
 })
 
-export class DesktopComponent implements OnInit, AfterViewInit {
+export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   kioskId: Number;
   poiId: Number;
   kioskData: any;
@@ -45,7 +46,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   validationMessage: Boolean = false;
   ARRAY: any;
   layersCollection: Array<{}> = this._mapbox.getLayers();
-
+  modal: any;
   imgByVenueId = {
     '12': [
       'assets/imgs/start.svg',
@@ -99,7 +100,7 @@ export class DesktopComponent implements OnInit, AfterViewInit {
   }
 
   openModal() {
-    this._modalService.show(AppSendSmsModalComponent, {
+    this.modal = this._modalService.show(AppSendSmsModalComponent, {
       class: `custom-modal custom-modal-${this.venueId}`,
       ignoreBackdropClick: false,
       animated: true
@@ -291,5 +292,9 @@ export class DesktopComponent implements OnInit, AfterViewInit {
         this.getDirectionData();
       });
 
+  }
+
+  ngOnDestroy() {
+    this.modal.hide();
   }
 }

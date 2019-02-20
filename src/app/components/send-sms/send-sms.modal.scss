@@ -9,6 +9,11 @@ modal-container .custom-modal-12 {
     }
     // @import "./themes/yafe.theme";
 }
+.custom-keyboard {
+    .key-row{
+        direction: ltr;
+    }
+}
 
 modal-container .custom-modal-19 {
     @import "./themes/hagalil.theme";

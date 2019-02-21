@@ -195,13 +195,16 @@ export class MapboxService {
     }
     this.geojson.features[0].geometry.coordinates = [];
     if (this.venueId === '12' ) {
-      this.map.getSource('main-line').setData(this.geojson);
-      this.map.getSource('secondary-line').setData(this.geojson);
-      this.map.getSource('arrows').setData(this.geojson);
+      this.map.removeSource('main-line');
+      this.map.removeSource('secondary-line');
+      this.map.removeSource('arrows');
     } else {
-      this.map.getSource('main-line').setData(this.geojson);
-      this.map.getSource('arrows').setData(this.geojson);
+      this.map.removeSource('main-line');
+      this.map.removeSource('arrows');
     }
+    this.map.removeSource("overlayMap");
+    this.map.removeLayer("overlayMap");
+    this.map.remove();
   }
 
   addRouteLine(coord) {

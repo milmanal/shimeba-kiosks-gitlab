@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   ) {}
 
   startSearch() {
+    this._mapbox.clearMap();
     this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
   }
 

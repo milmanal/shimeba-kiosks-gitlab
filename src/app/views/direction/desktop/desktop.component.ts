@@ -14,6 +14,7 @@ import { InstructionIcon } from "./../../../configs/instruction-icon";
 import { Subscription, interval, timer } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
+import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
 
 import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
@@ -284,17 +285,27 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             value => value.propertyName === "Location Description"
           );
         }
-        this._mapbox.addMarker(
-          "start-point",
-          this.kioskData.entrances[0].sLongitude,
-          this.kioskData.entrances[0].sLatitude
-        );
-        this.getDirectionData();
+        if(this.poiData.entrances.length) {
+          this._mapbox.addMarker(
+            "start-point",
+            this.kioskData.entrances[0].sLongitude,
+            this.kioskData.entrances[0].sLatitude
+          );
+          this.getDirectionData();
+        } else {
+          this._modalService.show(AppErrorModalComponent, {
+            class: 'error-modal-outer',
+            ignoreBackdropClick: true,
+            animated: true
+          });
+        }
       });
 
   }
 
   ngOnDestroy() {
-    this.modal.hide();
+    if (this.modal) {
+      this.modal.hide();
+    }
   }
 }

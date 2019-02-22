@@ -21,7 +21,6 @@ export class ErrorInterceptor implements HttpInterceptor {
                 }
                 this.errorService.addErrors([`Your generic error message`]);
             }
-
             return Observable.throw(response);
         });
     }

@@ -194,16 +194,8 @@ export class MapboxService {
       this.interval.unsubscribe();
     }
     this.geojson.features[0].geometry.coordinates = [];
-    if (this.venueId === '12' ) {
-      this.map.removeSource('main-line');
-      this.map.removeSource('secondary-line');
-      this.map.removeSource('arrows');
-    } else {
-      this.map.removeSource('main-line');
-      this.map.removeSource('arrows');
-    }
-    this.map.removeSource("overlayMap");
     this.map.removeLayer("overlayMap");
+    this.map.removeSource("overlayMap");
     this.map.remove();
   }
 

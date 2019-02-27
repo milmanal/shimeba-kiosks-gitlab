@@ -4,12 +4,14 @@ import { takeUntil, take } from 'rxjs/operators';
 import { UserActionService } from '../services/user-action.service';
 import { Config } from '../configs/config';
 import { MapboxService } from '../services/mapbox.service';
+import { DeviceService } from '../services/device.service';
 
 @Component({
     selector: 'app-inactivity-timer',
     template: ``,
     styles: []
 })
+
 export class AppInactivityTimerComponent implements OnDestroy, OnInit {
     endTime: number;
     unsubscribe$: Subject<void> = new Subject();
@@ -17,12 +19,13 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
 
     constructor(
         private _userActionService: UserActionService,
-        public _mapbox: MapboxService
+        public _mapbox: MapboxService,
+        public _device: DeviceService
     ) { }
 
     ngOnInit() {
         const venueId = localStorage.getItem('venueId');
-        this.endTime = Config[venueId].inactivityDuration;
+        this.endTime = !Config[venueId].inactivityDuration ? 40 : Config[venueId].inactivityDuration;
         this.resetTimer();
         this._userActionService.userActionOccured.pipe(
             takeUntil(this.unsubscribe$)
@@ -42,6 +45,12 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
             (value) => { },
             err => console.log('Error Occur ---> InactivityTimerComponent: ', err),
             () => {
+                console.log(this._device.isMobile());
+
+                if (this._device.isMobile()) {
+                    return;
+                }
+
                 if (window.location.href.includes('/direction')) {
                     this._mapbox.clearMap();
                 }

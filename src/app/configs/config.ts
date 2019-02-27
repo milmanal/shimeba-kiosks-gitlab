@@ -65,6 +65,6 @@ export const Config = {
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 10
+    inactivityDuration: 40
   }
 };

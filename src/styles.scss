@@ -476,3 +476,38 @@ mat-keyboard-container mat-keyboard-key .mat-keyboard-key {
   padding: 0 !important;
 }
 
+
+.zoomOutDown {
+    animation-name: zoomOutDown;
+    animation-duration: .6s;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes zoomOutDown {
+    40% {
+      opacity: 1;
+      transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
+      }
+    100% {
+      opacity: 0;
+      transform: scale3d(.4, .4, .4) translate3d(600px, 2000px, 0);
+      transform-origin: center bottom;
+    }
+  }
+
+  .zoomInUp {
+    animation-name: zoomInUp;
+    animation-duration: .7s;
+    animation-fill-mode: both;
+    }
+   
+    @keyframes zoomInUp {
+      0% {
+        opacity: 0;
+        transform: scale3d(.1, .1, .1) translate3d(2300px, 1400%, 0);
+      }
+      60% {
+        opacity: 1;
+        transform: scale3d(.6, .6, .6) translate3d(0, -60px, 0);
+      }
+    }

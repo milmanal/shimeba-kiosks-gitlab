@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, ModalDirective, BsModalService } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../services/api.service';
+import { timeout } from 'rxjs/operators';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-send-sms-modal',
@@ -18,6 +20,7 @@ export class AppSendSmsModalComponent {
     constructor(
         public _router: Router,
         public bsModalRef: BsModalRef,
+        public bsModalService: BsModalService,
         private _api: ApiService
     ) {
         this.venueId = localStorage.getItem('venueId');
@@ -32,6 +35,14 @@ export class AppSendSmsModalComponent {
         }
     }
 
+
+    animateCloseModal() {
+        const time = timer(800);
+        document.getElementsByClassName('custom-modal')[0].classList.remove('zoomInUp');
+        document.getElementsByClassName('custom-modal')[0].classList.add('zoomOutDown');
+        return time.subscribe(_ => this.bsModalRef.hide());
+    }
+
     sendSms() {
         const sendParams = {
           text: window.location.href,
@@ -44,6 +55,6 @@ export class AppSendSmsModalComponent {
         }
         this.validationMessage = false;
         // this.phoneNumber = '';
-        return this._api.sendSms(sendParams) && this.bsModalRef.hide();
+        return this._api.sendSms(sendParams) && this.animateCloseModal();
     }
 }

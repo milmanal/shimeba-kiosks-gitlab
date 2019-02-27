@@ -77,6 +77,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     ]
   };
 
+  subscriptions: Subscription[] = [];
+
   constructor(
     private _language: LanguageService,
     private _route: ActivatedRoute,
@@ -102,8 +104,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openModal() {
     this.modal = this._modalService.show(AppSendSmsModalComponent, {
-      class: `custom-modal custom-modal-${this.venueId}`,
-      ignoreBackdropClick: false,
+      class: `custom-modal zoomInUp custom-modal-${this.venueId}`,
+      ignoreBackdropClick: true,
       animated: true
     });
 

@@ -55,17 +55,17 @@ export class MobileComponent implements OnInit, AfterViewInit {
     '18': [
       'assets/imgs/yafe/start-yafe.svg',
       'assets/imgs/yafe/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.png',
+      'assets/imgs/yafe/destination-reached.svg',
       'assets/imgs/yafe/destination-panel.png',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ],
 
     '19': [
-      'assets/imgs/yafe/start-yafe.svg',
-      'assets/imgs/yafe/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.png',
-      'assets/imgs/yafe/destination-panel.png',
+      'assets/imgs/hagalil/route-disk.svg',
+      'assets/imgs/hagalil/route-disk.svg',
+      'assets/imgs/hagalil/destination.svg',
+      'assets/imgs/hagalil/destination.svg',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ]
@@ -97,7 +97,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
-      this._mapbox.zoomToLinePoligon(this.allPath, [0, 200], null, {
+      this._mapbox.zoomToLinePoligon(this.allPath, [0, 220], 16.6, {
         top: 0,
         left: 60,
         right: 60,
@@ -137,11 +137,10 @@ export class MobileComponent implements OnInit, AfterViewInit {
         this.instructions = res;
         this.routeLoaded = true;
         const curInterval = interval(2000);
-        
         res.map(step => {
           step.points.map(poi => this.allPath.push(poi));
         });
-        this._mapbox.zoomToLinePoligon(this.allPath, [0, 200], null, {
+        this._mapbox.zoomToLinePoligon(this.allPath, [0, 220], 16.6, {
           top: 0,
           left: 60,
           right: 60,
@@ -150,11 +149,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
           this.routing(res, currentInstr);
           currentInstr++;
-        }, 2000)
+        }, 2000);
         this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
           this.routing(res, currentInstr);
           currentInstr++;
-        })
+        });
       });
   }
 

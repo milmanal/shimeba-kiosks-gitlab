@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { BsModalRef, ModalDirective, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../services/api.service';
-import { timeout } from 'rxjs/operators';
 import { timer } from 'rxjs';
 
 @Component({
@@ -35,7 +34,6 @@ export class AppSendSmsModalComponent {
         }
     }
 
-
     animateCloseModal() {
         const time = timer(800);
         document.getElementsByClassName('custom-modal')[0].classList.remove('zoomInUp');
@@ -54,7 +52,6 @@ export class AppSendSmsModalComponent {
           return this.validationMessage;
         }
         this.validationMessage = false;
-        // this.phoneNumber = '';
         return this._api.sendSms(sendParams) && this.animateCloseModal();
     }
 }

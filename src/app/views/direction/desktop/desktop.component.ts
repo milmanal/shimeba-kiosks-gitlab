@@ -19,6 +19,7 @@ import { AppErrorModalComponent } from '../../../components/error-modal/error.mo
 import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { AppSendSmsModalComponent } from "../../../components/send-sms";
+import { Config } from '../../../configs/config';
 
 @Component({
   selector: "direction-desktop",
@@ -87,6 +88,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
+
   ) {
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
@@ -221,8 +223,15 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         this.poiData.entrances[0].latitude
       );
 
-      const timeOut = timer(2000);
-      timeOut.subscribe(() => this.openModal());
+      const smsModalTimeAppearing = timer(Config[this.venueId].smsModalTimeAppearing);
+      smsModalTimeAppearing.subscribe(() => {
+        console.log(!!this.modal);
+        if (!window.location.href.includes('/direction') || !!this.modal) {
+          return;
+        }
+
+        this.openModal();
+      });
       this.routeSubscribtion.unsubscribe();
     }
   }
@@ -309,5 +318,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.modal) {
       this.modal.hide();
     }
+
   }
 }

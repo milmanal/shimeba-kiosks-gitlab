@@ -19,7 +19,8 @@ export const Config = {
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40
+    inactivityDuration: 40,
+    smsModalTimeAppearing: 7000
   },
 
   '18': {
@@ -42,7 +43,8 @@ export const Config = {
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40
+    inactivityDuration: 40,
+    smsModalTimeAppearing: 7000
   },
 
   '19': {
@@ -65,6 +67,7 @@ export const Config = {
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40
+    inactivityDuration: 40,
+    smsModalTimeAppearing: 7000
   }
 };

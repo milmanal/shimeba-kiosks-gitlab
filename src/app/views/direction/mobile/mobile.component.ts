@@ -97,8 +97,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
-      this._mapbox.zoomToLinePoligon(this.allPath, [0, 220], 16.6, {
-        top: 0,
+      this._mapbox.zoomToLinePoligon(this.allPath, [0, 150], 18, {
+        top: 60,
         left: 60,
         right: 60,
         bottom: 60
@@ -140,8 +140,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
         res.map(step => {
           step.points.map(poi => this.allPath.push(poi));
         });
-        this._mapbox.zoomToLinePoligon(this.allPath, [0, 220], 16.6, {
-          top: 0,
+        this._mapbox.zoomToLinePoligon(this.allPath, [0, 150], 18, {
+          top: 60,
           left: 60,
           right: 60,
           bottom: 60

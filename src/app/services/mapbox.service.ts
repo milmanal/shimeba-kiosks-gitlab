@@ -59,14 +59,12 @@ export class MapboxService {
   times = [];
   fps: any;
   steps = 0;
-  startTime = 0;
   nextInstructionHandle = Observable.create((observer) => {
     this.nextInstruction = observer;
   });
 
   constructor() {
     mapboxgl.accessToken = 'undefined';
-    
   }
 
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
@@ -110,7 +108,6 @@ export class MapboxService {
 
 
     this.map.on('load', () => {
-      this.startTime = performance.now();
       this.map.addLayer({
         id: 'secondary-line',
         type: 'line',
@@ -444,7 +441,6 @@ export class MapboxService {
     const bounds = coordinates.reduce((bnds, coord) => {
       return bnds.extend(coord);
     }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
-
     this.fitBoundsRotated(bounds, {
       padding: padding || 60,
       offset: offset || [0, 0],

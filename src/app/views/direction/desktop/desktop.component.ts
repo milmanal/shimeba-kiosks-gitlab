@@ -296,7 +296,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             value => value.propertyName === "Location Description"
           );
         }
-        if(this.poiData.entrances.length) {
+        if (this.poiData.entrances.length) {
           this._mapbox.addMarker(
             "start-point",
             this.kioskData.entrances[0].sLongitude,

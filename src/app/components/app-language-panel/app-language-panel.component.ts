@@ -31,19 +31,6 @@ export class AppLanguagePanelComponent implements OnInit {
     if (window.location.href.includes('/home')) {
       this.showAnotherLanguages = true;
     }
-    // this._router.events.subscribe(val => {
-    //   if (val instanceof NavigationEnd && val.url.includes('/home')) {
-    //     this.showAllLanguages = true;
-    //   }
-    //   this.showAllLanguages = false;
-    //   if (val instanceof NavigationEnd && val.url.indexOf('home') !== -1) {
-    //     // this.showAllLanguages = false;
-    //     this.isRoutePage = false;
-    //   }
-    //   if (val instanceof NavigationEnd && val.url.indexOf('direction') !== -1) {
-    //     this.isRoutePage = true;
-    //   }
-    // });
   }
 
   selectLanguage(lang) {
@@ -67,11 +54,11 @@ export class AppLanguagePanelComponent implements OnInit {
     const venueAttr = document.createAttribute('venueId');
     this.languagePanelHagalil = venueId === '19' ? true : false;
     if (window.location.href.includes('/home')) {
-      this.showAnotherLanguages = true;
       this.languagePanelOnTheBottom = false;
       this.languagePanelHagalil = false;
       this.showAnotherLanguages = false;
     }
+
     venueAttr.value = venueId;
     HTML.setAttributeNode(venueAttr);
     this.currentLanguage = this._language.getCurrentLanguage();

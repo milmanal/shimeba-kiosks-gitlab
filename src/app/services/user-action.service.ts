@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Injectable({
   providedIn: 'root'

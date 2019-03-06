@@ -5,6 +5,7 @@ import { UserActionService } from '../services/user-action.service';
 import { Config } from '../configs/config';
 import { MapboxService } from '../services/mapbox.service';
 import { DeviceService } from '../services/device.service';
+import { LanguageService } from '../services/language.service';
 
 @Component({
     selector: 'app-inactivity-timer',
@@ -16,12 +17,19 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
     endTime: number;
     unsubscribe$: Subject<void> = new Subject();
     timerSubscription: Subscription;
+    currentLanguage: any;
 
     constructor(
         private _userActionService: UserActionService,
         public _mapbox: MapboxService,
-        public _device: DeviceService
+        public _device: DeviceService,
+        public _language: LanguageService
     ) { }
+
+    setHebrewLanguageByDefault() {
+        const currentLang = this._language.getCurrentLanguage().name;
+        return currentLang !== 'he' ? localStorage.setItem('langId', 'he') : null;
+    }
 
     ngOnInit() {
         const venueId = localStorage.getItem('venueId');
@@ -45,8 +53,7 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
             (value) => { },
             err => console.log('Error Occur ---> InactivityTimerComponent: ', err),
             () => {
-                console.log(this._device.isMobile());
-
+                this.setHebrewLanguageByDefault();
                 if (this._device.isMobile()) {
                     return;
                 }

@@ -43,7 +43,7 @@ export const Config = {
     borderLineColor: '#ffffff',
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40,
+    inactivityDuration: 10,
     smsModalTimeAppearing: 7000
   },
 

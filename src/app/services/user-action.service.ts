@@ -7,19 +7,14 @@ import { Router } from '@angular/router';
 })
 export class UserActionService {
 
-  venueId: any;
-  kioskId: any;
-  langId: any;
+  venueId = localStorage.getItem('venueId');
+  kioskId = localStorage.getItem('kioskId');
+  _userActionOccured: Subject<void> = new Subject();
 
   constructor(
     private _router: Router,
-  ) {
-    this.venueId = localStorage.getItem('venueId');
-    this.kioskId = localStorage.getItem('kioskId');
-    this.langId = localStorage.getItem('langId');
-  }
+  ) {}
 
-  _userActionOccured: Subject<void> = new Subject();
   get userActionOccured(): Observable<void> { return this._userActionOccured.asObservable(); }
 
   notifyUserAction() {
@@ -27,6 +22,6 @@ export class UserActionService {
   }
 
   goToMainScreen() {
-    this._router.navigateByUrl(`/home/${this.venueId}/${this.kioskId}/${this.langId}`);
+    this._router.navigateByUrl(`/home/${this.venueId}/${this.kioskId}/he`);
   }
 }

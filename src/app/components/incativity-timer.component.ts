@@ -26,11 +26,6 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
         public _language: LanguageService
     ) { }
 
-    setHebrewLanguageByDefault() {
-        const currentLang = this._language.getCurrentLanguage().name;
-        return currentLang !== 'he' ? localStorage.setItem('langId', 'he') : null;
-    }
-
     ngOnInit() {
         const venueId = localStorage.getItem('venueId');
         this.endTime = !Config[venueId].inactivityDuration ? 40 : Config[venueId].inactivityDuration;
@@ -53,7 +48,6 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
             (value) => { },
             err => console.log('Error Occur ---> InactivityTimerComponent: ', err),
             () => {
-                this.setHebrewLanguageByDefault();
                 if (this._device.isMobile()) {
                     return;
                 }
@@ -61,6 +55,7 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
                 if (window.location.href.includes('/direction')) {
                     this._mapbox.clearMap();
                 }
+
                 this._userActionService.goToMainScreen();
             }
         );

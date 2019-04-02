@@ -10,7 +10,7 @@ export const Config = {
     directionMapUrl: 'assets/map_99_north.jpg',
     arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
     drawTime: 1.5,
-    initZoom: 18,
+    initZoom: 18.08,
     mobileInitZoom: 16.5,
     rotation: 93.5,
     center: [34.790005, 32.080043],

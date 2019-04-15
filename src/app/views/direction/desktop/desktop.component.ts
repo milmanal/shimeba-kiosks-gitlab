@@ -315,6 +315,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    console.log('modal');
     if (this.modal) {
       this.modal.hide();
     }

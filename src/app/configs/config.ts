@@ -54,7 +54,7 @@ export const Config = {
       [35.110738277435300, 33.005856362388080],
     ],
     homeMapUrl: 'assets/hagalil_homa_new.png',
-    directionMapUrl: 'assets/hagalil-map-final.png',
+    directionMapUrl: 'assets/hagalil_homa_new.png',
     arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
     drawTime: 1.5,
     initZoom: 17.7,

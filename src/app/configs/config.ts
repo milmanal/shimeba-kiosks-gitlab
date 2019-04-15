@@ -46,22 +46,21 @@ export const Config = {
     inactivityDuration: 40,
     smsModalTimeAppearing: 7000
   },
-
   '19': {
     mapCorners: [
-      [34.791717138986535, 32.08206239285578],
-      [34.79141068350503, 32.07787046370873],
-      [34.78832531057368, 32.07803240327738],
-      [34.78863176605523, 32.08222432499814]
+      [35.110781192779540, 33.013125931065070],
+      [35.123453621949290, 33.013181579828440],
+      [35.123419761657715, 33.005910346541880],
+      [35.110738277435300, 33.005856362388080],
     ],
-    homeMapUrl: 'assets/hagalil-map-final_main.png',
+    homeMapUrl: 'assets/hagalil_homa_new.png',
     directionMapUrl: 'assets/hagalil-map-final.png',
     arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
     drawTime: 1.5,
-    initZoom: 18.7,
+    initZoom: 17.7,
     mobileInitZoom: 16.5,
-    rotation: 93.5,
-    center: [34.790005, 32.080043],
+    rotation: 0,
+    center: [35.117111, 33.009435],
     routeLineColor: '#88cc1f',
     routeLineWidth: 12,
     borderLineColor: '#ffffff',

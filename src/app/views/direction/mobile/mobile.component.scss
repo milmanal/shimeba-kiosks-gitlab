@@ -1,5 +1,17 @@
 #venue-container[venueid="12"] {
   @import "./themes/sourasky.theme";
+
+  + app-language-panel #venue-container-language .if-mobile-then {
+    padding: 0;
+
+    .language-btn:nth-of-type(3),
+    .language-btn:nth-of-type(4) {
+      font-size: 12px !important;
+    }
+    .language-btn.active {
+      right: 0;
+    }
+  }
 }
 
 #venue-container[venueid="18"] {
@@ -26,6 +38,22 @@
 #venue-container[venueid="19"] {
   // @import "./themes/hagalil.theme";
   @import "./themes/sourasky.theme";
+
+  .direction-component {
+    background: #5e7fa1 !important;
+  }
+
+  + app-language-panel #venue-container-language .if-mobile-then {
+    padding: 0;
+
+    .language-btn:nth-of-type(3),
+    .language-btn:nth-of-type(4) {
+      font-size: 12px !important;
+    }
+    .language-btn.active {
+      right: 0;
+    }
+  }
 }
 #venue-container {
   width: 100%;

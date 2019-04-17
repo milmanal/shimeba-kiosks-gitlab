@@ -139,45 +139,45 @@
   src: url("./assets/fonts/ARIALMT.ttf");
 }
 
-html[lang="ar"] {
-  body.hide-darkness {
-    .custom-modal {
-      .instruction {
-        font-family: $mariad;
-        font-size: 35px;
-      }
+// html[lang="ar"] {
+//   body.hide-darkness {
+//     .custom-modal {
+//       .instruction {
+//         font-family: $mariad;
+//         font-size: 35px;
+//       }
 
-      .send-btn, .sms-input {
-        font-family: $mariad;
-        font-size: 40px !important;
-      }
-    }
-  }
+//       .send-btn, .sms-input {
+//         font-family: $mariad;
+//         font-size: 40px !important;
+//       }
+//     }
+//   }
 
-  .highlighted {
-    font-family: $mariad-r;
-  }
-}
+//   .highlighted {
+//     font-family: $mariad-r;
+//   }
+// }
 
-html[lang="am"] {
-  body.hide-darkness {
-    .custom-modal {
-      .instruction {
-        font-family: $noto-b;
-        font-size: 28px;
-      }
+// html[lang="am"] {
+//   body.hide-darkness {
+//     .custom-modal {
+//       .instruction {
+//         font-family: $noto-b;
+//         font-size: 28px;
+//       }
 
-      .send-btn, .sms-input {
-        font-family: $noto-b;
-        font-size: 40px !important;
-      }
-    }
-  }
+//       .send-btn, .sms-input {
+//         font-family: $noto-b;
+//         font-size: 40px !important;
+//       }
+//     }
+//   }
 
-  .highlighted {
-    font-family: $noto-r;
-  }
-}
+//   .highlighted {
+//     font-family: $noto-r;
+//   }
+// }
 
 
 

@@ -184,7 +184,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-
+  subscribeSmsModal: any;
   routing(instructions, currentInstr) {
     if (currentInstr === 0) {
       document
@@ -211,6 +211,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       }
     } else {
+      console.log('instructions finished');
       document
         .getElementById("destination-instr")
         .setAttribute("style", "display: block");
@@ -224,14 +225,15 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       );
 
       const smsModalTimeAppearing = timer(Config[this.venueId].smsModalTimeAppearing);
-      smsModalTimeAppearing.subscribe(() => {
-        console.log(!!this.modal);
+
+      this.subscribeSmsModal = smsModalTimeAppearing.subscribe(val => {
         if (!window.location.href.includes('/direction') || !!this.modal) {
-          return;
+          return false;
         }
 
         this.openModal();
       });
+
       this.routeSubscribtion.unsubscribe();
     }
   }
@@ -315,7 +317,9 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    console.log('modal');
+    if (this.subscribeSmsModal) {
+      this.subscribeSmsModal.unsubscribe();
+    }
     if (this.modal) {
       this.modal.hide();
     }

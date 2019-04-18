@@ -6,6 +6,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
+import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
 
 @Component({
   selector: 'app-language-panel',

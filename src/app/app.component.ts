@@ -7,7 +7,7 @@ import { BsModalService } from 'ngx-bootstrap/modal';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
 // import { AppSendSmsModalComponent } from './components/send-sms/send-sms.modal';
 import { UserActionService } from './services/user-action.service';
-
+import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +18,7 @@ export class AppComponent implements OnDestroy {
   private ngUnsubscribe = new Subject();
 
   constructor(
+    ngx_analyticsGoogleAnalytics: NgxAnalyticsGoogleAnalytics,
     public ds: DeviceService,
     private errorService: ErrorService,
     private _userActionService: UserActionService,

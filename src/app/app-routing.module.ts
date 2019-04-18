@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { NgxAnalyticsModule } from 'ngx-analytics';
+import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
 
 const routes: Routes = [
   {
@@ -27,7 +29,10 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes , {onSameUrlNavigation: `reload`})],
+  imports: [
+    RouterModule.forRoot(routes , {onSameUrlNavigation: `reload`}),
+    NgxAnalyticsModule.forRoot([NgxAnalyticsGoogleAnalytics]),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule {}

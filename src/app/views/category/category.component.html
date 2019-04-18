@@ -7,7 +7,7 @@
         </div>
         <div class="category-pois d-flex justify-content-between pt-2">
             <ul class="pois" #categoryPois (scroll)="onScroll()">
-                <li *ngFor="let poi of pois" class="poi d-flex justify-content-between px-4" (click)="selectPoi(poi.id)">
+                <li *ngFor="let poi of pois" class="poi d-flex justify-content-between px-4" (click)="selectPoi(poi.id, poi)">
                     <span class="currentLanguage py-2">{{ poi.name }}</span>
                     <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
                 </li>

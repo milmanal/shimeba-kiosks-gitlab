@@ -11,6 +11,7 @@ import { Subscription } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
 import { Categories } from './../../configs/categories';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   templateUrl: 'search.component.html',
@@ -33,6 +34,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   langPannelToTheBottom: Boolean = false;
 
   constructor(
+    private ngx_analytics: NgxAnalytics,
     public ds: DeviceService,
     private _language: LanguageService,
     private _api: ApiService,
@@ -82,17 +84,32 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.noSearchResult = false;
       this.pois = [];
     }
+    this.ngx_analytics.eventTrack.next({
+      action: 'Start Search',
+      properties: {
+        category: 'myCategory',
+        value: this.searchValue
+      },
+    });
   }
 
   showMoreResults() {
     this.showMore = !this.showMore;
   }
 
-  selectCategory(id) {
-    this._router.navigateByUrl(`/category/${id}/${this.venueId}/${this.langId}`);
+  selectCategory(category) {
+    console.log(category);
+    this.ngx_analytics.eventTrack.next({
+      action: 'Choosed Category',
+      properties: {
+        category: category.name,
+      },
+    });
+    this._router.navigateByUrl(`/category/${category.categoryId}/${this.venueId}/${this.langId}`);
   }
 
-  selectPoi(id) {
+  selectPoi(id, poi) {
+    console.log('poi', poi);
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }

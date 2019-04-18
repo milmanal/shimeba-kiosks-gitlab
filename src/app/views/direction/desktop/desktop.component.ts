@@ -20,6 +20,7 @@ import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { AppSendSmsModalComponent } from "../../../components/send-sms";
 import { Config } from '../../../configs/config';
+import { NgxAnalytics } from "ngx-analytics";
 
 @Component({
   selector: "direction-desktop",
@@ -81,6 +82,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   subscriptions: Subscription[] = [];
 
   constructor(
+    private ngx_analytics: NgxAnalytics,
     private _language: LanguageService,
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -105,6 +107,12 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openModal() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'SMS Modal',
+      },
+    });
     this.modal = this._modalService.show(AppSendSmsModalComponent, {
       class: `custom-modal zoomInUp custom-modal-${this.venueId}`,
       ignoreBackdropClick: true,
@@ -120,6 +128,13 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   backToMain() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Back Button',
+        label: `Back to Main Screen`,
+      },
+    });
     this.routeSubscribtion.unsubscribe();
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
@@ -148,10 +163,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             item.instruction.instructionsType === 8
           ) {
             order = order === 'left' ? 'right' : 'left';
-            console.log({
-              ...item,
-              order
-            });
             return {
               ...item,
               order
@@ -251,6 +262,13 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'URL',
+      properties: {
+        category: 'URL of Current Page',
+        label: window.location.href,
+      },
+    });
     const venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
     const venueAttr = document.createAttribute("venueId");

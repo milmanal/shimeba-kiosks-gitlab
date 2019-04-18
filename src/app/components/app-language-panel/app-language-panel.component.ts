@@ -7,6 +7,7 @@ import { DeviceService } from './../../services/device.service';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   selector: 'app-language-panel',
@@ -23,6 +24,7 @@ export class AppLanguagePanelComponent implements OnInit {
   venueId: any;
 
   constructor(
+    private ngx_analytics: NgxAnalytics,
     private _route: ActivatedRoute,
     private _router: Router,
     private _language: LanguageService,
@@ -39,6 +41,14 @@ export class AppLanguagePanelComponent implements OnInit {
       this._language.setLanguage(lang);
       this._router.navigateByUrl(urlWithChangedLangId);
     }
+
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Switched Language',
+        label: this.currentLanguage.name,
+      },
+    });
   }
 
   ngOnInit() {

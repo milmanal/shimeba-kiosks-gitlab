@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class UserActionService {
   _userActionOccured: Subject<void> = new Subject();
 
   constructor(
+    private ngx_analytics: NgxAnalytics,
     private _router: Router,
   ) {}
 
@@ -22,6 +24,12 @@ export class UserActionService {
   }
 
   goToMainScreen() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'User Inactivity',
+      properties: {
+        category: 'Back to the main screen',
+      },
+    });
     this._router.navigateByUrl(`/home/${this.venueId}/${this.kioskId}/he`);
   }
 }

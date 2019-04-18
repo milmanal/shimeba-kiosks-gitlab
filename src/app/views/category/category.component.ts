@@ -12,6 +12,7 @@ import { DeviceService } from './../../services/device.service';
 import { Language, Category } from '../../models';
 import { Subscription } from 'rxjs';
 import { Categories } from './../../configs/categories';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   templateUrl: 'category.component.html',
@@ -45,6 +46,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   };
 
   constructor(
+    private ngx_analytics: NgxAnalytics,
     public ds: DeviceService,
     private _language: LanguageService,
     private _api: ApiService,
@@ -62,6 +64,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
     // });
   }
   ngOnInit() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'URL',
+      properties: {
+        category: 'URL of Current Page',
+        label: window.location.href,
+      },
+    });
     this._route.params.subscribe(params => {
       this.currentCategoryId = Number(params.categoryId);
       localStorage.setItem('venueId', params.venueId);
@@ -94,7 +103,14 @@ export class CategoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectPoi(id) {
+  selectPoi(id, poi) {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Select Poi',
+      properties: {
+        category: 'Poi',
+        label: poi.name,
+      },
+    });
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
@@ -122,6 +138,13 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.myScrollContainer.nativeElement.scrollTop - 80;
   }
   back() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Back Button',
+        label: `Back to Search Screen`,
+      },
+    });
     this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
   }
 

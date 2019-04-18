@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../services/api.service';
 import { timer } from 'rxjs';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   selector: 'app-send-sms-modal',
@@ -17,6 +18,7 @@ export class AppSendSmsModalComponent {
     validationMessage: Boolean = false;
 
     constructor(
+        private ngx_analytics: NgxAnalytics,
         public _router: Router,
         public bsModalRef: BsModalRef,
         public bsModalService: BsModalService,
@@ -42,6 +44,12 @@ export class AppSendSmsModalComponent {
     }
 
     sendSms() {
+        this.ngx_analytics.eventTrack.next({
+            action: 'Click',
+            properties: {
+                category: 'Send SMS Button',
+            }
+        });
         const sendParams = {
           text: window.location.href,
           recipientNumber: this.phoneNumber,

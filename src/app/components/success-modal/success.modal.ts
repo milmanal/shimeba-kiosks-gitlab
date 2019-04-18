@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   selector: 'app-success-modal',
@@ -9,7 +10,14 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 
 export class AppSuccessModalComponent {
 
-    constructor(public bsModalRef: BsModalRef) {}
+    constructor(
+      private ngx_analytics: NgxAnalytics,
+      public bsModalRef: BsModalRef
+    ) {
+      this.ngx_analytics.eventTrack.next({
+        action: 'SMS was sent',
+      });
+    }
 
     // closeModal() {
     //     return this.bsModalRef.hide();

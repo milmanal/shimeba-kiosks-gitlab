@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -20,6 +21,7 @@ export class HomeComponent implements OnInit {
   };
   startPointImgByVenueId: string;
   constructor(
+    private ngx_analytics: NgxAnalytics,
     public ds: DeviceService,
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -33,6 +35,13 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'URL',
+      properties: {
+        category: 'URL of Current Page',
+        label: window.location.href,
+      },
+    });
     const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];

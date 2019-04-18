@@ -16,6 +16,7 @@ import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
 
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
+import { NgxAnalytics } from "ngx-analytics";
 
 @Component({
   selector: "direction-mobile",
@@ -73,6 +74,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   applyImgsByVenueId: any;
   constructor(
+    private ngx_analytics: NgxAnalytics,
     private _language: LanguageService,
     private _route: ActivatedRoute,
     private _api: ApiService,
@@ -104,16 +106,37 @@ export class MobileComponent implements OnInit, AfterViewInit {
         bottom: 60
       });
     }
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Show/Hide Instructions',
+      },
+    });
   }
 
   selectInstruction(instr, i) {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Click on the instruction',
+        label: `Instructions was pressed`,
+      },
+    });
     this.instructionListOpen = false;
     this.selectedInstructionIndex = i;
     this.currentInstr = instr.instructions;
+    console.log(instr);
     this._mapbox.goToInstruction(instr);
   }
 
   nextInstruction() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Next Instruction',
+        label: 'Next Instruction button clicked',
+      },
+    });
     this.selectedInstructionIndex++;
     this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
     this._mapbox.goToInstruction(
@@ -122,6 +145,13 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   prevInstruction() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: 'Prev Instruction',
+        label: 'Prev Instruction button clicked',
+      },
+    });
     this.selectedInstructionIndex--;
     this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
     this._mapbox.goToInstruction(
@@ -206,6 +236,13 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'URL',
+      properties: {
+        category: 'URL of Current Page',
+        label: window.location.href,
+      },
+    });
     this._route.params.subscribe(params => {
       const HTML = document.getElementById("venue-container");
       const venueAttr = document.createAttribute("venueId");

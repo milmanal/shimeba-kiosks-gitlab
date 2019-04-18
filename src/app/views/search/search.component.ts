@@ -56,6 +56,13 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'URL',
+      properties: {
+        category: 'URL of Current Page',
+        label: window.location.href,
+      },
+    });
     this._route.params.subscribe(params => {
       localStorage.setItem('venueId', params.venueId);
       localStorage.setItem('langId', params.langId);
@@ -84,11 +91,12 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.noSearchResult = false;
       this.pois = [];
     }
+
     this.ngx_analytics.eventTrack.next({
-      action: 'Start Search',
+      action: 'Search',
       properties: {
-        category: 'myCategory',
-        value: this.searchValue
+        category: 'Search',
+        label: this.searchValue
       },
     });
   }
@@ -98,18 +106,24 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   selectCategory(category) {
-    console.log(category);
     this.ngx_analytics.eventTrack.next({
-      action: 'Choosed Category',
+      action: 'Select Category',
       properties: {
-        category: category.name,
+        category: 'Category',
+        label: category.name,
       },
     });
     this._router.navigateByUrl(`/category/${category.categoryId}/${this.venueId}/${this.langId}`);
   }
 
   selectPoi(id, poi) {
-    console.log('poi', poi);
+    this.ngx_analytics.eventTrack.next({
+      action: 'Select Poi',
+      properties: {
+        category: 'Poi',
+        label: poi.name,
+      },
+    });
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }

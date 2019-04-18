@@ -19,7 +19,7 @@
                 <li *ngIf="pois.length < 2 && pois.length > 0" class="d-flex align-items-center justify-content-between">
                     <span class="search-result-instr" translate>search-result</span>
                 </li>
-                <li *ngFor="let poi of pois"  class="d-flex align-items-center justify-content-between" (click)="selectPoi(poi.id)">
+                <li *ngFor="let poi of pois"  class="d-flex align-items-center justify-content-between" (click)="selectPoi(poi.id, poi)">
                     <span class="currentLanguage py-2" [innerHTML]="poi.name | highlight: searchValue">{{ poi.name }}</span>
                     <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
                 </li>

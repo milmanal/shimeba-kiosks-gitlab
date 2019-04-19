@@ -5,7 +5,7 @@ import { environment } from './environments/environment';
 import {NgxAnalyticsGoogleAnalytics} from 'ngx-analytics/ga';
 
 NgxAnalyticsGoogleAnalytics.prototype.createGaSession({
-  domain: 'none',
+  domain: 'auto',
   trackingId: 'UA-50810203-9'
 });
 

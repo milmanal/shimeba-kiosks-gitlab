@@ -68,7 +68,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
       action: 'URL',
       properties: {
         category: 'URL of Current Page',
-        label: window.location.href,
+        label: window.location.pathname,
       },
     });
     this._route.params.subscribe(params => {

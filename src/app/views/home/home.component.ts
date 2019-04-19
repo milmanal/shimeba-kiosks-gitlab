@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
       action: 'URL',
       properties: {
         category: 'URL of Current Page',
-        label: window.location.href,
+        label: window.location.pathname,
       },
     });
     const urlString = window.location.href.includes('direction');

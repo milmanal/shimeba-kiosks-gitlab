@@ -266,7 +266,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       action: 'URL',
       properties: {
         category: 'URL of Current Page',
-        label: window.location.href,
+        label: window.location.pathname,
       },
     });
     const venueId = localStorage.getItem("venueId");

@@ -46,7 +46,7 @@ export class AppLanguagePanelComponent implements OnInit {
       action: 'Click',
       properties: {
         category: 'Switched Language',
-        label: this.currentLanguage.name,
+        label: `Switched to '${this.currentLanguage.name}' from ${window.location.pathname}`,
       },
     });
   }

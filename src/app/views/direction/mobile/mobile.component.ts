@@ -91,6 +91,13 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   showHideInstructionList() {
+    console.log(this.instructionListOpen);
+    this.ngx_analytics.eventTrack.next({
+      action: 'Click',
+      properties: {
+        category: `${this.instructionListOpen ? 'Hide' : 'Show'} Instructions`,
+      },
+    });
     if (this.instructionListOpen) {
       this.instructionListOpen = !this.instructionListOpen;
       this.selectedInstructionIndex = 0;
@@ -106,12 +113,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
         bottom: 60
       });
     }
-    this.ngx_analytics.eventTrack.next({
-      action: 'Click',
-      properties: {
-        category: 'Show/Hide Instructions',
-      },
-    });
   }
 
   selectInstruction(instr, i) {

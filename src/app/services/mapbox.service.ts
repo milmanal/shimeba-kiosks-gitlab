@@ -191,8 +191,8 @@ export class MapboxService {
       this.interval.unsubscribe();
     }
     this.geojson.features[0].geometry.coordinates = [];
-    this.map.removeLayer("overlayMap");
-    this.map.removeSource("overlayMap");
+    this.map.removeLayer('overlayMap');
+    this.map.removeSource('overlayMap');
     this.map.remove();
   }
 
@@ -213,7 +213,7 @@ export class MapboxService {
         i < this.lineDistance;
         i += this.lineDistance / this.steps
       ) {
-        let segment = turf.along(
+        const segment = turf.along(
           this.currentRouteStepGeojson.features[0],
           i,
           'kilometers'

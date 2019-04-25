@@ -6,7 +6,7 @@ import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home/:venueId/:kioskId/:langId',
+    redirectTo: '/home/12/105999/he',
     pathMatch: 'full'
   },
   {

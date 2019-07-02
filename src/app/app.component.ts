@@ -8,6 +8,8 @@ import { AppErrorModalComponent } from './components/error-modal/error.modal';
 // import { AppSendSmsModalComponent } from './components/send-sms/send-sms.modal';
 import { UserActionService } from './services/user-action.service';
 import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
+import { fromEvent } from 'rxjs';
+import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +24,7 @@ export class AppComponent implements OnDestroy {
     public ds: DeviceService,
     private errorService: ErrorService,
     private _userActionService: UserActionService,
+    private ngx_analytics: NgxAnalytics,
     public _modalService: BsModalService
     ) {
       this.initializeErrors();

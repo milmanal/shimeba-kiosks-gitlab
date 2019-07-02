@@ -28,6 +28,15 @@
       background-position: 50% 50%;
     }
 
+    .arrow-icon {
+      min-width: 141px !important;
+      background-color: #4e769f;
+      background-image: url("../../../assets/imgs/back-arrow.png");
+      background-size: 40%;
+      background-repeat: no-repeat;
+      background-position: 50% 50%;
+    }
+
     .no-search-result-message {
       color: #9b9b9b;
       font-family: $OSHebrewBold;

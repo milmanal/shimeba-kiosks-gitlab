@@ -295,7 +295,22 @@ export class MapboxService {
       .addTo(this.map);
   }
 
+
+  arePointsNear(coord) {
+    const sw = new mapboxgl.LngLat(coord[0] + 0.005, coord[1] + 0.005);
+    const ne = new mapboxgl.LngLat(coord[0] - 0.005, coord[1] - 0.005);
+    const bounds = new mapboxgl.LngLatBounds(sw, ne);
+
+    console.log(bounds._sw);
+    // if (bounds.includes(point1)) {
+    //   return true;
+    // }
+    // return false;
+  }
+
   addInstructionIcon(number, coord, instructionType) {
+
+    this.arePointsNear(coord);
     const hasIcon = InstructionIcon.some(
       instruction => instruction.instructionType === instructionType
     );

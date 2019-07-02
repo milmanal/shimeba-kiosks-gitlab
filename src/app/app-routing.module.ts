@@ -14,7 +14,7 @@ const routes: Routes = [
     loadChildren: './views/home/home.module#HomeModule'
   },
   {
-    path: 'search/:venueId/:langId',
+    path: 'search/:venueId/:kioskId/:langId',
     loadChildren: './views/search/search.module#SearchModule'
   },
   {

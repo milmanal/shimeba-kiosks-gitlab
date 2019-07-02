@@ -1,10 +1,11 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from './../../services/api.service';
 import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
 import { NgxAnalytics } from 'ngx-analytics';
+import { fromEvent } from 'rxjs';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -12,8 +13,10 @@ import { NgxAnalytics } from 'ngx-analytics';
 })
 
 export class HomeComponent implements OnInit {
+  @HostListener('document:click')
   venueId: any;
   langId: any;
+  kioskId: any;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
       '18': 'assets/imgs/yafe/start-yafe.svg',
@@ -27,13 +30,23 @@ export class HomeComponent implements OnInit {
     private _api: ApiService,
     private _router: Router,
     private _mapbox: MapboxService
-  ) {}
+  ) {
+
+    const source = fromEvent(document, 'click');
+    let count = 0;
+    const subscribe = source.subscribe(_ => {
+      console.log(count + 1);
+      count = count + 1;
+    });
+  }
 
   startSearch() {
     this._mapbox.clearMap();
-    this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
+    this._router.navigateByUrl(`/search/${this.venueId}/${this.kioskId}/${this.langId}`);
   }
-
+  clickout() {
+    console.log('clicked');
+  }
   ngOnInit() {
     this.ngx_analytics.eventTrack.next({
       action: 'URL',
@@ -42,6 +55,7 @@ export class HomeComponent implements OnInit {
         label: window.location.pathname,
       },
     });
+
     const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
@@ -50,6 +64,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('langId', params.langId);
       this.langId = params.langId;
       this.venueId = params.venueId;
+      this.kioskId = params.kioskId;
       const HTML = document.getElementById('venue-container');
       const venueAttr = document.createAttribute('venueId');
       venueAttr.value = params.venueId;

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, timer, Subscription, config } from 'rxjs';
+import { Subject, timer, Subscription } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import { UserActionService } from '../services/user-action.service';
 import { Config } from '../configs/config';
@@ -36,6 +36,7 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
             if (this.timerSubscription) {
                 this.timerSubscription.unsubscribe();
             }
+
             this.resetTimer();
         });
     }

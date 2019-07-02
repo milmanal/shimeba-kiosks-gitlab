@@ -7,11 +7,12 @@ import { LanguageService } from './../../services/language.service';
 import { ApiService } from './../../services/api.service';
 import { DeviceService } from '../../services/device.service';
 
-import { Subscription } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
 
 import { Categories } from './../../configs/categories';
 import { NgxAnalytics } from 'ngx-analytics';
+import { timeout, takeUntil } from 'rxjs/operators';
 
 @Component({
   templateUrl: 'search.component.html',
@@ -21,7 +22,6 @@ import { NgxAnalytics } from 'ngx-analytics';
 
 export class SearchComponent implements OnInit, OnDestroy {
   searchValue = '';
-  searchTerm: string;
   currentLanguage: Language;
   languageSubscription: Subscription;
   searchTerm$ = new Subject<any>();
@@ -32,6 +32,10 @@ export class SearchComponent implements OnInit, OnDestroy {
   langId: any;
   noSearchResult: Boolean;
   langPannelToTheBottom: Boolean = false;
+  areEqual = false;
+
+  private unsubscribe$ = new Subject<void>();
+  private searchActivity: Subscription;
 
   constructor(
     private ngx_analytics: NgxAnalytics,
@@ -48,11 +52,16 @@ export class SearchComponent implements OnInit, OnDestroy {
       } else {
         this.noSearchResult = false;
       }
-    });
-  }
 
-  updateSearch(e: any) {
-    this.searchValue = e.target.value;
+      if (this.searchActivity) {
+        this.searchActivity.unsubscribe();
+        this.areEqual = false;
+      }
+
+      if (this.pois.length === 1 && this.doesStringsEqual(this.pois[0].name, this.searchValue)) {
+        this.selectPoiAfterFewMoments(this.pois[0].id, this.pois[0]);
+      }
+    });
   }
 
   ngOnInit() {
@@ -66,6 +75,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this._route.params.subscribe(params => {
       localStorage.setItem('venueId', params.venueId);
       localStorage.setItem('langId', params.langId);
+      localStorage.setItem('kioskId', params.kioskId);
       this.langId = params.langId;
     });
     this.venueId = localStorage.getItem('venueId');
@@ -79,6 +89,22 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.currentLanguage = lang;
       }
     );
+  }
+
+  doesStringsEqual(s1: string, s2: string) {
+    const str1 = s1.toUpperCase().replace(/\s/g, '');
+    const str2 = s2.toUpperCase().replace(/\s/g, '');
+    this.areEqual = str1.length === str2.length;
+    return this.areEqual;
+  }
+
+  selectPoiAfterFewMoments(poyId: number, poi: object) {
+    const time = timer(3000);
+    this.searchActivity = time
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(() => {
+        this.selectPoi(poyId, poi);
+      });
   }
 
   search(ev: any) {
@@ -99,6 +125,10 @@ export class SearchComponent implements OnInit, OnDestroy {
         label: this.searchValue
       },
     });
+  }
+
+  updateSearch(e: any) {
+    this.searchValue = e.target.value;
   }
 
   showMoreResults() {
@@ -124,11 +154,18 @@ export class SearchComponent implements OnInit, OnDestroy {
         label: poi.name,
       },
     });
+    if (poi.name === this.searchValue) {
+      console.log('they are the same');
+    }
+
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
   }
 
   ngOnDestroy() {
     this.languageSubscription.unsubscribe();
+
+    this.unsubscribe$.next();
+    this.unsubscribe$.complete();
   }
 }

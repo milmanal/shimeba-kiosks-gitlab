@@ -29,6 +29,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   currentCategoryName: String;
   venueId: any;
   langId: any;
+  kioskId: any;
   scrollTopActive: Boolean = false;
   scrollDownActive: Boolean = false;
   applyImgsByVenueId: any;
@@ -78,8 +79,6 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.langId = params.langId;
     });
     this.venueId = localStorage.getItem('venueId');
-    // this.langId = localStorage.getItem('langId');
-    // this.langId = params.langId;
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
     const HTML = document.getElementById('venue-container');
     const venueAttr = document.createAttribute('venueId');
@@ -138,6 +137,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.myScrollContainer.nativeElement.scrollTop - 80;
   }
   back() {
+    const kioskId = localStorage.getItem('kioskId');
+    console.log(kioskId);
     this.ngx_analytics.eventTrack.next({
       action: 'Click',
       properties: {
@@ -145,7 +146,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
         label: `Back to Search Screen`,
       },
     });
-    this._router.navigateByUrl(`/search/${this.venueId}/${this.langId}`);
+    this._router.navigateByUrl(`/search/${this.venueId}/${kioskId}/${this.langId}`);
   }
 
   ngOnDestroy() {

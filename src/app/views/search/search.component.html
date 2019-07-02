@@ -10,7 +10,9 @@
                 placeholder="{{'type-the-name-of-dep' | translate}}"
                 [matKeyboard]="currentLanguage.name" 
                 appAutofocus>
-            <div class="search-icon"></div>
+            <div class="search-icon" *ngIf="!areEqual"></div>
+            <div class="arrow-icon" *ngIf="areEqual"></div>
+            
             <div class="no-search-result-message" *ngIf="noSearchResult" translate>no-search-result</div>
         </div>
         
@@ -24,7 +26,6 @@
                     <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
                 </li>
                 
-    
                 <li class="show-more d-flex align-items-center justify-content-center" *ngIf="pois.length > 6" (click)="showMoreResults()">
                     <div class="show-more-label px-2">{{showMore ? ('close' | translate) : ('show-all' | translate)}}</div>
                     <img src="assets/imgs/more.svg" alt="more" [ngClass]="{'hide-more-results-icon': showMore}">

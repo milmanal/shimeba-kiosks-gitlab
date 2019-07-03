@@ -98,12 +98,17 @@ export class SearchComponent implements OnInit, OnDestroy {
     return this.areEqual;
   }
 
-  selectPoiAfterFewMoments(poyId: number, poi): void {
+  selectPoiAfterFewMoments(poiId: number, poi, action?: string): void {
     const time = timer(3000);
+
+    if (action && action === 'click') {
+      return this.selectPoi(poiId, poi);
+    }
+
     this.searchActivity = time
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
-        this.selectPoi(poyId, poi);
+        this.selectPoi(poiId, poi);
         this.ngx_analytics.eventTrack.next({
           action: 'Auto select',
           properties: {
@@ -147,13 +152,15 @@ export class SearchComponent implements OnInit, OnDestroy {
       action: 'Select Category',
       properties: {
         category: 'Category',
-        label: category.name,
+        label: `Clicked category: ${category.name}`,
       },
     });
     this._router.navigateByUrl(`/category/${category.categoryId}/${this.venueId}/${this.langId}`);
   }
 
   selectPoi(id, poi) {
+
+    console.log('asdasdas')
     this.ngx_analytics.eventTrack.next({
       action: 'Select Poi by click',
       properties: {
@@ -161,9 +168,6 @@ export class SearchComponent implements OnInit, OnDestroy {
         label: `Clicked poi: ${poi.name}`,
       },
     });
-    if (poi.name === this.searchValue) {
-      console.log('they are the same');
-    }
 
     const kioskId = localStorage.getItem('kioskId');
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);

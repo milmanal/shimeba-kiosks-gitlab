@@ -49,6 +49,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   validationMessage: Boolean = false;
   ARRAY: any;
   layersCollection: Array<{}> = this._mapbox.getLayers();
+  subscribeSmsModal: any;
   modal: any;
   imgByVenueId = {
     '12': [
@@ -78,8 +79,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       'assets/imgs/yafe/bullet.svg'
     ]
   };
-
-  subscriptions: Subscription[] = [];
 
   constructor(
     private ngx_analytics: NgxAnalytics,
@@ -195,7 +194,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       }
     );
   }
-  subscribeSmsModal: any;
   routing(instructions, currentInstr) {
     if (currentInstr === 0) {
       document

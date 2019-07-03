@@ -11,7 +11,7 @@
                 [matKeyboard]="currentLanguage.name" 
                 appAutofocus>
             <div class="search-icon" *ngIf="!areEqual"></div>
-            <div class="arrow-icon" *ngIf="areEqual"></div>
+            <div class="search-arrow-icon" *ngIf="areEqual" (click)="selectPoiAfterFewMoments(pois[0].id, pois[0], 'click')"></div>
             
             <div class="no-search-result-message" *ngIf="noSearchResult" translate>no-search-result</div>
         </div>

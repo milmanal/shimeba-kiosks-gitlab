@@ -342,6 +342,18 @@ html[dir="rtl"] {
   ul {
     text-align: right;
   }
+
+  .search-arrow-icon {
+    transform: rotate(180deg)
+  }
+
+  .instruction {
+
+    .text-instr:before {
+      left: unset !important;
+      right: 35px !important;
+    }
+  }
 }
 html[dir="ltr"] {
   * {

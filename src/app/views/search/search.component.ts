@@ -98,12 +98,19 @@ export class SearchComponent implements OnInit, OnDestroy {
     return this.areEqual;
   }
 
-  selectPoiAfterFewMoments(poyId: number, poi: object) {
+  selectPoiAfterFewMoments(poyId: number, poi): void {
     const time = timer(3000);
     this.searchActivity = time
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
         this.selectPoi(poyId, poi);
+        this.ngx_analytics.eventTrack.next({
+          action: 'Auto select',
+          properties: {
+            category: 'Poi loaded automaticaly',
+            label: `Choosed destination: ${poi.name}`,
+          },
+        });
       });
   }
 
@@ -148,10 +155,10 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   selectPoi(id, poi) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Select Poi',
+      action: 'Select Poi by click',
       properties: {
         category: 'Poi',
-        label: poi.name,
+        label: `Clicked poi: ${poi.name}`,
       },
     });
     if (poi.name === this.searchValue) {

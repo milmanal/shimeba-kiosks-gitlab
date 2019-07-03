@@ -13,10 +13,10 @@ import { fromEvent } from 'rxjs';
 })
 
 export class HomeComponent implements OnInit {
-  @HostListener('document:click')
   venueId: any;
   langId: any;
   kioskId: any;
+  // countClick = 0;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
       '18': 'assets/imgs/yafe/start-yafe.svg',
@@ -31,22 +31,22 @@ export class HomeComponent implements OnInit {
     private _router: Router,
     private _mapbox: MapboxService
   ) {
-
-    const source = fromEvent(document, 'click');
-    let count = 0;
-    const subscribe = source.subscribe(_ => {
-      console.log(count + 1);
-      count = count + 1;
-    });
   }
 
   startSearch() {
     this._mapbox.clearMap();
+    // this.countClick = this.countClick + 1;
+    // console.log(this.countClick);
+    this.ngx_analytics.eventTrack.next({
+      action: 'Home page click action',
+      properties: {
+        category: 'Begin from home page',
+        label: `Kiosk id: ${this.kioskId}, Venue id: ${this.venueId}`,
+      },
+    });
     this._router.navigateByUrl(`/search/${this.venueId}/${this.kioskId}/${this.langId}`);
   }
-  clickout() {
-    console.log('clicked');
-  }
+
   ngOnInit() {
     this.ngx_analytics.eventTrack.next({
       action: 'URL',

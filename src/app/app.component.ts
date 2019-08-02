@@ -13,7 +13,7 @@ import { UserActionService } from './services/user-action.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnDestroy {
+export class AppComponent {
   private ngUnsubscribe = new Subject();
 
   constructor(
@@ -22,7 +22,7 @@ export class AppComponent implements OnDestroy {
     private errorService: ErrorService,
     public _modalService: BsModalService
     ) {
-      this.initializeErrors();
+      // this.initializeErrors();
     }
 
     @HostListener('document:keyup', ['$event'])
@@ -33,22 +33,22 @@ export class AppComponent implements OnDestroy {
       this._userActionService.notifyUserAction();
     }
 
-    ngOnDestroy() {
-      this.ngUnsubscribe.next();
-      this.ngUnsubscribe.complete();
-    }
+    // ngOnDestroy() {
+    //   this.ngUnsubscribe.next();
+    //   this.ngUnsubscribe.complete();
+    // }
 
-    private initializeErrors() {
-      this
-        .errorService
-        .getErrors()
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe((errors) => {
-          this._modalService.show(AppErrorModalComponent, {
-            class: 'error-modal-outer',
-            ignoreBackdropClick: true,
-            animated: true
-          });
-        });
-    }
+    // private initializeErrors() {
+    //   this
+    //     .errorService
+    //     .getErrors()
+    //     .pipe(takeUntil(this.ngUnsubscribe))
+    //     .subscribe((errors) => {
+    //       this._modalService.show(AppErrorModalComponent, {
+    //         class: 'error-modal-outer',
+    //         ignoreBackdropClick: true,
+    //         animated: true
+    //       });
+    //     });
+    // }
 }

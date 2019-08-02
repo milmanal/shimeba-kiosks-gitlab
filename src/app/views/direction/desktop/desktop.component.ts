@@ -96,6 +96,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     public ds: DeviceService,
     private errorService: ErrorService,
   ) {
+    this.initializeErrors();
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
       localStorage.setItem("kioskId", params.kioskId);

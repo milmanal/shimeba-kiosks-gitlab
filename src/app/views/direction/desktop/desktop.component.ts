@@ -11,7 +11,7 @@ import { ApiService } from "../../../services/api.service";
 import { DeviceService } from "./../../../services/device.service";
 
 import { InstructionIcon } from "./../../../configs/instruction-icon";
-import { Subscription, interval, timer } from "rxjs";
+import { Subscription, interval, timer, Subject } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
 import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
@@ -21,6 +21,8 @@ import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { AppSendSmsModalComponent } from "../../../components/send-sms";
 import { Config } from '../../../configs/config';
 import { NgxAnalytics } from "ngx-analytics";
+import { ErrorService } from "../../../services/error.service";
+import { takeUntil } from "rxjs/operators";
 
 @Component({
   selector: "direction-desktop",
@@ -51,6 +53,9 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   layersCollection: Array<{}> = this._mapbox.getLayers();
   subscribeSmsModal: any;
   modal: any;
+
+  private ngUnsubscribe = new Subject();
+
   imgByVenueId = {
     '12': [
       'assets/imgs/start.svg',
@@ -89,7 +94,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
-
+    private errorService: ErrorService,
   ) {
     this._route.params.subscribe(params => {
       this.venueId = params.venueId;
@@ -105,9 +110,23 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  private initializeErrors() {
+    this
+      .errorService
+      .getErrors()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe((errors) => {
+        this._modalService.show(AppErrorModalComponent, {
+          class: 'error-modal-outer',
+          ignoreBackdropClick: true,
+          animated: true
+        });
+      });
+  }
+
   openModal() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'SMS Modal Appear',
       properties: {
         category: 'SMS Modal',
       },
@@ -128,7 +147,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   backToMain() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click on Back button from the Direction screen',
       properties: {
         category: 'Back Button',
         label: `Back to Main Screen`,
@@ -329,10 +348,12 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           });
         }
       });
-
   }
 
   ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
+
     if (this.subscribeSmsModal) {
       this.subscribeSmsModal.unsubscribe();
     }

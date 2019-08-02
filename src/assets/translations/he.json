@@ -29,7 +29,9 @@
   "we_are_sorry": "אנחנו מצטערים!",
   "server_call_fails": "נראה כאילו השרת שלנו לא מרגיש במיטבו עכשיו",
   "try_again": "נסה שוב או לבחור יעד אחר",
-
+  "server_call_fails_12": "אנו מתנצלים על התקלה הזמנית , אנא נסה שנית או פנה למרכז מידע ושירות, מגדל אריסון , קומת הכניסה בסמוך לפסנתר.",
+  "server_call_fails_18": "Looks like our server doesn't feel at its best right now.",
+  "server_call_fails_19": "Looks like our server doesn't feel at its best right now.",
   "success_send_sms_msg": "SMS נשלח בהצלחה"
 }
 

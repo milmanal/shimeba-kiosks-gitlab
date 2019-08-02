@@ -43,7 +43,7 @@ export class AppLanguagePanelComponent implements OnInit {
     }
 
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click on language panel',
       properties: {
         category: 'Switched Language',
         label: `Switched to '${this.currentLanguage.name}' from ${window.location.pathname}`,

@@ -15,7 +15,7 @@ export class AppSuccessModalComponent {
       public bsModalRef: BsModalRef
     ) {
       this.ngx_analytics.eventTrack.next({
-        action: 'SMS was sent',
+        action: 'SMS success message',
       });
     }
 

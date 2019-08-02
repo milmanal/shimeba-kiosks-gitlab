@@ -93,7 +93,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   showHideInstructionList() {
     console.log(this.instructionListOpen);
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click on mobile view - Direction screen',
       properties: {
         category: `${this.instructionListOpen ? 'Hide' : 'Show'} Instructions`,
       },
@@ -117,7 +117,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   selectInstruction(instr, i) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Select the instruction mobile view - Direction screen',
       properties: {
         category: 'Click on the instruction',
         label: `Instructions was pressed`,
@@ -132,7 +132,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   nextInstruction() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click Next instruction mobile view',
       properties: {
         category: 'Next Instruction',
         label: 'Next Instruction button clicked',
@@ -147,7 +147,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   prevInstruction() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click Prev instruction mobile view',
       properties: {
         category: 'Prev Instruction',
         label: 'Prev Instruction button clicked',

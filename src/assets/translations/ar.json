@@ -27,8 +27,11 @@
 
     "ok": "حسنا",
     "we_are_sorry": "نحن اسفون!",
-    "server_call_fails": "يبدو خادمنا لا يشعر بأنه في أفضل حالاتها في الوقت الراهن",
     "try_again": "يرجى المحاولة مرة أخرى أو اختيار وجهة أخرى",
-  
+    
+    "server_call_fails_12": "نعتذر عن الخلل المؤقت، الرّجاء المحاولة مجدّداً أو مراجعة مركز المعلومات والخدمات، برج أريسون، الطابق الأرضي (المدخل)، قرب البيانو.",
+    "server_call_fails_18": "Looks like our server doesn't feel at its best right now.",
+    "server_call_fails_19": "Looks like our server doesn't feel at its best right now.",
+
     "success_send_sms_msg": "تم إرسال SMS بنجاح"
   }

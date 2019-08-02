@@ -102,16 +102,18 @@ export class CategoryComponent implements OnInit, OnDestroy {
     }
   }
 
-  selectPoi(id, poi) {
+  selectPoi(poiId, poi) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Select Poi',
+      action: 'Select poi from category screen',
       properties: {
         category: 'Poi',
         label: poi.name,
       },
     });
+    const {id, name} = poi;
+    localStorage.setItem('poiValues', JSON.stringify({id, name}));
     const kioskId = localStorage.getItem('kioskId');
-    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
+    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${poiId}/${this.langId}`);
   }
 
   onScroll() {
@@ -140,7 +142,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     const kioskId = localStorage.getItem('kioskId');
     console.log(kioskId);
     this.ngx_analytics.eventTrack.next({
-      action: 'Click',
+      action: 'Click from Category screen',
       properties: {
         category: 'Back Button',
         label: `Back to Search Screen`,

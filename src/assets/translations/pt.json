@@ -27,7 +27,10 @@
 
     "ok": "Está bem",
     "we_are_sorry": "Nos desculpe!",
-    "server_call_fails": "Parece que o nosso servidor não se sente no seu melhor agora",
+
+    "server_call_fails_12": "Pedimos desculpas pela falha temporária. Favor tentar novamente ou entrar em contato com o Centro de Informações e Serviços no andar de entrada da Torre Arison, próximo ao piano.",
+    "server_call_fails_18": "Parece que o nosso servidor não se sente no seu melhor agora",
+    "server_call_fails_19": "Parece que o nosso servidor não se sente no seu melhor agora",
     "try_again": "Por favor tente novamente ou escolher outro destino",
   
     "success": "Success!",

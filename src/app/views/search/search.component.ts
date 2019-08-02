@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { Language, Category } from '../../models';
@@ -12,7 +12,7 @@ import { Subject } from 'rxjs/Subject';
 
 import { Categories } from './../../configs/categories';
 import { NgxAnalytics } from 'ngx-analytics';
-import { timeout, takeUntil } from 'rxjs/operators';
+import { takeUntil} from 'rxjs/operators';
 
 @Component({
   templateUrl: 'search.component.html',
@@ -133,7 +133,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     this.ngx_analytics.eventTrack.next({
       action: 'Search',
       properties: {
-        category: 'Search',
+        category: 'Search value',
         label: this.searchValue
       },
     });
@@ -149,7 +149,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   selectCategory(category) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Select Category',
+      action: 'Select the Category from Search screen',
       properties: {
         category: 'Category',
         label: `Clicked category: ${category.name}`,
@@ -158,19 +158,18 @@ export class SearchComponent implements OnInit, OnDestroy {
     this._router.navigateByUrl(`/category/${category.categoryId}/${this.venueId}/${this.langId}`);
   }
 
-  selectPoi(id, poi) {
-
-    console.log('asdasdas')
+  selectPoi(poiId, poi) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Select Poi by click',
+      action: 'Select Poi by click from Search screen',
       properties: {
         category: 'Poi',
         label: `Clicked poi: ${poi.name}`,
       },
     });
-
+    const { id, name } = poi;
+    localStorage.setItem('poiValues', JSON.stringify({id, name}));
     const kioskId = localStorage.getItem('kioskId');
-    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${id}/${this.langId}`);
+    this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${poiId}/${this.langId}`);
   }
 
   ngOnDestroy() {

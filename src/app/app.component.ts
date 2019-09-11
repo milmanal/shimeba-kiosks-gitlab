@@ -8,15 +8,20 @@ import { AppErrorModalComponent } from './components/error-modal/error.modal';
 // import { AppSendSmsModalComponent } from './components/send-sms/send-sms.modal';
 import { UserActionService } from './services/user-action.service';
 
+import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
+import { NgxAnalytics } from 'ngx-analytics';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   private ngUnsubscribe = new Subject();
 
   constructor(
+    ngx_analyticsGoogleAnalytics: NgxAnalyticsGoogleAnalytics,
+    private ngx_analytics: NgxAnalytics,
     public ds: DeviceService,
     private _userActionService: UserActionService,
     private errorService: ErrorService,
@@ -33,22 +38,22 @@ export class AppComponent {
       this._userActionService.notifyUserAction();
     }
 
-    // ngOnDestroy() {
-    //   this.ngUnsubscribe.next();
-    //   this.ngUnsubscribe.complete();
-    // }
+    ngOnDestroy() {
+      this.ngUnsubscribe.next();
+      this.ngUnsubscribe.complete();
+    }
 
-    // private initializeErrors() {
-    //   this
-    //     .errorService
-    //     .getErrors()
-    //     .pipe(takeUntil(this.ngUnsubscribe))
-    //     .subscribe((errors) => {
-    //       this._modalService.show(AppErrorModalComponent, {
-    //         class: 'error-modal-outer',
-    //         ignoreBackdropClick: true,
-    //         animated: true
-    //       });
-    //     });
-    // }
+    private initializeErrors() {
+      this
+        .errorService
+        .getErrors()
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe((errors) => {
+          this._modalService.show(AppErrorModalComponent, {
+            class: 'error-modal-outer',
+            ignoreBackdropClick: true,
+            animated: true
+          });
+        });
+    }
 }

@@ -11,7 +11,9 @@
   @import "./themes/hagalil.theme";
 }
 
-
+#venue-container[venueid="20"] {
+  @import "./themes/ziv.theme";
+}
 
 #venue-container {
   width: 100%;

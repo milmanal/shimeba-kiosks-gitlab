@@ -1,84 +1,112 @@
 export const Categories = {
-  "12": [
+  '12': [
     {
-      icon: "entrance.svg",
-      name: "entrance",
+      icon: 'entrance.svg',
+      name: 'entrance',
       categoryId: 1
     },
     {
-      icon: "info.svg",
-      name: "info",
+      icon: 'info.svg',
+      name: 'info',
       categoryId: 42
     },
     {
-      icon: "toilets.svg",
-      name: "toilets",
+      icon: 'toilets.svg',
+      name: 'toilets',
       categoryId: 2
     },
     {
-      icon: "parking.svg",
-      name: "parking",
+      icon: 'parking.svg',
+      name: 'parking',
       categoryId: 5
     },
     {
-      icon: "food.svg",
-      name: "food",
+      icon: 'food.svg',
+      name: 'food',
       categoryId: 52
     }
   ],
 
-  "18": [
+  '18': [
     {
-      icon: "yafe/entrance-yafe.svg",
-      name: "entrance",
+      icon: 'yafe/entrance-yafe.svg',
+      name: 'entrance',
       categoryId: 1
     },
     {
-      icon: "yafe/info-yafe.svg",
-      name: "info",
+      icon: 'yafe/info-yafe.svg',
+      name: 'info',
       categoryId: 42
     },
     {
-      icon: "yafe/toilets-yafe.svg",
-      name: "toilets",
+      icon: 'yafe/toilets-yafe.svg',
+      name: 'toilets',
       categoryId: 2
     },
     {
-      icon: "yafe/parking-yafe.svg",
-      name: "parking",
+      icon: 'yafe/parking-yafe.svg',
+      name: 'parking',
       categoryId: 5
     },
     {
-      icon: "yafe/food-yafe.svg",
-      name: "food",
+      icon: 'yafe/food-yafe.svg',
+      name: 'food',
       categoryId: 52
     }
   ],
 
-  "19": [
+  '19': [
     {
-      icon: "hagalil/entrance.svg",
-      name: "entrance",
+      icon: 'hagalil/entrance.svg',
+      name: 'entrance',
       categoryId: 1
     },
     {
-      icon: "hagalil/info.svg",
-      name: "info",
+      icon: 'hagalil/info.svg',
+      name: 'info',
       categoryId: 42
     },
     {
-      icon: "hagalil/toilets.svg",
-      name: "toilets",
+      icon: 'hagalil/toilets.svg',
+      name: 'toilets',
       categoryId: 2
     },
     {
-      icon: "hagalil/parking.svg",
-      name: "parking",
+      icon: 'hagalil/parking.svg',
+      name: 'parking',
       categoryId: 5
     },
     {
-      icon: "hagalil/food.svg",
-      name: "food",
+      icon: 'hagalil/food.svg',
+      name: 'food',
+      categoryId: 52
+    }
+  ],
+
+  '20': [
+    {
+      icon: 'ziv/entrance-ziv.svg',
+      name: 'entrance',
+      categoryId: 1
+    },
+    {
+      icon: 'ziv/info-ziv.svg',
+      name: 'info',
+      categoryId: 42
+    },
+    {
+      icon: 'ziv/toilets-ziv.svg',
+      name: 'toilets',
+      categoryId: 2
+    },
+    {
+      icon: 'ziv/parking-ziv.svg',
+      name: 'parking',
+      categoryId: 5
+    },
+    {
+      icon: 'ziv/food-ziv.svg',
+      name: 'food',
       categoryId: 52
     }
   ]

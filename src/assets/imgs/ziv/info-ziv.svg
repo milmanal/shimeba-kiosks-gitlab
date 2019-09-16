@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.215" height="45.594" viewBox="0 0 20.215 45.594">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #5d8cc1;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Clip_2" data-name="Clip 2" class="cls-1" d="M0,45.594H20.215V0H0Z" transform="translate(0.001)"/>
+    </clipPath>
+  </defs>
+  <g id="info" transform="translate(-0.001)">
+    <path id="Clip_2-2" data-name="Clip 2" class="cls-1" d="M0,45.594H20.215V0H0Z" transform="translate(0.001)"/>
+    <g id="info-2" data-name="info" class="cls-2">
+      <path id="Fill_1" data-name="Fill 1" class="cls-3" d="M20.216,45.039H.626V42.868H5.389V18.935H0V16.752H15.474V42.868h4.742v2.17ZM8.871,12.424a6.278,6.278,0,0,1-4.449-1.808,6.208,6.208,0,0,1,0-8.8,6.331,6.331,0,0,1,8.87,0,6.227,6.227,0,0,1,0,8.8A6.224,6.224,0,0,1,8.871,12.424Z"/>
+    </g>
+  </g>
+</svg>

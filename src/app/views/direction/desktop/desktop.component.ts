@@ -82,6 +82,15 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       'assets/imgs/hagalil/destination.svg',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
+    ],
+
+    '20': [
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
     ]
   };
 
@@ -294,6 +303,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     HTML.setAttributeNode(venueAttr);
 
     this.initLanguage = this._language.getCurrentLanguage();
+
     this.languageSubscription = this._language.observableLanguage.subscribe(
       lang => {
         if (this.initLanguage.name !== lang.name) {

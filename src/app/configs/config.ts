@@ -68,5 +68,29 @@ export const Config = {
     timeForTheStep: 2000,
     inactivityDuration: 40,
     smsModalTimeAppearing: 7000
+  },
+
+  '20': {
+    mapCorners: [
+      [35.491847991943360, 32.951828668670060],
+      [35.490024089813230, 32.955798844567760],
+      [35.493028163909910, 32.956735095888740],
+      [35.494852066040040, 32.952764962048710],
+    ],
+    homeMapUrl: 'assets/ziv-home.png',
+    directionMapUrl: 'assets/ziv-bg-map-directions.png',
+    arrowOnRouteUrl: 'assets/imgs/route-arrow.png',
+    drawTime: 1.5,
+    initZoom: 18,
+    mobileInitZoom: 16.5,
+    rotation: 249,
+    center: [35.492153, 32.954227],
+    routeLineColor: '#5d8cc1',
+    routeLineWidth: 12,
+    borderLineColor: '#5d8cc1',
+    borderLineWidth: 7,
+    timeForTheStep: 2000,
+    inactivityDuration: 500,
+    smsModalTimeAppearing: 7000
   }
 };

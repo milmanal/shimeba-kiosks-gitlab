@@ -43,6 +43,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
     ],
     '19': [
       'assets/imgs/hagalil/cancel.svg',
+    ],
+    '20': [
+      'assets/imgs/ziv/cancel.svg',
     ]
   };
 

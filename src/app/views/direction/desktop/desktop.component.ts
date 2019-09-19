@@ -120,13 +120,13 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  private initializeErrors() {
+  initializeErrors() {
     this
       .errorService
       .getErrors()
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe((errors) => {
-        this._modalService.show(AppErrorModalComponent, {
+        this.modal = this._modalService.show(AppErrorModalComponent, {
           class: 'error-modal-outer',
           ignoreBackdropClick: true,
           animated: true
@@ -249,7 +249,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       }
     } else {
-      console.log('instructions finished');
       document
         .getElementById("destination-instr")
         .setAttribute("style", "display: block");
@@ -364,13 +363,11 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnDestroy() {
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
-
     if (this.subscribeSmsModal) {
       this.subscribeSmsModal.unsubscribe();
     }
     if (this.modal) {
       this.modal.hide();
     }
-
   }
 }

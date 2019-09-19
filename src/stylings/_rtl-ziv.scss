@@ -1,8 +1,16 @@
 @import 'variables-yafe';
 
+html[dir="rtl"] body[venueid="20"] {
+  .custom-modal-20 {
+    .close-modal-image {
+      justify-content: flex-start !important;
+    }
+  }
+}
+
 html[dir="rtl"] #venue-container[venueid="20"] {
     .instructions-container {
-        background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 8%, #00729a 95%);
+        // background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 8%, #00729a 95%);
         padding-right: 64px;
         padding-left: 30px;
 
@@ -121,11 +129,17 @@ html[dir="rtl"] #venue-container[venueid="20"] {
     }
 
     .direction-component {
-        background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 79%, #00729a 96%);
+        // background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 79%, #00729a 96%);
 
-        .header .back-btn img {
+        .header .back-btn {
+          right: unset !important;
+          left: 54px;
+
+          img {
             transform: unset;
+          }
         }
+        
 
         .header .poi-data-name {
           margin-right: 30px;

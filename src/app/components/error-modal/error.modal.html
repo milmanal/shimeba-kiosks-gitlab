@@ -3,7 +3,13 @@
         <div class="d-flex modal-body-inner">
             <img src="../../../assets/imgs/hagalil/emojy.svg" alt="">
             <div>
-                <div>{{currentError | translate}}</div>
+                <div *ngIf="venueId == 12">{{error12 | translate}}</div>
+
+                <div *ngIf="venueId != 12">
+                    <div>{{'we_are_sorry' | translate}}</div>
+                    <div>{{'server_call_fails' | translate}}</div>
+                    <div>{{'try_again' | translate}}</div>
+                </div>
             </div>
         </div>
     </div>

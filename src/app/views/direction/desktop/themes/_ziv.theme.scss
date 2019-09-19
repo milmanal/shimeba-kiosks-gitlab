@@ -90,11 +90,15 @@
     .back-btn {
       width: 210px;
       height: 74px;
-      background-color: $main-color;
+      background-color: #696969;
       font-size: 45px;
       font-family: $OSHebrewBold;
       color: $color-white;
       border: none;
+      position: absolute;
+      right: 54px;
+      top: 0;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,.5);
 
       img {
         transform: rotate(180deg);
@@ -105,7 +109,7 @@
     }
   }
   .load-background {
-    background: #62ABD8;
+    background: #48ACDE;
   }
 
   .loaded {
@@ -121,11 +125,10 @@
     -webkit-transform: translateX(-49%);
     transform: translateX(-49%);
     width: 700px;
-    transition: all 3s ease;
+    transition: all .5s ease;
     z-index: 0;
   }
   .instructions-container {
-    // display: none;
 
     ul {
       padding-left: 110px !important;
@@ -295,7 +298,7 @@
 
       .start-text-instruction {
         // padding-left: 80px;
-        padding: 0 15px;
+        padding: 0 0 0 65px;
       }
 
       &:nth-of-type(2) {
@@ -322,8 +325,6 @@
           display: none;
         }
       }
-
-      
 
       li {
         list-style: none;
@@ -354,7 +355,7 @@
       }
       .instruction-number {
         padding: 0 !important;
-        font-family: "Open Sans Hebrew", sans-serif;
+        font-family: "OS Hebrew Light", sans-serif;
         font-size: 60px;
         font-weight: 300;
 

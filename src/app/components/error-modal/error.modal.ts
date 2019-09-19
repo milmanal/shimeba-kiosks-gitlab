@@ -14,7 +14,7 @@ export class AppErrorModalComponent {
     venueId: any;
     langId: any;
     kioskId: any;
-    currentError: any;
+    error12: any;
 
 
     constructor(
@@ -29,7 +29,7 @@ export class AppErrorModalComponent {
         this.langId = localStorage.getItem('langId');
 
         this._route.params.subscribe(() => {
-            this.currentError = `server_call_fails_${this.venueId}`;
+            this.error12 = `server_call_fails_12`;
         });
         const { id } = JSON.parse(localStorage.getItem('poiValues'));
 

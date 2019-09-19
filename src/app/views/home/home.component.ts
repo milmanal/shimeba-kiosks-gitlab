@@ -117,10 +117,13 @@ export class HomeComponent implements OnInit {
             break;
           }
         }
+        console.log(res);
+        console.log(offsetOptons);
 
         this._mapbox.addKioskMarker(
-          res.entrances[0].longitude,
-          res.entrances[0].latitude,
+          35.49249976873377,
+          // res.entrances[0].latitude,
+          32.953964854778366,
           offsetOptons
         );
       });

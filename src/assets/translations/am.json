@@ -26,13 +26,15 @@
     "enter-mob-number-and-recieve-sms": "ለማስታወስ በጣም ብዙ? በስልክዎ አሰሳ ይቀጥሉ",
 
     "ok": "እሺ",
+    
+    
     "we_are_sorry": "እናዝናለን!",
-    "server_call_fails": "የእኛ አገልጋይ አሁን በውስጡ የተሻለ ጥሩ ስሜት አይደለም ይመስላል",
-    "try_again": "እንደገና ይሞክሩ ወይም ሌላ መድረሻ ይምረጡ",
+    "try_again": "እባክዎ ቆየት ብለው ይሞክሩ",
     "server_call_fails_12": "ለተፈጠረው ጊዜያዊ ችግር ይቅርታ እንጠይቃለን። እባክዎ እንደገና ይሞክሩ ወይም የመረጃና አገልግሎት ማዕከሉን ያነጋግሩ። የማዕከሉ አድራሻ አሪሰን ታወር፣ ምድር ቤት ከፒያኖ ጎን ነው።  ",
-    "server_call_fails_18": "Looks like our server doesn't feel at its best right now.",
-    "server_call_fails_19": "Looks like our server doesn't feel at its best right now.",
-    "server_call_fails_20": "Looks like our server doesn't feel at its best right now.",
+    "server_call_fails": "ከእኛ ወገን ላይ ስህተት ያለ አይመስልም",
+    
+    
+    
     "success": "Success!",
     "success_send_sms_msg": "ኤስ ኤም ኤስ በተሳካ ሁኔታ ተልኳል"
   }

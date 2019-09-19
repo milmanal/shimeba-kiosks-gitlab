@@ -26,11 +26,13 @@
     "enter-mob-number-and-recieve-sms": "¿Demasiado para recordar? Continuar la navegación con tu teléfono",
 
     "ok": "DE ACUERDO",
-    "we_are_sorry": "¡Lo sentimos!",
-    "try_again": "Por favor, inténtelo de nuevo o elegir otro destino",
+    
+    
+    "we_are_sorry": "Lo sentimos",
+    "try_again": "Por favor, inténtelo de nuevo más tarde",
     "server_call_fails_12": "Rogamos disculpas por el este inconveniente temporario. Por favor, intente nuevamente o diríjase al Centro de Servicio e Información, Torre Arison, planta baja, próximo al piano.",
-    "server_call_fails_18": "Looks like our server doesn't feel at its best right now.",
-    "server_call_fails_19": "Looks like our server doesn't feel at its best right now.",
-    "server_call_fails_20": "Looks like our server doesn't feel at its best right now.",
+    "server_call_fails": "Parece que hay un error de nuestra parte",
+    
+    
     "success_send_sms_msg": "SMS fue enviado con éxito"
   }

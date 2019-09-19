@@ -69,6 +69,14 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/hagalil/destination.svg',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
+    ],
+    '20': [
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
     ]
   };
 

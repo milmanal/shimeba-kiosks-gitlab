@@ -55,6 +55,29 @@
     }
   }
 }
+
+#venue-container[venueid="20"] {
+  // @import "./themes/yafe.theme";
+  @import "./themes/ziv.theme";
+  
+  .direction-component {
+    background: #48ACDE !important;
+  }
+
+  + app-language-panel #venue-container-language .if-mobile-then {
+    padding: 0;
+
+    .language-btn:nth-of-type(3),
+    .language-btn:nth-of-type(4) {
+      font-size: 12px !important;
+    }
+    .language-btn.active {
+      right: 0;
+    }
+  }
+}
+
+
 #venue-container {
   width: 100%;
   height: 100%;

@@ -88,7 +88,7 @@ export class MapboxService {
           source: 'overlayMap',
           type: 'raster',
           paint: {
-            'raster-opacity': 0.85
+            'raster-opacity': 1
           }
         }
       ]
@@ -200,11 +200,11 @@ export class MapboxService {
     this.steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
     this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
 
-
     this.lineDistance = turf.lineDistance(
       this.currentRouteStepGeojson.features[0],
       'kilometers'
     );
+
     if (this.lineDistance >= 0) {
       requestAnimationFrame(this.animateRoute.bind(this));
 
@@ -262,6 +262,7 @@ export class MapboxService {
   }
 
   addMarker(id, lon, lat) {
+
     this.map.addImage('start', document.getElementById(id));
     this.map.addLayer({
       id: 'points',
@@ -297,11 +298,12 @@ export class MapboxService {
 
 
   arePointsNear(coord) {
+    // console.log(coord);
     const sw = new mapboxgl.LngLat(coord[0] + 0.005, coord[1] + 0.005);
     const ne = new mapboxgl.LngLat(coord[0] - 0.005, coord[1] - 0.005);
     const bounds = new mapboxgl.LngLatBounds(sw, ne);
 
-    console.log(bounds._sw);
+    // console.log(bounds._sw);
     // if (bounds.includes(point1)) {
     //   return true;
     // }
@@ -309,13 +311,16 @@ export class MapboxService {
   }
 
   addInstructionIcon(number, coord, instructionType) {
-
     this.arePointsNear(coord);
     const hasIcon = InstructionIcon.some(
       instruction => instruction.instructionType === instructionType
     );
     let markerEl;
+    let markerParent;
+    console.log(this.lineDistance);
     if (!hasIcon) {
+      markerParent = document.createElement('div');
+      markerParent.id = 'parent-node';
       markerEl = document.createElement('div');
       markerEl.id = `marker${number}`;
       markerEl.classList.add('marker-number');
@@ -325,6 +330,12 @@ export class MapboxService {
 
       const textNode = document.createTextNode(number);
       markerEl.appendChild(textNode);
+      if (this.lineDistance <= 0.010) {
+        // markerParent.appendChild(appendedChild);
+
+        // console.log('markerEl', markerEl);
+        console.log('markerParent', markerParent);
+      }
     } else {
       markerEl = document.createElement('div');
       markerEl.id = `marker${number}`;
@@ -345,6 +356,7 @@ export class MapboxService {
       iconEl.classList.add('icon');
       markerEl.appendChild(iconEl);
     }
+
     new mapboxgl.Marker(markerEl).setLngLat(coord).addTo(this.map);
   }
 

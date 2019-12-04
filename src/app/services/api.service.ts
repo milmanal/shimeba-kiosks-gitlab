@@ -7,6 +7,7 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import { map } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
+import turf from 'turf';
 
 import { AppSuccessModalComponent } from '../components/success-modal/success.modal';
 
@@ -129,47 +130,6 @@ export class ApiService {
   }
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
-    // const instr = instructions;
-    // for (let i = 0; i < pointsOfFloors[floor].length; i++) {
-    //   const poi = pointsOfFloors[floor][i];
-    //   if (index === undefined) {
-    //     index === undefined ? (index = 0) : index++;
-    //     instr[index] = {
-    //       instruction: poi,
-    //       points: []
-    //     };
-    //   }
-    //   if (i === 0) {
-    //     poi.isShowInList = false;
-    //   }
-    //   if (poi.isShowInList && poi.instructions) {
-    //     if (instr[index]) {
-    //       instr[index].points.push([
-    //         Number(poi.longitude),
-    //         Number(poi.latitude)
-    //       ]);
-    //     }
-    //     index === undefined ? (index = 0) : index++;
-    //     instr[index] = {
-    //       instruction: poi,
-    //       points: []
-    //     };
-    //   }
-    //   if (instr[index]) {
-    //     instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
-    //   }
-    //   if (poi.nextLevel) {
-    //     this.buildRoute(
-    //       poi.nextLevel,
-    //       instr,
-    //       pointsOfFloors,
-    //       index
-    //     );
-    //   }
-    // }
-    // console.log(instr);
-    // return instr;
-
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
@@ -204,6 +164,8 @@ export class ApiService {
 
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
+    const findOnlyVisibleInstructions = pointsOfFloors[0].filter(elem => elem.isShowInList);
+
     return this.buildRoute(data.source.level, [], pointsOfFloors);
   }
 

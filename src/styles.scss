@@ -17,7 +17,10 @@
 @import 'ru';
 
 
-
+canvas {
+  min-width: 100%;
+  min-height: 100%;
+}
 
 .error-modal-outer {
   max-width: 1200px;

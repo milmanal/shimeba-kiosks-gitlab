@@ -1,11 +1,11 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { ApiService } from './../../services/api.service';
 import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
 import { NgxAnalytics } from 'ngx-analytics';
-import { fromEvent } from 'rxjs';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   langId: any;
   kioskId: any;
   // countClick = 0;
+  kioskDataSubsciption: Subscription;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
       '18': 'assets/imgs/yafe/start-yafe.svg',
@@ -30,7 +31,7 @@ export class HomeComponent implements OnInit {
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _router: Router,
-    private _mapbox: MapboxService
+    private _mapbox: MapboxService,
   ) {
   }
 
@@ -48,7 +49,17 @@ export class HomeComponent implements OnInit {
     this._router.navigateByUrl(`/search/${this.venueId}/${this.kioskId}/${this.langId}`);
   }
 
+  displayTheMarker(res, offsetOptons) {
+    return this._mapbox.addKioskMarker(
+      res.entrances[0].longitude,
+      res.entrances[0].latitude,
+      offsetOptons
+    );
+  }
+
   ngOnInit() {
+    const pointAppearing = timer(300);
+
     this.ngx_analytics.eventTrack.next({
       action: 'URL',
       properties: {
@@ -57,7 +68,6 @@ export class HomeComponent implements OnInit {
       },
     });
 
-    const urlString = window.location.href.includes('direction');
     this._route.params.subscribe(params => {
       this.startPointImgByVenueId = this.startPointImages[params.venueId];
       localStorage.setItem('kioskId', params.kioskId);
@@ -70,19 +80,15 @@ export class HomeComponent implements OnInit {
       const venueAttr = document.createAttribute('venueId');
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
-
     });
+
+    const urlString = window.location.href.includes('direction');
     this._mapbox.initMap(this.venueId, null, urlString);
     this._api.getKioskData().subscribe(res => {
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
-      this._mapbox.addMarker(
-        'start-point',
-        res.entrances[0].longitude,
-        res.entrances[0].latitude
-      );
-
+      let offsetOptons = [0, 0];
       this._route.params.subscribe(params => {
-        let offsetOptons = [0, 0];
+        
         switch (params.langId) {
           case 'es': {
             offsetOptons = [-67, -85];
@@ -117,15 +123,13 @@ export class HomeComponent implements OnInit {
             break;
           }
         }
-        console.log(res);
-        console.log(offsetOptons);
-
-        this._mapbox.addKioskMarker(
-          // 35.49249976873377,
+        this.displayTheMarker(res, offsetOptons);
+      });
+      pointAppearing.subscribe(val => {
+        this._mapbox.addMarker(
+          'start-point',
           res.entrances[0].longitude,
-          res.entrances[0].latitude,
-          // 32.953964854778366,
-          offsetOptons
+          res.entrances[0].latitude
         );
       });
     });

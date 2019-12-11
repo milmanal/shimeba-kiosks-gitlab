@@ -30,6 +30,18 @@ export class UserActionService {
         category: 'Back to the main screen',
       },
     });
+
     this._router.navigateByUrl(`/home/${this.venueId}/${this.kioskId}/he`);
+  }
+
+  reloadApp() {
+    this.ngx_analytics.eventTrack.next({
+      action: 'User Inactivity 5 minutes',
+      properties: {
+        category: 'Reload the App',
+      },
+    });
+
+    window.location.reload();
   }
 }

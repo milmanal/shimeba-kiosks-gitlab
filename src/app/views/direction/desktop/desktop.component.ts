@@ -163,7 +163,9 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         label: `Back to Main Screen`,
       },
     });
-    this.routeSubscribtion.unsubscribe();
+    if (this.routeSubscribtion) {
+      this.routeSubscribtion.unsubscribe();
+    }
     this._mapbox.clearMap();
     const kioskId = localStorage.getItem("kioskId");
     const langId = localStorage.getItem("langId");
@@ -344,11 +346,14 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           );
         }
         if (this.poiData.entrances.length) {
-          this._mapbox.addMarker(
-            "start-point",
-            this.kioskData.entrances[0].sLongitude,
-            this.kioskData.entrances[0].sLatitude
-          );
+          const pointAppearing = timer(300);
+          pointAppearing.subscribe(val => {
+            this._mapbox.addMarker(
+              "start-point",
+              this.kioskData.entrances[0].sLongitude,
+              this.kioskData.entrances[0].sLatitude
+            );
+          });
           this.getDirectionData();
         } else {
           this._modalService.show(AppErrorModalComponent, {

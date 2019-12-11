@@ -20,6 +20,7 @@ export const Config = {
     borderLineWidth: 7,
     timeForTheStep: 2000,
     inactivityDuration: 40,
+    reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000
   },
 
@@ -44,6 +45,7 @@ export const Config = {
     borderLineWidth: 7,
     timeForTheStep: 2000,
     inactivityDuration: 40,
+    reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000
   },
   '19': {
@@ -67,6 +69,7 @@ export const Config = {
     borderLineWidth: 7,
     timeForTheStep: 2000,
     inactivityDuration: 40,
+    reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000
   },
 
@@ -91,6 +94,7 @@ export const Config = {
     borderLineWidth: 7,
     timeForTheStep: 2000,
     inactivityDuration: 40,
+    reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000
   }
 };

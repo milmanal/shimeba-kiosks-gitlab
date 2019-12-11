@@ -15,8 +15,10 @@ import { LanguageService } from '../services/language.service';
 
 export class AppInactivityTimerComponent implements OnDestroy, OnInit {
     endTime: number;
+    reloadAppTime: number;
     unsubscribe$: Subject<void> = new Subject();
     timerSubscription: Subscription;
+    timerLongInactivitySubscription: Subscription;
     currentLanguage: any;
 
     constructor(
@@ -28,20 +30,22 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
 
     ngOnInit() {
         const venueId = localStorage.getItem('venueId');
+        this.reloadAppTime = Config[venueId].reloadAfterIncativity;
         this.endTime = !Config[venueId].inactivityDuration ? 40 : Config[venueId].inactivityDuration;
         this.resetTimer();
         this._userActionService.userActionOccured.pipe(
             takeUntil(this.unsubscribe$)
         ).subscribe(() => {
-            if (this.timerSubscription) {
+            if (this.timerSubscription || this.timerLongInactivitySubscription) {
                 this.timerSubscription.unsubscribe();
+                this.timerLongInactivitySubscription.unsubscribe();
             }
 
             this.resetTimer();
         });
     }
 
-    resetTimer(endTime: number = this.endTime) {
+    resetTimer(endTime: number = this.endTime, reloadAppTime: number = this.reloadAppTime) {
         const interval = 1000;
         this.timerSubscription = timer(0, interval).pipe(
             take(endTime)
@@ -58,6 +62,24 @@ export class AppInactivityTimerComponent implements OnDestroy, OnInit {
                 }
 
                 this._userActionService.goToMainScreen();
+            }
+        );
+
+        this.timerLongInactivitySubscription = timer(0, interval).pipe(
+            take(reloadAppTime)
+        ).subscribe(
+            (value) => { },
+            err => console.log('Error Occur ---> InactivityTimerComponent: ', err),
+            () => {
+                if (this._device.isMobile()) {
+                    return;
+                }
+
+                if (window.location.href.includes('/direction')) {
+                    this._mapbox.clearMap();
+                }
+
+                this._userActionService.reloadApp();
             }
         );
     }

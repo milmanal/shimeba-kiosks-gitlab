@@ -171,8 +171,6 @@ export class ApiService {
 
   getDirection(kioskData, poiData, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
-    console.log(kioskData);
-    console.log(poiData);
 
     const source = this._httpClient
       .get(`${this.url}routing/byfloor`, {

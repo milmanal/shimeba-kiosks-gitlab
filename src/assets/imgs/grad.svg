@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1923.517" height="619.227" viewBox="0 0 1923.517 619.227">
+    <defs>
+        <style>
+            .cls-1{opacity:.669}.cls-2{fill:url(#linear-gradient)}
+        </style>
+        <linearGradient id="linear-gradient" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#00739b" stop-opacity="0"/>
+            <stop offset="1" stop-color="#d5d5d5" stop-opacity=".722"/>
+        </linearGradient>
+    </defs>
+    <g id="grad" class="cls-1" transform="translate(9644.999 5932.5)">
+        <path id="grad-2" d="M0 0h1923.517v619.227H0z" class="cls-2" data-name="grad" transform="rotate(-180 -3860.742 -2656.636)"/>
+        <path id="grad-3" d="M0 0h1923.517v619.227H0z" class="cls-2" data-name="grad" transform="rotate(-180 -3860.742 -2656.636)"/>
+    </g>
+</svg>

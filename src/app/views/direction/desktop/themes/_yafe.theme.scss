@@ -9,6 +9,7 @@
   font-size: 30px;
   font-weight: bold;
   background-color: $main-color;
+  flex-direction: row-reverse;
   color: #fff;
   font-family: $OSHebrew;
   animation: fadein 1s;
@@ -26,8 +27,11 @@
   
     .child {
       padding: 0 7px;
-      border-left: 1px solid #fff;
       border-right: 1px solid #fff;
+      &:last-child {
+        border-right: none;
+      }
+      
     }
 
     div, span {

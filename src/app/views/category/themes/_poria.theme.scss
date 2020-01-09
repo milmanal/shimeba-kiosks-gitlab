@@ -3,13 +3,12 @@
 .category-container {
   width: 100%;
   height: 100%;
+  justify-content: flex-start !important;
   .category-info {
     width: 83%;
     height: 140px;
-    border-radius: 4px;
-    box-shadow: 8px 8px 20px 0 rgba(0, 0, 0, 0.38);
     background-color: $color-white;
-    border: solid 5px #4a90e2;
+    border: solid 2px #2f3181;
     .category-name {
       font-size: 80px;
       font-weight: bold;
@@ -21,7 +20,7 @@
     width: 83%;
     height: calc(100% - (160px + 3rem));
     overflow: hidden;
-    padding-bottom: 1rem;
+    padding: 0 0 1rem 0 !important;
   }
   .arrow {
     width: 99px;
@@ -31,11 +30,20 @@
   .arrow-active {
     width: 99px;
     height: 99px;
-    background-color: #4a90e2;
+    background-color: #2f3181;
   }
   .arrows-container {
     height: 100%;
     width: 10%;
+    padding: 0 !important;
+    background-color: #f5f7f8;
+    border-right: solid 1px #979797;
+    border-bottom: solid 1px #979797;
+    align-items: flex-end !important;
+
+    .arrow {
+      margin: 0 !important;
+    }
   }
   .arrow-icon {
     width: 37%;
@@ -51,6 +59,7 @@
     height: 100%;
     background-color: #f5f7f8;
     border: solid 1px #979797;
+    border-right: none;
     overflow-x: hidden;
     overflow-y: auto;
     padding: 0;
@@ -87,7 +96,7 @@
       width: 1em;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: #8ec5d9;
+      background-color: #2f3181;
     }
     &::-webkit-scrollbar-track {
       background-color: #ecedee;

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45.273" height="42.72" viewBox="0 0 45.273 42.72">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2f3181;
+      }
+    </style>
+  </defs>
+  <g id="parking" transform="translate(0 0)">
+    <g id="Page_1" data-name="Page 1">
+      <path id="Fill_1" data-name="Fill 1" class="cls-1" d="M0,0V42.72H5.667V5.57H39.6V42.72h5.671V0Z" transform="translate(0 0.001)"/>
+      <path id="Fill_2" data-name="Fill 2" class="cls-1" d="M7.7,31.07H0V0H12.407a10.751,10.751,0,0,1,7.951,3.082A9.851,9.851,0,0,1,23.1,9.993,9.853,9.853,0,0,1,20.358,16.9a10.749,10.749,0,0,1-7.951,3.083H7.7V31.069Zm0-24.218v6.281h4.358a3.357,3.357,0,0,0,2.465-.965,3.131,3.131,0,0,0,0-4.352,3.356,3.356,0,0,0-2.465-.965Z" transform="translate(11.81 11.651)"/>
+    </g>
+  </g>
+</svg>

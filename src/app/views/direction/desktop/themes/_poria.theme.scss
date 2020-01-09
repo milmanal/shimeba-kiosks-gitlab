@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import 'variables';
+
+.marker-number {
+  padding: 0 17px;
+  height: 46px;
+  width: 46px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  font-size: 36px;
+  font-weight: bold;
+  background-color: #358fe9;
+  color: #fff;
+  font-family: $OSHebrew;
+  animation: fadein 1s;
+  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.5);
+
+  &.multi-instructions {
+    min-width: 100px;
+    width: auto;
+    border-radius: 8px;
+    padding: 0;
+
+    div {
+      padding: 0 8px;
+    }
+  
+    .child {
+      padding: 0 7px;
+      border-left: 1px solid #fff;
+      border-right: 1px solid #fff;
+    }
+
+    div, span {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+}
+.marker-number-icon {
+  border-radius: 15px;
+  padding: 0 4px;
+  width: 60px;
+  font-family: $OSHebrew;
+  .icon {
+    width: 20px;
+    height: 33px;
+  }
+}
+.mapboxgl-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#destination-point-circle {
+  width: 32px;
+  height: 32px;
+}
+#destination-point {
+  width: 57.4px;
+  height: 57.4px;
+}
+#start-point {
+  width: 56px;
+  height: 56px;
+}
+.direction-component {
+  width: 100%;
+  height: 100%;
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 132px;
+    background-color: #358fe9;
+    box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+    .destination-icon-header {
+      width: 78px;
+      height: 91px;
+    }
+    .poi-name {
+      font-size: 45px;
+      color: $color-white;
+      font-family: $OSHebrew;
+      line-height: 1;
+      font-weight: normal;
+    }
+    .poi-location {
+      font-size: 50px;
+      line-height: 1;
+      font-weight: bold;
+      font-family: $OSHebrew;
+      color: $color-white;
+    }
+    .back-btn {
+      width: 210px;
+      height: 74px;
+      background-color: $color-white;
+      font-size: 45px;
+      font-weight: bold;
+      font-family: $OSHebrew;
+      color: #358fe9;
+      border: none;
+
+      img {
+        transform: rotate(180deg);
+        margin-top: -4px;
+      }
+    }
+  }
+  .loaded {
+    left: 18% !important;
+  }
+  .instructions-container {
+    position: absolute;
+    top: 17%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 475px;
+    transition: left 3s ease;
+    box-shadow: 3px 3px 4px 0 rgba(0, 0, 0, 0.3);
+    .instruction-header {
+      // height: 81px;
+      width: 100%;
+      background-color: #fff;
+    }
+    .instruction-footer {
+      display: none;
+      height: 74px;
+      width: 100%;
+      justify-content: space-around;
+      background-color: #fff;
+
+      .sms-icon {
+        width: 42px;
+        height: 37px;
+      }
+      .send-instr {
+        font-size: 25px;
+        font-weight: bold;
+        color: #2d78c4;
+        padding-right: 16px !important;
+        font-family: $OSHebrew;
+      }
+      .input-block {
+        width: 219px;
+        height: 26px;
+        background-color: rgba(0, 0, 0, 0.28);
+        font-size: 20px;
+        color: #ffffff;
+        font-family: $OSHebrew;
+      }
+    }
+    .instruction-title {
+      font-size: 50px;
+      font-family: $OSHebrew;
+      font-weight: bold;
+      color: #2d78c4;
+    }
+    .instruction {
+      display: none;
+      animation: fadein 1s;
+      border-bottom: 2px solid $color-white;
+
+      .start-text-instruction {
+        // padding-left: 80px;
+        padding: 0 15px;
+
+        &:before {
+          display: none;
+        }
+      }
+
+      &:nth-of-type(2) {
+
+        .text-instr:before {
+          height: 50%;
+          top: 50%;
+        }
+      }
+
+      li {
+        list-style: none;
+      }
+      .level {
+        background-color: #3d6faa;
+        height: 41px;
+        font-size: 28px;
+        font-weight: bold;
+        padding-right: 23px !important;
+        letter-spacing: -0.1px;
+        color: #ffffff;
+        font-family: $OSHebrew;
+        border-bottom: 2px solid $color-white;
+      }
+      .text-instr {
+        min-height: 74px;
+        padding: 15px;
+        background-color: #4a90e2;
+        font-family: $OSHebrew;
+        font-size: 22px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.2;
+        letter-spacing: normal;
+        color: #ffffff;
+        position: relative;
+
+        &:before {
+          content: '';
+          left: 35px;
+          position: absolute;
+          width: 7px;
+          height: 100%;
+          border-left: 1px solid #fff;
+          border-right: 1px solid #fff;
+
+        }
+      }
+      .instruction-number {
+        padding: 0 17px;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #fff;
+        background: #4a90e2;
+        border-radius: 50%;
+        font-family: $OSHebrew;
+        font-size: 36px;
+        font-weight: bold;
+        position: absolute;
+
+        + div {
+          padding-right: 71px !important;
+        }
+      }
+      .instruction-number-icon {
+        border-radius: 15px;
+        margin-right: -5px;
+        width: 60px;
+        height: 50px;
+        padding: 0 5px;
+
+        .icon {
+          width: 20px;
+          height: 33px;
+          padding: 0 !important;
+        }
+      }
+      .destination-icon {
+        width: 46px;
+        height: 46px;
+        position: absolute;
+
+        + div {
+          padding-right: 70px !important;
+        }
+      }
+    }
+  }
+
+  .toggle-layers {
+    font-size: 25px;
+    position: absolute;
+    top: 155px;
+    right: 30px;
+    background: #4a90e2;
+    color: #fff;
+    height: auto;
+    padding: 18px;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

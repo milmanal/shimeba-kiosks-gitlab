@@ -24,19 +24,15 @@
   "show-all": "Show all",
   "information-orientation-screen": "You are looking at an information and orientation screen",
   "enter-mob-number-and-recieve-sms": "Too much to remember? Continue navigation with your phone",
+  "directions": "Directions",
 
   "ok": "OK",
-  
-  
-  
+
   "we_are_sorry": "We are sorry!",
   "server_call_fails_12": "We apologize for the temporary problem. Please try again or contact the Information and Service Center, Arison Tower, on the ground floor next to the piano.",
   "server_call_fails": "Looks like there's an error on our side",
   "try_again": "Please try again later",
 
-
-
-  
   "success": "Success!",
   "success_send_sms_msg": "The sms has been send."
 }

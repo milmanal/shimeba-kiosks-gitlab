@@ -96,7 +96,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'pt': {
-            offsetOptons = [-110, -85];
+            offsetOptons = [-88, -85];
             break;
           }
           case 'fr': {
@@ -112,7 +112,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'ru': {
-            offsetOptons = [-60, -85];
+            offsetOptons = [-40, -80];
             break;
           }
           case 'he': {
@@ -120,7 +120,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'en': {
-            offsetOptons = [-95, -85];
+            offsetOptons = [-90, -85];
             break;
           }
         }

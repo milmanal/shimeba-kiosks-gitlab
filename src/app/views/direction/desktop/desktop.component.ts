@@ -3,7 +3,7 @@ import {
   OnInit,
   ViewEncapsulation,
   AfterViewInit,
-  OnDestroy,
+  OnDestroy
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -14,12 +14,12 @@ import { InstructionIcon } from "./../../../configs/instruction-icon";
 import { Subscription, interval, timer, Subject } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
-import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
+import { AppErrorModalComponent } from "../../../components/error-modal/error.modal";
 
 import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { AppSendSmsModalComponent } from "../../../components/send-sms";
-import { Config } from '../../../configs/config';
+import { Config } from "../../../configs/config";
 import { NgxAnalytics } from "ngx-analytics";
 import { ErrorService } from "../../../services/error.service";
 import { takeUntil } from "rxjs/operators";
@@ -30,7 +30,6 @@ import { takeUntil } from "rxjs/operators";
   styleUrls: ["desktop.component.scss"],
   encapsulation: ViewEncapsulation.None
 })
-
 export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   kioskId: Number;
   poiId: Number;
@@ -43,7 +42,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   initLanguage: any;
   routeSubscribtion: Subscription;
   modalRef: BsModalRef;
-  phoneNumber: String = '';
+  phoneNumber: String = "";
   venueId: any;
   allPath: any = [];
   neededIstrType: any = [];
@@ -57,40 +56,48 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   private ngUnsubscribe = new Subject();
 
   imgByVenueId = {
-    '12': [
-      'assets/imgs/start.svg',
-      'assets/imgs/point.svg',
-      'assets/imgs/route-dest.svg',
-      'assets/imgs/destination-panel.svg',
-      'assets/imgs/back-arrow.png',
-      'assets/imgs/yafe/bullet.svg'
+    "12": [
+      "assets/imgs/start.svg",
+      "assets/imgs/point.svg",
+      "assets/imgs/route-dest.svg",
+      "assets/imgs/destination-panel.svg",
+      "assets/imgs/back-arrow.png",
+      "assets/imgs/yafe/bullet.svg"
     ],
 
-    '18': [
-      'assets/imgs/yafe/start-yafe.svg',
-      'assets/imgs/yafe/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.svg',
-      'assets/imgs/yafe/destination-panel.png',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "18": [
+      "assets/imgs/yafe/start-yafe.svg",
+      "assets/imgs/yafe/route-disk.svg",
+      "assets/imgs/yafe/destination-reached.svg",
+      "assets/imgs/yafe/destination-panel.png",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
     ],
 
-    '19': [
-      'assets/imgs/hagalil/route-disk.svg',
-      'assets/imgs/hagalil/route-disk.svg',
-      'assets/imgs/hagalil/destination.svg',
-      'assets/imgs/hagalil/destination.svg',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "19": [
+      "assets/imgs/hagalil/route-disk.svg",
+      "assets/imgs/hagalil/route-disk.svg",
+      "assets/imgs/hagalil/destination.svg",
+      "assets/imgs/hagalil/destination.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
     ],
 
-    '20': [
-      'assets/imgs/ziv/route-disk.svg',
-      'assets/imgs/ziv/route-disk.svg',
-      'assets/imgs/ziv/destination-ziv.svg',
-      'assets/imgs/ziv/destination-ziv.svg',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "20": [
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
+    ],
+    "24": [
+      "assets/imgs/poria/route-disk.svg",
+      "assets/imgs/poria/route-disk.svg",
+      "assets/imgs/poria/destination-ziv.svg",
+      "assets/imgs/poria/destination-ziv.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/poria/bullet.svg"
     ]
   };
 
@@ -103,7 +110,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
-    private errorService: ErrorService,
+    private errorService: ErrorService
   ) {
     this.initializeErrors();
     this._route.params.subscribe(params => {
@@ -121,13 +128,12 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   initializeErrors() {
-    this
-      .errorService
+    this.errorService
       .getErrors()
       .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe((errors) => {
+      .subscribe(errors => {
         this.modal = this._modalService.show(AppErrorModalComponent, {
-          class: 'error-modal-outer',
+          class: "error-modal-outer",
           ignoreBackdropClick: true,
           animated: true
         });
@@ -136,10 +142,10 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   openModal() {
     this.ngx_analytics.eventTrack.next({
-      action: 'SMS Modal Appear',
+      action: "SMS Modal Appear",
       properties: {
-        category: 'SMS Modal',
-      },
+        category: "SMS Modal"
+      }
     });
     this.modal = this._modalService.show(AppSendSmsModalComponent, {
       class: `custom-modal zoomInUp custom-modal-${this.venueId}`,
@@ -147,21 +153,21 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       animated: true
     });
 
-    if (this.venueId !== '12') {
-      const smsModalIsOppened = document.getElementsByTagName('body');
-      if (smsModalIsOppened.item(0).classList.contains('modal-open')) {
-        smsModalIsOppened.item(0).classList.add('hide-darkness');
+    if (this.venueId !== "12") {
+      const smsModalIsOppened = document.getElementsByTagName("body");
+      if (smsModalIsOppened.item(0).classList.contains("modal-open")) {
+        smsModalIsOppened.item(0).classList.add("hide-darkness");
       }
     }
   }
 
   backToMain() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click on Back button from the Direction screen',
+      action: "Click on Back button from the Direction screen",
       properties: {
-        category: 'Back Button',
-        label: `Back to Main Screen`,
-      },
+        category: "Back Button",
+        label: `Back to Main Screen`
+      }
     });
     if (this.routeSubscribtion) {
       this.routeSubscribtion.unsubscribe();
@@ -175,61 +181,71 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   getDirectionData() {
     let currentInstr = 0;
     let centeredRouteDependsOnDirection = [];
-    if (this.venueId === '12') {
+    if (this.venueId === "12") {
       centeredRouteDependsOnDirection = [300, 40];
     } else {
-      centeredRouteDependsOnDirection = this.initLanguage.direction === 'rtl' ? [-300, -40] : [300, 40];
+      centeredRouteDependsOnDirection =
+        this.initLanguage.direction === "rtl" ? [-300, -40] : [300, 40];
     }
-    this._api.getDirection(this.kioskData, this.poiData,  this.venueId).subscribe(
-      res => {
-        this.instructions = res;
-        let order = 'left';
+    this._api
+      .getDirection(this.kioskData, this.poiData, this.venueId)
+      .subscribe(
+        res => {
+          this.instructions = res;
+          let order = "left";
 
-        this.ARRAY = this.instructions.map(item => {
-          if (
-            item.instruction.instructionsType === 5 ||
-            item.instruction.instructionsType === 6 ||
-            item.instruction.instructionsType === 7 ||
-            item.instruction.instructionsType === 8
-          ) {
-            order = order === 'left' ? 'right' : 'left';
-            return {
-              ...item,
-              order
-            };
-          }
-          return item;
-        });
+          this.ARRAY = this.instructions.map(item => {
+            if (
+              item.instruction.instructionsType === 5 ||
+              item.instruction.instructionsType === 6 ||
+              item.instruction.instructionsType === 7 ||
+              item.instruction.instructionsType === 8
+            ) {
+              order = order === "left" ? "right" : "left";
+              return {
+                ...item,
+                order
+              };
+            }
+            return item;
+          });
 
-        this.routeLoaded = true;
-        res.map(step => {
-          step.points.map(poi => this.allPath.push(poi));
-        });
-        this._mapbox.zoomToLinePoligon(this.allPath, centeredRouteDependsOnDirection, 18, {
-          top: 100,
-          left: 60,
-          right: 60,
-          bottom: 60
-        });
-        setTimeout(() => {
-          this.routing(res, currentInstr);
-          currentInstr++;
-        }, 2000);
-        this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
-          this.routing(res, currentInstr);
-          currentInstr++;
-        });
-      },
-      error => {
-        console.log(error, 'Err');
-      }
-    );
+          this.routeLoaded = true;
+          res.map(step => {
+            step.points.map(poi => this.allPath.push(poi));
+          });
+          this._mapbox.zoomToLinePoligon(
+            this.allPath,
+            centeredRouteDependsOnDirection,
+            18,
+            {
+              top: 100,
+              left: 60,
+              right: 60,
+              bottom: 60
+            }
+          );
+          setTimeout(() => {
+            this.routing(res, currentInstr);
+            currentInstr++;
+          }, 2000);
+          this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(
+            () => {
+              this.routing(res, currentInstr);
+              currentInstr++;
+            }
+          );
+        },
+        error => {
+          console.log(error, "Err");
+        }
+      );
   }
   routing(instructions, currentInstr) {
     if (currentInstr === 0) {
       document
-        .getElementsByClassName('instructions-container')[0]
-        .classList.add('load-background');
+        .getElementsByClassName("instructions-container")[0]
+        .classList.add("load-background");
       document
         .getElementById("start-instr")
         .setAttribute("style", "display: block");
@@ -263,10 +279,12 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         this.poiData.entrances[0].latitude
       );
 
-      const smsModalTimeAppearing = timer(Config[this.venueId].smsModalTimeAppearing);
+      const smsModalTimeAppearing = timer(
+        Config[this.venueId].smsModalTimeAppearing
+      );
 
       this.subscribeSmsModal = smsModalTimeAppearing.subscribe(val => {
-        if (!window.location.href.includes('/direction') || !!this.modal) {
+        if (!window.location.href.includes("/direction") || !!this.modal) {
           return false;
         }
 
@@ -291,11 +309,11 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit() {
     this.ngx_analytics.eventTrack.next({
-      action: 'URL',
+      action: "URL",
       properties: {
-        category: 'URL of Current Page',
-        label: window.location.pathname,
-      },
+        category: "URL of Current Page",
+        label: window.location.pathname
+      }
     });
     const venueId = localStorage.getItem("venueId");
     const HTML = document.getElementById("venue-container");
@@ -332,7 +350,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    const urlString = window.location.href.includes('direction');
+    const urlString = window.location.href.includes("direction");
     this._mapbox.initMap(this.venueId, null, urlString);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
@@ -357,7 +375,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           this.getDirectionData();
         } else {
           this._modalService.show(AppErrorModalComponent, {
-            class: 'error-modal-outer',
+            class: "error-modal-outer",
             ignoreBackdropClick: true,
             animated: true
           });

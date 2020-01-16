@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-@import 'variables-yafe';
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import "variables-yafe";
 
 .marker-number {
   padding: 0 17px;
@@ -23,14 +23,15 @@
     div {
       padding: 0 8px;
     }
-  
+
     .child {
       padding: 0 7px;
       border-left: 1px solid #fff;
       border-right: 1px solid #fff;
     }
 
-    div, span {
+    div,
+    span {
       width: 100%;
       height: 100%;
       display: flex;
@@ -76,7 +77,12 @@
   width: 100%;
   height: 100%;
   // background: #9dcaf0;
-  background: -webkit-linear-gradient(left, #375378 0%,#70a9d8 30%,#70a9d8 26%);
+  background: -webkit-linear-gradient(
+    left,
+    #375378 0%,
+    #70a9d8 30%,
+    #70a9d8 26%
+  );
   #map {
     width: 100%;
     height: 100%;
@@ -135,12 +141,17 @@
     }
   }
   .load-background {
-    background: -webkit-linear-gradient(left, #375378 0%, #70a9d8 95%, #70a9d8 26%);
+    background: -webkit-linear-gradient(
+      left,
+      #375378 0%,
+      #70a9d8 95%,
+      #70a9d8 26%
+    );
   }
 
   .loaded {
     left: 18% !important;
-    
+
     padding-top: 200px;
     padding-left: 64px;
     padding-right: 30px;
@@ -185,7 +196,6 @@
         background-position: 50%;
         background-repeat: no-repeat;
       }
-
 
       &::-webkit-scrollbar {
         width: 28px;
@@ -258,7 +268,7 @@
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         height: 88px;
         border-right: 3px dotted #fff;
         position: absolute;
@@ -267,7 +277,7 @@
       }
 
       &:after {
-        content: '';
+        content: "";
         background: #88cc1f;
         width: 18px;
         height: 18px;
@@ -279,7 +289,6 @@
       }
 
       &.right.outer-image {
-        
         &:before {
           width: 42px;
           border-top: 3px dotted #fff;
@@ -352,8 +361,6 @@
         }
       }
 
-      
-
       li {
         list-style: none;
       }
@@ -390,7 +397,7 @@
         // &:before {
         //   top: 100%;
         // }
-        
+
         // &:after {
         //   bottom: 100%;
         // }
@@ -403,9 +410,9 @@
         //   border-left: 1px solid $color-white;
         //   border-right: 1px solid $color-white;
         //   background: #4a90e2;
-          
+
         // }
-        
+
         + div {
           // padding-right: 71px !important;
         }
@@ -443,7 +450,7 @@
       &:last-child {
         &:before {
           display: none;
-        } 
+        }
       }
     }
   }

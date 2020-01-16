@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="53" height="53" viewBox="0 0 53 53">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #2f3181;
+      }
+
+      .cls-2 {
+        filter: url(#route_disk);
+      }
+    </style>
+    <filter id="route_disk" x="0" y="0" width="53" height="53" filterUnits="userSpaceOnUse">
+      <feOffset dy="2" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feFlood flood-opacity="0.502"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g class="cls-2" transform="matrix(1, 0, 0, 1, 0, 0)">
+    <circle id="route_disk-2" data-name="route disk" class="cls-1" cx="20.5" cy="20.5" r="20.5" transform="translate(6 4)"/>
+  </g>
+</svg>

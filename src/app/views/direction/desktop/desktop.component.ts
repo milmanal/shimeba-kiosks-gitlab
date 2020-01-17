@@ -52,6 +52,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   layersCollection: Array<{}> = this._mapbox.getLayers();
   subscribeSmsModal: any;
   modal: any;
+  dynamicSmsIcon: String
+  
 
   private ngUnsubscribe = new Subject();
 
@@ -125,6 +127,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       venueAttr.value = this.venueId;
       bodyTag.setAttributeNode(venueAttr);
     });
+    this.dynamicSmsIcon = `assets/imgs/sms-icon/${this.venueId}.svg`
   }
 
   initializeErrors() {

@@ -1,6 +1,6 @@
 <div class="p-3 send-sms-modal-inner">
     <div class="d-flex justify-content-end close-modal-image">
-        <img [src]="'assets/imgs/close/' + venueId + '.svg'" alt="close" aria-label="Close" (click)="animateCloseModal()">
+        <img [src]="dynamicCloseModalIcon" alt="close" aria-label="Close" (click)="animateCloseModal()">
     </div>
     <div class="instruction pt-3 px-3" ngClass="venueId == 20 ? blue-emojy : dark-emojy" translate>
         enter-mob-number-and-recieve-sms

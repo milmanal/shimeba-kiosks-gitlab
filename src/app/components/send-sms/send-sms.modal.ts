@@ -16,6 +16,7 @@ export class AppSendSmsModalComponent {
     langId: any;
     phoneNumber: String = '';
     validationMessage: Boolean = false;
+    dynamicCloseModalIcon: String;
 
     constructor(
         private ngx_analytics: NgxAnalytics,
@@ -26,6 +27,7 @@ export class AppSendSmsModalComponent {
     ) {
         this.venueId = localStorage.getItem('venueId');
         this.langId = localStorage.getItem('langId');
+        this.dynamicCloseModalIcon = `assets/imgs/close/${this.venueId}.svg`;
     }
 
     enterNumber(number) {

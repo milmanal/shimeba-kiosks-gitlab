@@ -22,7 +22,8 @@ export class HomeComponent implements OnInit {
       '12': 'assets/imgs/start.svg',
       '18': 'assets/imgs/yafe/start-yafe.svg',
       '19': 'assets/imgs/hagalil/start.svg',
-      '20': 'assets/imgs/ziv/start-ziv.svg'
+      '20': 'assets/imgs/ziv/start-ziv.svg',
+      '24': 'assets/imgs/poria/start-poria.svg'
   };
   startPointImgByVenueId: string;
   constructor(
@@ -95,7 +96,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'pt': {
-            offsetOptons = [-110, -85];
+            offsetOptons = [-88, -85];
             break;
           }
           case 'fr': {
@@ -111,7 +112,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'ru': {
-            offsetOptons = [-60, -85];
+            offsetOptons = [-40, -80];
             break;
           }
           case 'he': {
@@ -119,7 +120,7 @@ export class HomeComponent implements OnInit {
             break;
           }
           case 'en': {
-            offsetOptons = [-95, -85];
+            offsetOptons = [-90, -85];
             break;
           }
         }

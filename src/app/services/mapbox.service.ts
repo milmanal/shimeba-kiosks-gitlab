@@ -1,11 +1,11 @@
-import { Injectable } from '@angular/core';
-import mapboxgl from 'mapbox-gl';
-import { InstructionIcon } from './../configs/instruction-icon';
-import turf from 'turf';
-import { Subscription, Observable, Observer } from 'rxjs';
-import { map } from 'rxjs/operator/map';
-import { Config } from './../configs/config';
-import { LayersConfig } from './../configs/layers.config';
+import { Injectable } from "@angular/core";
+import mapboxgl from "mapbox-gl";
+import { InstructionIcon } from "./../configs/instruction-icon";
+import turf from "turf";
+import { Subscription, Observable, Observer } from "rxjs";
+import { map } from "rxjs/operator/map";
+import { Config } from "./../configs/config";
+import { LayersConfig } from "./../configs/layers.config";
 
 interface Layer {
   layerId: string;
@@ -14,7 +14,7 @@ interface Layer {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class MapboxService {
   venueId: any;
@@ -23,12 +23,12 @@ export class MapboxService {
   interval: Subscription;
   isMobile: Boolean;
   geojson: any = {
-    type: 'FeatureCollection',
+    type: "FeatureCollection",
     features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'LineString',
+          type: "LineString",
           coordinates: []
         }
       }
@@ -38,12 +38,12 @@ export class MapboxService {
   nextInstruction: Observer<any>;
   arc = [];
   currentRouteStepGeojson = {
-    type: 'FeatureCollection',
+    type: "FeatureCollection",
     features: [
       {
-        type: 'Feature',
+        type: "Feature",
         geometry: {
-          type: 'LineString',
+          type: "LineString",
           coordinates: []
         }
       }
@@ -54,18 +54,18 @@ export class MapboxService {
   _activeLayer: Layer = {
     layerId: null,
     layerName: null,
-    layerImage: null,
+    layerImage: null
   };
 
   times = [];
   fps: any;
   steps = 0;
-  nextInstructionHandle = Observable.create((observer) => {
+  nextInstructionHandle = Observable.create(observer => {
     this.nextInstruction = observer;
   });
 
   constructor() {
-    mapboxgl.accessToken = 'undefined';
+    mapboxgl.accessToken = "undefined";
   }
 
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
@@ -73,10 +73,10 @@ export class MapboxService {
     this.venueId = venueId;
     this.style = {
       version: 8,
-      name: 'Raster Tiles',
+      name: "Raster Tiles",
       sources: {
         overlayMap: {
-          type: 'image',
+          type: "image",
           url: isDirection
             ? Config[this.venueId].directionMapUrl
             : Config[this.venueId].homeMapUrl,
@@ -85,18 +85,18 @@ export class MapboxService {
       },
       layers: [
         {
-          id: 'overlayMap',
-          source: 'overlayMap',
-          type: 'raster',
+          id: "overlayMap",
+          source: "overlayMap",
+          type: "raster",
           paint: {
-            'raster-opacity': 1
+            "raster-opacity": 1
           }
         }
       ]
     };
 
     this.map = new mapboxgl.Map({
-      container: 'map',
+      container: "map",
       style: this.style,
       minZoom: 1,
       // pitch: 60,
@@ -104,87 +104,90 @@ export class MapboxService {
         ? Config[this.venueId].mobileInitZoom
         : Config[this.venueId].initZoom,
       bearing: Config[this.venueId].rotation,
-      center: Config[this.venueId].center,
+      center: Config[this.venueId].center
     });
 
-
-    this.map.on('load', () => {
+    this.map.on("load", () => {
       this.map.addLayer({
-        id: 'secondary-line',
-        type: 'line',
+        id: "secondary-line",
+        type: "line",
         source: {
-          type: 'geojson',
+          type: "geojson",
           data: this.geojson
         },
         layout: {
-          'line-cap': 'round',
-          'line-join': 'round'
+          "line-cap": "round",
+          "line-join": "round"
         },
         paint: {
-          'line-color': Config[this.venueId].borderLineColor,
-          'line-width': isMobile
+          "line-color": Config[this.venueId].borderLineColor,
+          "line-width": isMobile
             ? (Config[this.venueId].routeLineWidth +
                 Config[this.venueId].borderLineWidth) /
               1.5
             : Config[this.venueId].routeLineWidth +
-              Config[this.venueId].borderLineWidth,
+              Config[this.venueId].borderLineWidth
         }
       });
       this.map.addLayer({
-        id: 'main-line',
-        type: 'line',
+        id: "main-line",
+        type: "line",
         source: {
-          type: 'geojson',
+          type: "geojson",
           data: this.geojson
         },
         layout: {
-          'line-cap': 'round',
-          'line-join': 'round',
+          "line-cap": "round",
+          "line-join": "round"
         },
         paint: {
-          'line-color': Config[this.venueId].routeLineColor,
-          'line-width': isMobile
+          "line-color": Config[this.venueId].routeLineColor,
+          "line-width": isMobile
             ? Config[this.venueId].routeLineWidth / 1.5
-            : Config[this.venueId].routeLineWidth,
+            : Config[this.venueId].routeLineWidth
         }
       });
-      this.map.loadImage(Config[this.venueId].arrowOnRouteUrl, (error, image) => {
-        if (error) {
-          throw error;
-        }
-        this.map.addImage('chevron', image);
-        this.map.addLayer({
-            'id': 'arrows',
-            'type': 'symbol',
-            'source': {
-                'type': 'geojson',
-                'data': {
-                    'type': 'FeatureCollection',
-                    'features': [{
-                        'type': 'Feature',
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [0, 0]
-                        }
-                    }]
-                }
+      this.map.loadImage(
+        Config[this.venueId].arrowOnRouteUrl,
+        (error, image) => {
+          if (error) {
+            throw error;
+          }
+          this.map.addImage("chevron", image);
+          this.map.addLayer({
+            id: "arrows",
+            type: "symbol",
+            source: {
+              type: "geojson",
+              data: {
+                type: "FeatureCollection",
+                features: [
+                  {
+                    type: "Feature",
+                    geometry: {
+                      type: "Point",
+                      coordinates: [0, 0]
+                    }
+                  }
+                ]
+              }
             },
-            'layout': {
-              'symbol-placement': 'line',
-              'symbol-spacing': isMobile ? 30 : 42,
-              'icon-allow-overlap': true,
-              'icon-ignore-placement': true,
-              'icon-rotation-alignment': 'map',
-              'icon-image': 'chevron',
-              'icon-size': .5,
-              'icon-anchor': 'center'
+            layout: {
+              "symbol-placement": "line",
+              "symbol-spacing": isMobile ? 30 : 42,
+              "icon-allow-overlap": true,
+              "icon-ignore-placement": true,
+              "icon-rotation-alignment": "map",
+              "icon-image": "chevron",
+              "icon-size": 0.5,
+              "icon-anchor": "center"
             }
-        });
-      });
+          });
+        }
+      );
 
       // this.animateRoute();
     });
-
   }
 
   clearMap() {
@@ -193,8 +196,8 @@ export class MapboxService {
     }
     this.geojson.features[0].geometry.coordinates = [];
     if (this.map) {
-      this.map.removeLayer('overlayMap');
-      this.map.removeSource('overlayMap');
+      this.map.removeLayer("overlayMap");
+      this.map.removeSource("overlayMap");
       this.map.remove();
     }
     this.markerEl = null;
@@ -202,12 +205,14 @@ export class MapboxService {
   }
 
   addRouteLine(coord) {
-    this.steps = !localStorage.getItem('fps') ? 60 : (+localStorage.getItem('fps') * Config[this.venueId].drawTime);
+    this.steps = !localStorage.getItem("fps")
+      ? 60
+      : +localStorage.getItem("fps") * Config[this.venueId].drawTime;
     this.currentRouteStepGeojson.features[0].geometry.coordinates = coord;
 
     this.lineDistance = turf.lineDistance(
       this.currentRouteStepGeojson.features[0],
-      'kilometers'
+      "kilometers"
     );
 
     if (this.lineDistance >= 0) {
@@ -221,7 +226,7 @@ export class MapboxService {
         const segment = turf.along(
           this.currentRouteStepGeojson.features[0],
           i,
-          'kilometers'
+          "kilometers"
         );
         this.arc.push(segment.geometry.coordinates);
       }
@@ -244,20 +249,20 @@ export class MapboxService {
       this.geojson.features[0].geometry.coordinates.push(
         this.arc[this.currentRouteStepIndex]
       );
-      if (this.venueId === '12' ) {
-        this.map.getSource('main-line').setData(this.geojson);
-        this.map.getSource('secondary-line').setData(this.geojson);
-        this.map.getSource('arrows').setData(this.geojson);
+      if (this.venueId === "12") {
+        this.map.getSource("main-line").setData(this.geojson);
+        this.map.getSource("secondary-line").setData(this.geojson);
+        this.map.getSource("arrows").setData(this.geojson);
       } else {
-        this.map.getSource('main-line').setData(this.geojson);
-        this.map.getSource('arrows').setData(this.geojson);
+        this.map.getSource("main-line").setData(this.geojson);
+        this.map.getSource("arrows").setData(this.geojson);
       }
     }
     this.currentRouteStepIndex++;
     if (this.currentRouteStepIndex < this.steps) {
       requestAnimationFrame(this.animateRoute.bind(this));
     } else {
-      localStorage.setItem('fps', this.fps);
+      localStorage.setItem("fps", this.fps);
       this.currentRouteStepIndex = 0;
       this.lineDistance = 0;
       this.currentRouteStepGeojson.features[0].geometry.coordinates = [];
@@ -267,20 +272,19 @@ export class MapboxService {
   }
 
   addMarker(id, lon, lat) {
-
-    this.map.addImage('start', document.getElementById(id));
+    this.map.addImage("start", document.getElementById(id));
     this.map.addLayer({
-      id: 'points',
-      type: 'symbol',
+      id: "points",
+      type: "symbol",
       source: {
-        type: 'geojson',
+        type: "geojson",
         data: {
-          type: 'FeatureCollection',
+          type: "FeatureCollection",
           features: [
             {
-              type: 'Feature',
+              type: "Feature",
               geometry: {
-                type: 'Point',
+                type: "Point",
                 coordinates: [Number(lon), Number(lat)]
               }
             }
@@ -288,19 +292,18 @@ export class MapboxService {
         }
       },
       layout: {
-        'icon-image': 'start',
-        'icon-size': this.isMobile ? 1 / 1.5 : 1
+        "icon-image": "start",
+        "icon-size": this.isMobile ? 1 / 1.5 : 1
       }
     });
   }
 
   addKioskMarker(lon, lat, offset: number[]) {
-    const youAreHere = document.getElementById('you-are-here');
+    const youAreHere = document.getElementById("you-are-here");
     new mapboxgl.Marker(youAreHere, { offset: offset })
       .setLngLat([lon, lat])
       .addTo(this.map);
   }
-
 
   arePointsNear(coord) {
     // console.log(coord);
@@ -319,38 +322,41 @@ export class MapboxService {
   mergeInstructionsWithImage = false;
 
   addInstructionIcon(number, coord, instructionType) {
+    this.mergeInstructionsWithImage = false;
     this.arePointsNear(coord);
     const hasIcon = InstructionIcon.some(
       instruction => instruction.instructionType === instructionType
     );
-    const instructions = document.getElementsByClassName('instruction-number');
+    const instructions = document.getElementsByClassName("instruction-number");
     if (!hasIcon) {
       if (!this.markerEl) {
         this.prevDistance = this.lineDistance;
-        this.markerEl = document.createElement('div');
+        this.markerEl = document.createElement("div");
         this.markerEl.id = `marker${number}`;
-        this.markerEl.classList.add('marker-number');
-        this.markerEl.classList.add('d-flex');
-        this.markerEl.classList.add('justify-content-around');
-        this.markerEl.classList.add('align-items-center');
+        this.markerEl.classList.add(
+          "marker-number",
+          "d-flex",
+          "justify-content-around",
+          "align-items-center"
+        );
         this.markerEl.innerHTML = `<span class="child">${number}</span>`;
-      } else if (this.prevDistance <= 0.020 || this.mergeInstructionsWithImage) {
-          this.markerEl.innerHTML += `<span class="child">${number}</span>`;
-          this.markerEl.classList.add('multi-instructions');
-          this.prevDistance = this.lineDistance;
+      } else if (this.prevDistance <= 0.02 || this.mergeInstructionsWithImage) {
+        this.markerEl.innerHTML += `<span class="child">${number}</span>`;
+        this.markerEl.classList.add("multi-instructions");
+        this.prevDistance = this.lineDistance;
       } else {
-          this.markerEl = document.createElement('div');
-          this.markerEl.id = `marker${number}`;
-          this.markerEl.classList.add('marker-number');
-          this.markerEl.classList.add('d-flex');
-          this.markerEl.classList.add('justify-content-around');
-          this.markerEl.classList.add('align-items-center');
-          this.markerEl.innerHTML = `<span class="child">${number}</span>`;
+        this.markerEl = document.createElement("div");
+        this.markerEl.id = `marker${number}`;
+        this.markerEl.classList.add(
+          "marker-number",
+          "d-flex",
+          "justify-content-around",
+          "align-items-center"
+        );
+        this.markerEl.innerHTML = `<span class="child">${number}</span>`;
       }
     } else {
-
-      if (this.prevDistance <= 0.020) {
-        const styles = `
+      const styles = `
           width: 100%;
           height: 100%;
           display: flex;
@@ -358,6 +364,8 @@ export class MapboxService {
           justify-content: center;
           flex-direction: row-reverse;
         `;
+
+      if (this.prevDistance <= 0.02) {
         let childDiv = `
           <div style="${styles}" class="child">
             <span>${number}</span>
@@ -365,35 +373,30 @@ export class MapboxService {
 
         const prevHtml = this.markerEl.innerHTML;
         this.markerEl.innerHTML += childDiv;
+        this.markerEl.classList.add("multi-instructions");
 
-        const iconEl = document.createElement('img');
+        const iconEl = document.createElement("img");
         const iconName = InstructionIcon.find(
           instruction => instruction.instructionType === instructionType
         ).icon;
         iconEl.src = `assets/imgs/${iconName}`;
-        iconEl.classList.add('icon');
+        iconEl.classList.add("icon");
         childDiv += `
           ${iconEl.outerHTML}
           </div>
         `;
-        this.markerEl.innerHTML = (`${prevHtml} ${childDiv}`);
+        this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
         this.mergeInstructionsWithImage = true;
       } else {
-        this.markerEl = document.createElement('div');
+        this.markerEl = document.createElement("div");
         this.markerEl.id = `marker${number}`;
-        this.markerEl.classList.add('marker-number');
-        this.markerEl.classList.add('d-flex');
-        this.markerEl.classList.add('justify-content-around');
-        this.markerEl.classList.add('align-items-center');
-        this.markerEl.classList.add('marker-number-icon');
-        const styles = `
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: row-reverse;
-        `;
+        this.markerEl.classList.add(
+          "marker-number",
+          "d-flex",
+          "justify-content-around",
+          "align-items-center",
+          "marker-number-icon"
+        );
         let childDiv = `
           <div style="${styles}" class="child">
             <span>${number}</span>
@@ -402,18 +405,18 @@ export class MapboxService {
         const prevHtml = this.markerEl.innerHTML;
         this.markerEl.innerHTML += childDiv;
 
-        const iconEl = document.createElement('img');
+        const iconEl = document.createElement("img");
         const iconName = InstructionIcon.find(
           instruction => instruction.instructionType === instructionType
         ).icon;
         iconEl.src = `assets/imgs/${iconName}`;
-        iconEl.classList.add('icon');
+        iconEl.classList.add("icon");
         childDiv += `
           ${iconEl.outerHTML}
           </div>
         `;
-        this.markerEl.innerHTML = (`${prevHtml} ${childDiv}`);
-        if ((this.prevDistance <= 0.020) || (this.lineDistance <= 0.020)) {
+        this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
+        if (this.prevDistance <= 0.02 || this.lineDistance <= 0.02) {
           this.mergeInstructionsWithImage = true;
         }
       }
@@ -423,25 +426,25 @@ export class MapboxService {
 
   setDestinationMarker(lon, lat) {
     this.map.addImage(
-      'destination-point-circle',
-      document.getElementById('destination-point-circle')
+      "destination-point-circle",
+      document.getElementById("destination-point-circle")
     );
     this.map.addImage(
-      'destination-point',
-      document.getElementById('destination-point')
+      "destination-point",
+      document.getElementById("destination-point")
     );
     this.map.addLayer({
-      id: 'destination-circle',
-      type: 'symbol',
+      id: "destination-circle",
+      type: "symbol",
       source: {
-        type: 'geojson',
+        type: "geojson",
         data: {
-          type: 'FeatureCollection',
+          type: "FeatureCollection",
           features: [
             {
-              type: 'Feature',
+              type: "Feature",
               geometry: {
-                type: 'Point',
+                type: "Point",
                 coordinates: [Number(lon), Number(lat)]
               }
             }
@@ -449,23 +452,23 @@ export class MapboxService {
         }
       },
       layout: {
-        'icon-image': 'destination-point-circle',
-        'icon-size': this.isMobile ? 1 / 1.5 : 1,
-        'icon-allow-overlap': true
+        "icon-image": "destination-point-circle",
+        "icon-size": this.isMobile ? 1 / 1.5 : 1,
+        "icon-allow-overlap": true
       }
     });
     this.map.addLayer({
-      id: 'destination-point',
-      type: 'symbol',
+      id: "destination-point",
+      type: "symbol",
       source: {
-        type: 'geojson',
+        type: "geojson",
         data: {
-          type: 'FeatureCollection',
+          type: "FeatureCollection",
           features: [
             {
-              type: 'Feature',
+              type: "Feature",
               geometry: {
-                type: 'Point',
+                type: "Point",
                 coordinates: [Number(lon), Number(lat)]
               }
             }
@@ -473,10 +476,10 @@ export class MapboxService {
         }
       },
       layout: {
-        'icon-image': 'destination-point',
-        'icon-size': this.isMobile ? 1 / 1.5 : 1,
-        'icon-offset': [3, 5],
-        'icon-anchor': 'bottom'
+        "icon-image": "destination-point",
+        "icon-size": this.isMobile ? 1 / 1.5 : 1,
+        "icon-offset": [3, 5],
+        "icon-anchor": "bottom"
       }
     });
   }
@@ -499,30 +502,34 @@ export class MapboxService {
 
   addLayer(clickedLayer: Layer) {
     this.map.addLayer({
-      'id': clickedLayer.layerId,
-      type: 'raster',
-      'source': {
-        type: 'image',
+      id: clickedLayer.layerId,
+      type: "raster",
+      source: {
+        type: "image",
         url: clickedLayer.layerImage,
         coordinates: Config[this.venueId].mapCorners
-      },
+      }
     });
   }
 
   displayLayer(clickedLayer: Layer) {
-    this.map.setLayoutProperty(clickedLayer.layerId, 'visibility', 'visible');
+    this.map.setLayoutProperty(clickedLayer.layerId, "visibility", "visible");
   }
 
   hideLayers() {
     this.getLayers().forEach(layer => {
       if (this.map.getLayer(layer.layerId)) {
-        this.map.setLayoutProperty(layer.layerId, 'visibility', 'none');
+        this.map.setLayoutProperty(layer.layerId, "visibility", "none");
       }
     });
   }
 
   isLayerVisible(clickedLayer: Layer) {
-    return this.map.getLayer(clickedLayer.layerId) && (this.map.getLayoutProperty(clickedLayer.layerId, 'visibility') === 'visible');
+    return (
+      this.map.getLayer(clickedLayer.layerId) &&
+      this.map.getLayoutProperty(clickedLayer.layerId, "visibility") ===
+        "visible"
+    );
   }
 
   zoomToLinePoligon(coordinates, offset?, maxZoom?, padding?) {
@@ -552,7 +559,7 @@ export class MapboxService {
       options
     );
 
-    if (typeof options.padding === 'number') {
+    if (typeof options.padding === "number") {
       const p = options.padding;
       options.padding = {
         top: p,
@@ -604,11 +611,11 @@ export class MapboxService {
         rotatedSize.y;
 
     if (scaleY < 0 || scaleX < 0) {
-      if (typeof console !== 'undefined') {
-          console.log(
-            'Map cannot fit within canvas with the given bounds, padding, and/or offset.'
-          );
-        }
+      if (typeof console !== "undefined") {
+        console.log(
+          "Map cannot fit within canvas with the given bounds, padding, and/or offset."
+        );
+      }
       return this;
     }
 

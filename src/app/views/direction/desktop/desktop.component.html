@@ -1,92 +1,166 @@
-
 <div id="venue-container">
-    <div class="d-none" id="icons-container">
-        <img [src]="applyImgsByVenueId[0]" alt="" id="start-point">
-        <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle">
-        <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point">
-    </div>
-    <!-- <pre>{{applyImgsByVenueId[0]}}</pre> -->
-    <div class="direction-component">
-        <div id="map"></div>
-        <header class="header d-flex align-items-center justify-content-between px-4">
-            <div class="d-flex align-items-center poi-data-name">
-                <img [src]="applyImgsByVenueId[3]" alt="destination" class="destination-icon-header">
-                <div class="d-flex flex-column align-items-start px-4">
-                    <div class="poi-name">
-                        {{poiData && poiData.name}}
-                    </div>
-                    <div class="poi-location">
-                        {{poiLocation && (poiLocation.length === 0 ? '' : poiLocation[0].propertyValue)}}
-                    </div>
-                </div>
-            </div>
-            <button translate class="back-btn" (click)="backToMain()">
-                back
-                <img [src]="applyImgsByVenueId[4]" alt="back">
-            </button>
-        </header>
-        <div class="instructions-container" [ngClass]="{'loaded': routeLoaded}">
-            <div class="instruction-header d-flex align-items-center px-3">
-                <img *ngIf="initLanguage.direction === 'ltr'" src="assets/imgs/walk-right.png" alt="directionswalk-right">
-                <img *ngIf="initLanguage.direction === 'rtl'" src="assets/imgs/directionswalk.svg" alt="directionswalk">
-                <div class="instruction-title px-3" translate>instr-for-arrival</div>
-            </div>
-            <ul class="m-0 p-0">
-                
-                <div class="instruction" id="start-instr">
-                    <li class="level d-flex align-items-center px-3">
-                        {{'floor' | translate}} {{kioskData && kioskData.entrances[0].length && kioskData.entrances[0].level}}
-                    </li>
-                    <li class="text-instr start-text-instruction d-flex align-items-center" translate>
-                        you-are-looking-info
-                    </li>
-                </div>
-                
-                <div *ngFor="let instr of ARRAY; let i = index"
-                    id="{{instr && instr.instruction.instructions + i}}"
-                    [ngClass]="{'outer-image': instr.instruction.instructionsType === 5 || instr.instruction.instructionsType === 6 || instr.instruction.instructionsType === 7 || instr.instruction.instructionsType === 8}"
-                    class="instruction {{instr.order}}">
-                    <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
-                        {{instr.instruction.level}}
-                    </li>
-                    <li class="text-instr d-flex align-items-center px-3">
-                        <div class="instruction-number d-flex justify-content-around align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
-                            {{i+1}}
-                            <img src="assets/imgs/{{getIconByInstructionType(instr.instruction.instructionsType)}}" alt="instruction-icon"
-                                class="px-1 icon" *ngIf="hasInstructionIcon(instr.instruction.instructionsType)">
-                        </div>
-                        <div class="px-3 custom-step-before">
-                            {{instr && instr.instruction.instructions}}
-                        </div>
-                    </li>
-                </div>
-                <div class="instruction" id="destination-instr">
-                    <li class="level d-flex align-items-center px-3">
-                        {{'floor' | translate}} <span style="direction: ltr;padding: 0 5px;">{{poiData && poiData.entrances[0] && poiData.entrances[0].level}}</span>
-                    </li>
-                    <li class="text-instr d-flex align-items-center px-3">
-                        <img [src]="applyImgsByVenueId[2]" alt="destination" class="destination-icon">
-                        <div class="px-3">
-                            {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
-                        </div>
-                    </li>
-                </div>
-            </ul>
-            <div class="instruction-footer align-items-center px-3" id="sms-box" (click)="openModal()">
-                <img src="assets/imgs/sms-icon.svg" alt="sms-icon" class="sms-icon">
-                <div class="send-instr px-3" translate>send-instr</div>
-                <div class="input-block d-flex align-items-center justify-content-center" translate>enter-mob-number</div>
-            </div>
+  <div class="d-none" id="icons-container">
+    <img [src]="applyImgsByVenueId[0]" alt="" id="start-point" />
+    <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle" />
+    <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point" />
+  </div>
+  <!-- <pre>{{applyImgsByVenueId[0]}}</pre> -->
+  <div class="direction-component">
+    <div id="map"></div>
+    <header
+      class="header d-flex align-items-center justify-content-between px-4"
+    >
+      <div class="d-flex align-items-center poi-data-name">
+        <img
+          [src]="applyImgsByVenueId[3]"
+          alt="destination"
+          class="destination-icon-header"
+        />
+        <div class="d-flex flex-column align-items-start px-4">
+          <div class="poi-name">
+            {{ poiData && poiData.name }}
+          </div>
+          <div class="poi-location">
+            {{
+              poiLocation &&
+                (poiLocation.length === 0 ? "" : poiLocation[0].propertyValue)
+            }}
+          </div>
+        </div>
+      </div>
+      <button translate class="back-btn" (click)="backToMain()">
+        back
+        <img [src]="applyImgsByVenueId[4]" alt="back" />
+      </button>
+    </header>
+    <div class="instructions-container" [ngClass]="{ loaded: routeLoaded }">
+      <div class="instruction-header d-flex align-items-center px-3">
+        <img
+          *ngIf="initLanguage.direction === 'ltr'"
+          src="assets/imgs/walk-right.png"
+          alt="directionswalk-right"
+        />
+        <img
+          *ngIf="initLanguage.direction === 'rtl'"
+          src="assets/imgs/directionswalk.svg"
+          alt="directionswalk"
+        />
+        <div class="instruction-title px-3" translate>instr-for-arrival</div>
+      </div>
+      <ul class="m-0 p-0">
+        <div *ngIf="venueId === '24'" class="direction-start-instruction">
+          <img src="/src/assets/imgs/poria/walking-human.svg" />
+          <p translate>directions</p>
+        </div>
+        <div class="instruction" id="start-instr">
+          <li class="level d-flex align-items-center px-3">
+            {{ "floor" | translate }}
+            {{
+              kioskData &&
+                kioskData.entrances[0].length &&
+                kioskData.entrances[0].level
+            }}
+          </li>
+          <li
+            class="text-instr start-text-instruction d-flex align-items-center"
+            translate
+          >
+            you-are-looking-info
+          </li>
         </div>
 
-        <!-- <div class="toggle-layers">
+        <div
+          *ngFor="let instr of ARRAY; let i = index"
+          id="{{ instr && instr.instruction.instructions + i }}"
+          [ngClass]="{
+            'outer-image':
+              instr.instruction.instructionsType === 5 ||
+              instr.instruction.instructionsType === 6 ||
+              instr.instruction.instructionsType === 7 ||
+              instr.instruction.instructionsType === 8
+          }"
+          class="instruction {{ instr.order }}"
+        >
+          <li
+            *ngIf="
+              i !== 0 &&
+              instr.instruction.level !== instructions[i - 1].instruction.level
+            "
+            class="level d-flex align-items-center px-3"
+          >
+            {{ instr.instruction.level }}
+          </li>
+          <li class="text-instr d-flex align-items-center px-3">
+            <div
+              class="instruction-number d-flex justify-content-around align-items-center"
+              [ngClass]="{
+                'instruction-number-icon': hasInstructionIcon(
+                  instr.instruction.instructionsType
+                )
+              }"
+            >
+              {{ i + 1 }}
+              <img
+                src="assets/imgs/{{
+                  getIconByInstructionType(instr.instruction.instructionsType)
+                }}"
+                alt="instruction-icon"
+                class="px-1 icon"
+                *ngIf="hasInstructionIcon(instr.instruction.instructionsType)"
+              />
+            </div>
+            <div class="px-3 custom-step-before">
+              {{ instr && instr.instruction.instructions }}
+            </div>
+          </li>
+        </div>
+        <div class="instruction" id="destination-instr">
+          <li class="level d-flex align-items-center px-3">
+            {{ "floor" | translate }}
+            <span style="direction: ltr;padding: 0 5px;">{{
+              poiData && poiData.entrances[0] && poiData.entrances[0].level
+            }}</span>
+          </li>
+          <li class="text-instr d-flex align-items-center px-3">
+            <img
+              [src]="applyImgsByVenueId[2]"
+              alt="destination"
+              class="destination-icon"
+            />
+            <div class="px-3">
+              {{ "you-have-arrived" | translate }} {{ poiData && poiData.name }}
+            </div>
+          </li>
+        </div>
+      </ul>
+      <div
+        class="instruction-footer align-items-center px-3"
+        id="sms-box"
+        (click)="openModal()"
+      >
+        <img
+          [src]="dynamicSmsIcon"
+          alt="sms-icon"
+          class="sms-icon"
+        />
+        <div class="send-instr px-3" translate>send-instr</div>
+        <div
+          class="input-block d-flex align-items-center justify-content-center"
+          translate
+        >
+          enter-mob-number
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="toggle-layers">
             <div *ngFor="let layer of layersCollection" (click)="toggle(layer)">
                 {{layer.layerName}}
             </div>
         </div> -->
-    </div>
+  </div>
 
-    <!-- <ng-template #template class="testing">
+  <!-- <ng-template #template class="testing">
         <div class="p-3">
             <div class="d-flex justify-content-end">
                 <img src="assets/imgs/close.svg" alt="close" aria-label="Close" (click)="modalRef.hide()">
@@ -119,12 +193,14 @@
                     <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('+')">+</div>
                     <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(0)">0</div>
                     <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('del')"><i
-                            class="material-icons">backspace</i></div>
+                            class="material-icons">backspace</img></div>
                 </div>
             </div>
         </div>
     </ng-template> -->
 </div>
 <app-loader></app-loader>
-<app-language-panel *ngIf="ds.isDesktop() && venueId === '12'"></app-language-panel>
+<app-language-panel
+  *ngIf="ds.isDesktop() && venueId === '12'"
+></app-language-panel>
 <app-language-panel *ngIf="ds.isMobile()"></app-language-panel>

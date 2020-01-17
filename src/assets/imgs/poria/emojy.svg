@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="56.187" height="56.186" viewBox="0 0 56.187 56.186">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-3 {
+        fill: #2f3181;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Clip_2" data-name="Clip 2" class="cls-1" d="M0,0H56.187V56.186H0Z" transform="translate(0 0.814)"/>
+    </clipPath>
+  </defs>
+  <g id="emojy" transform="translate(0 -1)">
+    <g id="Group_3" data-name="Group 3" transform="translate(0 0.186)">
+      <path id="Clip_2-2" data-name="Clip 2" class="cls-1" d="M0,0H56.187V56.186H0Z" transform="translate(0 0.814)"/>
+      <g id="Group_3-2" data-name="Group 3" class="cls-2">
+        <path id="Fill_1" data-name="Fill 1" class="cls-3" d="M28.094,56.186A28.093,28.093,0,1,1,56.187,28.093,28.126,28.126,0,0,1,28.094,56.186ZM28.094,4A24.093,24.093,0,1,0,52.187,28.093,24.121,24.121,0,0,0,28.094,4Z" transform="translate(0 0.814)"/>
+      </g>
+    </g>
+    <path id="Fill_4" data-name="Fill 4" class="cls-3" d="M8.066,5.945a1.48,1.48,0,0,1-.612-.132L.887,2.869A1.5,1.5,0,1,1,2.114.132L8.68,3.076a1.5,1.5,0,0,1-.614,2.869" transform="translate(37.093 17.278)"/>
+    <path id="Fill_6" data-name="Fill 6" class="cls-3" d="M8,4A4,4,0,1,1,4,0,4,4,0,0,1,8,4" transform="translate(34.427 24.236)"/>
+    <path id="Fill_8" data-name="Fill 8" class="cls-3" d="M1.5,5.945A1.5,1.5,0,0,1,.888,3.076L7.453.132A1.5,1.5,0,1,1,8.68,2.869L2.114,5.813a1.48,1.48,0,0,1-.612.132" transform="translate(10.927 17.278)"/>
+    <path id="Fill_10" data-name="Fill 10" class="cls-3" d="M0,4A4,4,0,1,0,4,0,4,4,0,0,0,0,4" transform="translate(15.16 24.236)"/>
+    <path id="Fill_12" data-name="Fill 12" class="cls-3" d="M1.5,7.508A1.5,1.5,0,0,1,.35,5.046C3.069,1.792,9.266,0,17.8,0a1.5,1.5,0,0,1,0,3C10.391,3,4.729,4.484,2.652,6.97A1.5,1.5,0,0,1,1.5,7.508" transform="translate(17.759 37.256)"/>
+  </g>
+</svg>

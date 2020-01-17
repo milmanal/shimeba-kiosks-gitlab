@@ -1,21 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
 @import url(https://fonts.googleapis.com/earlyaccess/opensanshebrew.css);
-@import 'variables';
-@import 'variables-yafe';
-@import 'ltr';
-@import 'rtl-yafe';
-@import 'rtl-hagalil';
-@import 'rtl-ziv';
-@import 'hebrew';
-@import 'amh';
-@import 'ar';
-@import 'es';
-@import 'fr';
-@import 'pt';
-@import 'ru';
-
+@import "variables";
+@import "variables-yafe";
+@import "ltr";
+@import "rtl-yafe";
+@import "rtl-hagalil";
+@import "rtl-ziv";
+@import "hebrew";
+@import "amh";
+@import "ar";
+@import "es";
+@import "fr";
+@import "pt";
+@import "ru";
 
 canvas {
   min-width: 100%;
@@ -27,11 +26,11 @@ canvas {
   margin-top: 21%;
 
   &:before {
-    content: '';
+    content: "";
     position: fixed;
     display: block;
     background: #4277ba;
-    opacity: .2;
+    opacity: 0.2;
     left: -100%;
     right: -100%;
     bottom: -1000%;
@@ -46,11 +45,11 @@ canvas {
   margin-top: 21%;
 
   &:before {
-    content: '';
+    content: "";
     position: fixed;
     display: block;
     background: #4277ba;
-    opacity: .4;
+    opacity: 0.4;
     left: -1000%;
     right: -1000%;
     bottom: -1000%;
@@ -117,7 +116,6 @@ canvas {
   src: url("./assets/fonts/OpenSansHebrew-ExtraBold.ttf");
 }
 
-
 @font-face {
   font-family: "OS Hebrew Light";
   src: url("./assets/fonts/opensanshebrew-light.ttf");
@@ -183,8 +181,6 @@ canvas {
 //   }
 // }
 
-
-
 body[venueid="18"],
 body[venueid="20"] {
   .modal-backdrop {
@@ -198,7 +194,7 @@ body[venueid="20"] {
     height: 515px;
     border: solid 1px #4a90e2;
     transform: translate(0, 50%) !important;
-  
+
     .modal-content {
       width: 100%;
       height: 100%;
@@ -240,29 +236,29 @@ body[venueid="20"] {
             font-size: 35px;
           }
           .gray-btn {
-              background-color: #B9BCC0;
+            background-color: #b9bcc0;
           }
         }
       }
     }
   }
 
-
   &.custom-modal-18,
   &.custom-modal-19,
-  &.custom-modal-20 {
+  &.custom-modal-20,
+  &.custom-modal-24 {
     margin: -60px 43px;
     width: 600px;
     max-width: 100%;
     height: auto;
     font-family: $OSHebrew;
-    transform: translate(0,50%)!important;
-  
+    transform: translate(0, 50%) !important;
+
     .modal-content {
       background-color: #fff;
       padding: 0 7px 15px;
     }
-  
+
     .sms-input {
       font-size: 40px;
       color: #4a4a4a;
@@ -272,12 +268,12 @@ body[venueid="20"] {
       width: 340px;
       padding-left: 15px !important;
       border: none;
-  
+
       &::-webkit-input-placeholder {
         color: #4a4a4a;
       }
     }
-  
+
     .send-btn {
       height: 78px;
       color: #fff;
@@ -291,15 +287,15 @@ body[venueid="20"] {
       // padding-top: 10px;
       border: 0;
     }
-  
+
     .custom-keyboard {
       height: auto;
     }
-  
+
     .key-row {
       margin-bottom: 5px;
     }
-  
+
     .key-btn {
       height: 78px !important;
       font-size: 60px !important;
@@ -310,13 +306,12 @@ body[venueid="20"] {
       font-family: $OSHebrewExtra;
       max-width: 165px;
       flex: 1;
-  
+
       &:not(:last-child) {
         margin-right: 5px;
       }
-  
     }
-  
+
     .instruction {
       color: #37557a;
       font-size: 30px;
@@ -327,22 +322,22 @@ body[venueid="20"] {
       align-items: center;
       padding: 15px 0 0 !important;
       line-height: 1;
-  
+
       &.dark-emojy:before {
-        content: '';
+        content: "";
         min-width: 50px;
         height: 50px;
         margin: 0 15px;
-        background: url('./assets/imgs/hagalil/emojy.svg') no-repeat;
+        background: url("./assets/imgs/hagalil/emojy.svg") no-repeat;
         background-size: 100%;
       }
 
       &.blue-emojy:before {
-        content: '';
+        content: "";
         min-width: 50px;
         height: 50px;
         margin: 0 15px;
-        background: url('./assets/imgs/ziv/emojy.svg') no-repeat;
+        background: url("./assets/imgs/ziv/emojy.svg") no-repeat;
         background-size: 100%;
       }
     }
@@ -350,11 +345,10 @@ body[venueid="20"] {
 
   &.custom-modal-20 {
     .send-sms-modal-inner {
-
       .instruction {
         color: #5d8cc1 !important;
       }
-  
+
       .send-btn {
         background: #5d8cc1;
       }
@@ -364,8 +358,40 @@ body[venueid="20"] {
       }
     }
   }
-}
 
+  &.custom-modal-24 {
+    .material-icons {
+      font-size: 45px !important;
+    }
+    .send-sms-modal-inner {
+      .instruction {
+        font-size: 26px;
+        color: #2f3181 !important;
+
+        &.blue-emojy:before {
+          background: url("./assets/imgs/poria/emojy.svg") no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      .send-btn {
+        background: #00a09f;
+      }
+
+      .sms-input {
+        color: #2f3181;
+
+        &::placeholder {
+          color: #2f3181;
+        }
+      }
+    }
+
+    .key-btn {
+      background-color: #2f3181 !important;
+    }
+  }
+}
 
 html[dir="rtl"] {
   * {
@@ -376,11 +402,10 @@ html[dir="rtl"] {
   }
 
   .search-arrow-icon {
-    transform: rotate(180deg)
+    transform: rotate(180deg);
   }
 
   .instruction {
-
     .text-instr:before {
       left: unset !important;
       right: 35px !important;
@@ -429,7 +454,8 @@ html[lang="ar"] {
         font-size: 35px;
       }
 
-      .send-btn, .sms-input {
+      .send-btn,
+      .sms-input {
         font-family: $mariad;
         font-size: 40px !important;
       }
@@ -449,7 +475,8 @@ html[lang="am"] {
         font-size: 28px;
       }
 
-      .send-btn, .sms-input {
+      .send-btn,
+      .sms-input {
         font-family: $noto-b;
         font-size: 40px !important;
       }
@@ -466,7 +493,7 @@ html[lang="am"] {
   bottom: 0;
   width: 100%;
 
-  mat-keyboard-container{
+  mat-keyboard-container {
     width: 100%;
     margin: 0;
     max-width: 100%;
@@ -484,25 +511,24 @@ html[lang="am"] {
 .mat-keyboard-row {
   &:last-child {
     justify-content: center;
-    
+
     .mat-keyboard-col {
-      flex: .5;
+      flex: 0.5;
 
       &:first-child {
         button:before {
-          content: 'Space';
+          content: "Space";
           font-family: $OSHebrew;
           font-size: 25px;
         }
       }
     }
 
-    .mat-keyboard-col:nth-of-type(2){
+    .mat-keyboard-col:nth-of-type(2) {
       display: none;
     }
   }
 }
-
 
 mat-keyboard-container {
   min-width: 65% !important;
@@ -520,38 +546,37 @@ mat-keyboard-container mat-keyboard-key .mat-keyboard-key {
   padding: 0 !important;
 }
 
-
 .zoomOutDown {
   animation-name: zoomOutDown;
-  animation-duration: .6s;
+  animation-duration: 0.6s;
   animation-fill-mode: both;
 }
-  
+
 @keyframes zoomOutDown {
   40% {
     opacity: 1;
-    transform: scale3d(.475, .475, .475) translate3d(0, -60px, 0);
-    }
+    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);
+  }
   100% {
     opacity: 0;
-    transform: scale3d(.4, .4, .4) translate3d(600px, 2000px, 0);
+    transform: scale3d(0.4, 0.4, 0.4) translate3d(600px, 2000px, 0);
     transform-origin: center bottom;
   }
 }
 
 .zoomInUp {
   animation-name: zoomInUp;
-  animation-duration: .7s;
+  animation-duration: 0.7s;
   animation-fill-mode: both;
 }
-   
-  @keyframes zoomInUp {
-    0% {
-      opacity: 0;
-      transform: scale3d(.1, .1, .1) translate3d(2300px, 1400%, 0);
-    }
-    60% {
-      opacity: 1;
-      transform: scale3d(.6, .6, .6) translate3d(0, -60px, 0);
-    }
+
+@keyframes zoomInUp {
+  0% {
+    opacity: 0;
+    transform: scale3d(0.1, 0.1, 0.1) translate3d(2300px, 1400%, 0);
   }
+  60% {
+    opacity: 1;
+    transform: scale3d(0.6, 0.6, 0.6) translate3d(0, -60px, 0);
+  }
+}

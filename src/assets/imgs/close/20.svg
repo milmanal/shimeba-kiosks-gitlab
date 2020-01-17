@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="33.442" height="33.442" viewBox="0 0 33.442 33.442">
+  <defs>
+    <style>
+      .cls-1, .cls-5 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #5d8cc1;
+      }
+
+      .cls-3 {
+        clip-path: url(#clip-path);
+      }
+
+      .cls-4 {
+        fill: #fff;
+      }
+
+      .cls-5 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 2px;
+      }
+    </style>
+    <clipPath id="clip-path">
+      <path id="Clip_4" data-name="Clip 4" class="cls-1" d="M0,0H33.442V33.442H0Z" transform="translate(0 0.558)"/>
+    </clipPath>
+  </defs>
+  <g id="close" transform="translate(0 -1)">
+    <path id="Fill_1" data-name="Fill 1" class="cls-2" d="M15.721,31.442A15.721,15.721,0,1,1,31.442,15.721,15.739,15.739,0,0,1,15.721,31.442" transform="translate(1 2)"/>
+    <g id="Group_5" data-name="Group 5" transform="translate(0 0.442)">
+      <path id="Clip_4-2" data-name="Clip 4" class="cls-1" d="M0,0H33.442V33.442H0Z" transform="translate(0 0.558)"/>
+      <g id="Group_5-2" data-name="Group 5" class="cls-3">
+        <path id="Fill_3" data-name="Fill 3" class="cls-4" d="M16.721,33.442A16.721,16.721,0,1,1,33.442,16.721,16.74,16.74,0,0,1,16.721,33.442ZM16.721,2A14.721,14.721,0,0,0,6.312,27.13,14.721,14.721,0,1,0,27.13,6.312,14.625,14.625,0,0,0,16.721,2Z" transform="translate(0 0.558)"/>
+      </g>
+    </g>
+    <path id="Stroke_6" data-name="Stroke 6" class="cls-5" d="M0,0,14.689,14.689" transform="translate(9.377 10.376)"/>
+    <path id="Stroke_8" data-name="Stroke 8" class="cls-5" d="M14.689,0,0,14.689" transform="translate(9.377 10.376)"/>
+  </g>
+</svg>

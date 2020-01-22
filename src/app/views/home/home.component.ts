@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
     const urlString = window.location.href.includes('direction');
     this._mapbox.initMap(this.venueId, null, urlString);
     this._api.getKioskData().subscribe(res => {
+    console.log("OUTPUT: HomeComponent -> ngOnInit -> res", res)
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
       let offsetOptons = [0, 0];
       this._route.params.subscribe(params => {

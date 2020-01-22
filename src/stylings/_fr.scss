@@ -1,0 +1,16 @@
+html[lang="fr"] #venue-container[venueid="24"] {
+  .direction-component {
+    .header {
+      .back-btn {
+        width: 250px !important;
+      }
+    }
+    .instructions-container {
+      .instruction-footer {
+        .send-instr {
+          font-size: 18px !important;
+        }
+      }
+    }
+  }
+}

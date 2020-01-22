@@ -1,120 +1,137 @@
-@import 'variables';
+@import "variables";
 
 html[lang="he"] #venue-container[venueid="12"] {
-    .category-pois {
-        li {
-            line-height: 2 !important;
-            margin-bottom: 0 !important;
+  .category-pois {
+    li {
+      line-height: 2 !important;
+      margin-bottom: 0 !important;
 
-            span {
-                width: 100% !important;
-                padding: 0 !important;
-                font-weight: normal !important;
-                line-height: unset !important;
-            }
-        }
+      span {
+        width: 100% !important;
+        padding: 0 !important;
+        font-weight: normal !important;
+        line-height: unset !important;
+      }
     }
+  }
 
-    .search-container {
-        .category-name {
-            font-family: $OSHebrew !important;
-            font-size: 29px !important;
-        }
+  .search-container {
+    .category-name {
+      font-family: $OSHebrew !important;
+      font-size: 29px !important;
     }
+  }
 }
 
 html[lang="he"] #venue-container[venueid="18"],
 html[lang="he"] #venue-container[venueid="19"],
 html[lang="he"] #venue-container[venueid="20"] {
-    .home-component {
-        .search-input  {
-            font-family: $OSHebrewBold !important;
-        }
-
-        #you-are-here {
-            font-weight: bold;
-            font-family: $OSHebrewBold;
-        }
+  .home-component {
+    .search-input {
+      font-family: $OSHebrewBold !important;
     }
 
-    .search-container {
-        .search-input {
-            font-size: 80px !important;
-        }
+    #you-are-here {
+      font-weight: bold;
+      font-family: $OSHebrewBold;
+    }
+  }
 
-        .search-instruction {
-            font-family: $OSHebrewBold !important;
-        }
-
-        .category-name {
-            font-family: $OSHebrew !important;
-            font-size: 29px !important;
-        }
-
-        .search-results {
-            ul li {
-                .currentLanguage {
-                    font-family: $OSHebrewRegular !important;
-                    font-weight: 500 !important;
-                    font-size: 42px !important;
-                }
-
-                .show-more-label {
-                    font-family: $OSHebrewBold !important;
-                }
-            }
-        }
+  .search-container {
+    .search-input {
+      font-size: 80px !important;
     }
 
-    .category-container {
-        .category-name  {
-            font-family: $OSHebrewBold !important;
-        }
-
-        .pois {
-            .currentLanguage {
-                font-family: $OSHebrewRegular !important;
-                font-size: 50px !important;
-                width: 100% !important;
-            }
-        }
+    .search-instruction {
+      font-family: $OSHebrewBold !important;
     }
 
-    .loaded {
-        padding-right: 0;
-
-        ul {
-            direction: ltr;
-            padding-right: 100px;
-        }
-
-        .instruction-footer {
-            left: 0;
-            right: 75px;
-        }
+    .category-name {
+      font-family: $OSHebrew !important;
+      font-size: 29px !important;
     }
 
-    .direction-component {
-
-        .instruction-footer {
-      
-            .send-instr {
-                font-size: 20px !important;
-                font-family: $OSHebrewBold;
-            }
-            .input-block {
-                font-size: 20px !important;
-                font-family: $OSHebrewRegular;
-            }
+    .search-results {
+      ul li {
+        .currentLanguage {
+          font-family: $OSHebrewRegular !important;
+          font-weight: 500 !important;
+          font-size: 42px !important;
         }
 
-        .header {
-            .back-btn {
-                img {
-                    margin-left: -19px !important;
-                    margin-right: 11px !important;
-                }
-            }
+        .show-more-label {
+          font-family: $OSHebrewBold !important;
         }
+      }
     }
+  }
+
+  .category-container {
+    .category-name {
+      font-family: $OSHebrewBold !important;
+    }
+
+    .pois {
+      .currentLanguage {
+        font-family: $OSHebrewRegular !important;
+        font-size: 50px !important;
+        width: 100% !important;
+      }
+    }
+  }
+
+  .loaded {
+    padding-right: 0;
+
+    ul {
+      direction: ltr;
+      padding-right: 100px;
+    }
+
+    .instruction-footer {
+      left: 0;
+      right: 75px;
+    }
+  }
+
+  .direction-component {
+    .instruction-footer {
+      .send-instr {
+        font-size: 20px !important;
+        font-family: $OSHebrewBold;
+      }
+      .input-block {
+        font-size: 20px !important;
+        font-family: $OSHebrewRegular;
+      }
+    }
+
+    .header {
+      .back-btn {
+        img {
+          margin-left: -19px !important;
+          margin-right: 11px !important;
+        }
+      }
+    }
+  }
+}
+
+html[lang="he"] #venue-container[venueid="24"] {
+  .category-container {
+    .pois {
+      border: none !important;
+      border-right: solid 1px #979797 !important;
+      border-bottom: solid 1px #979797 !important;
+      .secondaryLanguage {
+        text-align: left !important;
+      }
+    }
+
+    .arrows-container {
+      border: none !important;
+      border-left: solid 1px #979797 !important;
+      border-bottom: solid 1px #979797 !important;
+    }
+  }
 }

@@ -15,6 +15,7 @@
 @import "fr";
 @import "pt";
 @import "ru";
+@import "en";
 
 canvas {
   min-width: 100%;
@@ -257,6 +258,10 @@ body[venueid="20"] {
     .modal-content {
       background-color: #fff;
       padding: 0 7px 15px;
+    }
+
+    .close-modal-image {
+      justify-content: flex-end;
     }
 
     .sms-input {

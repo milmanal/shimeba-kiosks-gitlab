@@ -318,8 +318,50 @@ export class MapboxService {
     // return false;
   }
 
+  generateMarker(number: number) {
+    this.markerEl = document.createElement("div");
+    this.markerEl.id = `marker${number}`;
+    this.markerEl.classList.add(
+      "marker-number",
+      "d-flex",
+      "justify-content-around",
+      "align-items-center"
+    );
+  }
+
+  attachMarker(number: number) {
+    this.markerEl.innerHTML += `<span class="child">${number}</span>`;
+    this.markerEl.classList.add("multi-instructions");
+  }
+
+  generateChild(number: number) {
+    return `
+          <div style="${this.styles}" class="child">
+            <span>${number}</span>
+        `;
+  }
+
+  generateIcon(instructionType: number) {
+    const iconEl = document.createElement("img");
+    const iconName = InstructionIcon.find(
+      instruction => instruction.instructionType === instructionType
+    ).icon;
+    iconEl.src = `assets/imgs/${iconName}`;
+    iconEl.classList.add("icon");
+
+    return iconEl;
+  }
+
   prevDistance: any;
-  mergeInstructionsWithImage = false;
+  mergeInstructionsWithImage: boolean = false;
+  styles: string = `
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row-reverse;
+    `;
 
   addInstructionIcon(number, coord, instructionType) {
     this.mergeInstructionsWithImage = false;
@@ -328,99 +370,43 @@ export class MapboxService {
       instruction => instruction.instructionType === instructionType
     );
     const instructions = document.getElementsByClassName("instruction-number");
+    const childSpan = `<span class="child">${number}</span>`;
+
     if (!hasIcon) {
       if (!this.markerEl) {
-        this.prevDistance = this.lineDistance;
-        this.markerEl = document.createElement("div");
-        this.markerEl.id = `marker${number}`;
-        this.markerEl.classList.add(
-          "marker-number",
-          "d-flex",
-          "justify-content-around",
-          "align-items-center"
-        );
-        this.markerEl.innerHTML = `<span class="child">${number}</span>`;
-      } else if (this.prevDistance <= 0.02 || this.mergeInstructionsWithImage) {
-        this.markerEl.innerHTML += `<span class="child">${number}</span>`;
-        this.markerEl.classList.add("multi-instructions");
-        this.prevDistance = this.lineDistance;
+        this.generateMarker(number);
+        this.markerEl.innerHTML = childSpan;
+      } else if (this.prevDistance <= 0.01 || this.mergeInstructionsWithImage) {
+        this.attachMarker(number);
       } else {
-        this.markerEl = document.createElement("div");
-        this.markerEl.id = `marker${number}`;
-        this.markerEl.classList.add(
-          "marker-number",
-          "d-flex",
-          "justify-content-around",
-          "align-items-center"
-        );
-        this.markerEl.innerHTML = `<span class="child">${number}</span>`;
+        this.generateMarker(number);
+        this.markerEl.innerHTML = childSpan;
       }
     } else {
-      const styles = `
-          width: 100%;
-          height: 100%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-direction: row-reverse;
-        `;
-
-      if (this.prevDistance <= 0.02) {
-        let childDiv = `
-          <div style="${styles}" class="child">
-            <span>${number}</span>
-        `;
-
+      if (this.prevDistance <= 0.01) {
         const prevHtml = this.markerEl.innerHTML;
+        let childDiv = this.generateChild(number);
         this.markerEl.innerHTML += childDiv;
         this.markerEl.classList.add("multi-instructions");
-
-        const iconEl = document.createElement("img");
-        const iconName = InstructionIcon.find(
-          instruction => instruction.instructionType === instructionType
-        ).icon;
-        iconEl.src = `assets/imgs/${iconName}`;
-        iconEl.classList.add("icon");
-        childDiv += `
-          ${iconEl.outerHTML}
-          </div>
-        `;
+        const iconEl = this.generateIcon(instructionType);
+        childDiv += `${iconEl.outerHTML}</div>`;
         this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
         this.mergeInstructionsWithImage = true;
       } else {
-        this.markerEl = document.createElement("div");
-        this.markerEl.id = `marker${number}`;
-        this.markerEl.classList.add(
-          "marker-number",
-          "d-flex",
-          "justify-content-around",
-          "align-items-center",
-          "marker-number-icon"
-        );
-        let childDiv = `
-          <div style="${styles}" class="child">
-            <span>${number}</span>
-        `;
-
+        this.generateMarker(number);
         const prevHtml = this.markerEl.innerHTML;
+        let childDiv = this.generateChild(number);
         this.markerEl.innerHTML += childDiv;
-
-        const iconEl = document.createElement("img");
-        const iconName = InstructionIcon.find(
-          instruction => instruction.instructionType === instructionType
-        ).icon;
-        iconEl.src = `assets/imgs/${iconName}`;
-        iconEl.classList.add("icon");
-        childDiv += `
-          ${iconEl.outerHTML}
-          </div>
-        `;
+        const iconEl = this.generateIcon(instructionType);
+        childDiv += `${iconEl.outerHTML}</div>`;
         this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
-        if (this.prevDistance <= 0.02 || this.lineDistance <= 0.02) {
+
+        if (this.prevDistance <= 0.01 || this.lineDistance <= 0.01) {
           this.mergeInstructionsWithImage = true;
         }
       }
     }
+    this.prevDistance = this.lineDistance;
     new mapboxgl.Marker(this.markerEl).setLngLat(coord).addTo(this.map);
   }
 

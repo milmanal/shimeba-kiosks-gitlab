@@ -88,3 +88,14 @@ html[lang="ru"] #venue-container[venueid="12"] {
         }
     }
 }
+
+
+html[lang="ru"] #venue-container[venueid="24"] {
+  .search-container {
+    .search {
+      .search-input {
+        font-size: 57px !important;
+      }
+    }
+  }
+}

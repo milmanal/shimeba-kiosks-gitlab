@@ -147,4 +147,136 @@ html[lang="ar"] #venue-container[venueid="24"] {
       border-bottom: solid 1px #979797 !important;
     }
   }
+
+  .direction-component {
+    .header {
+      .back-btn {
+        right: unset !important;
+        left: 54px !important;
+        img {
+          transform: none !important;
+          margin-right: 10px;
+          margin-left: 0 !important;
+        }
+      }
+    }
+    .instructions-container {
+      left: unset !important;
+      right: -120% !important;
+      background-image: linear-gradient(
+        to right,
+        #00a09f,
+        #0089a5,
+        #006fa6,
+        #00529b,
+        #2f3181
+      ) !important;
+
+      ul {
+        direction: ltr;
+        padding-left: 0 !important;
+        padding-right: 110px !important;
+      }
+
+      .instruction {
+        &:before {
+          left: unset !important;
+          right: -65px !important;
+        }
+        &:after {
+          left: unset !important;
+          right: -73px !important;
+        }
+
+        .instruction-number-icon {
+          .icon {
+            left: unset !important;
+            right: -58px !important;
+          }
+        }
+
+        .destination-icon {
+          position: initial !important;
+        }
+      }
+
+      .instruction.right.outer-image {
+        &:before {
+          width: 42px;
+          border-top: 3px dotted #fff;
+          border-right: none !important;
+          border-left: 3px dotted #fff;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:before {
+            width: 42px;
+            transform: scaleX(-1);
+          }
+
+          &:after {
+            right: -34px !important;
+          }
+        }
+      }
+
+      .instruction.left.outer-image {
+        &:before {
+          width: 42px;
+          border-top: 3px dotted #fff;
+          border-left: none !important;
+          border-right: 3px dotted #fff;
+          transform: none !important;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:before {
+            width: 42px;
+          }
+
+          &:after {
+            right: -73px !important;
+          }
+        }
+      }
+    }
+
+    .instructions-container.loaded {
+      left: unset !important;
+      right: 0 !important;
+    }
+  }
+
+  .direction-start-instruction {
+    img {
+      transform: scaleX(-1);
+    }
+
+    &:before {
+      right: unset;
+      left: 100%;
+      border-left: none;
+      border-right: 3px dotted #fff;
+      border-top-left-radius: unset;
+      border-top-right-radius: 10px;
+    }
+    p {
+      margin-left: 0;
+      margin-right: 15px;
+    }
+  }
+
+  .custom-modal.custom-modal-24 {
+    .close-modal-image {
+      justify-content: flex-start !important;
+    }
+  }
 }

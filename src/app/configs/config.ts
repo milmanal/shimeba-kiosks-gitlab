@@ -122,7 +122,7 @@ export const Config = {
     borderLineColor: "#2f3181",
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 50000,
+    inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 0.01

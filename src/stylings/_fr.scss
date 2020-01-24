@@ -22,3 +22,14 @@ html[lang="fr"] #venue-container[venueid="24"] {
     }
   }
 }
+
+
+html[lang="fr"] { 
+  .custom-modal.custom-modal-24 {
+    .send-sms-modal-inner {
+      .sms-input {
+        font-size: 27px !important;
+      }
+    }
+  }
+}

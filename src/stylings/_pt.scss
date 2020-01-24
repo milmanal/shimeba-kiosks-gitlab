@@ -19,3 +19,13 @@ html[lang="pt"] #venue-container[venueid="24"] {
     }
   }
 }
+
+html[lang="pt"] { 
+  .custom-modal.custom-modal-24 {
+    .send-sms-modal-inner {
+      .sms-input {
+        font-size: 29px !important;
+      }
+    }
+  }
+}

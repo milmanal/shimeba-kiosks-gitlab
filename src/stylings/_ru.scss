@@ -98,4 +98,22 @@ html[lang="ru"] #venue-container[venueid="24"] {
       }
     }
   }
+
+  .direction-component {
+    .instruction-footer {
+      .send-instr {
+        font-size: 19px !important;
+      }
+    }
+  }
+}
+
+html[lang="ru"] { 
+  .custom-modal.custom-modal-24 {
+    .send-sms-modal-inner {
+      .instruction {
+        font-size: 22px;
+      }
+    }
+  }
 }

@@ -30,6 +30,20 @@
       border-right: 1px solid #fff;
     }
 
+    .child {
+      span {
+        margin-left: 6px;
+      }
+    }
+
+    .child:first-child {
+      border-left: none;
+    }
+
+    .child:last-child {
+      border-right: none;
+    }
+
     div,
     span {
       width: 100%;

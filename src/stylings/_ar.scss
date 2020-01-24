@@ -160,6 +160,25 @@ html[lang="ar"] #venue-container[venueid="24"] {
         }
       }
     }
+
+    .marker-number.multi-instructions {
+      .child {
+        span {
+          margin-right: 6px;
+          margin-left: 0 !important;
+        }
+      }
+      .child:first-child {
+        border-right: none;
+        border-left: 1px solid #fff !important;
+      }
+  
+      .child:last-child {
+        border-left: none;
+        border-right: 1px solid #fff !important;
+
+      }
+    }
     .instructions-container {
       left: unset !important;
       right: -120% !important;
@@ -273,8 +292,11 @@ html[lang="ar"] #venue-container[venueid="24"] {
       margin-right: 15px;
     }
   }
+}
 
-  .custom-modal.custom-modal-24 {
+
+html[lang="ar"] { 
+  .custom-modal {
     .close-modal-image {
       justify-content: flex-start !important;
     }

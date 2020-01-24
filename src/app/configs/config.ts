@@ -21,7 +21,8 @@ export const Config = {
     timeForTheStep: 2000,
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
-    smsModalTimeAppearing: 7000
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02
   },
 
   "18": {
@@ -46,7 +47,8 @@ export const Config = {
     timeForTheStep: 2000,
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
-    smsModalTimeAppearing: 7000
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02
   },
   "19": {
     mapCorners: [
@@ -70,7 +72,8 @@ export const Config = {
     timeForTheStep: 2000,
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
-    smsModalTimeAppearing: 7000
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02
   },
 
   "20": {
@@ -95,7 +98,8 @@ export const Config = {
     timeForTheStep: 2000,
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
-    smsModalTimeAppearing: 7000
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02
   },
 
   "24": {
@@ -112,14 +116,15 @@ export const Config = {
     initZoom: 17.8,
     mobileInitZoom: 16.5,
     rotation: 39,
-    center: [35.53966, 32.75238],
+    center: [35.53989927972306, 32.75260653666301],
     routeLineColor: "#2f3181",
     routeLineWidth: 12,
     borderLineColor: "#2f3181",
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 50000,
+    inactivityDuration: 40,
     reloadAfterIncativity: 300,
-    smsModalTimeAppearing: 7000
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.01
   }
 };

@@ -15,6 +15,7 @@
 @import "fr";
 @import "pt";
 @import "ru";
+@import "en";
 
 canvas {
   min-width: 100%;
@@ -259,6 +260,10 @@ body[venueid="20"] {
       padding: 0 7px 15px;
     }
 
+    .close-modal-image {
+      justify-content: flex-end;
+    }
+
     .sms-input {
       font-size: 40px;
       color: #4a4a4a;
@@ -367,26 +372,26 @@ body[venueid="20"] {
       .instruction {
         font-size: 26px;
         color: #2f3181 !important;
-
+    
         &.blue-emojy:before {
-          background: url("./assets/imgs/poria/emojy.svg") no-repeat;
+          background: url("/src/assets/imgs/poria/emojy.svg") no-repeat;
           background-size: 100%;
         }
       }
-
+    
       .send-btn {
         background: #00a09f;
       }
-
+    
       .sms-input {
         color: #2f3181;
-
+    
         &::placeholder {
           color: #2f3181;
         }
       }
     }
-
+    
     .key-btn {
       background-color: #2f3181 !important;
     }

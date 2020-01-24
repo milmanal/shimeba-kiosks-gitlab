@@ -1,37 +1,37 @@
 <div class="p-3 send-sms-modal-inner">
-    <div class="d-flex justify-content-end close-modal-image">
-        <img [src]="dynamicCloseModalIcon" alt="close" aria-label="Close" (click)="animateCloseModal()">
-    </div>
-    <div class="instruction pt-3 px-3" ngClass="venueId == 20 ? blue-emojy : dark-emojy" translate>
-        enter-mob-number-and-recieve-sms
-    </div>
-    <div class="d-flex justify-content-between align-items-center px-3 pt-3">
-        <input type="text" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
-            [(ngModel)]="phoneNumber" required>
-        <button (click)="sendSms()" class="send-btn" translate>send</button>
-    </div>
-    <!-- <span *ngIf="validationMessage" style="display: block;color: red;font-size: 24px;padding: 10px 15px 0;">This field is required</span> -->
-    <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
-        <div class="d-flex justify-content-between align-items-center key-row">
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(1)">1</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(2)">2</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(3)">3</div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center key-row">
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(4)">4</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(5)">5</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(6)">6</div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center key-row">
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(7)">7</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(8)">8</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(9)">9</div>
-        </div>
-        <div class="d-flex justify-content-between align-items-center key-row">
-            <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('+')">+</div>
-            <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(0)">0</div>
-            <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('del')"><i
-                    class="material-icons">backspace</i></div>
-        </div>
-    </div>
+  <div class="d-flex justify-content-end close-modal-image">
+      <img [src]="dynamicCloseModalIcon" alt="close" aria-label="Close" (click)="animateCloseModal()">
+  </div>
+  <div class="instruction pt-3 px-3" ngClass="venueId == 20 ? blue-emojy : dark-emojy" translate>
+      enter-mob-number-and-recieve-sms
+  </div>
+  <div class="d-flex justify-content-between align-items-center px-3 pt-3">
+      <input type="text" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
+          [(ngModel)]="phoneNumber" required>
+      <button (click)="sendSms()" class="send-btn" translate>send</button>
+  </div>
+  <!-- <span *ngIf="validationMessage" style="display: block;color: red;font-size: 24px;padding: 10px 15px 0;">This field is required</span> -->
+  <div class="d-flex flex-column justify-content-between aling-items-center custom-keyboard px-3 pt-3">
+      <div class="d-flex justify-content-between align-items-center key-row">
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(1)">1</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(2)">2</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(3)">3</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center key-row">
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(4)">4</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(5)">5</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(6)">6</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center key-row">
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(7)">7</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(8)">8</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(9)">9</div>
+      </div>
+      <div class="d-flex justify-content-between align-items-center key-row">
+          <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('+')">+</div>
+          <div class="d-flex justify-content-center align-items-center key-btn" (click)="enterNumber(0)">0</div>
+          <div class="d-flex justify-content-center align-items-center key-btn gray-btn" (click)="enterNumber('del')"><i
+                  class="material-icons">backspace</i></div>
+      </div>
+  </div>
 </div>

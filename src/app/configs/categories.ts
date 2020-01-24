@@ -114,27 +114,27 @@ export const Categories = {
   '24': [
     {
       icon: 'poria/food-poria.svg',
-      name: 'Shops, food and beverages',
+      name: 'food',
       categoryId: 52
     },
     {
       icon: 'poria/parking-poria.svg',
-      name: 'Parking',
+      name: 'parking',
       categoryId: 5
     },
     {
       icon: 'poria/toilets-poria.svg',
-      name: 'WC',
+      name: 'toilets',
       categoryId: 2
     },
     {
       icon: 'poria/info-poria.svg',
-      name: 'Services and Information',
+      name: 'info',
       categoryId: 42
     },
     {
       icon: 'poria/entrance-poria.svg',
-      name: 'Entrances',
+      name: 'entrance',
       categoryId: 1
     }
   ]

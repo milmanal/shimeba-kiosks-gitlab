@@ -1,25 +1,23 @@
-
 modal-container .custom-modal-12 {
-    @import "./themes/sourasky.theme";
+  @import "./themes/sourasky.theme";
 }
 
 .custom-modal-18 {
-    .modal-content {
-        background: red;
-    }
-    // @import "./themes/yafe.theme";
+  .modal-content {
+    background: red;
+  }
+  // @import "./themes/yafe.theme";
 }
 .custom-keyboard {
-    .key-row{
-        direction: ltr;
-    }
+  .key-row {
+    direction: ltr;
+  }
 }
 
 modal-container .custom-modal-19 {
-    @import "./themes/hagalil.theme";
+  @import "./themes/hagalil.theme";
 }
 
 modal-container .custom-modal-20 {
-    @import "./themes/ziv.theme";
+  @import "./themes/ziv.theme";
 }
-  

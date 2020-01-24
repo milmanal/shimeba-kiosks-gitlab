@@ -1,120 +1,293 @@
-@import 'variables';
+@import "variables";
 
 html[lang="he"] #venue-container[venueid="12"] {
-    .category-pois {
-        li {
-            line-height: 2 !important;
-            margin-bottom: 0 !important;
+  .category-pois {
+    li {
+      line-height: 2 !important;
+      margin-bottom: 0 !important;
 
-            span {
-                width: 100% !important;
-                padding: 0 !important;
-                font-weight: normal !important;
-                line-height: unset !important;
-            }
-        }
+      span {
+        width: 100% !important;
+        padding: 0 !important;
+        font-weight: normal !important;
+        line-height: unset !important;
+      }
     }
+  }
 
-    .search-container {
-        .category-name {
-            font-family: $OSHebrew !important;
-            font-size: 29px !important;
-        }
+  .search-container {
+    .category-name {
+      font-family: $OSHebrew !important;
+      font-size: 29px !important;
     }
+  }
 }
 
 html[lang="he"] #venue-container[venueid="18"],
 html[lang="he"] #venue-container[venueid="19"],
 html[lang="he"] #venue-container[venueid="20"] {
-    .home-component {
-        .search-input  {
-            font-family: $OSHebrewBold !important;
-        }
-
-        #you-are-here {
-            font-weight: bold;
-            font-family: $OSHebrewBold;
-        }
+  .home-component {
+    .search-input {
+      font-family: $OSHebrewBold !important;
     }
 
-    .search-container {
-        .search-input {
-            font-size: 80px !important;
-        }
+    #you-are-here {
+      font-weight: bold;
+      font-family: $OSHebrewBold;
+    }
+  }
 
-        .search-instruction {
-            font-family: $OSHebrewBold !important;
-        }
-
-        .category-name {
-            font-family: $OSHebrew !important;
-            font-size: 29px !important;
-        }
-
-        .search-results {
-            ul li {
-                .currentLanguage {
-                    font-family: $OSHebrewRegular !important;
-                    font-weight: 500 !important;
-                    font-size: 42px !important;
-                }
-
-                .show-more-label {
-                    font-family: $OSHebrewBold !important;
-                }
-            }
-        }
+  .search-container {
+    .search-input {
+      font-size: 80px !important;
     }
 
-    .category-container {
-        .category-name  {
-            font-family: $OSHebrewBold !important;
-        }
-
-        .pois {
-            .currentLanguage {
-                font-family: $OSHebrewRegular !important;
-                font-size: 50px !important;
-                width: 100% !important;
-            }
-        }
+    .search-instruction {
+      font-family: $OSHebrewBold !important;
     }
 
-    .loaded {
-        padding-right: 0;
-
-        ul {
-            direction: ltr;
-            padding-right: 100px;
-        }
-
-        .instruction-footer {
-            left: 0;
-            right: 75px;
-        }
+    .category-name {
+      font-family: $OSHebrew !important;
+      font-size: 29px !important;
     }
 
-    .direction-component {
-
-        .instruction-footer {
-      
-            .send-instr {
-                font-size: 20px !important;
-                font-family: $OSHebrewBold;
-            }
-            .input-block {
-                font-size: 20px !important;
-                font-family: $OSHebrewRegular;
-            }
+    .search-results {
+      ul li {
+        .currentLanguage {
+          font-family: $OSHebrewRegular !important;
+          font-weight: 500 !important;
+          font-size: 42px !important;
         }
 
-        .header {
-            .back-btn {
-                img {
-                    margin-left: -19px !important;
-                    margin-right: 11px !important;
-                }
-            }
+        .show-more-label {
+          font-family: $OSHebrewBold !important;
         }
+      }
     }
+  }
+
+  .category-container {
+    .category-name {
+      font-family: $OSHebrewBold !important;
+    }
+
+    .pois {
+      .currentLanguage {
+        font-family: $OSHebrewRegular !important;
+        font-size: 50px !important;
+        width: 100% !important;
+      }
+    }
+  }
+
+  .loaded {
+    padding-right: 0;
+
+    ul {
+      direction: ltr;
+      padding-right: 100px;
+    }
+
+    .instruction-footer {
+      left: 0;
+      right: 75px;
+    }
+  }
+
+  .direction-component {
+    .instruction-footer {
+      .send-instr {
+        font-size: 20px !important;
+        font-family: $OSHebrewBold;
+      }
+      .input-block {
+        font-size: 20px !important;
+        font-family: $OSHebrewRegular;
+      }
+    }
+
+    .header {
+      .back-btn {
+        img {
+          margin-left: -19px !important;
+          margin-right: 11px !important;
+        }
+      }
+    }
+  }
+}
+
+html[lang="he"] #venue-container[venueid="24"] {
+  .category-container {
+    .pois {
+      border: none !important;
+      border-right: solid 1px #979797 !important;
+      border-bottom: solid 1px #979797 !important;
+      .secondaryLanguage {
+        text-align: left !important;
+      }
+    }
+
+    .arrows-container {
+      border: none !important;
+      border-left: solid 1px #979797 !important;
+      border-bottom: solid 1px #979797 !important;
+    }
+  }
+
+  .direction-component {
+    .header {
+      .back-btn {
+        right: unset !important;
+        left: 54px !important;
+        img {
+          transform: none !important;
+          margin-right: 10px;
+          margin-left: 0 !important;
+        }
+      }
+    }
+
+    .marker-number.multi-instructions {
+      .child {
+        span {
+          margin-right: 6px;
+          margin-left: 0 !important;
+        }
+      }
+      .child:first-child {
+        border-right: none;
+        border-left: 1px solid #fff !important;
+      }
+  
+      .child:last-child {
+        border-left: none;
+        border-right: 1px solid #fff !important;
+
+      }
+    }
+    
+    .instructions-container {
+      left: unset !important;
+      right: -120% !important;
+      background-image: linear-gradient(
+        to right,
+        #00a09f,
+        #0089a5,
+        #006fa6,
+        #00529b,
+        #2f3181
+      ) !important;
+
+      ul {
+        direction: ltr;
+        padding-left: 0 !important;
+        padding-right: 110px !important;
+      }
+
+      .instruction {
+        &:before {
+          left: unset !important;
+          right: -65px !important;
+        }
+        &:after {
+          left: unset !important;
+          right: -73px !important;
+        }
+
+        .instruction-number-icon {
+          .icon {
+            left: unset !important;
+            right: -58px !important;
+          }
+        }
+
+        .destination-icon {
+          position: initial !important;
+        }
+      }
+
+      .instruction.right.outer-image {
+        &:before {
+          width: 42px;
+          border-top: 3px dotted #fff;
+          border-right: none !important;
+          border-left: 3px dotted #fff;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:before {
+            width: 42px;
+            transform: scaleX(-1);
+          }
+
+          &:after {
+            right: -34px !important;
+          }
+        }
+      }
+
+      .instruction.left.outer-image {
+        &:before {
+          width: 42px;
+          border-top: 3px dotted #fff;
+          border-left: none !important;
+          border-right: 3px dotted #fff;
+          transform: none !important;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:before {
+            width: 42px;
+          }
+
+          &:after {
+            right: -73px !important;
+          }
+        }
+      }
+    }
+
+    .instructions-container.loaded {
+      left: unset !important;
+      right: 0 !important;
+    }
+  }
+
+  .direction-start-instruction {
+    img {
+      transform: scaleX(-1);
+    }
+
+    &:before {
+      right: unset;
+      left: 100%;
+      border-left: none;
+      border-right: 3px dotted #fff;
+      border-top-left-radius: unset;
+      border-top-right-radius: 10px;
+    }
+    p {
+      margin-left: 0;
+      margin-right: 15px;
+    }
+  }
+
+  
+}
+
+html[lang="he"] { 
+  .custom-modal {
+    .close-modal-image {
+      justify-content: flex-start !important;
+    }
+  }
 }

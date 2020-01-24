@@ -1,0 +1,31 @@
+html[lang="pt"] #venue-container[venueid="24"] {
+  #you-are-here {
+    font-size: 35px !important;
+  }
+
+  .direction-component {
+    .header {
+      .back-btn {
+        width: 230px !important;
+      }
+    }
+  }
+
+  .search-container {
+    .search {
+      .search-input {
+        font-size: 48px !important;
+      }
+    }
+  }
+}
+
+html[lang="pt"] { 
+  .custom-modal.custom-modal-24 {
+    .send-sms-modal-inner {
+      .sms-input {
+        font-size: 29px !important;
+      }
+    }
+  }
+}

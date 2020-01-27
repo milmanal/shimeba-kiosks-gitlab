@@ -87,7 +87,7 @@ export const Config = {
     directionMapUrl: "assets/ziv_uncolored.png",
     arrowOnRouteUrl: "assets/imgs/route-arrow.png",
     drawTime: 1.5,
-    initZoom: 18,
+    initZoom: 17.98,
     mobileInitZoom: 16.5,
     rotation: 69,
     center: [35.492643, 32.9543],

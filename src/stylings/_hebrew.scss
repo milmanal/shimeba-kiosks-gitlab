@@ -117,6 +117,29 @@ html[lang="he"] #venue-container[venueid="20"] {
   }
 }
 
+html[lang="he"] {
+  .direction-component {
+    .marker-number.multi-instructions {
+      .child {
+        span {
+          margin-right: 6px !important;
+          margin-left: 0 !important;
+        }
+      }
+      .child:first-child {
+        border-right: none !important;
+        border-left: 1px solid #fff !important;
+      }
+  
+      .child:last-child {
+        border-left: none !important;
+        border-right: 1px solid #fff !important;
+
+      }
+    }
+  }
+}
+
 html[lang="he"] #venue-container[venueid="24"] {
   .category-container {
     .pois {
@@ -145,25 +168,6 @@ html[lang="he"] #venue-container[venueid="24"] {
           margin-right: 10px;
           margin-left: 0 !important;
         }
-      }
-    }
-
-    .marker-number.multi-instructions {
-      .child {
-        span {
-          margin-right: 6px;
-          margin-left: 0 !important;
-        }
-      }
-      .child:first-child {
-        border-right: none;
-        border-left: 1px solid #fff !important;
-      }
-  
-      .child:last-child {
-        border-left: none;
-        border-right: 1px solid #fff !important;
-
       }
     }
     

@@ -333,7 +333,7 @@ body[venueid="20"] {
         min-width: 50px;
         height: 50px;
         margin: 0 15px;
-        background: url("./assets/imgs/hagalil/emojy.svg") no-repeat;
+        background: url("assets/imgs/hagalil/emojy.svg") no-repeat;
         background-size: 100%;
       }
 
@@ -342,7 +342,7 @@ body[venueid="20"] {
         min-width: 50px;
         height: 50px;
         margin: 0 15px;
-        background: url("./assets/imgs/ziv/emojy.svg") no-repeat;
+        background: url("assets/imgs/ziv/emojy.svg") no-repeat;
         background-size: 100%;
       }
     }
@@ -374,7 +374,7 @@ body[venueid="20"] {
         color: #2f3181 !important;
     
         &.blue-emojy:before {
-          background: url("/src/assets/imgs/poria/emojy.svg") no-repeat;
+          background: url("assets/imgs/poria/emojy.svg") no-repeat;
           background-size: 100%;
         }
       }

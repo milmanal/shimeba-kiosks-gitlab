@@ -77,6 +77,14 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/ziv/destination-ziv.svg',
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
+    ],
+    "24": [
+      "assets/imgs/poria/route-disk.svg",
+      "assets/imgs/poria/route-disk.svg",
+      "assets/imgs/poria/destination-ziv.svg",
+      "assets/imgs/poria/destination-ziv.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/poria/bullet.svg"
     ]
   };
 
@@ -194,9 +202,10 @@ export class MobileComponent implements OnInit, AfterViewInit {
           currentInstr++;
         });
       });
-  }
-
-  routing(instructions, currentInstr) {
+    }
+    
+    routing(instructions, currentInstr) {
+    console.log("OUTPUT: MobileComponent -> routing -> instructions", instructions)
     if (currentInstr === 0) {
       document
         .getElementById("start-instr")
@@ -205,7 +214,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
     if (instructions[currentInstr]) {
 
       const instruction = document.getElementById(
-        instructions[currentInstr].instruction.instructions
+        instructions[currentInstr].instruction.instructions + currentInstr
       );
       this._mapbox.addRouteLine(instructions[currentInstr].points);
 
@@ -267,6 +276,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     );
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
+
+    console.log('Instructions => ', this.instructions);
   }
 
   ngAfterViewInit() {
@@ -286,5 +297,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
         );
         this.getDirectionData();
       });
+      console.log('Instructions => ', this.instructions);
   }
 }

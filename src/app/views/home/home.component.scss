@@ -1,3 +1,134 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import "variables";
+
+#venue-container {
+  :host /deep/ .mapboxgl-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  #start-point {
+    width: 15px;
+  }
+
+  #you-are-here {
+    font-size: 40px;
+    font-weight: bold;
+    color: $color-white;
+    text-align: center;
+    height: 56px;
+    padding: 0 !important;
+    border-radius: 5px;
+    border: 2px solid $color-white;
+    width: auto;
+    max-width: 300px;
+    font-family: $OSHebrewBold;
+    z-index: 1;
+
+    .pseudo-elem {
+      padding: 0 20px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .before {
+        display: block;
+        position: absolute;
+        bottom: -42px;
+        right: 20px;
+        width: 0;
+        height: 0;
+        border-left: 0px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 50px solid transparent;
+        transform: rotate(20deg);
+      }
+      .after {
+        display: block;
+        position: absolute;
+        bottom: -52px;
+        right: 20px;
+        width: 0;
+        height: 0;
+        border-left: 0px solid transparent;
+        border-right: 20px solid transparent;
+        border-top: 58px solid $color-white;
+        transform: rotate(20deg);
+        z-index: -1;
+      }
+    }
+  }
+
+  .home-component {
+    position: relative;
+    .map {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+    }
+    .grad {
+      width: 100%;
+      height: 55vh;
+      object-fit: contain;
+      transform: rotate(-180deg);
+      opacity: 0.64;
+      background-image: linear-gradient(
+          rgba(255, 255, 255, 0),
+          rgba(255, 255, 255, 0)
+        ),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.55));
+      z-index: 1;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 75px);
+      z-index: 2;
+    }
+    .search {
+      position: absolute;
+      z-index: 2;
+      display: flex;
+      width: 1664px;
+      top: 240px;
+      left: 50%;
+      transform: translateX(-50%);
+      height: 15vh;
+      border-radius: 4px;
+
+      .search-icon {
+        width: 10%;
+        background-image: url("../../../assets/imgs/search.svg");
+        background-size: 40%;
+        background-repeat: no-repeat;
+        background-position: 50% 50%;
+      }
+
+      .search-input {
+        width: 90%;
+        border: none;
+        font-size: 80px;
+        font-weight: bold;
+        font-family: $OSHebrew;
+
+        &:focus {
+          outline: none;
+        }
+
+        &::-webkit-input-placeholder {
+          color: $gray-text-1;
+        }
+      }
+    }
+  }
+}
+
 #venue-container[venueid="12"] {
   @import "./themes/sourasky.theme";
 }

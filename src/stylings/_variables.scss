@@ -1,12 +1,12 @@
-$OSHebrew: 'OS Hebrew';
-$OSHebrewBold: 'OS Hebrew Bold';
-$OSHebrewExtra: 'OS Hebrew Extra';
-$OSHebrewLight: 'OS Hebrew Light';
-$OSHebrewRegular: 'OS Hebrew Regular';
-$OSSimple: 'Open Sans', sans-serif;
-$OSRegular: 'OS Regular', sans-serif;
-$OSSemi: 'OS Semibold';
-$arial: 'ArialMT';
+$OSHebrew: "OS Hebrew";
+$OSHebrewBold: "OS Hebrew Bold";
+$OSHebrewExtra: "OS Hebrew Extra";
+$OSHebrewLight: "OS Hebrew Light";
+$OSHebrewRegular: "OS Hebrew Regular";
+$OSSimple: "Open Sans", sans-serif;
+$OSRegular: "OS Regular", sans-serif;
+$OSSemi: "OS Semibold";
+$arial: "ArialMT";
 $almoni: Almoni;
 
 $noto-b: "Noto Bold";
@@ -14,14 +14,25 @@ $noto-r: "Noto Regular";
 $noto-sb: "Noto SemiBold";
 $noto-m: "Noto Medium";
 
-$lucida: 'Lucida';
-$lucidaBold: 'Lucida Bold';
-$mariad: 'Mariad Arabic';
-$mariad-r: 'Mariad Arabic Regular';
-
+$lucida: "Lucida";
+$lucidaBold: "Lucida Bold";
+$mariad: "Mariad Arabic";
+$mariad-r: "Mariad Arabic Regular";
 
 $gray-text-1: #9b9b9b;
 $gray-text-2: #555454;
 $gray-text-3: #343434;
 $gray-text-4: #4a4a4a;
+
 $color-white: #fff;
+$color-white-invisible: rgba(255, 255, 255, 0);
+
+$color-black: #000;
+$color-black-invisible: rgba(0, 0, 0, 0);
+$color-black-half: rgba(0, 0, 0, 0.5);
+
+$venue12: #4a90e2;
+$venue18: #0e7aa2;
+$venue19: #696969;
+$venue20: #2f3181;
+$venue24: #2f3181;

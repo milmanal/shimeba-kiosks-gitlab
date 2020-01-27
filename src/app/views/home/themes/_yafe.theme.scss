@@ -1,126 +1,53 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-@import "variables-yafe";
+@import "variables";
 
-
-:host /deep/ .mapboxgl-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 #start-point {
-  width: 15px !important;
   height: 15px !important;
 }
 #you-are-here {
-  font-size: 40px;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  height: 56px;
-  background: #0e7aa2;
-  padding: 0 !important;
-  border-radius: 5px;
-  border: 2px solid #fff;
-  width: auto;
-  max-width: 300px;
-  font-family: $OSHebrewBold;
-  z-index: 1;
+  background-color: $venue18;
 
   .pseudo-elem {
-    padding: 0 20px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background: #0e7aa2;
+    background-color: $venue18;
 
     .before {
-      display: block;
-      position: absolute;
-      bottom: -42px;
-      right: 20px;
-      width: 0;
-      height: 0;
-      border-left: 0px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 50px solid #0e7aa2;
-      transform: rotate(20deg);
-    }
-    .after {
-      display: block;
-      position: absolute;
-      bottom: -52px;
-      right: 20px;
-      width: 0;
-      height: 0;
-      border-left: 0px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 58px solid #fff;
-      transform: rotate(20deg);
-      z-index: -1;
+      border-top: 50px solid $venue18;
     }
   }
 }
 .home-component {
-  position: relative;
-  background: linear-gradient(to bottom, #5ca0c6 0%,#9dcaee 100%,#1e5799 100%,#2989d8 102%);
+  background: linear-gradient(
+    to bottom,
+    #5ca0c6 0%,
+    #9dcaee 100%,
+    #1e5799 100%,
+    #2989d8 102%
+  );
   height: 100vh;
 
-  .map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-  }
   .grad {
     display: none;
   }
   .overlay {
-    position: absolute;
     top: 75px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 75px);
-    z-index: 2;
   }
   .search {
-    position: absolute;
-    z-index: 2;
-    display: flex;
     width: 87%;
     top: 153px;
     left: 50%;
-    transform: translateX(-50%);
     height: 141px;
-    border-radius: 4px;
-    background-color: #ffffff;
-    border: solid 2px $main-color;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    background-color: $color-white;
+    border: solid 2px $venue18;
+    box-shadow: 0 2px 4px 0 $color-black-half;
 
     .search-icon {
-      width: 10%;
-      background-color: $main-color;
-      background-image: url("../../../assets/imgs/search.svg");
-      background-size: 40%;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
+      background-color: $venue18;
     }
-    
-    .search-input {
-      width: 90%;
-      border: none;
-      font-size: 80px;
-      font-weight: bold;
-      color: $main-color;
-      font-family: $OSSimple;
 
-      &:focus {
-        outline: none;
-      }
+    .search-input {
+      color: $venue18;
 
       &::-webkit-input-placeholder {
-        color: $main-color;
+        color: $venue18;
       }
     }
   }

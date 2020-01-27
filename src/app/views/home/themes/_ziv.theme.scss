@@ -1,78 +1,31 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 @import "variables-yafe";
 
-
-:host /deep/ .mapboxgl-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 #start-point {
-  width: 15px !important;
   height: 15px !important;
 }
+
 #you-are-here {
-  font-size: 40px;
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  height: 56px;
-  background: #5d8cc1;
-  padding: 0 !important;
-  border-radius: 5px;
-  border: 2px solid #fff;
-  width: auto;
-  max-width: 300px;
-  font-family: $OSHebrewBold;
-  z-index: 1;
+  background-color: $venue20;
 
   .pseudo-elem {
-    padding: 0 20px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    background: #5d8cc1;
+    background-color: $venue20;
 
     .before {
-      display: block;
-      position: absolute;
-      bottom: -42px;
-      right: 20px;
-      width: 0;
-      height: 0;
-      border-left: 0px solid transparent;
-      border-right: 15px solid transparent;
-      border-top: 50px solid #5d8cc1;
-      transform: rotate(20deg);
-    }
-    .after {
-      display: block;
-      position: absolute;
-      bottom: -52px;
-      right: 20px;
-      width: 0;
-      height: 0;
-      border-left: 0px solid transparent;
-      border-right: 20px solid transparent;
-      border-top: 58px solid #fff;
-      transform: rotate(20deg);
-      z-index: -1;
+      border-top: 50px solid $venue20;
     }
   }
 }
 .home-component {
-  position: relative;
-  background: linear-gradient(to bottom, #98C4D8 0%,#45A5D5 30%,#45A5D5 30%,#48ACDE 50%,#48ACDE 50%);
+  background: linear-gradient(
+    to bottom,
+    #98c4d8 0%,
+    #45a5d5 30%,
+    #45a5d5 30%,
+    #48acde 50%,
+    #48acde 50%
+  );
   height: 100vh;
 
-  .map {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-  }
   .grad {
     width: 100%;
     height: 57vh;
@@ -80,50 +33,25 @@
     background-image: url("../../../assets/imgs/grad.svg");
   }
   .overlay {
-    position: absolute;
     top: 75px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 75px);
-    z-index: 2;
   }
   .search {
-    position: absolute;
-    z-index: 2;
-    display: flex;
     width: 87%;
     top: 153px;
     left: 50%;
-    transform: translateX(-50%);
     height: 141px;
     border-radius: 4px;
-    background-color: #ffffff;
-    // border: solid 2px #696969;
-    // box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+    background-color: $color-white;
 
     .search-icon {
-      width: 10%;
-      background-color: #5d8cc1;
-      background-image: url("../../../assets/imgs/search.svg");
-      background-size: 40%;
-      background-repeat: no-repeat;
-      background-position: 50% 50%;
+      background-color: $venue20;
     }
-    
-    .search-input {
-      width: 90%;
-      border: none;
-      font-size: 80px;
-      font-weight: bold;
-      color: #696969;
-      font-family: $OSSimple;
 
-      &:focus {
-        outline: none;
-      }
+    .search-input {
+      color: $venue19;
 
       &::-webkit-input-placeholder {
-        color: #696969;
+        color: $venue19;
       }
     }
   }

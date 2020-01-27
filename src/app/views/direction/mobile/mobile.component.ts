@@ -44,39 +44,39 @@ export class MobileComponent implements OnInit, AfterViewInit {
   selectedInstructionIndex: any;
 
   imgByVenueId = {
-    '12': [
-      'assets/imgs/start.svg',
-      'assets/imgs/point.svg',
-      'assets/imgs/route-dest.svg',
-      'assets/imgs/destination-panel.svg',
-      'assets/imgs/back-arrow.png',
-      'assets/imgs/yafe/bullet.svg'
+    "12": [
+      "assets/imgs/start.svg",
+      "assets/imgs/point.svg",
+      "assets/imgs/route-dest.svg",
+      "assets/imgs/destination-panel.svg",
+      "assets/imgs/back-arrow.png",
+      "assets/imgs/yafe/bullet.svg"
     ],
 
-    '18': [
-      'assets/imgs/yafe/start-yafe.svg',
-      'assets/imgs/yafe/route-disk.svg',
-      'assets/imgs/yafe/destination-reached.svg',
-      'assets/imgs/yafe/destination-panel.png',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "18": [
+      "assets/imgs/yafe/start-yafe.svg",
+      "assets/imgs/yafe/route-disk.svg",
+      "assets/imgs/yafe/destination-reached.svg",
+      "assets/imgs/yafe/destination-panel.png",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
     ],
 
-    '19': [
-      'assets/imgs/hagalil/route-disk.svg',
-      'assets/imgs/hagalil/route-disk.svg',
-      'assets/imgs/hagalil/destination.svg',
-      'assets/imgs/hagalil/destination.svg',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "19": [
+      "assets/imgs/hagalil/route-disk.svg",
+      "assets/imgs/hagalil/route-disk.svg",
+      "assets/imgs/hagalil/destination.svg",
+      "assets/imgs/hagalil/destination.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
     ],
-    '20': [
-      'assets/imgs/ziv/route-disk.svg',
-      'assets/imgs/ziv/route-disk.svg',
-      'assets/imgs/ziv/destination-ziv.svg',
-      'assets/imgs/ziv/destination-ziv.svg',
-      'assets/imgs/yafe/back-arrow.svg',
-      'assets/imgs/yafe/bullet.svg'
+    "20": [
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
     ],
     "24": [
       "assets/imgs/poria/route-disk.svg",
@@ -107,12 +107,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   showHideInstructionList() {
-    console.log(this.instructionListOpen);
     this.ngx_analytics.eventTrack.next({
-      action: 'Click on mobile view - Direction screen',
+      action: "Click on mobile view - Direction screen",
       properties: {
-        category: `${this.instructionListOpen ? 'Hide' : 'Show'} Instructions`,
-      },
+        category: `${this.instructionListOpen ? "Hide" : "Show"} Instructions`
+      }
     });
     if (this.instructionListOpen) {
       this.instructionListOpen = !this.instructionListOpen;
@@ -133,29 +132,30 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   selectInstruction(instr, i) {
     this.ngx_analytics.eventTrack.next({
-      action: 'Select the instruction mobile view - Direction screen',
+      action: "Select the instruction mobile view - Direction screen",
       properties: {
-        category: 'Click on the instruction',
-        label: `Instructions was pressed`,
-      },
+        category: "Click on the instruction",
+        label: `Instructions was pressed`
+      }
     });
     this.instructionListOpen = false;
     this.selectedInstructionIndex = i;
     this.currentInstr = instr.instructions;
-    console.log(instr);
     this._mapbox.goToInstruction(instr);
   }
 
   nextInstruction() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click Next instruction mobile view',
+      action: "Click Next instruction mobile view",
       properties: {
-        category: 'Next Instruction',
-        label: 'Next Instruction button clicked',
-      },
+        category: "Next Instruction",
+        label: "Next Instruction button clicked"
+      }
     });
     this.selectedInstructionIndex++;
-    this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
+    this.currentInstr = this.instructions[
+      this.selectedInstructionIndex
+    ].instruction.instructions;
     this._mapbox.goToInstruction(
       this.instructions[this.selectedInstructionIndex].instruction
     );
@@ -163,14 +163,16 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   prevInstruction() {
     this.ngx_analytics.eventTrack.next({
-      action: 'Click Prev instruction mobile view',
+      action: "Click Prev instruction mobile view",
       properties: {
-        category: 'Prev Instruction',
-        label: 'Prev Instruction button clicked',
-      },
+        category: "Prev Instruction",
+        label: "Prev Instruction button clicked"
+      }
     });
     this.selectedInstructionIndex--;
-    this.currentInstr = this.instructions[this.selectedInstructionIndex].instruction.instructions;
+    this.currentInstr = this.instructions[
+      this.selectedInstructionIndex
+    ].instruction.instructions;
     this._mapbox.goToInstruction(
       this.instructions[this.selectedInstructionIndex].instruction
     );
@@ -197,22 +199,22 @@ export class MobileComponent implements OnInit, AfterViewInit {
           this.routing(res, currentInstr);
           currentInstr++;
         }, 2000);
-        this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(() => {
-          this.routing(res, currentInstr);
-          currentInstr++;
-        });
+        this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(
+          () => {
+            this.routing(res, currentInstr);
+            currentInstr++;
+          }
+        );
       });
-    }
-    
-    routing(instructions, currentInstr) {
-    console.log("OUTPUT: MobileComponent -> routing -> instructions", instructions)
+  }
+
+  routing(instructions, currentInstr) {
     if (currentInstr === 0) {
       document
         .getElementById("start-instr")
         .setAttribute("style", "display: block");
     }
     if (instructions[currentInstr]) {
-
       const instruction = document.getElementById(
         instructions[currentInstr].instruction.instructions + currentInstr
       );
@@ -255,11 +257,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.ngx_analytics.eventTrack.next({
-      action: 'URL',
+      action: "URL",
       properties: {
-        category: 'URL of Current Page',
-        label: window.location.pathname,
-      },
+        category: "URL of Current Page",
+        label: window.location.pathname
+      }
     });
     this._route.params.subscribe(params => {
       const HTML = document.getElementById("venue-container");
@@ -276,8 +278,6 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     );
     this.applyImgsByVenueId = this.imgByVenueId[this.venueId];
-
-    console.log('Instructions => ', this.instructions);
   }
 
   ngAfterViewInit() {
@@ -297,6 +297,5 @@ export class MobileComponent implements OnInit, AfterViewInit {
         );
         this.getDirectionData();
       });
-      console.log('Instructions => ', this.instructions);
   }
 }

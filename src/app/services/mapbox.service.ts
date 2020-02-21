@@ -372,13 +372,16 @@ export class MapboxService {
     const instructions = document.getElementsByClassName("instruction-number");
     const childSpan = `<span class="child">${number}</span>`;
 
-    const mergeDistance = Config[this.venueId].mergeMarkersDistance
+    const mergeDistance = Config[this.venueId].mergeMarkersDistance;
 
     if (!hasIcon) {
       if (!this.markerEl) {
         this.generateMarker(number);
         this.markerEl.innerHTML = childSpan;
-      } else if (this.prevDistance <= mergeDistance || this.mergeInstructionsWithImage) {
+      } else if (
+        this.prevDistance <= mergeDistance ||
+        this.mergeInstructionsWithImage
+      ) {
         this.attachMarker(number);
       } else {
         this.generateMarker(number);
@@ -403,7 +406,10 @@ export class MapboxService {
         childDiv += `${iconEl.outerHTML}</div>`;
         this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
 
-        if (this.prevDistance <= mergeDistance || this.lineDistance <= mergeDistance) {
+        if (
+          this.prevDistance <= mergeDistance ||
+          this.lineDistance <= mergeDistance
+        ) {
           this.mergeInstructionsWithImage = true;
         }
       }

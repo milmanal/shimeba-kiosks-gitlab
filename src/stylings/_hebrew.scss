@@ -130,11 +130,10 @@ html[lang="he"] {
         border-right: none !important;
         border-left: 1px solid #fff !important;
       }
-  
+
       .child:last-child {
         border-left: none !important;
         border-right: 1px solid #fff !important;
-
       }
     }
   }
@@ -170,7 +169,7 @@ html[lang="he"] #venue-container[venueid="24"] {
         }
       }
     }
-    
+
     .instructions-container {
       left: unset !important;
       right: -120% !important;
@@ -284,11 +283,9 @@ html[lang="he"] #venue-container[venueid="24"] {
       margin-right: 15px;
     }
   }
-
-  
 }
 
-html[lang="he"] { 
+html[lang="he"] {
   .custom-modal {
     .close-modal-image {
       justify-content: flex-start !important;

@@ -1,86 +1,15 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
-@import 'variables-yafe';
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import "variables-yafe";
 
 .marker-number {
-  padding: 0 17px;
-  height: 41px;
-  width: 41px;
-  border-radius: 50%;
-  font-size: 30px;
-  font-weight: bold;
   background-color: $main-color;
-  flex-direction: row-reverse;
-  color: #fff;
-  font-family: $OSHebrew;
-  animation: fadein 1s;
-  box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.5);
+}
 
-  &.multi-instructions {
-    min-width: 100px;
-    width: auto;
-    border-radius: 8px;
-    padding: 0;
-
-    div {
-      padding: 0 8px;
-    }
-  
-    .child {
-      padding: 0 7px;
-      border-right: 1px solid #fff;
-      &:last-child {
-        border-right: none;
-      }
-      
-    }
-
-    div, span {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: row;
-
-      img {
-        width: auto;
-        height: auto;
-      }
-    }
-  }
-}
-.marker-number-icon {
-  border-radius: 15px;
-  padding: 0 4px;
-  width: 60px;
-  font-family: $OSHebrew;
-  .icon {
-    width: 20px;
-    height: 33px;
-  }
-}
-.mapboxgl-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-#destination-point-circle {
-  width: 32px;
-  height: 32px;
-}
-#destination-point {
-  width: 57.4px;
-  height: 57.4px;
-}
-#start-point {
-  width: 56px;
-  height: 56px;
-}
 .direction-component {
   width: 100%;
   height: 100%;
   // background: #9dcaf0;
-  background: #62ABD8;
+  background: #62abd8;
   #map {
     width: 100%;
     height: 100%;
@@ -140,12 +69,12 @@
     }
   }
   .load-background {
-    background: #62ABD8;
+    background: #62abd8;
   }
 
   .loaded {
     left: 18% !important;
-    
+
     padding-top: 200px;
     padding-left: 10px;
     padding-right: 30px;
@@ -190,7 +119,6 @@
         background-position: 50%;
         background-repeat: no-repeat;
       }
-
 
       &::-webkit-scrollbar {
         width: 28px;
@@ -264,7 +192,7 @@
       position: relative;
 
       &:before {
-        content: '';
+        content: "";
         height: 88px;
         border-right: 3px dotted #fff;
         position: absolute;
@@ -273,7 +201,7 @@
       }
 
       &:after {
-        content: '';
+        content: "";
         background: $main-color;
         width: 18px;
         height: 18px;
@@ -285,7 +213,6 @@
       }
 
       &.right.outer-image {
-        
         &:before {
           width: 42px;
           border-top: 3px dotted #fff;
@@ -358,8 +285,6 @@
         }
       }
 
-      
-
       li {
         list-style: none;
       }
@@ -396,7 +321,7 @@
         // &:before {
         //   top: 100%;
         // }
-        
+
         // &:after {
         //   bottom: 100%;
         // }
@@ -409,9 +334,9 @@
         //   border-left: 1px solid $color-white;
         //   border-right: 1px solid $color-white;
         //   background: #4a90e2;
-          
+
         // }
-        
+
         + div {
           // padding-right: 71px !important;
         }
@@ -449,7 +374,7 @@
       &:last-child {
         &:before {
           display: none;
-        } 
+        }
       }
     }
   }

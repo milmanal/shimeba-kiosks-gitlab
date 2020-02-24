@@ -5,25 +5,22 @@
 }
 
 #you-are-here {
-  background-color: $venue20;
+  background-color: #696969;
+  border: none;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
 
   .pseudo-elem {
-    background-color: $venue20;
+    background-color: #fff;
+    padding: 5px 20px;
+    color: #696969;
 
     .before {
-      border-top: 50px solid $venue20;
+      border-top: 50px solid #fff;
     }
   }
 }
 .home-component {
-  background: linear-gradient(
-    to bottom,
-    #98c4d8 0%,
-    #45a5d5 30%,
-    #45a5d5 30%,
-    #48acde 50%,
-    #48acde 50%
-  );
+  background: #fef1e3;
   height: 100vh;
 
   .grad {
@@ -32,7 +29,7 @@
     background-repeat: no-repeat;
     position: absolute;
     background-image: url("../../../assets/imgs/grad.svg");
-    z-index: -1;
+    transform: none;
   }
   .overlay {
     top: 75px;

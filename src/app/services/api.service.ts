@@ -1,30 +1,28 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, timer, forkJoin } from 'rxjs';
-import { LanguageService } from './language.service';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/switchMap';
-import { map } from 'rxjs/operators';
-import { ToastrService } from 'ngx-toastr';
-import turf from 'turf';
+import { Injectable } from "@angular/core";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, timer, forkJoin } from "rxjs";
+import { LanguageService } from "./language.service";
+import "rxjs/add/operator/debounceTime";
+import "rxjs/add/operator/distinctUntilChanged";
+import "rxjs/add/operator/switchMap";
+import { map } from "rxjs/operators";
+import { ToastrService } from "ngx-toastr";
+import turf from "turf";
 
-import { AppSuccessModalComponent } from '../components/success-modal/success.modal';
+import { AppSuccessModalComponent } from "../components/success-modal/success.modal";
 
-
-import { Poi } from './../models';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Poi } from "./../models";
+import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
-
 export class ApiService {
   modalRef: BsModalRef;
-  url = 'https://shimeba-api.azurewebsites.net/api/';
+  url = "https://shimeba-api.azurewebsites.net/api/";
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'text/plain',
+      "Content-Type": "text/plain"
     })
   };
   constructor(
@@ -32,11 +30,11 @@ export class ApiService {
     private _language: LanguageService,
     private _modalService: BsModalService,
     public toastr: ToastrService
-  ) { }
+  ) {}
 
   getKioskData(): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
-    const kioskId = localStorage.getItem('kioskId');
+    const kioskId = localStorage.getItem("kioskId");
 
     return this._httpClient.get(
       `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
@@ -44,7 +42,7 @@ export class ApiService {
   }
   openSuccessModal() {
     this.modalRef = this._modalService.show(AppSuccessModalComponent, {
-      class: 'success-modal-outer',
+      class: "success-modal-outer",
       ignoreBackdropClick: true,
       animated: true
     });
@@ -60,12 +58,17 @@ export class ApiService {
   }
 
   sendSms(params) {
-    return this._httpClient.post(`${this.url}send/sms`, {}, {
-      headers: {
-        'Content-Type': 'text/plain'
-      },
-      params: params
-    })
+    return this._httpClient
+      .post(
+        `${this.url}send/sms`,
+        {},
+        {
+          headers: {
+            "Content-Type": "text/plain"
+          },
+          params: params
+        }
+      )
       .subscribe(
         data => {
           return this.openSuccessModal();
@@ -96,25 +99,25 @@ export class ApiService {
   poiByCategory(categoryId, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
-    return this._httpClient
-      .get<Poi[]>(`${this.url}pois?categoryId=${categoryId}&venueid=${venueId}&locale=${currentLanguage.name}`);
+    return this._httpClient.get<Poi[]>(
+      `${this.url}pois?categoryId=${categoryId}&venueid=${venueId}&locale=${currentLanguage.name}`
+    );
   }
 
   poiByDistance(categoryId, venueId) {
     const currentLanguage = this._language.getCurrentLanguage();
-    const kioskData = JSON.parse(localStorage.getItem('kioskData'));
-    return this._httpClient
-      .get<Poi[]>(`${this.url}pois/category/bydistance`, {
-        params: {
-          venueid: venueId,
-          category: categoryId,
-          lon: kioskData.longitude,
-          lat: kioskData.latitude,
-          level: kioskData.level,
-          locale: currentLanguage.name,
-          isParallel: 'false'
-        }
-      });
+    const kioskData = JSON.parse(localStorage.getItem("kioskData"));
+    return this._httpClient.get<Poi[]>(`${this.url}pois/category/bydistance`, {
+      params: {
+        venueid: venueId,
+        category: categoryId,
+        lon: kioskData.longitude,
+        lat: kioskData.latitude,
+        level: kioskData.level,
+        locale: currentLanguage.name,
+        isParallel: "false"
+      }
+    });
   }
 
   getKioskAndPoiData(kioskId, poiId): Observable<any> {
@@ -133,7 +136,8 @@ export class ApiService {
     const instr = instructions;
     for (let i = 0; i < pointsOfFloors[floor].length; i++) {
       const poi = pointsOfFloors[floor][i];
-      if (pointsOfFloors[floor][i].isShowInList && pointsOfFloors[floor][i].instructions) {
+
+      if (poi.isShowInList && poi.instructions) {
         if (instr[index]) {
           instr[index].points.push([
             Number(poi.longitude),
@@ -149,46 +153,41 @@ export class ApiService {
       if (instr[index]) {
         instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
-      if (pointsOfFloors[floor][i].nextLevel) {
-        this.buildRoute(
-          pointsOfFloors[floor][i].nextLevel,
-          instr,
-          pointsOfFloors,
-          index
-        );
+      if (typeof poi.nextLevel === "number") {
+        this.buildRoute(poi.nextLevel, instr, pointsOfFloors, index);
       }
     }
     return instr;
-
   }
 
   prebuildDirection(data) {
-    const pointsOfFloors = data.pointsOfFloors;
-    console.log("OUTPUT: prebuildDirection -> pointsOfFloors", pointsOfFloors)
-    const findOnlyVisibleInstructions = Object.keys(pointsOfFloors).map(arrays => {
-      return pointsOfFloors[arrays].filter(element => element.isShowInList)
-    });
+    // const findOnlyVisibleInstructions = Object.keys(data.pointsOfFloors).map(
+    //   arrays => {
+    //     return data.pointsOfFloors[arrays].filter(
+    //       element => element.isShowInList
+    //     );
+    //   }
+    // );
 
-    return this.buildRoute(data.source.level, [], pointsOfFloors);
+    return this.buildRoute(data.source.level, [], data.pointsOfFloors);
   }
 
   getDirection(kioskData, poiData, venueId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
 
-    const source = this._httpClient
-      .get(`${this.url}routing/byfloor`, {
-        params: {
-          lat1: kioskData.entrances[0].sLatitude,
-          lon1: kioskData.entrances[0].sLongitude,
-          level1: kioskData.entrances[0].level,
-          venueid: venueId,
-          lat2: poiData.entrances[0].sLatitude,
-          lon2: poiData.entrances[0].sLongitude,
-          level2: poiData.entrances[0].level,
-          locale: currentLanguage.name,
-          isForWidget: 'true'
-        }
-      });
+    const source = this._httpClient.get(`${this.url}routing/byfloor`, {
+      params: {
+        lat1: kioskData.entrances[0].sLatitude,
+        lon1: kioskData.entrances[0].sLongitude,
+        level1: kioskData.entrances[0].level,
+        venueid: venueId,
+        lat2: poiData.entrances[0].sLatitude,
+        lon2: poiData.entrances[0].sLongitude,
+        level2: poiData.entrances[0].level,
+        locale: currentLanguage.name,
+        isForWidget: "true"
+      }
+    });
     return source.pipe(map(res => this.prebuildDirection(res)));
   }
 

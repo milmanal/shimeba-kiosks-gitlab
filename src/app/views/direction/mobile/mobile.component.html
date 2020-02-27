@@ -49,7 +49,7 @@
                         {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0], null)">
-                        <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
+                        <img src="assets/imgs/{{venueId === '24' ? 'poria/' : ''}}destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
                             {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
                         </div>
@@ -70,7 +70,7 @@
         </div>
         <div id="map"></div>
         <footer class="mobile-footer d-flex justify-content-start align-items-center px-3">
-            <img src="assets/imgs/destination.svg" alt="destination" class="destination-icon-footer">
+            <img src="assets/imgs/{{venueId === '24' ? 'poria/' : ''}}destination.svg" alt="destination" class="destination-icon-footer">
             <div class="d-flex flex-column align-items-start px-3">
                 <div class="poi-name">
                     {{poiData && poiData.name}}

@@ -60,6 +60,17 @@
       }
     }
   }
+
+  &.marker-with-icon {
+    width: auto;
+    height: auto;
+    padding: 5px;
+    border-radius: 5px;
+
+    .icon {
+      margin-right: 5px;
+    }
+  }
 }
 .marker-number-icon {
   border-radius: 15px;

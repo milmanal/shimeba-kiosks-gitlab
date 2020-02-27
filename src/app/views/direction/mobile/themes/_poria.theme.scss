@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .marker-number {
   padding: 0 17px;
@@ -7,7 +7,7 @@
   border: 1px solid #fff;
   border-radius: 50%;
   font-size: 25px !important;
-  font-family: $OSHebrew;
+  font-family: $OSHebrewBold;
   font-weight: bold !important;
   background-color: #2f3181;
   color: #fff;
@@ -107,6 +107,7 @@
         width: 65%;
       }
       .show-instruction-btn {
+        font-family: $OSHebrew;
         .label {
           color: #ffffff;
           font-size: 14px;
@@ -139,6 +140,7 @@
           height: 25px;
           font-size: 20px;
           font-weight: bold;
+          font-family: $OSHebrew;
           color: #ffffff;
           border-bottom: 1px solid #2f3181;
         }
@@ -148,7 +150,8 @@
           border-bottom: 1px solid #2f3181;
           font-size: 16px;
           font-weight: bold;
-          color: #2f3181;;
+          font-family: $OSHebrew;
+          color: #2f3181;
         }
         .instruction-number {
           padding: 0 17px;
@@ -156,7 +159,7 @@
           width: 32px;
           border-radius: 50%;
           font-size: 25px;
-          font-family: $OSHebrew;
+          font-family: $OSHebrewBold;
           font-weight: 800;
           background-color: #2f3181;
           color: #ffffff;
@@ -177,6 +180,7 @@
         .destination-icon {
           height: 32px;
           width: 32px;
+          fill: red;
         }
       }
     }
@@ -197,7 +201,7 @@
       background-color: #2f3181;
       &:disabled {
         img {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
     }
@@ -208,7 +212,7 @@
       background-color: #2f3181;
       &:disabled {
         img {
-          opacity: .5;
+          opacity: 0.5;
         }
       }
     }
@@ -228,14 +232,15 @@
     width: 100%;
     background-color: #ffffff;
     .poi-name {
+      font-family: $OSHebrew;
       font-size: 16px;
-      color: #2f3181;;
+      color: #2f3181;
       line-height: 0.85;
     }
     .poi-location {
       font-size: 20px;
       font-weight: bold;
-      color: #2f3181;;
+      color: #2f3181;
       line-height: 0.85;
     }
     .destination-icon-footer {

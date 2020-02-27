@@ -27,7 +27,7 @@
   }
   .search {
     width: 1664px;
-    top: 240px;
+    top: 140px;
     left: 50%;
     height: 15vh;
     background-color: $venue24;
@@ -38,10 +38,10 @@
     }
 
     .search-input {
-      color: $gray-text-1;
+      color: $gray-text-4;
 
       &::-webkit-input-placeholder {
-        color: $gray-text-1;
+        color: $gray-text-4;
       }
     }
   }

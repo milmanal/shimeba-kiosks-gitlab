@@ -164,7 +164,10 @@ export class ApiService {
 
   prebuildDirection(data) {
     const pointsOfFloors = data.pointsOfFloors;
-    const findOnlyVisibleInstructions = pointsOfFloors[0].filter(elem => elem.isShowInList);
+    console.log("OUTPUT: prebuildDirection -> pointsOfFloors", pointsOfFloors)
+    const findOnlyVisibleInstructions = Object.keys(pointsOfFloors).map(arrays => {
+      return pointsOfFloors[arrays].filter(element => element.isShowInList)
+    });
 
     return this.buildRoute(data.source.level, [], pointsOfFloors);
   }

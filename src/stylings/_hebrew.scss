@@ -291,4 +291,9 @@ html[lang="he"] {
       justify-content: flex-start !important;
     }
   }
+
+  .marker-number.marker-with-icon .icon {
+    margin-right: 0 !important;
+    margin-left: 5px;
+  }
 }

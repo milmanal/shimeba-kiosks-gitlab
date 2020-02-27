@@ -318,7 +318,7 @@ export class MapboxService {
     // return false;
   }
 
-  generateMarker(number: number) {
+  generateMarker(number: number, hasIcon?) {
     this.markerEl = document.createElement("div");
     this.markerEl.id = `marker${number}`;
     this.markerEl.classList.add(
@@ -327,6 +327,9 @@ export class MapboxService {
       "justify-content-around",
       "align-items-center"
     );
+    if(hasIcon) {
+      this.markerEl.classList.add('marker-with-icon')
+    }
   }
 
   attachMarker(number: number) {
@@ -398,7 +401,7 @@ export class MapboxService {
         this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
         this.mergeInstructionsWithImage = true;
       } else {
-        this.generateMarker(number);
+        this.generateMarker(number, true);
         const prevHtml = this.markerEl.innerHTML;
         let childDiv = this.generateChild(number);
         this.markerEl.innerHTML += childDiv;

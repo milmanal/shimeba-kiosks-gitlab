@@ -218,7 +218,6 @@
       &.right.outer-image {
         &:before {
           width: 42px;
-          border-top: 3px dotted #fff;
         }
 
         &:after {
@@ -238,7 +237,6 @@
 
       &.left.outer-image {
         &:before {
-          border-top: 3px dotted #fff;
           border-right: 0;
           border-left: 3px dotted #fff;
         }

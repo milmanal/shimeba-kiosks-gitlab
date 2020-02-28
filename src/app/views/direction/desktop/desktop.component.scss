@@ -64,11 +64,19 @@
   &.marker-with-icon {
     width: auto;
     height: auto;
-    padding: 5px;
+    padding: 0 5px;
     border-radius: 5px;
+    .child {
+      width: auto !important;
+      height: 47px !important;
+      padding: 0 7px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-    .icon {
-      margin-right: 5px;
+      .icon {
+        margin-right: 5px;
+      }
     }
   }
 }

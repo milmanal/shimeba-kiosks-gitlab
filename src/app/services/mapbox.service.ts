@@ -327,8 +327,8 @@ export class MapboxService {
       "justify-content-around",
       "align-items-center"
     );
-    if(hasIcon) {
-      this.markerEl.classList.add('marker-with-icon')
+    if (hasIcon) {
+      this.markerEl.classList.add("marker-with-icon");
     }
   }
 

@@ -213,7 +213,6 @@ html[lang="he"] #venue-container[venueid="24"] {
       .instruction.right.outer-image {
         &:before {
           width: 42px;
-          border-top: 3px dotted #fff;
           border-right: none !important;
           border-left: 3px dotted #fff;
         }
@@ -237,7 +236,6 @@ html[lang="he"] #venue-container[venueid="24"] {
       .instruction.left.outer-image {
         &:before {
           width: 42px;
-          border-top: 3px dotted #fff;
           border-left: none !important;
           border-right: 3px dotted #fff;
           transform: none !important;
@@ -292,7 +290,7 @@ html[lang="he"] {
     }
   }
 
-  .marker-number.marker-with-icon .icon {
+  .marker-number.marker-with-icon .child .icon {
     margin-right: 0 !important;
     margin-left: 5px;
   }

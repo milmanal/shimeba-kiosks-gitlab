@@ -52,8 +52,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   layersCollection: Array<{}> = this._mapbox.getLayers();
   subscribeSmsModal: any;
   modal: any;
-  dynamicSmsIcon: String
-  
+  dynamicSmsIcon: String;
 
   private ngUnsubscribe = new Subject();
 
@@ -127,7 +126,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       venueAttr.value = this.venueId;
       bodyTag.setAttributeNode(venueAttr);
     });
-    this.dynamicSmsIcon = `assets/imgs/sms-icon/${this.venueId}.svg`
+    this.dynamicSmsIcon = `assets/imgs/sms-icon/${this.venueId}.svg`;
   }
 
   initializeErrors() {
@@ -245,57 +244,79 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       );
   }
   routing(instructions, currentInstr) {
-    if (currentInstr === 0) {
-      document
-        .getElementsByClassName("instructions-container")[0]
-        .classList.add("load-background");
-      document
-        .getElementById("start-instr")
-        .setAttribute("style", "display: block");
-    }
-    if (instructions[currentInstr]) {
-      const instruction = document.getElementById(
-        instructions[currentInstr].instruction.instructions + currentInstr
-      );
-      this._mapbox.addRouteLine(instructions[currentInstr].points);
-      if (instruction) {
-        instruction.setAttribute("style", "display: block");
-        this._mapbox.addInstructionIcon(
-          currentInstr + 1,
-          [
-            Number(instructions[currentInstr].instruction.longitude),
-            Number(instructions[currentInstr].instruction.latitude)
-          ],
-          instructions[currentInstr].instruction.instructionsType
-        );
+    return new Promise((res, rej) => {
+      if (currentInstr === 0) {
+        document
+          .getElementsByClassName("instructions-container")[0]
+          .classList.add("load-background");
+        document
+          .getElementById("start-instr")
+          .setAttribute("style", "display: block");
       }
-    } else {
-      document
-        .getElementById("destination-instr")
-        .setAttribute("style", "display: block");
-      document
-        .getElementById("sms-box")
-        .setAttribute("style", "display: flex;");
-
-      this._mapbox.setDestinationMarker(
-        this.poiData.entrances[0].longitude,
-        this.poiData.entrances[0].latitude
-      );
-
-      const smsModalTimeAppearing = timer(
-        Config[this.venueId].smsModalTimeAppearing
-      );
-
-      this.subscribeSmsModal = smsModalTimeAppearing.subscribe(val => {
-        if (!window.location.href.includes("/direction") || !!this.modal) {
-          return false;
+      if (instructions[currentInstr]) {
+        const instruction = document.getElementById(
+          instructions[currentInstr].instruction.instructions + currentInstr
+        );
+        this._mapbox.addRouteLine(instructions[currentInstr].points);
+        if (instruction) {
+          instruction.setAttribute("style", "display: block");
+          this._mapbox.addInstructionIcon(
+            currentInstr + 1,
+            [
+              Number(instructions[currentInstr].instruction.longitude),
+              Number(instructions[currentInstr].instruction.latitude)
+            ],
+            instructions[currentInstr].instruction.instructionsType
+          );
         }
+      } else {
+        document
+          .getElementById("destination-instr")
+          .setAttribute("style", "display: block");
+        document
+          .getElementById("sms-box")
+          .setAttribute("style", "display: flex;");
 
-        this.openModal();
-      });
+        this._mapbox.setDestinationMarker(
+          this.poiData.entrances[0].longitude,
+          this.poiData.entrances[0].latitude
+        );
 
-      this.routeSubscribtion.unsubscribe();
-    }
+        const smsModalTimeAppearing = timer(
+          Config[this.venueId].smsModalTimeAppearing
+        );
+
+        this.subscribeSmsModal = smsModalTimeAppearing.subscribe(val => {
+          if (!window.location.href.includes("/direction") || !!this.modal) {
+            return false;
+          }
+
+          this.openModal();
+        });
+
+        this.routeSubscribtion.unsubscribe();
+        res();
+      }
+    });
+
+    // TODO functionality where you can add some classes to elements what are close to each other after
+    // they were rendered
+
+    //   .then(res => {
+    //   const markers = document.querySelectorAll(".marker-number");
+    //   const markersLength = Object.keys(markers).length;
+
+    //   for (let i = 0; i < markersLength; i++) {
+    //     if (i < markersLength) {
+    //       const currentPosition = markers[i].getBoundingClientRect();
+    //       const nextPosition = markers[i + 1].getBoundingClientRect();
+
+    //       if (currentPosition.x - nextPosition.x < 10) {
+    //         markers[i].classList.add("aaaaaaaaaaaaaaaaaa");
+    //       }
+    //     }
+    //   }
+    // });
   }
 
   hasInstructionIcon(instructionType) {

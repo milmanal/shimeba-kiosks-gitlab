@@ -262,6 +262,7 @@ html[lang="ar"] #venue-container[venueid="24"] {
         & ~ .instruction {
           &:before {
             width: 42px;
+            transform: scale(1);
           }
 
           &:after {

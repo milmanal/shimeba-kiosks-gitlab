@@ -302,21 +302,31 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     // TODO functionality where you can add some classes to elements what are close to each other after
     // they were rendered
 
-    //   .then(res => {
+    // .then(res => {
     //   const markers = document.querySelectorAll(".marker-number");
     //   const markersLength = Object.keys(markers).length;
 
-    //   for (let i = 0; i < markersLength; i++) {
-    //     if (i < markersLength) {
-    //       const currentPosition = markers[i].getBoundingClientRect();
-    //       const nextPosition = markers[i + 1].getBoundingClientRect();
-
-    //       if (currentPosition.x - nextPosition.x < 10) {
-    //         markers[i].classList.add("aaaaaaaaaaaaaaaaaa");
+    //   for (let i = 0; i < markersLength - 1; i++) {
+    //     if (i + 1 < markersLength) {
+    //       const currentBCR = markers[i].getBoundingClientRect();
+    //       const nextBCR = markers[i + 1].getBoundingClientRect();
+    //       const currentOffsetTop = currentBCR.top;
+    //       const currentOffsetLeft = currentBCR.left;
+    //       const nextOffsetTop = nextBCR.top;
+    //       const nextOffsetLeft = nextBCR.left;
+    //       const pushToLeft = currentOffsetLeft - nextOffsetLeft < 130;
+    //       const xIsNegative = currentOffsetLeft - nextOffsetLeft > 130;
+    //       const yIsPositive = currentOffsetTop - nextOffsetTop > 130;
+    //       const pushToTop = currentOffsetTop - nextOffsetTop < 130;
+    //       if (pushToLeft) {
+    //         markers[i].classList.add("pushToLeft");
+    //       }
+    //       if (pushToTop) {
+    //         markers[i].classList.add("pushToTop");
     //       }
     //     }
     //   }
-    // });
+    // })
   }
 
   hasInstructionIcon(instructionType) {

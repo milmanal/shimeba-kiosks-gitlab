@@ -20,6 +20,7 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 export class ApiService {
   modalRef: BsModalRef;
   url = "https://shimeba-api.azurewebsites.net/api/";
+  nextInstructionPosition = [];
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "text/plain"
@@ -133,8 +134,13 @@ export class ApiService {
   }
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
+    console.log(this.nextInstructionPosition);
     const instr = instructions;
-    for (let i = 0; i < pointsOfFloors[floor].length; i++) {
+    for (
+      let i = this.nextInstructionPosition[floor];
+      i < pointsOfFloors[floor].length;
+      i++
+    ) {
       const poi = pointsOfFloors[floor][i];
 
       if (poi.isShowInList && poi.instructions) {
@@ -153,14 +159,21 @@ export class ApiService {
       if (instr[index]) {
         instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
-      if (typeof poi.nextLevel === "number") {
+
+      if (poi.nextLevel !== undefined) {
+        this.nextInstructionPosition[floor] = i + 1;
         this.buildRoute(poi.nextLevel, instr, pointsOfFloors, index);
+        break;
       }
     }
     return instr;
   }
 
   prebuildDirection(data) {
+    this.nextInstructionPosition = [];
+    Object.keys(data.pointsOfFloors).map((el: string) => {
+      this.nextInstructionPosition.push(0);
+    });
     // const findOnlyVisibleInstructions = Object.keys(data.pointsOfFloors).map(
     //   arrays => {
     //     return data.pointsOfFloors[arrays].filter(
@@ -168,7 +181,6 @@ export class ApiService {
     //     );
     //   }
     // );
-
     return this.buildRoute(data.source.level, [], data.pointsOfFloors);
   }
 

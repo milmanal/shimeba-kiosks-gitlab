@@ -262,6 +262,7 @@ html[lang="ar"] #venue-container[venueid="24"] {
         & ~ .instruction {
           &:before {
             width: 42px;
+            transform: scale(1);
           }
 
           &:after {
@@ -306,5 +307,10 @@ html[lang="ar"] {
   .marker-number.marker-with-icon .child .icon {
     margin-right: 0 !important;
     margin-left: 5px;
+  }
+
+  .direction-component .instructions-container .instruction:before {
+    border-right: none !important;
+    border-left: 3px dotted #fff;
   }
 }

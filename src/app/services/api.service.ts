@@ -134,7 +134,6 @@ export class ApiService {
   }
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
-    console.log(this.nextInstructionPosition);
     const instr = instructions;
     for (
       let i = this.nextInstructionPosition[floor];

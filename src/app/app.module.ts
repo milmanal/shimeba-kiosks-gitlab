@@ -19,6 +19,7 @@ import { ErrorService } from './services/error.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
 import { AppSuccessModalComponent } from './components/success-modal/success.modal';
+import { AppRestrictModalComponent } from './components/restrict-modal/restrict.modal';
 
 
 import {
@@ -46,7 +47,14 @@ const services = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, AppErrorModalComponent, AppSuccessModalComponent, AppInactivityTimerComponent, AppSendSmsModalComponent],
+  declarations: [
+    AppComponent,
+    AppErrorModalComponent,
+    AppSuccessModalComponent,
+    AppRestrictModalComponent,
+    AppInactivityTimerComponent,
+    AppSendSmsModalComponent
+  ],
   imports: [
     ModalModule.forRoot(),
     BrowserModule,

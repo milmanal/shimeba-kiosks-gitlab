@@ -169,6 +169,9 @@ export class SearchComponent implements OnInit, OnDestroy {
     const { id, name } = poi;
     localStorage.setItem('poiValues', JSON.stringify({id, name}));
     const kioskId = localStorage.getItem('kioskId');
+
+    this._api.checkTheCampus(106612, 20, 'en');
+
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${poiId}/${this.langId}`);
   }
 

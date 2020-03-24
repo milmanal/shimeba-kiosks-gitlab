@@ -10,6 +10,7 @@ import { ToastrService } from "ngx-toastr";
 import turf from "turf";
 
 import { AppSuccessModalComponent } from "../components/success-modal/success.modal";
+import { AppRestrictModalComponent } from "../components/restrict-modal/restrict.modal";
 
 import { Poi } from "./../models";
 import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
@@ -48,7 +49,17 @@ export class ApiService {
       animated: true
     });
     const source = timer(3000);
-    return source.subscribe(val => this.modalRef.hide());
+    return source.subscribe(() => this.modalRef.hide());
+  }
+
+  openRestrictModal() {
+    this.modalRef = this._modalService.show(AppRestrictModalComponent, {
+      class: "restrict-modal-outer",
+      ignoreBackdropClick: true,
+      animated: true
+    });
+    const source = timer(3000);
+    return source.subscribe(() => this.modalRef.hide());
   }
 
   search(terms: Observable<any>) {
@@ -56,6 +67,27 @@ export class ApiService {
       .debounceTime(400)
       .distinctUntilChanged()
       .switchMap(term => this.searchPoi(term));
+  }
+
+  checkTheCampus(kioskID, venueID, locale) {
+    return this._httpClient
+      .post(`https://shimeba-api-staging.azurewebsites.net/api/pois/107324`, {},
+        {
+          params: {
+            locale,
+            kioskID,
+            venueID,
+          }
+        }
+      )
+      .subscribe(
+        data => {
+          console.log('POST data Response: ', data);
+        },
+        error => {
+          console.log(`Error:`, error);
+        }
+      );
   }
 
   sendSms(params) {
@@ -83,7 +115,7 @@ export class ApiService {
   searchPoi({ value, venueId }) {
     const currentLanguage = this._language.getCurrentLanguage();
     return this._httpClient.get(
-      `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
+      `${this.url}pois?kioskID=${107324}&venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
     );
   }
 

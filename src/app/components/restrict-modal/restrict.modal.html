@@ -1,9 +1,10 @@
-<div class="success-modal-inner">
-  <div class="modal-body">
-      <div class="d-flex modal-body-inner">
-          <div>
-              <div> Cant </div>
-          </div>
-      </div>
-  </div>
+<div class="restrict-modal-inner">
+    <div class="modal-body">
+        <div class="d-flex p-0">
+            <div class="p-0"> {{responseMessage}} </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="goToSearchScreen()" translate>ok</button>
+    </div>
 </div>

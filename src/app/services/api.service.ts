@@ -52,42 +52,11 @@ export class ApiService {
     return source.subscribe(() => this.modalRef.hide());
   }
 
-  openRestrictModal() {
-    this.modalRef = this._modalService.show(AppRestrictModalComponent, {
-      class: "restrict-modal-outer",
-      ignoreBackdropClick: true,
-      animated: true
-    });
-    const source = timer(3000);
-    return source.subscribe(() => this.modalRef.hide());
-  }
-
   search(terms: Observable<any>) {
     return terms
       .debounceTime(400)
       .distinctUntilChanged()
       .switchMap(term => this.searchPoi(term));
-  }
-
-  checkTheCampus(kioskID, venueID, locale) {
-    return this._httpClient
-      .post(`https://shimeba-api-staging.azurewebsites.net/api/pois/107324`, {},
-        {
-          params: {
-            locale,
-            kioskID,
-            venueID,
-          }
-        }
-      )
-      .subscribe(
-        data => {
-          console.log('POST data Response: ', data);
-        },
-        error => {
-          console.log(`Error:`, error);
-        }
-      );
   }
 
   sendSms(params) {
@@ -115,7 +84,7 @@ export class ApiService {
   searchPoi({ value, venueId }) {
     const currentLanguage = this._language.getCurrentLanguage();
     return this._httpClient.get(
-      `${this.url}pois?kioskID=${107324}&venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
+      `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
     );
   }
 
@@ -155,12 +124,15 @@ export class ApiService {
 
   getKioskAndPoiData(kioskId, poiId): Observable<any> {
     const currentLanguage = this._language.getCurrentLanguage();
+    // const kioskId = localStorage.getItem('kioskId');
+    const venueId = localStorage.getItem('venueId');
     return forkJoin(
       this._httpClient.get(
         `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
       ),
       this._httpClient.get(
-        `${this.url}pois/${poiId}?locale=${currentLanguage.name}`
+        `https://shimeba-api-staging.azurewebsites.net/api/pois/
+        ${poiId}?kioskID=${kioskId}&venueID=${venueId}&locale=${currentLanguage.name}`
       )
     );
   }

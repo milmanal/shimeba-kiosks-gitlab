@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxAnalytics } from 'ngx-analytics';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-restrict-modal',
@@ -8,14 +9,34 @@ import { NgxAnalytics } from 'ngx-analytics';
   styleUrls: ['./restrict.modal.scss']
 })
 
-export class AppRestrictModalComponent {
+export class AppRestrictModalComponent implements OnInit {
 
-    constructor(
-      private ngx_analytics: NgxAnalytics,
-      public bsModalRef: BsModalRef
-    ) {
-      this.ngx_analytics.eventTrack.next({
-        action: 'Restrict Modal',
-      });
-    }
+  responseMessage: String;
+
+  venueId: any;
+  langId: any;
+  kioskId: any;
+  error12: any;
+
+
+  constructor(
+    private ngx_analytics: NgxAnalytics,
+    public _router: Router,
+    public _route: ActivatedRoute,
+    public bsModalRef: BsModalRef,
+    public bsModalService: BsModalService,
+  ) {
+    this.venueId = localStorage.getItem('venueId');
+    this.kioskId = localStorage.getItem('kioskId');
+    this.langId = localStorage.getItem('langId');
+  }
+
+  goToSearchScreen() {
+    this.bsModalRef.hide();
+    return this._router.navigateByUrl(`/search/${this.venueId}/${this.kioskId}/${this.langId}`);
+  }
+
+  ngOnInit(): void {
+    this.responseMessage = this.bsModalService.config.initialState['message'];
+  }
 }

@@ -14,6 +14,9 @@ import { Categories } from './../../configs/categories';
 import { NgxAnalytics } from 'ngx-analytics';
 import { takeUntil} from 'rxjs/operators';
 
+import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
+import { BsModalService } from 'ngx-bootstrap/modal';
+
 @Component({
   templateUrl: 'search.component.html',
   styleUrls: ['search.component.scss'],
@@ -33,6 +36,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   noSearchResult: Boolean;
   langPannelToTheBottom: Boolean = false;
   areEqual = false;
+  modal: any;
 
   private unsubscribe$ = new Subject<void>();
   private searchActivity: Subscription;
@@ -44,6 +48,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _api: ApiService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private _modalService: BsModalService,
+
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
       this.pois = results;
@@ -169,8 +175,6 @@ export class SearchComponent implements OnInit, OnDestroy {
     const { id, name } = poi;
     localStorage.setItem('poiValues', JSON.stringify({id, name}));
     const kioskId = localStorage.getItem('kioskId');
-
-    this._api.checkTheCampus(106612, 20, 'en');
 
     this._router.navigateByUrl(`/direction/${this.venueId}/${kioskId}/${poiId}/${this.langId}`);
   }

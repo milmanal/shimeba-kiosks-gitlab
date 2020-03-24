@@ -78,7 +78,7 @@ const services = [
     services
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent, AppSendSmsModalComponent],
+  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent, AppRestrictModalComponent, AppSendSmsModalComponent],
   exports: [AppTranslationModule]
 })
 export class AppModule {}

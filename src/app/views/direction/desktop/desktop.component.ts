@@ -15,6 +15,7 @@ import { Subscription, interval, timer, Subject } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
 import { AppErrorModalComponent } from "../../../components/error-modal/error.modal";
+import { AppRestrictModalComponent } from "../../../components/restrict-modal/restrict.modal";
 
 import { BsModalService, ModalDirective } from "ngx-bootstrap/modal";
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
@@ -391,6 +392,19 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(([kiosk, poi]) => {
         this.kioskData = kiosk;
         this.poiData = poi;
+
+        if (poi.responseMessage && poi.responseMessage.length) {
+          this.modal = this._modalService.show(AppRestrictModalComponent, {
+            initialState: {
+              message: poi.responseMessage
+            },
+            class: 'restrict-modal-outer',
+            ignoreBackdropClick: true,
+            animated: true
+          });
+
+          return;
+        }
 
         if (poi.dynamicValues.length > 0) {
           this.poiLocation = poi.dynamicValues.filter(

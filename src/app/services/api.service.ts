@@ -21,6 +21,7 @@ import { BsModalRef, BsModalService } from "ngx-bootstrap/modal";
 export class ApiService {
   modalRef: BsModalRef;
   url = "https://shimeba-api.azurewebsites.net/api/";
+  stagingUrl = "https://shimeba-api-staging.azurewebsites.net/api/";
   nextInstructionPosition = [];
   httpOptions = {
     headers: new HttpHeaders({
@@ -131,8 +132,7 @@ export class ApiService {
         `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
       ),
       this._httpClient.get(
-        `https://shimeba-api-staging.azurewebsites.net/api/pois/
-        ${poiId}?kioskID=${kioskId}&venueID=${venueId}&locale=${currentLanguage.name}`
+        `${this.stagingUrl}pois/${poiId}?kioskID=${kioskId}&venueID=${venueId}&locale=${currentLanguage.name}`
       )
     );
   }

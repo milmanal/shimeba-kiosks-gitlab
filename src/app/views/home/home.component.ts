@@ -6,6 +6,7 @@ import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
 import { NgxAnalytics } from 'ngx-analytics';
 import { Subscription, timer } from 'rxjs';
+import { Config } from '../../configs/config';
 
 @Component({
   templateUrl: 'home.component.html',
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit {
   langId: any;
   kioskId: any;
   // countClick = 0;
+  phoneNumberBadge: Boolean;
   kioskDataSubsciption: Subscription;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
@@ -60,6 +62,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const pointAppearing = timer(300);
+    console.log(this.venueId);
+    const venueId = localStorage.getItem('venueId');
+    this.phoneNumberBadge = Config[venueId].homePagePhoneBadge;
 
     this.ngx_analytics.eventTrack.next({
       action: 'URL',

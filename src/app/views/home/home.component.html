@@ -1,6 +1,15 @@
 <div id="venue-container">
     <div class="home-component">
         <div id="map" class="map"></div>
+        <div *ngIf="phoneNumberBadge" class="badge-container">
+            <div class="badge-styled-block">
+                <div>
+                    04-6652211
+                </div>
+
+                <img src="assets/imgs/poria/phone-badge.svg" alt="Phone badge">
+            </div>
+        </div>
         <div class="search">
             <input type="text" class="search-input px-5" placeholder="{{'where-do-you-want-to-go' | translate}}"
                 dir="rtl">

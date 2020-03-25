@@ -22,7 +22,8 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.02
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: false,
   },
 
   "18": {
@@ -48,7 +49,8 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.02
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: false,
   },
   "19": {
     mapCorners: [
@@ -73,7 +75,8 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.02
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: false,
   },
 
   "20": {
@@ -99,7 +102,8 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.02
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: false,
   },
 
   "24": {
@@ -125,6 +129,7 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.01
+    mergeMarkersDistance: 0.01,
+    homePagePhoneBadge: true,
   }
 };

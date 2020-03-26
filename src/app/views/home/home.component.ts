@@ -62,10 +62,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const pointAppearing = timer(300);
-    console.log(this.venueId);
-    const venueId = localStorage.getItem('venueId');
-    this.phoneNumberBadge = Config[venueId].homePagePhoneBadge;
-
     this.ngx_analytics.eventTrack.next({
       action: 'URL',
       properties: {
@@ -86,6 +82,7 @@ export class HomeComponent implements OnInit {
       const venueAttr = document.createAttribute('venueId');
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
+      this.phoneNumberBadge = Config[this.venueId].homePagePhoneBadge;
     });
 
     const urlString = window.location.href.includes('direction');
@@ -94,7 +91,7 @@ export class HomeComponent implements OnInit {
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
       let offsetOptons = [0, 0];
       this._route.params.subscribe(params => {
-        
+
         switch (params.langId) {
           case 'es': {
             offsetOptons = [-67, -85];

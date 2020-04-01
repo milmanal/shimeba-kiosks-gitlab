@@ -19,6 +19,10 @@
   @import "./themes/poria.theme";
 }
 
+#venue-container[venueid="25"] {
+  @import "./themes/barzilay.theme";
+}
+
 #venue-container {
   width: 100%;
   height: 100%;

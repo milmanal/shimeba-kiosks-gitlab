@@ -49,6 +49,9 @@ export class CategoryComponent implements OnInit, OnDestroy {
     ],
     '24': [
       'assets/imgs/poria/cancel.svg',
+    ],
+    '25': [
+      'assets/imgs/barzilay/cancel.svg',
     ]
   };
 

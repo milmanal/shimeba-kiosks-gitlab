@@ -85,7 +85,15 @@ export class MobileComponent implements OnInit, AfterViewInit {
       "assets/imgs/poria/destination.svg",
       "assets/imgs/yafe/back-arrow.svg",
       "assets/imgs/poria/bullet.svg"
-    ]
+    ],
+    "25": [
+      "assets/imgs/start.svg",
+      "assets/imgs/point.svg",
+      "assets/imgs/route-dest.svg",
+      "assets/imgs/destination-panel.svg",
+      "assets/imgs/back-arrow.png",
+      "assets/imgs/yafe/bullet.svg"
+    ],
   };
 
   applyImgsByVenueId: any;

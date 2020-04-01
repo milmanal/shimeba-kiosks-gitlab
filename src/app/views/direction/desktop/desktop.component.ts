@@ -100,7 +100,15 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       "assets/imgs/poria/destination-ziv.svg",
       "assets/imgs/yafe/back-arrow.svg",
       "assets/imgs/poria/bullet.svg"
-    ]
+    ],
+    "25": [
+      "assets/imgs/barzilay/start.svg",
+      "assets/imgs/point.svg",
+      "assets/imgs/route-dest.svg",
+      "assets/imgs/destination-panel.svg",
+      "assets/imgs/back-arrow.png",
+      "assets/imgs/yafe/bullet.svg"
+    ],
   };
 
   constructor(
@@ -411,6 +419,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             value => value.propertyName === "Location Description"
           );
         }
+
         if (this.poiData.entrances.length) {
           const pointAppearing = timer(300);
           pointAppearing.subscribe(val => {

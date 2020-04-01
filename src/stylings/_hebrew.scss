@@ -284,6 +284,29 @@ html[lang="he"] #venue-container[venueid="24"] {
   }
 }
 
+html[lang="he"] #venue-container[venueid="25"] {
+  .category-pois {
+    li {
+      line-height: 2 !important;
+      margin-bottom: 0 !important;
+
+      span {
+        width: 100% !important;
+        padding: 0 !important;
+        font-weight: normal !important;
+        line-height: unset !important;
+      }
+    }
+  }
+
+  .search-container {
+    .category-name {
+      font-family: $OSHebrew !important;
+      font-size: 29px !important;
+    }
+  }
+}
+
 html[lang="he"] {
   .custom-modal {
     .close-modal-image {

@@ -131,5 +131,33 @@ export const Config = {
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 0.01,
     homePagePhoneBadge: true,
-  }
+  },
+
+  "25": {
+    mapCorners: [
+      [34.564189910888670, 31.659317528115622],
+      [34.554920196533200, 31.659354056962925],
+      [34.554898738861084, 31.664833221416824],
+      [34.564168453216550, 31.664796694723723],
+    ],
+    homeMapUrl: "assets/barzilay_home.jpg",
+    directionMapUrl: "assets/barzilay_direction.png",
+    arrowOnRouteUrl: "assets/imgs/route-arrow.png",
+    drawTime: 1.5,
+    initZoom: 17.64,
+    mobileInitZoom: 16.5,
+    rotation: 180,
+    center: [34.55947995185852, 31.66256853928721],
+    routeLineColor: "#005baf",
+    routeLineWidth: 10,
+    borderLineColor: "#ffffff",
+    borderLineWidth: 7,
+    timeForTheStep: 2000,
+    inactivityDuration: 40000, //40
+    reloadAfterIncativity: 30000, //300
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: true,
+    homePageBadgeImg: "assets/imgs/barzilay/home-badge.png"
+  },
 };

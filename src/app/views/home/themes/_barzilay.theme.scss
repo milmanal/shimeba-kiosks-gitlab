@@ -1,0 +1,59 @@
+@import "variables";
+
+#start-point {
+  height: 56px;
+}
+
+#you-are-here {
+  background-color: $venue25;
+
+  .pseudo-elem {
+    background-color: $venue25;
+
+    .before {
+      border-top: 50px solid $venue25;
+    }
+  }
+}
+.home-component {
+  height: 100vh;
+  .badge-container{
+    position: absolute;
+    bottom: 0;
+    left: 120px;
+    .badge-styled-block{
+      div {
+        display: none;
+      }
+      img{
+        height: 88px;
+      }
+    }
+  }
+  .grad {
+    background-image: linear-gradient(to bottom, rgba(74, 74, 74, 0) 13%, rgba(74, 74, 74, 0.55));
+  }
+  .overlay {
+    top: 75px;
+  }
+  .search {
+    width: 1664px;
+    top: 153px;
+    left: 50%;
+    height: 14vh;
+    background-color: $color-white;
+    border: solid 2px $venue25;
+    border-radius: 0;
+    .search-icon {
+      background-color: $venue25;
+    }
+
+    .search-input {
+      color: $gray-text-4;
+
+      &::-webkit-input-placeholder {
+        color: $gray-text-4;
+      }
+    }
+  }
+}

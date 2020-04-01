@@ -110,7 +110,7 @@ export const Categories = {
       categoryId: 52
     }
   ],
-  
+
   '24': [
     {
       icon: 'poria/food-poria.svg',
@@ -137,5 +137,33 @@ export const Categories = {
       name: 'entrance',
       categoryId: 1
     }
-  ]
+  ],
+
+  '25': [
+    {
+      icon: 'barzilay/entrance.svg',
+      name: 'entrance',
+      categoryId: 1
+    },
+    {
+      icon: 'barzilay/info.svg',
+      name: 'info',
+      categoryId: 42
+    },
+    {
+      icon: 'barzilay/toilets.svg',
+      name: 'toilets',
+      categoryId: 2
+    },
+    {
+      icon: 'barzilay/parking.svg',
+      name: 'parking',
+      categoryId: 5
+    },
+    {
+      icon: 'barzilay/food.svg',
+      name: 'food',
+      categoryId: 52
+    }
+  ],
 };

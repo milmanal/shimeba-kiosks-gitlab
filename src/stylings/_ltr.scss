@@ -13,7 +13,7 @@ html[dir="ltr"] #venue-container[venueid="12"] {
         margin-left: -3px;
         min-width: 52px;
         height: 47px;
-        
+
         .icon {
             width: 18px !important;
             height: 30px !important;
@@ -29,7 +29,7 @@ html[dir="ltr"] #venue-container[venueid="12"] {
     .marker-number-icon {
         direction: rtl;
     }
-      
+
     .start-text-instruction {
         padding-left: 85px !important;
     }
@@ -46,25 +46,25 @@ html[dir="ltr"] #venue-container[venueid="12"] {
             .text-instr {
                 font-size: 25px;
             }
-    
+
             .level {
                 padding-left: 29px !important;
             }
-            
+
             .instruction-number {
                 height: 46px;
                 width: 46px;
                 direction: rtl;
-    
+
                 &:before, &:after {
                     height: 17px !important;
                 }
-    
+
                 + div {
                     padding-right: 0 !important;
                     padding-left: 70px !important;
                 }
-    
+
                 .instruction-icon {
                     width: 19px !important;
                     height: 23px !important;
@@ -112,4 +112,118 @@ html[lang="he"] #venue-container[venueid="12"] {
     .search-result-instr {
         font-family: $OSHebrew;
     }
+}
+
+html[dir="ltr"] #venue-container[venueid="25"] {
+
+  header {
+    .back-btn img {
+      transform: none !important;
+    }
+  }
+
+  .instruction-number-icon {
+    border-radius: 15px;
+    margin-left: -3px;
+    min-width: 52px;
+    height: 47px;
+
+    .icon {
+      width: 18px !important;
+      height: 30px !important;
+      padding: 0 !important;
+    }
+  }
+
+  .marker-number {
+    font-size: 40px;
+    font-weight: 800;
+  }
+
+  .marker-number-icon {
+    direction: rtl;
+  }
+
+  .start-text-instruction {
+    padding-left: 85px !important;
+  }
+
+  .instructions-container {
+    .instruction {
+
+      .destination-icon {
+        + div {
+          padding-left: 70px !important;
+        }
+      }
+
+      .text-instr {
+        font-size: 25px;
+      }
+
+      .level {
+        padding-left: 29px !important;
+      }
+
+      .instruction-number {
+        height: 46px;
+        width: 46px;
+        direction: rtl;
+
+        &:before, &:after {
+          height: 17px !important;
+        }
+
+        + div {
+          padding-right: 0 !important;
+          padding-left: 70px !important;
+        }
+
+        .instruction-icon {
+          width: 19px !important;
+          height: 23px !important;
+        }
+      }
+    }
+
+    .instruction-footer {
+      justify-content: space-between;
+      height: 74px;
+
+      .send-instr {
+        font-size: 22px;
+        padding: 0 7px !important;
+      }
+    }
+  }
+}
+
+html[lang="en"] #venue-container[venueid="25"] {
+  .search-container {
+    .search-input {
+      font-size: 41px !important;
+    }
+  }
+
+  .search-result-instr {
+    font-family: $OSHebrew;
+  }
+
+  .home-component {
+    .search-input {
+      font-size: 68px !important;
+    }
+  }
+}
+
+html[lang="he"] #venue-container[venueid="25"] {
+  .search-container {
+    .search-input {
+      font-size: 60px !important;
+    }
+  }
+
+  .search-result-instr {
+    font-family: $OSHebrew;
+  }
 }

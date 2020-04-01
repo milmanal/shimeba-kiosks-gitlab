@@ -30,12 +30,12 @@ html[lang="ru"] #venue-container[venueid="20"] {
     .direction-component {
 
         .instruction-footer {
-      
+
             .send-instr {
-                
+
             }
             .input-block {
-                
+
             }
         }
 
@@ -70,7 +70,7 @@ html[lang="ru"] #venue-container[venueid="12"] {
             padding: 0 10px;
         }
     }
-   
+
     .search-result-instr {
         font-family: $OSSimple;
         font-size: 36px !important;
@@ -108,7 +108,47 @@ html[lang="ru"] #venue-container[venueid="24"] {
   }
 }
 
-html[lang="ru"] { 
+html[lang="ru"] #venue-container[venueid="25"] {
+  .search-container {
+    .search-input {
+      font-family: $OSSimple !important;
+    }
+
+    .search-instruction,
+    .category-name {
+      top: unset !important;
+      bottom: 10px;
+      padding: 0 10px;
+      font-family: $OSSimple !important;
+    }
+
+    .category-name {
+      top: unset !important;
+      bottom: 10px;
+      padding: 0 10px;
+    }
+  }
+
+  .search-result-instr {
+    font-family: $OSSimple;
+    font-size: 36px !important;
+  }
+
+  .home-component {
+    .search-input {
+      font-size: 72px !important;
+      font-family: $OSSimple !important;
+    }
+
+    .search,
+    #you-are-here {
+      font-family: $OSSimple !important;
+    }
+  }
+}
+
+
+html[lang="ru"] {
   .custom-modal.custom-modal-24 {
     .send-sms-modal-inner {
       .instruction {

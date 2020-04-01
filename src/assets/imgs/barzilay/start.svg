@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.667" height="46.667" viewBox="0 0 46.667 46.667">
+    <defs>
+        <style>
+            .prefix__cls-4{fill:none}.prefix__cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="prefix__start" transform="translate(13.333 13.333)">
+        <g id="prefix__Oval_4" data-name="Oval 4">
+            <g id="prefix__Oval_4-2" data-name="Oval 4" style="stroke-miterlimit:10;fill:#fff;stroke:#fff;stroke-width:13.333px">
+                <circle cx="10" cy="10" r="10" class="prefix__cls-3"/>
+                <circle cx="10" cy="10" r="16.667" class="prefix__cls-4"/>
+            </g>
+            <g id="prefix__Oval_4-3" data-name="Oval 4" style="stroke:#005baf;stroke-width:11.111px;fill:none;stroke-miterlimit:10">
+                <circle cx="10" cy="10" r="10" class="prefix__cls-3"/>
+                <circle cx="10" cy="10" r="15.556" class="prefix__cls-4"/>
+            </g>
+        </g>
+    </g>
+</svg>

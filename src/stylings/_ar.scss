@@ -298,6 +298,18 @@ html[lang="ar"] #venue-container[venueid="24"] {
   }
 }
 
+html[lang="ar"] #venue-container[venueid="25"] {
+  .search-container {
+    .category-name {
+      font-family: $mariad-r !important;
+      font-size: 30px !important;
+      line-height: 0.73 !important;
+      padding: 0 15px;
+      bottom: 7px !important;
+    }
+  }
+}
+
 html[lang="ar"] {
   .custom-modal {
     .close-modal-image {

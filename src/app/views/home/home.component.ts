@@ -19,13 +19,15 @@ export class HomeComponent implements OnInit {
   kioskId: any;
   // countClick = 0;
   phoneNumberBadge: Boolean;
+  badgeImg = 'assets/imgs/poria/phone-badge.svg';
   kioskDataSubsciption: Subscription;
   startPointImages: Object = {
       '12': 'assets/imgs/start.svg',
       '18': 'assets/imgs/yafe/start-yafe.svg',
       '19': 'assets/imgs/hagalil/start.svg',
       '20': 'assets/imgs/ziv/start-ziv.svg',
-      '24': 'assets/imgs/poria/start-poria.svg'
+      '24': 'assets/imgs/poria/start-poria.svg',
+      '25': 'assets/imgs/barzilay/start.svg',
   };
   startPointImgByVenueId: string;
   constructor(
@@ -85,6 +87,9 @@ export class HomeComponent implements OnInit {
       this.phoneNumberBadge = Config[this.venueId].homePagePhoneBadge;
     });
 
+    if ( this.phoneNumberBadge && typeof Config[this.venueId].homePageBadgeImg !== 'undefined') {
+      this.badgeImg = Config[this.venueId].homePageBadgeImg;
+    }
     const urlString = window.location.href.includes('direction');
     this._mapbox.initMap(this.venueId, null, urlString);
     this._api.getKioskData().subscribe(res => {

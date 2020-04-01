@@ -17,7 +17,7 @@
 #venue-container[venueid="18"] {
   // @import "./themes/yafe.theme";
   @import "./themes/sourasky.theme";
-  
+
   .direction-component {
     background: #9accef !important;
   }
@@ -59,7 +59,7 @@
 #venue-container[venueid="20"] {
   // @import "./themes/yafe.theme";
   @import "./themes/ziv.theme";
-  
+
   .direction-component {
     background: #48ACDE !important;
   }
@@ -80,7 +80,7 @@
 #venue-container[venueid="24"] {
   // @import "./themes/poria.theme";
   @import "./themes/poria.theme";
-  
+
   .direction-component {
     background: #00a09f !important;
   }
@@ -98,6 +98,21 @@
   }
 }
 
+#venue-container[venueid="12"] {
+  @import "./themes/barzilay.theme";
+
+  + app-language-panel #venue-container-language .if-mobile-then {
+    padding: 0;
+
+    .language-btn:nth-of-type(3),
+    .language-btn:nth-of-type(4) {
+      font-size: 12px !important;
+    }
+    .language-btn.active {
+      right: 0;
+    }
+  }
+}
 
 #venue-container {
   width: 100%;

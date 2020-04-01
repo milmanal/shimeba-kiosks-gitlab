@@ -1,21 +1,21 @@
 <div id="venue-container">
     <div class="search-container d-flex flex-column align-items-center justify-content-top">
         <div class="search mt-5">
-            <input 
-                type="text" 
-                class="search-input px-5" 
+            <input
+                type="text"
+                class="search-input px-5"
                 [(ngModel)]="searchValue"
                 (input)="updateSearch($event)"
                 (ngModelChange)="search($event)"
                 placeholder="{{'type-the-name-of-dep' | translate}}"
-                [matKeyboard]="currentLanguage.name" 
+                [matKeyboard]="currentLanguage.name"
                 appAutofocus>
             <div class="search-icon" *ngIf="!areEqual"></div>
             <div class="search-arrow-icon" *ngIf="areEqual" (click)="selectPoiAfterFewMoments(pois[0].id, pois[0], 'click')"></div>
-            
+
             <div class="no-search-result-message" *ngIf="noSearchResult" translate>no-search-result</div>
         </div>
-        
+
         <div *ngIf="pois" class="search-results" [ngClass]="{'show-more-results': showMore}">
             <ul>
                 <li *ngIf="pois.length < 2 && pois.length > 0" class="d-flex align-items-center justify-content-between">
@@ -25,7 +25,7 @@
                     <span class="currentLanguage py-2" [innerHTML]="poi.name | highlight: searchValue">{{ poi.name }}</span>
                     <span class="secondaryLanguage" *ngIf="currentLanguage.name !== 'he'">{{ poi.hebrewName }}</span>
                 </li>
-                
+
                 <li class="show-more d-flex align-items-center justify-content-center" *ngIf="pois.length > 6" (click)="showMoreResults()">
                     <div class="show-more-label px-2">{{showMore ? ('close' | translate) : ('show-all' | translate)}}</div>
                     <div class="more arrow-down-triangle" [ngClass]="{'hide-more-results-icon': showMore}"></div>
@@ -37,7 +37,7 @@
             <div class="category mx-2 d-flex flex-column align-items-center justify-content-center" *ngFor="let category of categories"
                 (click)="selectCategory(category)">
                 <img src="assets/imgs/{{category.icon}}" alt="" class="icon">
-                
+
                 <div class="category-name" translate>{{category.name}}</div>
             </div>
         </div>

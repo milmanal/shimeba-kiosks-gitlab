@@ -153,11 +153,12 @@ export const Config = {
     borderLineColor: "#ffffff",
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40000, //40
-    reloadAfterIncativity: 30000, //300
+    inactivityDuration: 400000, //40
+    reloadAfterIncativity: 300000, //300
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 0.02,
     homePagePhoneBadge: true,
-    homePageBadgeImg: "assets/imgs/barzilay/home-badge.png"
+    homePageBadgeImg: "assets/imgs/barzilay/home-badge.png",
+    hideInstructionOnModalOpen: true
   },
 };

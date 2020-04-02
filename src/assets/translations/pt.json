@@ -2,7 +2,7 @@
     "you-are-here": "você está aqui",
     "no-search-result": "sem resultados",
     "send": "mandar",
-    
+
     "where-do-you-want-to-go": "Onde você quer ir?",
     "type-the-name-of-dep": "Digite o nome do Departamento, Unidade, Clínica etc.",
     "placeholder-search": "Digite o nome na caixa de pesquisa ou selecione categoria",
@@ -30,9 +30,10 @@
 
     "server_call_fails_12": "Pedimos desculpas pela falha temporária. Favor tentar novamente ou entrar em contato com o Centro de Informações e Serviços no andar de entrada da Torre Arison, próximo ao piano.",
     "server_call_fails": "Parece que há um erro do nosso lado",
-    
+
     "try_again": "Por favor, tente novamente mais tarde",
-  
+
     "success": "Success!",
-    "success_send_sms_msg": "SMS foi enviado com sucesso"
+    "success_send_sms_msg": "SMS foi enviado com sucesso",
+    "cancel": "Cancel"
   }

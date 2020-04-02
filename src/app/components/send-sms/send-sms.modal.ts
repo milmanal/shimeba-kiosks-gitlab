@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../services/api.service';
-import { timer } from 'rxjs';
+import { Subject, timer } from 'rxjs';
 import { NgxAnalytics } from 'ngx-analytics';
 
 @Component({
@@ -17,6 +17,7 @@ export class AppSendSmsModalComponent {
     phoneNumber: String = '';
     validationMessage: Boolean = false;
     dynamicCloseModalIcon: String;
+    onClose: Subject<boolean> = new Subject();
 
     constructor(
         private ngx_analytics: NgxAnalytics,
@@ -42,6 +43,7 @@ export class AppSendSmsModalComponent {
         const time = timer(800);
         document.getElementsByClassName('custom-modal')[0].classList.remove('zoomInUp');
         document.getElementsByClassName('custom-modal')[0].classList.add('zoomOutDown');
+        this.onClose.next(false);
         return time.subscribe(_ => this.bsModalRef.hide());
     }
 

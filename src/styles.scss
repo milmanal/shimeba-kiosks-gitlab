@@ -189,6 +189,12 @@ body[venueid="20"] {
   }
 }
 
+body[venueid="25"] {
+  .modal-backdrop {
+    display: none;
+  }
+}
+
 .custom-modal {
   &.custom-modal-12 {
     width: 482px;
@@ -247,7 +253,8 @@ body[venueid="20"] {
   &.custom-modal-18,
   &.custom-modal-19,
   &.custom-modal-20,
-  &.custom-modal-24 {
+  &.custom-modal-24,
+  &.custom-modal-25{
     margin: -60px 43px;
     width: 600px;
     max-width: 100%;
@@ -372,28 +379,61 @@ body[venueid="20"] {
       .instruction {
         font-size: 26px;
         color: #2f3181 !important;
-    
+
         &.blue-emojy:before {
           background: url("assets/imgs/poria/emojy.svg") no-repeat;
           background-size: 100%;
         }
       }
-    
+
       .send-btn {
         background: #00a09f;
       }
-    
+
       .sms-input {
         color: #2f3181;
-    
+
         &::placeholder {
           color: #2f3181;
         }
       }
     }
-    
+
     .key-btn {
       background-color: #2f3181 !important;
+    }
+  }
+
+  &.custom-modal-25 {
+    .material-icons {
+      font-size: 45px !important;
+    }
+    .send-sms-modal-inner {
+      .instruction {
+        font-size: 26px;
+        color: $venue25 !important;
+
+        &.blue-emojy:before {
+          background: url("assets/imgs/barzilay/emojy.svg") no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      .send-btn {
+        background: #eb2381;
+      }
+
+      .sms-input {
+        color: $venue25;
+
+        &::placeholder {
+          color: $venue25;
+        }
+      }
+    }
+
+    .key-btn {
+      background-color: $venue25 !important;
     }
   }
 }

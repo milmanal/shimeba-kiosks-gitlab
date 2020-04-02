@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="53" height="53" viewBox="0 0 53 53">
+    <defs>
+        <filter id="prefix__route_disk" width="53" height="53" x="0" y="0" filterUnits="userSpaceOnUse">
+            <feOffset dy="2"/>
+            <feGaussianBlur result="blur" stdDeviation="2"/>
+            <feFlood flood-opacity=".502"/>
+            <feComposite in2="blur" operator="in"/>
+            <feComposite in="SourceGraphic"/>
+        </filter>
+    </defs>
+    <g>
+        <circle id="prefix__route_disk-2" cx="20.5" cy="20.5" r="20.5" data-name="route disk" transform="translate(6 4)" style="fill:#eb2381"/>
+    </g>
+</svg>

@@ -2,7 +2,7 @@
   "you-are-here": "אתה כאן",
   "no-search-result": "אין תוצאות",
   "send": "שליחה",
-  
+
   "where-do-you-want-to-go": "לאן תרצה להגיע?",
   "type-the-name-of-dep": "הקלד שם מחלקה, יחידה, מרפאה…",
   "placeholder-search": "הקלידו שם בתיבת החיפוש או בחרו קטגוריה",
@@ -30,7 +30,8 @@
   "try_again": "נסו שוב מאוחר יותר",
   "server_call_fails_12": "אנו מתנצלים על התקלה הזמנית , אנא נסה שנית או פנה למרכז מידע ושירות, מגדל אריסון , קומת הכניסה בסמוך לפסנתר.",
   "server_call_fails": "נראה כאילו משהו לא תקין מהצד שלנו",
-  "success_send_sms_msg": "SMS נשלח בהצלחה"
+  "success_send_sms_msg": "SMS נשלח בהצלחה",
+  "cancel": "סגור"
 }
 
 

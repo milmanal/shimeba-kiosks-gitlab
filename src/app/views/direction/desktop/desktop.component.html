@@ -33,7 +33,7 @@
         <img [src]="applyImgsByVenueId[4]" alt="back" />
       </button>
     </header>
-    <div class="instructions-container" [ngClass]="{ loaded: routeLoaded }">
+    <div class="instructions-container" [ngClass]="{ loaded: routeLoaded, 'd-none': hideInstructionOnModalOpen }">
       <div class="instruction-header d-flex align-items-center px-3">
         <img
           *ngIf="initLanguage.direction === 'ltr'"

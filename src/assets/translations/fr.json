@@ -2,7 +2,7 @@
     "you-are-here": "Tu es là",
     "no-search-result": "aucun résultat",
     "send": "envoyer",
-    
+
     "where-do-you-want-to-go": "Où souhaitez-vous aller ?",
     "type-the-name-of-dep": "Saisissez le nom du service, de l'unité ou de la clinique",
     "placeholder-search": "Tapez le nom sur la barre de recherche ou choisissez une catégorie",
@@ -30,6 +30,7 @@
     "try_again": "Veuillez réessayer plus tard",
     "server_call_fails_12": "Nous vous prions de bien vouloir nous excuser pour la panne temporaire. Veuillez réessayez ou contactez le centre d’information et de service, Tour Arison, au rez-de-chaussée, près du piano.",
     "server_call_fails": "On dirait que de notre côté il y a une erreur",
-    
-    "success_send_sms_msg": "SMS a été envoyé avec succès"
+
+    "success_send_sms_msg": "SMS a été envoyé avec succès",
+    "cancel": "Cancel"
   }

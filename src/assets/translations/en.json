@@ -34,5 +34,6 @@
   "try_again": "Please try again later",
 
   "success": "Success!",
-  "success_send_sms_msg": "The sms has been send."
+  "success_send_sms_msg": "The sms has been send.",
+  "cancel": "Cancel"
 }

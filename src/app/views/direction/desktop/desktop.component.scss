@@ -42,7 +42,6 @@
 
     .child:last-child {
       border-right: none !important;
-      border-left: 1px solid #fff !important;
     }
 
     div,
@@ -94,6 +93,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  background-color: #eeecec;
 }
 #destination-point-circle {
   width: 32px;

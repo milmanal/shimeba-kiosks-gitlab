@@ -142,7 +142,7 @@ export const Config = {
     ],
     homeMapUrl: "assets/barzilay_home.jpg",
     directionMapUrl: "assets/barzilay_direction.png",
-    arrowOnRouteUrl: "assets/imgs/route-arrow.png",
+    arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
     drawTime: 1.5,
     initZoom: 17.64,
     mobileInitZoom: 16.5,

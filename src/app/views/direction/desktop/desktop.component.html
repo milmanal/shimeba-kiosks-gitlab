@@ -29,13 +29,25 @@
         </div>
       </div>
       <button translate class="back-btn" (click)="backToMain()">
-        back
+        <span>back</span>
         <img [src]="applyImgsByVenueId[4]" alt="back" />
       </button>
     </header>
     <div class="instructions-container" [ngClass]="{ loaded: routeLoaded, 'd-none': hideInstructionOnModalOpen }">
-      <div class="instruction-header d-flex align-items-center px-3">
-        <img
+      <div class="instruction-header d-flex align-items-center">
+        <div class="instruction-header-img">
+          <img
+          *ngIf="initLanguage.direction === 'ltr'"
+          src="assets/imgs/walk-right.png"
+          alt="directionswalk-right"
+          />
+          <img
+            *ngIf="initLanguage.direction === 'rtl'"
+            src="assets/imgs/directionswalk.svg"
+            alt="directionswalk"
+          />
+        </div>
+        <!-- <img
           *ngIf="initLanguage.direction === 'ltr'"
           src="assets/imgs/walk-right.png"
           alt="directionswalk-right"
@@ -44,8 +56,8 @@
           *ngIf="initLanguage.direction === 'rtl'"
           src="assets/imgs/directionswalk.svg"
           alt="directionswalk"
-        />
-        <div class="instruction-title px-3" translate>instr-for-arrival</div>
+        /> -->
+        <div class="instruction-title" translate>instr-for-arrival</div>
       </div>
       <ul class="m-0 p-0">
         <div *ngIf="venueId === '24'" class="direction-start-instruction">
@@ -90,7 +102,13 @@
           >
             {{ instr.instruction.level }}
           </li>
-          <li class="text-instr d-flex align-items-center px-3">
+          <li class="text-instr d-flex align-items-center px-3"
+            [ngClass]="{
+              'instruction-item': hasInstructionIcon(
+                instr.instruction.instructionsType
+              )
+            }"
+          >
             <div
               class="instruction-number d-flex justify-content-around align-items-center"
               [ngClass]="{
@@ -134,21 +152,23 @@
         </div>
       </ul>
       <div
-        class="instruction-footer align-items-center px-3"
+        class="instruction-footer align-items-center"
         id="sms-box"
         (click)="openModal()"
       >
-        <img
-          [src]="dynamicSmsIcon"
-          alt="sms-icon"
-          class="sms-icon"
-        />
-        <div class="send-instr px-3" translate>send-instr</div>
+        <div class="instruction-footer-img">
+          <img
+            [src]="dynamicSmsIcon"
+            alt="sms-icon"
+            class="sms-icon"
+          />
+        </div>
+        <div class="send-instr" translate>Send to my phone</div>
         <div
           class="input-block d-flex align-items-center justify-content-center"
           translate
         >
-          enter-mob-number
+          Enter mobile number
         </div>
       </div>
     </div>

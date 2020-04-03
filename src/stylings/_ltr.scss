@@ -31,7 +31,7 @@ html[dir="ltr"] #venue-container[venueid="12"] {
     }
 
     .start-text-instruction {
-        padding-left: 85px !important;
+        padding-left: 84px !important;
     }
 
     .instructions-container {
@@ -39,7 +39,7 @@ html[dir="ltr"] #venue-container[venueid="12"] {
 
             .destination-icon {
                 + div {
-                    padding-left: 70px !important;
+                    padding-left: 68px !important;
                 }
             }
 
@@ -74,7 +74,7 @@ html[dir="ltr"] #venue-container[venueid="12"] {
 
         .instruction-footer {
             justify-content: space-between;
-            height: 74px;
+            height: 80px;
 
             .send-instr {
                 font-size: 22px;
@@ -136,8 +136,9 @@ html[dir="ltr"] #venue-container[venueid="25"] {
   }
 
   .marker-number {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 800;
+    line-height: 41px;
   }
 
   .marker-number-icon {
@@ -145,7 +146,7 @@ html[dir="ltr"] #venue-container[venueid="25"] {
   }
 
   .start-text-instruction {
-    padding-left: 85px !important;
+    padding-left: 84px !important;
   }
 
   .instructions-container {
@@ -158,17 +159,22 @@ html[dir="ltr"] #venue-container[venueid="25"] {
       }
 
       .text-instr {
-        font-size: 25px;
+        font-size: 23px;
       }
 
       .level {
-        padding-left: 29px !important;
+        padding-left: 84px !important;
       }
 
       .instruction-number {
-        height: 46px;
-        width: 46px;
+        height: 48px;
+        width: 48px;
+        top: 50%;
+        left: 18px;
         direction: rtl;
+        font-size: 34px;
+        border-width: 2px;
+        transform: translateY(-50%);
 
         &:before, &:after {
           height: 17px !important;
@@ -176,7 +182,7 @@ html[dir="ltr"] #venue-container[venueid="25"] {
 
         + div {
           padding-right: 0 !important;
-          padding-left: 70px !important;
+          padding-left: 68px !important;
         }
 
         .instruction-icon {
@@ -187,12 +193,24 @@ html[dir="ltr"] #venue-container[venueid="25"] {
     }
 
     .instruction-footer {
-      justify-content: space-between;
-      height: 74px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start!important;
+      position: relative;
+      height: 80px;
+      padding-right: 16px;
+      padding-left: 84px;
+
+      &-img {
+        position: absolute;
+        width: 46px;
+        top: 50%;
+        left: 20px;
+        transform: translateY(-50%);
+      }
 
       .send-instr {
-        font-size: 22px;
-        padding: 0 7px !important;
+        font-size: 23px;
       }
     }
   }

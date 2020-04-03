@@ -405,6 +405,19 @@ body[venueid="25"] {
   }
 
   &.custom-modal-25 {
+    width: 100%;
+    max-width: 474px;
+    box-shadow: 15px 15px 40px 0 rgba(0, 0, 0, 0.3);
+
+    .modal-content {
+      padding: 10px 16px 22px;
+      border: none;
+    }
+
+    .send-sms-modal-inner {
+      padding: 0!important;
+    }
+
     .material-icons {
       font-size: 45px !important;
     }
@@ -414,6 +427,10 @@ body[venueid="25"] {
         color: $venue25 !important;
 
         &.blue-emojy:before {
+          min-width: 56px;
+          height: 56px;
+          margin-right: 10px;
+          margin-left: 0;
           background: url("assets/imgs/barzilay/emojy.svg") no-repeat;
           background-size: 100%;
         }
@@ -421,10 +438,15 @@ body[venueid="25"] {
 
       .send-btn {
         background: #eb2381;
+        border-radius: 4px;
       }
 
       .sms-input {
+        width: 100%;
+        max-width: 294px;
+        margin-right: 5px;
         color: $venue25;
+        font-size: 31px;
 
         &::placeholder {
           color: $venue25;
@@ -434,6 +456,7 @@ body[venueid="25"] {
 
     .key-btn {
       background-color: $venue25 !important;
+      font-size: 46px!important;
     }
   }
 }

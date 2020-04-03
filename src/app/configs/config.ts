@@ -158,7 +158,6 @@ export const Config = {
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 0.02,
     homePagePhoneBadge: true,
-    homePageBadgeImg: "assets/imgs/barzilay/home-badge.png",
-    hideInstructionOnModalOpen: true
+    homePageBadgeImg: "assets/imgs/barzilay/home-badge.png"
   },
 };

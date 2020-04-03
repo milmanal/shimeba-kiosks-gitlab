@@ -34,7 +34,10 @@
       </button>
     </header>
     <div class="instructions-container" [ngClass]="{ loaded: routeLoaded, 'd-none': hideInstructionOnModalOpen }">
-      <div class="instruction-header d-flex align-items-center">
+      <div class="instruction-header d-flex align-items-center"
+           [ngClass]="{
+              'px-3': venueId !== '25'
+            }">
         <div class="instruction-header-img">
           <img
           *ngIf="initLanguage.direction === 'ltr'"
@@ -57,7 +60,9 @@
           src="assets/imgs/directionswalk.svg"
           alt="directionswalk"
         /> -->
-        <div class="instruction-title" translate>instr-for-arrival</div>
+        <div class="instruction-title" [ngClass]="{
+              'px-3': venueId !== '25'
+            }" translate>instr-for-arrival</div>
       </div>
       <ul class="m-0 p-0">
         <div *ngIf="venueId === '24'" class="direction-start-instruction">

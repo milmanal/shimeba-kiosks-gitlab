@@ -104,7 +104,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     "25": [
       "assets/imgs/barzilay/start.svg",
       "assets/imgs/barzilay/route-disk.svg",
-      "assets/imgs/barzilay/route-dest.png",
+      "assets/imgs/barzilay/route-dest.svg",
       "assets/imgs/barzilay/route-dest.svg",
       "assets/imgs/barzilay/back-arrow.svg",
       "assets/imgs/barzilay/bullet.svg"

@@ -56,6 +56,7 @@
         margin-top: -4px;
         // transform: translateY(-50%) rotate(180deg);
       }
+
     }
   }
   .loaded {
@@ -126,7 +127,6 @@
       margin-bottom: 2px;
 
       .start-text-instruction {
-        // padding-left: 80px;
         padding: 0 15px;
 
         &:before {
@@ -270,6 +270,7 @@
     padding: 18px;
   }
 }
+
 @keyframes fadein {
   from {
     opacity: 0;

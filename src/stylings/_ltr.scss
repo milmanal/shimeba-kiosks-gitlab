@@ -193,13 +193,12 @@ html[dir="ltr"] #venue-container[venueid="25"] {
     }
 
     .instruction-footer {
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-start!important;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: center!important;
       position: relative;
       height: 80px;
-      padding-right: 16px;
-      padding-left: 84px;
+      padding: 6px 16px 12px 84px;
 
       &-img {
         position: absolute;
@@ -211,6 +210,10 @@ html[dir="ltr"] #venue-container[venueid="25"] {
 
       .send-instr {
         font-size: 23px;
+      }
+
+      .input-block {
+        line-height: 28px;
       }
     }
   }

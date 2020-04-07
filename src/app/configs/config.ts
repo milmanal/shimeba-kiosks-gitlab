@@ -135,25 +135,25 @@ export const Config = {
 
   "25": {
     mapCorners: [
-      [34.564189910888670, 31.659317528115622],
-      [34.554920196533200, 31.659354056962925],
       [34.554898738861084, 31.664833221416824],
       [34.564168453216550, 31.664796694723723],
+      [34.564189910888670, 31.659317528115622],
+      [34.554920196533200, 31.659354056962925],
     ],
-    homeMapUrl: "assets/barzilay_home.jpg",
-    directionMapUrl: "assets/barzilay_direction.png",
+    homeMapUrl: "assets/0d0baceb24b14b81a0e0d3ded6f9213b.jpeg",
+    directionMapUrl: "assets/0d0baceb24b14b81a0e0d3ded6f9213b.jpeg",
     arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
     drawTime: 1.5,
-    initZoom: 17.64,
+    initZoom: 17.50,
     mobileInitZoom: 16.5,
-    rotation: 180,
-    center: [34.55947995185852, 31.66256853928721],
+    rotation: 0,
+    center: [34.559479951858, 31.66256853928721],
     routeLineColor: "#005baf",
     routeLineWidth: 10,
     borderLineColor: "#ffffff",
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 4000000, //40
+    inactivityDuration: 400000, //40
     reloadAfterIncativity: 300000, //300
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 0.02,

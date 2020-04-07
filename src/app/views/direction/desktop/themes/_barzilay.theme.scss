@@ -42,10 +42,7 @@
       color: $color-white;
     }
     .back-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 210px;
+      width: 210px;
       height: 74px;
       padding-right: 15px;
       padding-left: 15px;
@@ -55,10 +52,9 @@
       font-family: $OSHebrew;
       color: #ffffff;
       border: none;
-      text-transform: capitalize;
-
       img {
-        margin-left: 24px;
+        margin-top: -4px;
+        // transform: translateY(-50%) rotate(180deg);
       }
 
     }

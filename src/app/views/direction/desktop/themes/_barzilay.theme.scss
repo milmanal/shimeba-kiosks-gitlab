@@ -45,7 +45,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 210px;
+      min-width: 210px;
       height: 74px;
       padding-right: 15px;
       padding-left: 15px;
@@ -57,13 +57,10 @@
       border: none;
       text-transform: capitalize;
 
-      span {
-        margin-right: 24px;
+      img {
+        margin-left: 24px;
       }
 
-      img {
-        // transform: translateY(-50%) rotate(180deg);
-      }
     }
   }
   .loaded {
@@ -134,7 +131,6 @@
       margin-bottom: 2px;
 
       .start-text-instruction {
-        // padding-left: 80px;
         padding: 0 15px;
 
         &:before {
@@ -278,6 +274,7 @@
     padding: 18px;
   }
 }
+
 @keyframes fadein {
   from {
     opacity: 0;

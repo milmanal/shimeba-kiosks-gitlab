@@ -1,0 +1,148 @@
+@import 'variables';
+
+html[dir="rtl"] {
+	#venue-container[venueid="25"] {
+
+		.direction-component {
+	
+			.header {
+				.back-btn {
+	
+					img {
+						margin-right: 24px;
+						margin-left: 0;
+					}
+	
+				}
+			}
+
+			.instructions-container {
+				right: 50%!important;
+				left: auto!important;
+				box-shadow: -15px 15px 40px 0 rgba(0, 0, 0, 0.3);
+				transform: translateX(50%);
+				transition: right 3s ease;
+
+				.instruction-header {					
+					padding-right: 84px;
+					padding-left: 16px;
+
+					&-img {
+						right: 20px;
+						left: auto;
+					}
+				}
+
+				.instruction {
+
+					.level {
+						padding-right: 84px!important;
+					}
+
+					.text-instr {
+						padding-right: 84px;
+						font-size: 23px;
+
+						&:before {
+							right: 38px!important;
+						}
+
+						&.instruction-item {
+							.custom-step-before {
+								&:before {
+									margin-right: 0;
+									margin-left: 15px;
+								}
+							}
+						}
+
+					}
+
+					&-number {
+						width: 48px;
+						height: 48px;
+						top: 50%;
+						right: 18px;
+						font-size: 34px;
+						border-width: 2px;
+						transform: translateY(-50%);
+
+						& +div {
+							padding-right: 68px!important;
+						}
+					}
+
+					&:last-child {
+						.text-instr {
+							img {
+								right: 18px;
+								left: unset;
+							}
+						}
+					}
+
+					&-footer {
+						flex-direction: column;
+						justify-content: center;
+						align-items: flex-start !important;
+						position: relative;
+						height: 80px;
+						padding-right: 84px;
+						padding-left: 16px;
+
+						&-img {
+							position: absolute;
+							width: 46px;
+							top: 50%;
+							right: 20px;
+							-webkit-transform: translateY(-50%);
+							transform: translateY(-50%);
+						}
+
+						.send-instr {
+							padding-right: 0!important;
+						}
+					}
+				}
+
+				&.loaded {
+					right: 18%!important;
+				}
+			}
+
+			.marker-number.multi-instructions{
+				.child:last-child {
+					border-right: none!important;
+				}
+			}
+	
+		}
+
+		.start-text-instruction {
+			padding-right: 84px;
+		}
+	
+	}
+
+	.custom-modal.custom-modal-25 {
+		right: 18%;
+		left: auto;
+		box-shadow: -15px 15px 40px 0 rgba(0, 0, 0, 0.3);
+		transform: translateX(50%)!important;
+
+		.send-sms-modal-inner {
+			.instruction.blue-emojy {
+				&:before {
+					margin-right: 0;
+					margin-left: 10px;
+				}
+			}
+
+			.sms-input {
+				margin-right: 0;
+				margin-left: 5px;
+			}
+		}
+	}
+
+}

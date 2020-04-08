@@ -140,7 +140,7 @@ export const Config = {
       [34.564189910888670, 31.659317528115622],
       [34.554920196533200, 31.659354056962925],
     ],
-    homeMapUrl: "assets/0d0baceb24b14b81a0e0d3ded6f9213b.jpeg",
+    homeMapUrl: "assets/barzilai_main.jpg",
     directionMapUrl: "assets/barzilai_nav.png",
     arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
     drawTime: 1.5,

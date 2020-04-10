@@ -160,7 +160,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     });
     this.modal = this._modalService.show(AppSendSmsModalComponent, {
       class: `custom-modal zoomInUp custom-modal-${this.venueId}`,
-      ignoreBackdropClick: true,
+      ignoreBackdropClick: this.venueId === "25" ? false : true,
       animated: true
     });
 

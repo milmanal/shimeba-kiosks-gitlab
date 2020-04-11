@@ -145,7 +145,6 @@ export class ApiService {
       i++
     ) {
       const poi = pointsOfFloors[floor][i];
-
       if (poi.isShowInList && poi.instructions) {
         if (instr[index]) {
           instr[index].points.push([

@@ -139,10 +139,6 @@ export class ApiService {
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
     const instr = instructions;
-    console.log(instr)
-    console.log(floor)
-    console.log(pointsOfFloors)
-    console.log(index)
     for (
       let i = this.nextInstructionPosition[floor];
       i < pointsOfFloors[floor].length;
@@ -171,7 +167,6 @@ export class ApiService {
         this.buildRoute(poi.nextLevel, instr, pointsOfFloors, index);
         break;
       }
-      console.log(poi)
     }
     return instr;
   }

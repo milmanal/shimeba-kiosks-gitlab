@@ -21,17 +21,19 @@
             <ul class="m-0 p-0 instruction-list" [ngClass]="{'instruction-list-open': instructionListOpen}">
                 <div class="instruction" id="start-instr">
                     <li class="level d-flex align-items-center px-3">
-                        
+
                         {{'floor' | translate}} {{kioskData && kioskData.entrances[0].level}}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3" translate>
                         you-are-looking-info
                     </li>
                 </div>
-                <div *ngFor="let instr of instructions; let i = index" id="{{instr && instr.instruction.instructions + i}}"
+                <div *ngFor="let instr of arrayInstructions; let i = index"
+                     id="{{instr && instr.instruction && instr.instruction.instructions + i}}"
                     class="instruction">
-                    <li *ngIf="i !== 0 && instr.instruction.level !== instructions[i-1].instruction.level" class="level d-flex align-items-center px-3">
-                        {{instr.instruction.level}}
+                    <li *ngIf="instr.isNextLevel" class="level d-flex align-items-center px-3">
+                      {{ "floor" | translate }}
+                      {{ instr.level }}
                     </li>
                     <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(instr.instruction, i)">
                         <div class="instruction-number d-flex justify-content-center align-items-center" [ngClass]="{'instruction-number-icon': hasInstructionIcon(instr.instruction.instructionsType)}">
@@ -40,14 +42,11 @@
                                 class="px-1 icon" *ngIf="hasInstructionIcon(instr.instruction.instructionsType)">
                         </div>
                         <div class="px-3">
-                            {{instr && instr.instruction.instructions}}
+                            {{instr && instr.instruction && instr.instruction.instructions}}
                         </div>
                     </li>
                 </div>
                 <div class="instruction" id="destination-instr">
-                    <li class="level d-flex align-items-center px-3">
-                        {{'floor' | translate}} {{poiData && poiData.entrances[0].level}}
-                    </li>
                     <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0], null)">
                         <img src="assets/imgs/{{venueId === '24' ? 'poria/' : ''}}destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
@@ -62,8 +61,8 @@
                 (click)="prevInstruction()" [disabled]="selectedInstructionIndex === 0">
                 <img src="assets/imgs/prev.svg" alt="prev">
             </button>
-            <button class="next d-flex justify-content-center align-items-center" 
-                [disabled]="!instructions || selectedInstructionIndex >= instructions.length - 1" 
+            <button class="next d-flex justify-content-center align-items-center"
+                [disabled]="!arrayInstructions || selectedInstructionIndex >= arrayInstructions.length - 1"
                 (click)="nextInstruction()">
                 <img src="assets/imgs/next.svg" alt="next">
             </button>

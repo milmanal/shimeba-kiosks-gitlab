@@ -31,6 +31,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
   poiData: any;
   poiLocation: any;
   instructions: any;
+  arrayInstructions: any;
+  levels: Array<String>;
   currentInstr: any;
   routeLoaded: Boolean = false;
   languageSubscription: Subscription;
@@ -40,6 +42,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   phoneNumber: String = "";
   instructionListOpen: Boolean = true;
   allPath = [];
+  pathsArranged: any = [];
   venueId: any;
   selectedInstructionIndex: any;
 
@@ -125,7 +128,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
       this.instructionListOpen = !this.instructionListOpen;
       this.selectedInstructionIndex = 0;
       this._mapbox.goToInstruction(
-        this.instructions[this.selectedInstructionIndex].instruction
+        this.pathsArranged[this.selectedInstructionIndex].instruction
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
@@ -161,11 +164,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     });
     this.selectedInstructionIndex++;
-    this.currentInstr = this.instructions[
+    this.currentInstr = this.pathsArranged[
       this.selectedInstructionIndex
     ].instruction.instructions;
     this._mapbox.goToInstruction(
-      this.instructions[this.selectedInstructionIndex].instruction
+      this.pathsArranged[this.selectedInstructionIndex].instruction
     );
   }
 
@@ -178,11 +181,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     });
     this.selectedInstructionIndex--;
-    this.currentInstr = this.instructions[
+    this.currentInstr = this.pathsArranged[
       this.selectedInstructionIndex
     ].instruction.instructions;
     this._mapbox.goToInstruction(
-      this.instructions[this.selectedInstructionIndex].instruction
+      this.pathsArranged[this.selectedInstructionIndex].instruction
     );
   }
 
@@ -192,10 +195,31 @@ export class MobileComponent implements OnInit, AfterViewInit {
       .getDirection(this.kioskData, this.poiData, this.venueId)
       .subscribe(res => {
         this.instructions = res;
+        this.arrayInstructions = [];
         this.routeLoaded = true;
         const curInterval = interval(2000);
-        res.map(step => {
-          step.points.map(poi => this.allPath.push(poi));
+        this.levels = Object.keys(this.instructions);
+        // tslint:disable-next-line:forin
+        for (const levelIndex in this.levels) {
+          const level = this.levels[levelIndex];
+          // @ts-ignore
+          // tslint:disable-next-line:forin
+          for (const instructionIndex in this.instructions[level]) {
+            // @ts-ignore
+            const instruction = this.instructions[level][instructionIndex];
+            this.arrayInstructions.push({
+              ...instruction,
+              // @ts-ignore
+              isNextLevel: (instructionIndex == 0 && levelIndex > 0),
+              level: level
+            });
+          }
+        }
+        Object.values(res).map(stepOfLevels => {
+          this.pathsArranged = this.pathsArranged.concat(Object.values(stepOfLevels));
+          for (const poi of Object.values(stepOfLevels)) {
+            this.allPath = this.allPath.concat(poi.points);
+          }
         });
         this._mapbox.zoomToLinePoligon(this.allPath, [0, 150], 18, {
           top: 60,
@@ -204,12 +228,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
           bottom: 60
         });
         setTimeout(() => {
-          this.routing(res, currentInstr);
+          this.routing(this.pathsArranged, currentInstr);
           currentInstr++;
         }, 2000);
         this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(
           () => {
-            this.routing(res, currentInstr);
+            this.routing(this.pathsArranged, currentInstr);
             currentInstr++;
           }
         );
@@ -223,9 +247,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
         .setAttribute("style", "display: block");
     }
     if (instructions[currentInstr]) {
-      const instruction = document.getElementById(
-        instructions[currentInstr].instruction.instructions + currentInstr
-      );
+      const idToFind = instructions[currentInstr].instruction ?
+        instructions[currentInstr].instruction.instructions + currentInstr :
+        'level' + instructions[currentInstr].level + currentInstr;
+
+      const instruction = document.getElementById(idToFind);
       this._mapbox.addRouteLine(instructions[currentInstr].points);
 
       if (instruction) {

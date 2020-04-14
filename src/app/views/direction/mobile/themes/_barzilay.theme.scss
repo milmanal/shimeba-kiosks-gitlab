@@ -9,7 +9,7 @@
   font-size: 25px !important;
   font-family: $OSHebrew;
   font-weight: bold !important;
-  background-color: #358fe9;
+  background-color: #005baf;
   color: #fff;
   animation: fadein 1s;
   box-shadow: 0 5px 7px 0 rgba(0, 0, 0, 0.5);
@@ -97,7 +97,7 @@
     .header {
       height: 80px;
       object-fit: contain;
-      background-color: #358fe9;
+      background-color: #005baf;
       .header-instruction {
         font-size: 20px;
         font-weight: bold;
@@ -134,20 +134,21 @@
           list-style: none;
         }
         .level {
-          background-color: #3d6faa;
+          background-color: #eb2381;
           height: 25px;
           font-size: 20px;
           font-weight: bold;
           color: #ffffff;
-          border-bottom: 1px solid #93bbea;
+          border-bottom: 1px solid $color-white;;
         }
         .text-instr {
           height: 43px;
-          background-color: #ffffff;
-          border-bottom: 1px solid #4a90e2;
+          background-color: $venue25;
+          font-family: $OSHebrew;
+          border-bottom: 1px solid #ffffff;
           font-size: 16px;
           font-weight: bold;
-          color: #4a90e2;
+          color: #ffffff;
         }
         .instruction-number {
           padding: 0 17px;
@@ -157,7 +158,7 @@
           font-size: 25px;
           font-family: $OSHebrew;
           font-weight: 800;
-          background-color: #4a90e2;
+          background-color: #eb2381;
           color: #ffffff;
         }
         .instruction-number-icon {
@@ -193,7 +194,7 @@
       border: none;
       width: 40px;
       height: 40px;
-      background-color: #4a90e2;
+      background-color: $venue25;
       &:disabled {
         img {
           opacity: .5;
@@ -204,7 +205,7 @@
       border: none;
       width: 40px;
       height: 40px;
-      background-color: #4a90e2;
+      background-color: $venue25;
       &:disabled {
         img {
           opacity: .5;
@@ -228,13 +229,13 @@
     background-color: #ffffff;
     .poi-name {
       font-size: 16px;
-      color: #4a90e2;
+      color: $venue25;
       line-height: 0.85;
     }
     .poi-location {
       font-size: 20px;
       font-weight: bold;
-      color: #4a90e2;
+      color: $venue25;
       line-height: 0.85;
     }
     .destination-icon-footer {

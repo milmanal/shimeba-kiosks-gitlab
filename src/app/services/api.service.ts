@@ -22,7 +22,7 @@ export class ApiService {
   modalRef: BsModalRef;
   url = "https://shimeba-api.azurewebsites.net/api/";
   stagingUrl = "https://shimeba-api-staging.azurewebsites.net/api/";
-  nextInstructionPosition = [];
+  nextInstructionPosition = {};
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "text/plain"
@@ -139,6 +139,11 @@ export class ApiService {
 
   buildRoute(floor, instructions, pointsOfFloors, index?) {
     const instr = instructions;
+    let order = 'left';
+    const floorKey = String(floor);
+    if (typeof instr[floorKey] === 'undefined') {
+      instr[floorKey] = [];
+    }
     for (
       let i = this.nextInstructionPosition[floor];
       i < pointsOfFloors[floor].length;
@@ -146,25 +151,34 @@ export class ApiService {
     ) {
       const poi = pointsOfFloors[floor][i];
       if (poi.isShowInList && poi.instructions) {
-        if (instr[index]) {
-          instr[index].points.push([
+        if (instr[floorKey][index]) {
+          instr[floorKey][index].points.push([
             Number(poi.longitude),
             Number(poi.latitude)
           ]);
         }
         index === undefined ? (index = 0) : index++;
-        instr[index] = {
+        if (
+          poi.instructionsType === 5 ||
+          poi.instructionsType === 6 ||
+          poi.instructionsType === 7 ||
+          poi.instructionsType === 8
+        ) {
+          order = order === 'left' ? 'right' : 'left';
+          poi.order = order;
+        }
+        instr[floorKey][index] = {
           instruction: poi,
           points: []
         };
       }
-      if (instr[index]) {
-        instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
+      if (instr[floorKey][index]) {
+        instr[floorKey][index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
 
       if (poi.nextLevel !== undefined) {
         this.nextInstructionPosition[floor] = i + 1;
-        this.buildRoute(poi.nextLevel, instr, pointsOfFloors, index);
+        this.buildRoute(poi.nextLevel, instr, pointsOfFloors);
         break;
       }
     }
@@ -172,9 +186,9 @@ export class ApiService {
   }
 
   prebuildDirection(data) {
-    this.nextInstructionPosition = [];
+    this.nextInstructionPosition = {};
     Object.keys(data.pointsOfFloors).map((el: string) => {
-      this.nextInstructionPosition.push(0);
+      this.nextInstructionPosition[el] = 0;
     });
     // const findOnlyVisibleInstructions = Object.keys(data.pointsOfFloors).map(
     //   arrays => {
@@ -183,7 +197,7 @@ export class ApiService {
     //     );
     //   }
     // );
-    return this.buildRoute(data.source.level, [], data.pointsOfFloors);
+    return this.buildRoute(data.source.level, {}, data.pointsOfFloors);
   }
 
   getDirection(kioskData, poiData, venueId): Observable<any> {

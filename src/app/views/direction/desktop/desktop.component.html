@@ -72,11 +72,7 @@
         <div class="instruction" id="start-instr">
           <li class="level d-flex align-items-center px-3">
             {{ "floor" | translate }}
-            {{
-              kioskData &&
-                kioskData.entrances[0].length &&
-                kioskData.entrances[0].level
-            }}
+            {{ levels && levels[0] }}
           </li>
           <li
             class="text-instr start-text-instruction d-flex align-items-center"
@@ -86,64 +82,59 @@
           </li>
         </div>
 
-        <div
-          *ngFor="let instr of ARRAY; let i = index"
-          id="{{ instr && instr.instruction.instructions + i }}"
-          [ngClass]="{
+          <div
+            *ngFor="let instr of ARRAY; let i = index"
+            id="{{ instr && (instr.instruction) ? instr.instruction.instructions + i : 'level' + instr.level + i}}"
+            [ngClass]="{
             'outer-image':
+              instr.instruction && (
               instr.instruction.instructionsType === 5 ||
               instr.instruction.instructionsType === 6 ||
               instr.instruction.instructionsType === 7 ||
-              instr.instruction.instructionsType === 8
+              instr.instruction.instructionsType === 8 )
           }"
-          class="instruction {{ instr.order }}"
-        >
-          <li
-            *ngIf="
-              i !== 0 &&
-              instr.instruction.level !== instructions[i - 1].instruction.level
-            "
-            class="level d-flex align-items-center px-3"
+            class="instruction {{ instr.instruction && instr.instruction.order }}"
           >
-            {{ instr.instruction.level }}
-          </li>
-          <li class="text-instr d-flex align-items-center px-3"
-            [ngClass]="{
+            <li
+              *ngIf="instr.isNextLevel"
+              class="level d-flex align-items-center px-3"
+            >
+              {{ "floor" | translate }}
+              {{ instr.level }}
+            </li>
+            <li
+              class="text-instr d-flex align-items-center px-3"
+                [ngClass]="{
               'instruction-item': hasInstructionIcon(
-                instr.instruction.instructionsType
+                instr.instruction && instr.instruction.instructionsType
               )
             }"
-          >
-            <div
-              class="instruction-number d-flex justify-content-around align-items-center"
-              [ngClass]="{
+            >
+              <div
+                class="instruction-number d-flex justify-content-around align-items-center"
+                [ngClass]="{
                 'instruction-number-icon': hasInstructionIcon(
-                  instr.instruction.instructionsType
+                  instr.instruction && instr.instruction.instructionsType
                 )
               }"
-            >
-              {{ i + 1 }}
-              <img
-                src="assets/imgs/{{
-                  getIconByInstructionType(instr.instruction.instructionsType)
+              >
+                {{ i + 1 }}
+                <img
+                  src="assets/imgs/{{
+                  getIconByInstructionType(instr.instruction && instr.instruction.instructionsType)
                 }}"
-                alt="instruction-icon"
-                class="px-1 icon"
-                *ngIf="hasInstructionIcon(instr.instruction.instructionsType)"
-              />
-            </div>
-            <div class="px-3 custom-step-before">
-              {{ instr && instr.instruction.instructions }}
-            </div>
-          </li>
-        </div>
+                  alt="instruction-icon"
+                  class="px-1 icon"
+                  *ngIf="hasInstructionIcon(instr.instruction && instr.instruction.instructionsType)"
+                />
+              </div>
+              <div class="px-3 custom-step-before">
+                {{ instr && instr.instruction && instr.instruction.instructions }}
+              </div>
+            </li>
+          </div>
+
         <div class="instruction" id="destination-instr">
-          <li class="level d-flex align-items-center px-3">
-            {{ "floor" | translate }}
-            <span style="direction: ltr;padding: 0 5px;">{{
-              poiData && poiData.entrances[0] && poiData.entrances[0].level
-            }}</span>
-          </li>
           <li class="text-instr d-flex align-items-center px-3">
             <img
               [src]="applyImgsByVenueId[2]"

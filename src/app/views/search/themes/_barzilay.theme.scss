@@ -116,6 +116,7 @@
     position: absolute;
     top: calc(3rem + 140px);
     max-height: 470px;
+    max-height: calc(100% - 608px);
     overflow-y: auto;
     overflow-x: hidden;
     width: 83%;

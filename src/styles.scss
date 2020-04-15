@@ -357,10 +357,11 @@ body[venueid="25"] {
   }
   &.custom-modal-25 {
     margin: 0;
-    left: 18%;
+    left: 87px;
     top: 17%;
-    -webkit-transform: translateX(-50%)!important;
-    transform: translateX(-50%)!important;
+    // -webkit-transform: translateX(-50%)!important;
+    // transform: translateX(-50%)!important;
+    transform: none!important;
   }
   &.custom-modal-20 {
     .send-sms-modal-inner {

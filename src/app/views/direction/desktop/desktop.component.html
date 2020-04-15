@@ -30,7 +30,16 @@
       </div>
       <button translate class="back-btn" (click)="backToMain()">
         back
-        <img [src]="applyImgsByVenueId[4]" alt="back" />
+        <img
+          *ngIf="venueId !== '25'"
+          [src]="applyImgsByVenueId[4]"
+          alt="back"
+        />
+        <img
+          *ngIf="venueId === '25'"
+          src="assets/imgs/barzilay/back-arrow_blue.svg"
+          alt="back"
+        />
       </button>
     </header>
     <div class="instructions-container" [ngClass]="{ loaded: routeLoaded, 'd-none': hideInstructionOnModalOpen }">

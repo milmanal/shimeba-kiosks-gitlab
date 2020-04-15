@@ -17,11 +17,13 @@
     left: 0;
     width: 100%;
     height: 132px;
+    padding-left: 100px!important;
+    padding-right: 87px!important;
     background-color: #005baf;
     box-shadow: none;
     .destination-icon-header {
-      width: 78px;
-      height: 91px;
+      width: 74px;
+      height: 87px;
       div {
         display: none;
       }
@@ -49,7 +51,8 @@
       font-size: 40px;
       font-weight: bold;
       font-family: $OSHebrew;
-      color: #ffffff;
+      color: #005baf;
+      background-color: #f7f7f7;
       border: none;
       img {
         margin-top: -4px;
@@ -59,7 +62,8 @@
     }
   }
   .loaded {
-    left: 18% !important;
+    left: 87px !important;
+    transform: none !important;
   }
   .instructions-container {
     position: absolute;
@@ -82,7 +86,7 @@
         width: 48px;
         top: 50%;
         left: 20px;
-        text-align: center;
+        text-align: right;
         transform: translateY(-50%);
       }
     }
@@ -115,7 +119,7 @@
       }
     }
     .instruction-title {
-      font-size: 50px;
+      font-size: 45px;
       font-family: $OSHebrew;
       font-weight: bold;
       color: $venue25;
@@ -146,7 +150,7 @@
           img {
             width: 47px;
             height: 55px;
-            left: 20px;
+            left: 18px;
             top: 50%;
             transform: translateY(-50%);
           }
@@ -172,7 +176,7 @@
         border-bottom: 2px solid $color-white;
       }
       .text-instr {
-        min-height: 80px;
+        height: 80px;
         padding: 15px;
         background-color: $venue25;
         font-family: $OSHebrew;
@@ -188,9 +192,9 @@
         &:before {
           content: "";
           top: 0;
-          left: 38px;
+          left: 37px;
           position: absolute;
-          width: 8px;
+          width: 10px;
           height: calc(100% + 2px);
           border-left: 2px solid #fff;
           border-right: 2px solid #fff;

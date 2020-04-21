@@ -6,7 +6,9 @@
         <img src="assets/imgs/route-arrow.svg" alt="" id="route-arrow"> -->
         <img [src]="applyImgsByVenueId[0]" alt="" id="start-point">
         <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle">
-        <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point">
+        <img *ngIf="venueId !== '25' " [src]="applyImgsByVenueId[2]" alt="" id="destination-point">
+        <img *ngIf="venueId === '25' " [src]="applyImgsByVenueId[2]" alt="" id="destination-point" width="62px" height="75px;">
+        
     </div>
     <div class="direction-component">
         <div class="header-container">
@@ -48,7 +50,9 @@
                 </div>
                 <div class="instruction" id="destination-instr">
                     <li class="text-instr d-flex align-items-center px-3" (click)="selectInstruction(poiData.entrances[0], null)">
-                        <img src="assets/imgs/{{venueId === '24' ? 'poria/' : ''}}destination.svg" alt="destination" class="destination-icon">
+                        <img *ngIf="venueId === '25' " src="assets/imgs/barzilay/destination.svg" alt="destination" class="destination-icon">
+                        <img *ngIf="venueId === '24' " src="assets/imgs/poria/destination.svg" alt="destination" class="destination-icon">
+                        <img *ngIf="venueId !== '25' && venueId !== '24' " src="assets/imgs/destination.svg" alt="destination" class="destination-icon">
                         <div class="px-3">
                             {{'you-have-arrived' | translate}} {{poiData && poiData.name}}
                         </div>
@@ -69,7 +73,9 @@
         </div>
         <div id="map"></div>
         <footer class="mobile-footer d-flex justify-content-start align-items-center px-3">
-            <img src="assets/imgs/{{venueId === '24' ? 'poria/' : ''}}destination.svg" alt="destination" class="destination-icon-footer">
+            <img *ngIf="venueId === '25' " src="assets/imgs/barzilay/destination.svg" alt="destination" class="destination-icon-footer"/>
+            <img *ngIf="venueId !== '25' && venueId !== '24' " src="assets/imgs/destination.svg" alt="destination" class="destination-icon-footer">
+            <img *ngIf="venueId === '24' " src="assets/imgs/poria/destination.svg" alt="destination" class="destination-icon-footer">
             <div class="d-flex flex-column align-items-start px-3">
                 <div class="poi-name">
                     {{poiData && poiData.name}}

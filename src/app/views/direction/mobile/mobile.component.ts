@@ -90,12 +90,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
       "assets/imgs/poria/bullet.svg"
     ],
     "25": [
-      "assets/imgs/start.svg",
-      "assets/imgs/point.svg",
-      "assets/imgs/route-dest.svg",
-      "assets/imgs/destination-panel.svg",
-      "assets/imgs/back-arrow.png",
-      "assets/imgs/yafe/bullet.svg"
+      'assets/imgs/barzilay/start.svg',
+      'assets/imgs/barzilay/route-disk.svg',
+      'assets/imgs/barzilay/route-dest_mobile.svg',
+      'assets/imgs/barzilay/destination.svg',
+      'assets/imgs/barzilay/back-arrow.svg',
+      'assets/imgs/barzilay/bullet.svg'
     ],
   };
 

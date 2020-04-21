@@ -1,8 +1,9 @@
 <div id="venue-container">
   <div class="d-none" id="icons-container">
     <img [src]="applyImgsByVenueId[0]" alt="" id="start-point" />
-    <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle" />
-    <img [src]="applyImgsByVenueId[2]" alt="" id="destination-point" />
+    <img [src]="applyImgsByVenueId[1]" alt="" id="destination-point-circle"/>
+    <img *ngIf="venueId === '25'" [src]="applyImgsByVenueId[2]" alt="" id="destination-point" width="74" height="87"/>
+    <img *ngIf="venueId !== '25'" [src]="applyImgsByVenueId[2]" alt="" id="destination-point"/>
   </div>
   <!-- <pre>{{applyImgsByVenueId[0]}}</pre> -->
   <div class="direction-component">

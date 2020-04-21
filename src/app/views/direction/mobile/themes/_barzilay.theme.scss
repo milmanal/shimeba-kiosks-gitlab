@@ -154,8 +154,9 @@
           background-color: $venue25;
           font-family: $OSHebrew;
           border-bottom: 1px solid #ffffff;
-          font-size: 16px;
+          font-size: 15px;
           font-weight: bold;
+          line-height: 1.13;
           color: #ffffff;
         }
         .instruction-number {
@@ -186,7 +187,7 @@
           }
         }
         .destination-icon {
-          height: 32px;
+          height: 36px;
           width: 32px;
         }
       }

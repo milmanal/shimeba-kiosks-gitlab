@@ -9,6 +9,11 @@ html[dir="rtl"] {
 				padding-right: 100px!important;
 				padding-left: 87px!important;
 
+				@media (max-width: 768px) {
+					padding-right: 16px!important;
+					padding-left: 16px!important;
+				}
+
 				.back-btn {
 	
 					img {

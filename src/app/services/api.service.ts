@@ -137,27 +137,28 @@ export class ApiService {
     );
   }
 
-  buildRoute(floor, instructions, pointsOfFloors, index?) {
-    const instr = instructions;
+  buildRoute(floor, instr, pointsOfFloors, index = -1) {
     let order = 'left';
-    const floorKey = String(floor);
+    const floorKey = floor;
     if (typeof instr[floorKey] === 'undefined') {
       instr[floorKey] = [];
     }
+    console.log('this.nextInstructionPosition', this.nextInstructionPosition);
     for (
       let i = this.nextInstructionPosition[floor];
       i < pointsOfFloors[floor].length;
       i++
     ) {
       const poi = pointsOfFloors[floor][i];
-      if (poi.isShowInList && poi.instructions) {
+      const isStartPoint = this.nextInstructionPosition[floor] === 0 && index < 0;
+      if ((poi.isShowInList && poi.instructions)) {
+        index++;
         if (instr[floorKey][index]) {
           instr[floorKey][index].points.push([
             Number(poi.longitude),
             Number(poi.latitude)
           ]);
         }
-        index === undefined ? (index = 0) : index++;
         if (
           poi.instructionsType === 5 ||
           poi.instructionsType === 6 ||
@@ -169,19 +170,24 @@ export class ApiService {
         }
         instr[floorKey][index] = {
           instruction: poi,
-          points: []
+          isStartPoint,
+          points: [],
+          nextLevel: (poi.nextLevel !== undefined) ? poi.nextLevel : null
         };
       }
+      console.log('index', index, instr);
       if (instr[floorKey][index]) {
         instr[floorKey][index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
 
       if (poi.nextLevel !== undefined) {
+        console.log('Next Level', poi.nextLevel);
         this.nextInstructionPosition[floor] = i + 1;
-        this.buildRoute(poi.nextLevel, instr, pointsOfFloors);
+        this.buildRoute(poi.nextLevel, instr, pointsOfFloors, instr[poi.nextLevel] ? instr[poi.nextLevel].length - 1 : -1);
         break;
       }
     }
+    console.log('Instr: ', instr);
     return instr;
   }
 
@@ -197,6 +203,8 @@ export class ApiService {
     //     );
     //   }
     // );
+    console.log('this.nextInstructionPosition', this.nextInstructionPosition);
+    console.log('data.pointsOfFloors', data.pointsOfFloors);
     return this.buildRoute(data.source.level, {}, data.pointsOfFloors);
   }
 

@@ -82,7 +82,7 @@
         <div class="instruction" id="start-instr">
           <li class="level d-flex align-items-center px-3">
             {{ "floor" | translate }}
-            {{ levels && levels[0] }}
+            {{ currentKioskData && currentKioskData.level }}
           </li>
           <li
             class="text-instr start-text-instruction d-flex align-items-center"

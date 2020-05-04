@@ -35,6 +35,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   kioskId: Number;
   poiId: Number;
   kioskData: any;
+  currentKioskData: any;
   poiData: any;
   poiLocation: any;
   instructions: any;
@@ -51,7 +52,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   applyImgsByVenueId: any;
   validationMessage: Boolean = false;
   ARRAY: any;
-  levels: Array<String>;
+  levels: any;
   layersCollection: Array<{}> = this._mapbox.getLayers();
   subscribeSmsModal: any;
   modal: any;
@@ -197,7 +198,26 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     const langId = localStorage.getItem('langId');
     this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}/${langId}`);
   }
-
+  generateInstructions(data, level, index) {
+    console.log('generateInstructions', data, level, index);
+    
+    for (let i = index; i < this.instructions[level].length; i++) {
+      // @ts-ignore
+      const instruction = this.instructions[level][i];
+      data.push({
+        ...instruction,
+        // @ts-ignore
+        isNextLevel: (i == 0 && level > 0),
+        level: level
+      });
+      this.levels[level]++;
+      if (instruction.nextLevel !== null && instruction.nextLevel >= 0) {
+        data = this.generateInstructions(data, instruction.nextLevel, this.levels[instruction.nextLevel]);
+        return data;
+      }
+    }
+    return data;
+  }
   getDirectionData() {
     let currentInstr = 0;
     let centeredRouteDependsOnDirection = [];
@@ -212,31 +232,22 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(
         res => {
           this.instructions = res;
-          this.ARRAY = [];
-          this.levels = Object.keys(this.instructions);
-          // tslint:disable-next-line:forin
-          for (const levelIndex in this.levels) {
-            const level = this.levels[levelIndex];
-            // @ts-ignore
-            // tslint:disable-next-line:forin
-            for (const instructionIndex in this.instructions[level]) {
-              // @ts-ignore
-              const instruction = this.instructions[level][instructionIndex];
-              this.ARRAY.push({
-                ...instruction,
-                // @ts-ignore
-                isNextLevel: (instructionIndex == 0 && levelIndex > 0),
-                level: level
-              });
-            }
-          }
+          this.levels = Object.keys(this.instructions).reduce((acc, item) => {
+            acc[item] = 0;
+            return acc;
+          }, {});
+          this.currentKioskData = JSON.parse(localStorage.getItem("kioskData"));
+          console.log('=====', this.instructions, this.currentKioskData);
+          this.ARRAY = this.generateInstructions([], this.currentKioskData.level, 0);
           this.routeLoaded = true;
+          console.log('this.ARRAY', this.ARRAY);
           Object.values(res).map(stepOfLevels => {
             this.pathsArranged = this.pathsArranged.concat(Object.values(stepOfLevels));
             for (const poi of Object.values(stepOfLevels)) {
               this.allPath = this.allPath.concat(poi.points);
             }
           });
+          console.log(this.allPath);
           this._mapbox.zoomToLinePoligon(
             this.allPath,
             centeredRouteDependsOnDirection,
@@ -274,6 +285,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           .getElementById('start-instr')
           .setAttribute('style', 'display: block');
       }
+      console.log('instructions, currentInstr', instructions, currentInstr);
+      
       if (instructions[currentInstr]) {
         const idToFind = instructions[currentInstr].instruction ?
           instructions[currentInstr].instruction.instructions + currentInstr :

@@ -232,22 +232,30 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       .subscribe(
         res => {
           this.instructions = res;
-          this.levels = Object.keys(this.instructions).reduce((acc, item) => {
-            acc[item] = 0;
-            return acc;
-          }, {});
+          let order = "left";
           this.currentKioskData = JSON.parse(localStorage.getItem("kioskData"));
-          console.log('=====', this.instructions, this.currentKioskData);
-          this.ARRAY = this.generateInstructions([], this.currentKioskData.level, 0);
-          this.routeLoaded = true;
-          console.log('this.ARRAY', this.ARRAY);
-          Object.values(res).map(stepOfLevels => {
-            this.pathsArranged = this.pathsArranged.concat(Object.values(stepOfLevels));
-            for (const poi of Object.values(stepOfLevels)) {
-              this.allPath = this.allPath.concat(poi.points);
+          this.ARRAY = this.instructions.map(item => {
+            if (
+              item.instruction.instructionsType === 5 ||
+              item.instruction.instructionsType === 6 ||
+              item.instruction.instructionsType === 7 ||
+              item.instruction.instructionsType === 8
+            ) {
+              order = order === "left" ? "right" : "left";
+              return {
+                ...item,
+                order,
+                icon: this.getIconByInstructionType(item.instruction.instructionsType)
+              };
             }
+            return item;
           });
-          console.log(this.allPath);
+          console.log(this.ARRAY);
+          
+          this.routeLoaded = true;
+          res.map(step => {
+            step.points.map(poi => this.allPath.push(poi));
+          });
           this._mapbox.zoomToLinePoligon(
             this.allPath,
             centeredRouteDependsOnDirection,
@@ -260,18 +268,18 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             }
           );
           setTimeout(() => {
-            this.routing(this.pathsArranged, currentInstr);
+            this.routing(res, currentInstr);
             currentInstr++;
           }, 2000);
           this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(
             () => {
-              this.routing(this.pathsArranged, currentInstr);
+              this.routing(res, currentInstr);
               currentInstr++;
             }
           );
         },
         error => {
-          console.log(error, 'Err');
+          console.log(error, "Err");
         }
       );
   }

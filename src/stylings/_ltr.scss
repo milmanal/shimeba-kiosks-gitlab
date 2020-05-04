@@ -184,6 +184,10 @@ html[dir="ltr"] #venue-container[venueid="25"] {
           padding-right: 0 !important;
           padding-left: 68px !important;
           line-height: 1.3;
+          img {
+            padding-left: 0 !important;
+            padding-right: 1rem !important;
+          }
         }
 
         .instruction-icon {

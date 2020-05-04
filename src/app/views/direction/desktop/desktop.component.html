@@ -139,6 +139,14 @@
                 />
               </div>
               <div class="px-3 custom-step-before">
+                <img
+                  src="assets/imgs/{{
+                  getIconByInstructionType(instr.instruction && instr.instruction.instructionsType)
+                }}"
+                  alt="instruction-icon"
+                  class="pl-3 icon"
+                  *ngIf="venueId === '25' && hasInstructionIcon(instr.instruction && instr.instruction.instructionsType)"
+                />
                 {{ instr && instr.instruction && instr.instruction.instructions }}
               </div>
             </li>

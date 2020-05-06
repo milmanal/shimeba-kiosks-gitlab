@@ -103,7 +103,7 @@
               instr.instruction.instructionsType === 7 ||
               instr.instruction.instructionsType === 8 )
           }"
-            class="instruction {{ instr.instruction && instr.instruction.order }}"
+            class="instruction {{ instr.order }}"
           >
             <li
               *ngIf="instr.isNextLevel"

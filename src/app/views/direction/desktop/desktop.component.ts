@@ -293,7 +293,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
           .getElementById('start-instr')
           .setAttribute('style', 'display: block');
       }
-      console.log('instructions, currentInstr', instructions, currentInstr);
       
       if (instructions[currentInstr]) {
         const idToFind = instructions[currentInstr].instruction ?

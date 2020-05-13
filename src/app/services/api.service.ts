@@ -22,7 +22,7 @@ export class ApiService {
   modalRef: BsModalRef;
   url = "https://shimeba-api.azurewebsites.net/api/";
   stagingUrl = "https://shimeba-api-staging.azurewebsites.net/api/";
-  nextInstructionPosition = [];
+  nextInstructionPosition = {};
   httpOptions = {
     headers: new HttpHeaders({
       "Content-Type": "text/plain"
@@ -161,6 +161,7 @@ export class ApiService {
         };
         prevFloor = floor;
       }
+      
       if (instr[index]) {
         instr[index].points.push([Number(poi.longitude), Number(poi.latitude)]);
       }
@@ -175,9 +176,9 @@ export class ApiService {
   }
 
   prebuildDirection(data) {
-    this.nextInstructionPosition = [];
+    this.nextInstructionPosition = {};
     Object.keys(data.pointsOfFloors).map((el: string) => {
-      this.nextInstructionPosition.push(0);
+      this.nextInstructionPosition[el] = 0;
     });
     // const findOnlyVisibleInstructions = Object.keys(data.pointsOfFloors).map(
     //   arrays => {
@@ -186,6 +187,7 @@ export class ApiService {
     //     );
     //   }
     // );
+    
     return this.buildRoute(data.source.level, [], data.pointsOfFloors);
   }
 

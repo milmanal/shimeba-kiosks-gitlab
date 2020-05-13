@@ -195,31 +195,28 @@ export class MobileComponent implements OnInit, AfterViewInit {
       .getDirection(this.kioskData, this.poiData, this.venueId)
       .subscribe(res => {
         this.instructions = res;
+        let order = "left";
         this.arrayInstructions = [];
         this.routeLoaded = true;
-        const curInterval = interval(2000);
-        this.levels = Object.keys(this.instructions);
-        // tslint:disable-next-line:forin
-        for (const levelIndex in this.levels) {
-          const level = this.levels[levelIndex];
-          // @ts-ignore
-          // tslint:disable-next-line:forin
-          for (const instructionIndex in this.instructions[level]) {
-            // @ts-ignore
-            const instruction = this.instructions[level][instructionIndex];
-            this.arrayInstructions.push({
-              ...instruction,
-              // @ts-ignore
-              isNextLevel: (instructionIndex == 0 && levelIndex > 0),
-              level: level
-            });
+        this.arrayInstructions = this.instructions.map(item => {
+          if (
+            item.instruction.instructionsType === 5 ||
+            item.instruction.instructionsType === 6 ||
+            item.instruction.instructionsType === 7 ||
+            item.instruction.instructionsType === 8
+          ) {
+            order = order === "left" ? "right" : "left";
+            return {
+              ...item,
+              order,
+              icon: this.getIconByInstructionType(item.instruction.instructionsType)
+            };
           }
-        }
-        Object.values(res).map(stepOfLevels => {
-          this.pathsArranged = this.pathsArranged.concat(Object.values(stepOfLevels));
-          for (const poi of Object.values(stepOfLevels)) {
-            this.allPath = this.allPath.concat(poi.points);
-          }
+          return item;
+        });
+        
+        res.map(step => {
+          step.points.map(poi => this.allPath.push(poi));
         });
         this._mapbox.zoomToLinePoligon(this.allPath, [0, 150], 18, {
           top: 60,
@@ -228,12 +225,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
           bottom: 60
         });
         setTimeout(() => {
-          this.routing(this.pathsArranged, currentInstr);
+          this.routing(this.arrayInstructions, currentInstr);
           currentInstr++;
         }, 2000);
         this.routeSubscribtion = this._mapbox.nextInstructionHandle.subscribe(
           () => {
-            this.routing(this.pathsArranged, currentInstr);
+            this.routing(this.arrayInstructions, currentInstr);
             currentInstr++;
           }
         );
@@ -248,8 +245,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
     }
     if (instructions[currentInstr]) {
       const idToFind = instructions[currentInstr].instruction ?
-        instructions[currentInstr].instruction.instructions + currentInstr :
-        'level' + instructions[currentInstr].level + currentInstr;
+          instructions[currentInstr].instruction.instructions + currentInstr :
+          'level' + instructions[currentInstr].level + currentInstr;
 
       const instruction = document.getElementById(idToFind);
       this._mapbox.addRouteLine(instructions[currentInstr].points);

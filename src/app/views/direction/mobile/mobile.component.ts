@@ -125,10 +125,12 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     });
     if (this.instructionListOpen) {
+      // console.log(this.arrayInstructions, this.allPath, this.selectedInstructionIndex);
+      
       this.instructionListOpen = !this.instructionListOpen;
       this.selectedInstructionIndex = 0;
       this._mapbox.goToInstruction(
-        this.pathsArranged[this.selectedInstructionIndex].instruction
+        this.arrayInstructions[this.selectedInstructionIndex].instruction
       );
     } else {
       this.instructionListOpen = !this.instructionListOpen;
@@ -164,11 +166,11 @@ export class MobileComponent implements OnInit, AfterViewInit {
       }
     });
     this.selectedInstructionIndex++;
-    this.currentInstr = this.pathsArranged[
+    this.currentInstr = this.arrayInstructions[
       this.selectedInstructionIndex
     ].instruction.instructions;
     this._mapbox.goToInstruction(
-      this.pathsArranged[this.selectedInstructionIndex].instruction
+      this.arrayInstructions[this.selectedInstructionIndex].instruction
     );
   }
 

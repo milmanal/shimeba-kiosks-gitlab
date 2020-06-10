@@ -165,13 +165,23 @@ export class MobileComponent implements OnInit, AfterViewInit {
         label: "Next Instruction button clicked"
       }
     });
+    if (!this.selectedInstructionIndex) {
+      this.selectedInstructionIndex = 0;
+    }
     this.selectedInstructionIndex++;
-    this.currentInstr = this.arrayInstructions[
-      this.selectedInstructionIndex
-    ].instruction.instructions;
-    this._mapbox.goToInstruction(
-      this.arrayInstructions[this.selectedInstructionIndex].instruction
-    );
+    let instructionToGo = null;
+    if (this.selectedInstructionIndex < this.arrayInstructions.length ) {
+      instructionToGo = this.arrayInstructions[
+        this.selectedInstructionIndex
+      ].instruction;
+      this.currentInstr = instructionToGo.instructions;
+    } else {
+      instructionToGo = this.poiData.entrances[0];
+      this.currentInstr = instructionToGo.instructions;
+      
+    }
+    
+    this._mapbox.goToInstruction(instructionToGo);
   }
 
   prevInstruction() {
@@ -182,12 +192,15 @@ export class MobileComponent implements OnInit, AfterViewInit {
         label: "Prev Instruction button clicked"
       }
     });
+    if (!this.selectedInstructionIndex) {
+      this.selectedInstructionIndex = this.arrayInstructions.length;
+    }
     this.selectedInstructionIndex--;
-    this.currentInstr = this.pathsArranged[
+    this.currentInstr = this.arrayInstructions[
       this.selectedInstructionIndex
     ].instruction.instructions;
     this._mapbox.goToInstruction(
-      this.pathsArranged[this.selectedInstructionIndex].instruction
+      this.arrayInstructions[this.selectedInstructionIndex].instruction
     );
   }
 

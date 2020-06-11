@@ -184,7 +184,8 @@ canvas {
 // }
 
 body[venueid="18"],
-body[venueid="20"] {
+body[venueid="20"],
+body[venueid="27"] {
   .modal-backdrop {
     display: none;
   }
@@ -254,6 +255,7 @@ body[venueid="25"] {
   &.custom-modal-18,
   &.custom-modal-19,
   &.custom-modal-20,
+  &.custom-modal-27,
   &.custom-modal-24,
   &.custom-modal-25{
     margin: -60px 43px;
@@ -363,6 +365,7 @@ body[venueid="25"] {
     // transform: translateX(-50%)!important;
     transform: none!important;
   }
+  &.custom-modal-27,
   &.custom-modal-20 {
     .send-sms-modal-inner {
       .instruction {

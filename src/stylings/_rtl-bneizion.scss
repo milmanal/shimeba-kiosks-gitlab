@@ -1,0 +1,149 @@
+@import 'variables-yafe';
+
+html[dir="rtl"] body[venueid="27"] {
+  .custom-modal-20 {
+    .close-modal-image {
+      justify-content: flex-start !important;
+    }
+  }
+}
+
+html[dir="rtl"] #venue-container[venueid="27"] {
+    .instructions-container {
+        // background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 8%, #00729a 95%);
+        padding-right: 64px;
+        padding-left: 30px;
+
+        &.loaded {
+            transform: translateX(0%) !important;
+            left: unset !important;
+        }
+
+        &.load-background {
+
+        }
+
+        ul {
+          padding-left: 0 !important;
+          padding-right: 110px !important;
+
+          #destination-instr {
+              div {
+                  position: absolute;
+                  right: 52px;
+                  padding-left: 0 !important;
+              }
+          }
+        }
+
+        .instruction {
+          .text-instr {
+            font-size: 30px;
+          }
+
+          &:before {
+              content: '';
+              height: 88px;
+              border-right: 3px dotted #fff;
+              // border-right: 0;
+              position: absolute;
+              right: -65px;
+              top: 50%;
+            }
+      
+          &:after {
+            content: '';
+            background: $main-color;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 5px solid #fff;
+            position: absolute;
+            right: -73px;
+            top: 35px;
+          }
+
+          &.right.outer-image {
+      
+            &:before {
+                border-top: 3px dotted #fff;
+                border-left: 3px dotted #fff;
+                border-right: 0;
+            }
+    
+            &:after {
+              display: none;
+            }
+    
+            & ~ .instruction {
+              &:before {
+                width: 42px;
+                border-left: 3px dotted #fff;
+                border-right: 0;
+              }
+    
+              &:after {
+                right: -34px;
+              }
+            }
+          }
+        
+          &.left.outer-image {
+            &:before {
+                border-top: 3px dotted #fff;
+                // border-right: 0;
+                border-left: 0 !important;
+                border-right: 3px dotted #fff !important;
+            }
+    
+            &:after {
+              display: none;
+            }
+    
+            & ~ .instruction {
+              &:after {
+                right: -73px;
+                // border-left: 0;
+                // border-right: 3px dotted #fff;
+              }
+    
+              &:before {
+                width: 0;
+              }
+            }
+          }
+
+          .instruction-number-icon .icon {
+            right: -58px;
+            left: unset;
+          }
+        }
+
+        .instruction-footer {
+          .input-block,
+          .send-instr {
+            font-size: 20px;
+          }
+
+        }
+    }
+
+    .direction-component {
+        // background: -webkit-linear-gradient(left, #9accef 0%, #9ACCEF 79%, #00729a 96%);
+
+        .header .back-btn {
+          right: unset !important;
+          left: 54px;
+
+          img {
+            transform: unset;
+          }
+        }
+        
+
+        .header .poi-data-name {
+          margin-right: 30px;
+          margin-left: 0;
+        }
+    }
+}

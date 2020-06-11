@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
       '20': 'assets/imgs/ziv/start-ziv.svg',
       '24': 'assets/imgs/poria/start-poria.svg',
       '25': 'assets/imgs/barzilay/start.svg',
+      '27': 'assets/imgs/bneizion/start.svg',
   };
   startPointImgByVenueId: string;
   constructor(

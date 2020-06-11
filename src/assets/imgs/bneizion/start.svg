@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="46.667" height="46.667" viewBox="0 0 46.667 46.667">
+    <defs>
+        <style>
+            .prefix__cls-3{stroke:none}
+        </style>
+    </defs>
+    <g id="prefix__start" transform="translate(13.333 13.333)">
+        <g id="prefix__Oval_4" data-name="Oval 4">
+            <g id="prefix__Oval_4-2" data-name="Oval 4" style="fill:#fff;stroke:#fff;stroke-miterlimit:10;stroke-width:13.333px">
+                <circle cx="10" cy="10" r="10" class="prefix__cls-3"/>
+                <circle cx="10" cy="10" r="16.667" style="fill:none"/>
+            </g>
+            <g id="prefix__Oval_4-3" data-name="Oval 4" style="fill:none">
+                <path d="M10 0A10 10 0 1 1 0 10 10 10 0 0 1 10 0z" class="prefix__cls-3"/>
+                <path d="M10 0C4.477 0 0 4.477 0 10s4.477 10 10 10 10-4.477 10-10S15.523 0 10 0m0-11.111c11.64 0 21.111 9.47 21.111 21.111 0 11.64-9.47 21.111-21.111 21.111-11.64 0-21.111-9.47-21.111-21.111 0-11.64 9.47-21.111 21.111-21.111z" style="fill:#2e7078;stroke:none"/>
+            </g>
+        </g>
+    </g>
+</svg>

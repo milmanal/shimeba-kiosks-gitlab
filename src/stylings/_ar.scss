@@ -129,6 +129,122 @@ html[lang="ar"] #venue-container[venueid="20"] {
     }
   }
 }
+html[lang="ar"] #venue-container[venueid="27"] {
+  .home-component {
+    .search-input {
+      font-family: $mariad !important;
+      font-size: 100px !important;
+    }
+
+    #you-are-here {
+      font-family: $mariad;
+      font-size: 45px;
+
+      .pseudo-elem {
+        padding: 0 40px !important;
+      }
+    }
+  }
+
+  .search-container {
+    .search-input {
+      font-size: 80px !important;
+      font-family: $mariad !important;
+    }
+
+    .search-instruction {
+      font-family: $mariad !important;
+      margin-bottom: 0;
+      font-size: 55px !important;
+    }
+
+    .category-name {
+      font-family: $mariad-r !important;
+      font-size: 30px !important;
+      line-height: 0.73 !important;
+      padding: 0 15px;
+      bottom: 7px !important;
+    }
+
+    .search-results {
+      ul li {
+        .currentLanguage {
+          font-family: $mariad !important;
+          font-weight: 500 !important;
+          font-size: 42px !important;
+        }
+
+        .secondaryLanguage {
+          color: #b1b1b1 !important;
+          font-family: $OSHebrewRegular !important;
+        }
+
+        .show-more-label {
+          font-family: $mariad !important;
+        }
+      }
+    }
+  }
+
+  .category-container {
+    .category-name {
+      font-family: $mariad !important;
+    }
+
+    .pois {
+      .currentLanguage {
+        color: #4f4f4f !important;
+        font-size: 42px !important;
+        font-family: $mariad !important;
+      }
+
+      .secondaryLanguage {
+        color: #959393 !important;
+        font-family: $OSHebrewLight !important;
+      }
+    }
+  }
+
+  .loaded {
+    padding-right: 0;
+
+    ul {
+      direction: ltr;
+      padding-right: 100px;
+    }
+
+    .instruction-footer {
+      left: 0;
+      right: 75px;
+    }
+  }
+
+  .direction-component {
+    .instruction-footer {
+      .send-instr {
+        font-size: 22px !important;
+        font-family: $mariad;
+      }
+      .input-block {
+        font-size: 22px !important;
+        font-family: $mariad-r;
+      }
+    }
+
+    .header {
+      .back-btn {
+        font-size: 50px !important;
+        font-family: $mariad;
+
+        img {
+          margin-right: 20px !important;
+          margin-left: -35px !important;
+        }
+      }
+    }
+  }
+}
+
 
 html[lang="ar"] {
   .direction-component {

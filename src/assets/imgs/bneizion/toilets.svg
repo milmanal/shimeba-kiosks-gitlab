@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__toilets" width="46.174" height="43.794" viewBox="0 0 46.174 43.794">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#2e7078}
+        </style>
+    </defs>
+    <g id="prefix__Group">
+        <path id="prefix__Fill_4" d="M8.609 4.249A4.274 4.274 0 0 1 4.3 8.5 4.276 4.276 0 0 1 0 4.249 4.279 4.279 0 0 1 4.3 0a4.276 4.276 0 0 1 4.309 4.249" class="prefix__cls-1" data-name="Fill 4" transform="translate(5.115 1.69)"/>
+        <path id="prefix__Fill_6" d="M18.413 6.167a9.948 9.948 0 0 0-18.4 0H0V6.2h.005l.462 8.955a3.315 3.315 0 0 0 3.338 3.292h.272V30.14a2.326 2.326 0 0 0 2.343 2.309h5.59a2.326 2.326 0 0 0 2.34-2.309V18.448h.272a3.315 3.315 0 0 0 3.34-3.292l.466-8.989z" class="prefix__cls-1" data-name="Fill 6" transform="translate(0 10.141)"/>
+        <path id="prefix__Fill_8" d="M8.613 4.249A4.282 4.282 0 0 1 4.3 8.5 4.276 4.276 0 0 1 0 4.249 4.276 4.276 0 0 1 4.3 0a4.282 4.282 0 0 1 4.313 4.249" class="prefix__cls-1" data-name="Fill 8" transform="translate(32.397 1.69)"/>
+        <path id="prefix__Fill_10" d="M18.645 15.614a9.882 9.882 0 0 0-3.466-4.357L14.406 4.3A4.333 4.333 0 0 0 10.043 0H8.848a4.334 4.334 0 0 0-4.363 4.3l-.772 6.953a9.889 9.889 0 0 0-3.47 4.357L0 19.907a1.728 1.728 0 0 0 1.742 1.72h3.847l.448 8.513a2.328 2.328 0 0 0 2.341 2.309h2.095a2.327 2.327 0 0 0 2.339-2.309l.484-8.513h3.849a1.733 1.733 0 0 0 1.746-1.72z" class="prefix__cls-1" data-name="Fill 10" transform="translate(27.282 10.141)"/>
+        <path id="prefix__Fill_12" d="M.925 43.794A.917.917 0 0 1 0 42.887V.914a.926.926 0 0 1 1.852 0v41.973a.919.919 0 0 1-.927.907" class="prefix__cls-1" data-name="Fill 12" transform="translate(22.167)"/>
+    </g>
+</svg>

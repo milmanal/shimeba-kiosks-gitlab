@@ -96,6 +96,14 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
       'assets/imgs/yafe/back-arrow.svg',
       'assets/imgs/yafe/bullet.svg'
     ],
+    '27': [
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/route-disk.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/ziv/destination-ziv.svg',
+      'assets/imgs/yafe/back-arrow.svg',
+      'assets/imgs/yafe/bullet.svg'
+    ],
     '24': [
       'assets/imgs/poria/route-disk.svg',
       'assets/imgs/poria/route-disk.svg',

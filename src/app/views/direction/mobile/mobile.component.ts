@@ -97,8 +97,16 @@ export class MobileComponent implements OnInit, AfterViewInit {
       'assets/imgs/barzilay/back-arrow.svg',
       'assets/imgs/barzilay/bullet.svg'
     ],
+    "27": [
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/route-disk.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/ziv/destination-ziv.svg",
+      "assets/imgs/yafe/back-arrow.svg",
+      "assets/imgs/yafe/bullet.svg"
+    ],
   };
-
+  
   applyImgsByVenueId: any;
   constructor(
     private ngx_analytics: NgxAnalytics,

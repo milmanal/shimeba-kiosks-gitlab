@@ -160,4 +160,32 @@ export const Config = {
     homePagePhoneBadge: true,
     homePageBadgeImg: "assets/imgs/barzilay/home-badge.png"
   },
+
+  "27": {
+    mapCorners: [
+      [33.005856362388080,35.110738277435300],
+      [33.013125931065070,35.110781192779540],
+      [33.005910346541880,35.123419761657715],
+      [33.013181579828440,35.123453621949290],
+    ],
+    homeMapUrl: "assets/bneizion_main.jpg",
+    directionMapUrl: "assets/bneizion_nav.png",
+    arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
+    drawTime: 1.5,
+    initZoom: 17.50,
+    mobileInitZoom: 16.5,
+    rotation: 0,
+    center: [34.559479951858, 31.66256853928721],
+    routeLineColor: "#005baf",
+    routeLineWidth: 10,
+    borderLineColor: "#ffffff",
+    borderLineWidth: 7,
+    timeForTheStep: 2000,
+    inactivityDuration: 40000, //40
+    reloadAfterIncativity: 300000, //300
+    smsModalTimeAppearing: 7000,
+    mergeMarkersDistance: 0.02,
+    homePagePhoneBadge: true,
+    homePageBadgeImg: "assets/imgs/bneizion/home-badge.png"
+  },
 };

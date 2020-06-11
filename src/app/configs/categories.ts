@@ -166,4 +166,32 @@ export const Categories = {
       categoryId: 52
     }
   ],
+
+  '27': [
+    {
+      icon: 'bneizion/entrance.svg',
+      name: 'entrance',
+      categoryId: 1
+    },
+    {
+      icon: 'bneizion/info.svg',
+      name: 'info',
+      categoryId: 42
+    },
+    {
+      icon: 'bneizion/toilets.svg',
+      name: 'toilets',
+      categoryId: 2
+    },
+    {
+      icon: 'bneizion/parking.svg',
+      name: 'parking',
+      categoryId: 5
+    },
+    {
+      icon: 'bneizion/food.svg',
+      name: 'food',
+      categoryId: 52
+    }
+  ],
 };

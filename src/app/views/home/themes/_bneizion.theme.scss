@@ -1,0 +1,70 @@
+@import "variables-yafe";
+
+#start-point {
+  height: 15px !important;
+}
+
+#you-are-here {
+  background-color: #2e7078;
+  border: 2px solid #ffffff;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+
+  .pseudo-elem {
+    background-color: #2e7078;
+    padding: 5px 20px;
+    color: #ffffff;
+
+    .before {
+      border-top: 50px solid #2e7078;
+    }
+  }
+}
+.home-component {
+  background: #fef1e3;
+  height: 100vh;
+  .badge-container{
+    position: absolute;
+    bottom: 0;
+    left: 120px;
+    .badge-styled-block{
+      div {
+        display: none;
+      }
+      img{
+        height: 88px;
+      }
+    }
+  }
+  .grad {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    position: absolute;
+    background-image: url("../../../assets/imgs/grad.svg");
+    background-image: linear-gradient(to top, rgba(74, 74, 74, 0) 13%, rgba(74, 74, 74, 0.55));
+    transform: none;
+  }
+  .overlay {
+    top: 75px;
+  }
+  .search {
+    width: 87%;
+    top: 153px;
+    left: 50%;
+    height: 141px;
+    border-radius: 4px;
+    background-color: $color-white;
+    border: 3px solid $venue27;
+    .search-icon {
+      background-color: $venue27;
+    }
+
+    .search-input {
+      color: $venue27;
+
+      &::-webkit-input-placeholder {
+        color: $venue27;
+      }
+    }
+  }
+}

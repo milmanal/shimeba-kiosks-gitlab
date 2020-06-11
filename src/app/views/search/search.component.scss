@@ -23,6 +23,10 @@
   @import "./themes/barzilay.theme";
 }
 
+#venue-container[venueid="27"] {
+  @import "./themes/bneizion.theme";
+}
+
 #venue-container {
   width: 100%;
   height: 100%;

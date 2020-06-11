@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="45.273" height="42.72" viewBox="0 0 45.273 42.72">
+    <defs>
+        <style>
+            .prefix__cls-1{fill:#2e7078}
+        </style>
+    </defs>
+    <g id="prefix__parking" transform="translate(0 -.001)">
+        <g id="prefix__Page_1" data-name="Page 1">
+            <path id="prefix__Fill_1" d="M0 0v42.72h5.667V5.57H39.6v37.15h5.671V0z" class="prefix__cls-1" data-name="Fill 1" transform="translate(0 .001)"/>
+            <path id="prefix__Fill_2" d="M7.7 31.07H0V0h12.407a10.751 10.751 0 0 1 7.951 3.082A9.851 9.851 0 0 1 23.1 9.993a9.853 9.853 0 0 1-2.742 6.907 10.749 10.749 0 0 1-7.951 3.083H7.7v11.086zm0-24.218v6.281h4.358a3.357 3.357 0 0 0 2.465-.965 3.131 3.131 0 0 0 0-4.352 3.356 3.356 0 0 0-2.465-.965z" class="prefix__cls-1" data-name="Fill 2" transform="translate(11.81 11.651)"/>
+        </g>
+    </g>
+</svg>

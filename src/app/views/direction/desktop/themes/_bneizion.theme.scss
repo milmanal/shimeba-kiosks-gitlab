@@ -1,0 +1,402 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,700");
+@import "variables-yafe";
+
+.marker-number {
+  background-color: #5d8cc1;
+}
+
+.direction-component {
+  width: 100%;
+  height: 100%;
+  // background: #9dcaf0;
+  background: #48acde;
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+  .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 132px;
+    z-index: 1;
+    // background-color: #358fe9;
+    // box-shadow: 0 4px 9px 0 rgba(0, 0, 0, 0.5);
+    .destination-icon-header {
+      width: 78px;
+      height: 91px;
+    }
+
+    .poi-data-name {
+      max-width: 645px;
+      // width: 100%;
+      padding-bottom: 30px;
+      margin-top: 75px;
+      border-bottom: 5px solid #fff;
+      margin-left: 30px;
+      width: 34%;
+    }
+    .poi-name {
+      font-size: 45px;
+      color: $color-white;
+      font-family: $OSHebrew;
+      line-height: 1;
+      font-weight: normal;
+    }
+    .poi-location {
+      font-size: 52px;
+      line-height: 1;
+      font-weight: bold;
+      font-family: $OSHebrew;
+      color: $color-white;
+    }
+    .back-btn {
+      width: 210px;
+      height: 74px;
+      background-color: #696969;
+      font-size: 45px;
+      font-family: $OSHebrewBold;
+      color: $color-white;
+      border: none;
+      position: absolute;
+      right: 54px;
+      top: 0;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+
+      img {
+        transform: rotate(180deg);
+        margin-top: -4px;
+        margin-right: -10px;
+        margin-left: 11px;
+      }
+    }
+  }
+  .load-background {
+    background: #48acde;
+  }
+
+  .loaded {
+    left: 18% !important;
+
+    padding-top: 200px;
+    padding-left: 10px;
+    padding-right: 30px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    -webkit-transform: translateX(-49%);
+    transform: translateX(-49%);
+    width: 700px;
+    transition: all 0.5s ease;
+    z-index: 0;
+  }
+  .instructions-container {
+    ul {
+      padding-left: 110px !important;
+      height: 90%;
+      direction: rtl;
+      overflow-y: auto;
+
+      &::-webkit-scrollbar-button:single-button {
+        background-color: #62abd0;
+        display: block;
+        height: 28px;
+        width: 28px;
+      }
+
+      /* Up */
+      &::-webkit-scrollbar-button:single-button:vertical:decrement {
+        background-image: url(http://kelioniuakademija.lt/img/up.png);
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+
+      /* Down */
+      &::-webkit-scrollbar-button:single-button:vertical:increment {
+        background-image: url(https://www.freeiconspng.com/uploads/white-down-arrow-png-2.png);
+        background-size: 20px;
+        background-position: 50%;
+        background-repeat: no-repeat;
+      }
+
+      &::-webkit-scrollbar {
+        width: 28px;
+        background: #0e7aa2;
+        border-radius: 15px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        border-radius: 15px;
+        background-color: #62abd0;
+        background-image: url(https://karafetov.com/images/manu.png);
+        background-size: 18px;
+        background-repeat: no-repeat;
+        background-position: 50%;
+      }
+    }
+
+    .instruction-header {
+      width: 100%;
+      padding: 0 !important;
+
+      img {
+        display: none;
+      }
+    }
+
+    .instruction-footer {
+      display: none;
+      width: 596px;
+      justify-content: space-around;
+      background-color: #fff;
+      position: absolute;
+      bottom: 0;
+      height: 50px;
+      left: 75px;
+      padding: 0 10px !important;
+
+      .sms-icon {
+        width: 40px;
+        height: 35px;
+      }
+      .send-instr {
+        font-size: 18px;
+        font-weight: bold;
+        color: #0e7aa2;
+        padding-right: 16px !important;
+        padding-left: 0 !important;
+        font-family: $OSHebrewBold;
+      }
+      .input-block {
+        width: 289px;
+        height: 28px;
+        background-color: #9accef;
+        font-size: 18px;
+        color: #0e7aa2;
+        font-family: $OSHebrewRegular;
+      }
+    }
+    .instruction-title {
+      font-size: 50px;
+      font-family: $OSHebrew;
+      font-weight: bold;
+      color: $color-white;
+      padding: 0 !important;
+      display: none;
+    }
+    .instruction {
+      display: none;
+      animation: fadein 1s;
+      border-bottom: 1px solid $color-white;
+      position: relative;
+
+      &:before {
+        content: "";
+        height: 88px;
+        border-right: 3px dotted #fff;
+        position: absolute;
+        left: -65px;
+        top: 50%;
+      }
+
+      &:after {
+        content: "";
+        background: $main-color;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 5px solid #fff;
+        position: absolute;
+        left: -73px;
+        top: 35px;
+      }
+
+      &.right.outer-image {
+        &:before {
+          width: 42px;
+          border-top: 3px dotted #fff;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:before {
+            width: 42px;
+          }
+
+          &:after {
+            left: -34px;
+          }
+        }
+      }
+
+      &.left.outer-image {
+        &:before {
+          border-top: 3px dotted #fff;
+          border-right: 0;
+          border-left: 3px dotted #fff;
+        }
+
+        &:after {
+          display: none;
+        }
+
+        & ~ .instruction {
+          &:after {
+            left: -73px;
+          }
+
+          &:before {
+            width: 0;
+          }
+        }
+      }
+
+      .start-text-instruction {
+        // padding-left: 80px;
+        padding: 0 0 0 65px;
+      }
+
+      &:nth-of-type(2) {
+        .instruction-number {
+          // &:after {
+          //   display: none;
+          // }
+
+          // &:before {
+          //   content: '';
+          //   position: absolute;
+          //   width: 7px;
+          //   height: 15px;
+          //   border-left: 1px solid $color-white;
+          //   border-right: 1px solid $color-white;
+          //   background: #4a90e2;
+          //   top: 100%;
+          // }
+        }
+      }
+
+      &:nth-last-child(2) {
+        .instruction-number:before {
+          display: none;
+        }
+      }
+
+      li {
+        list-style: none;
+      }
+      .level {
+        display: none !important;
+        background-color: #3d6faa;
+        height: 41px;
+        font-size: 28px;
+        font-weight: bold;
+        padding-right: 23px !important;
+        letter-spacing: -0.1px;
+        color: #ffffff;
+        font-family: $OSHebrew;
+        border-bottom: 2px solid $color-white;
+      }
+      .text-instr {
+        height: 88px;
+        padding-right: 32px;
+        font-family: $OSHebrew;
+        font-size: 28px;
+        font-weight: 600;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #ffffff;
+      }
+      .instruction-number {
+        padding: 0 !important;
+        font-family: "OS Hebrew Light", sans-serif;
+        font-size: 60px;
+        font-weight: 300;
+
+        // &:before {
+        //   top: 100%;
+        // }
+
+        // &:after {
+        //   bottom: 100%;
+        // }
+
+        // &:before, &:after {
+        //   content: '';
+        //   position: absolute;
+        //   width: 7px;
+        //   height: 15px;
+        //   border-left: 1px solid $color-white;
+        //   border-right: 1px solid $color-white;
+        //   background: #4a90e2;
+
+        // }
+
+        + div {
+          // padding-right: 71px !important;
+        }
+      }
+      .instruction-number-icon {
+        border-radius: 15px;
+        // margin-right: -5px;
+        width: 34px;
+        height: 50px;
+        padding: 0 5px;
+
+        .icon {
+          width: 27px;
+          height: 45px;
+          padding: 0 !important;
+          position: absolute;
+          left: -58px;
+        }
+
+        & + div {
+          padding-left: 20px !important;
+        }
+      }
+      .destination-icon {
+        // width: 46px;
+        height: 46px;
+        position: absolute;
+
+        + div {
+          // padding-right: 70px !important;
+          padding-left: 50px !important;
+        }
+      }
+
+      &:last-child {
+        &:before {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .toggle-layers {
+    font-size: 25px;
+    position: absolute;
+    top: 155px;
+    right: 30px;
+    background: #4a90e2;
+    color: #fff;
+    height: auto;
+    padding: 18px;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

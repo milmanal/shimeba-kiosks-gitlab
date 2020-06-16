@@ -132,7 +132,7 @@ export class ApiService {
         `${this.url}pois/${kioskId}?locale=${currentLanguage.name}`
       ),
       this._httpClient.get(
-        `${this.stagingUrl}pois/${poiId}?kioskID=${kioskId}&venueID=${venueId}&locale=${currentLanguage.name}`
+        `${this.url}pois/${poiId}?kioskID=${kioskId}&venueID=${venueId}&locale=${currentLanguage.name}`
       )
     );
   }

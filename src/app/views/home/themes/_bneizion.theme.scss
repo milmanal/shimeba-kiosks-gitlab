@@ -24,14 +24,14 @@
   height: 100vh;
   .badge-container{
     position: absolute;
-    bottom: 0;
+    bottom: -12px;
     left: 120px;
     .badge-styled-block{
       div {
         display: none;
       }
       img{
-        height: 88px;
+        height: 111px;
       }
     }
   }

@@ -197,7 +197,7 @@ export const Config = {
     directionMapUrl: "assets/bneizion_nav.png",
     arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
     drawTime: 1.5,
-    initZoom: 18.00,
+    initZoom: 18.55,
     mobileInitZoom: 16.5,
     rotation: 49,
     center: [34.9921578168869, 32.80596566673588],

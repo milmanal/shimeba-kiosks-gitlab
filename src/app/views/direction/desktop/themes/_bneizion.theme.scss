@@ -2,14 +2,14 @@
 @import "variables-yafe";
 
 .marker-number {
-  background-color: #5d8cc1;
+  background-color: #2e7078;
 }
 
 .direction-component {
   width: 100%;
   height: 100%;
   // background: #9dcaf0;
-  background: #48acde;
+  background: #2e7078;
   #map {
     width: 100%;
     height: 100%;
@@ -73,7 +73,7 @@
     }
   }
   .load-background {
-    background: #48acde;
+    background: #2e7078;
   }
 
   .loaded {

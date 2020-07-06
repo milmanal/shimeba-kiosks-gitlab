@@ -365,7 +365,21 @@ body[venueid="25"] {
     // transform: translateX(-50%)!important;
     transform: none!important;
   }
-  &.custom-modal-27,
+  &.custom-modal-27{
+    .send-sms-modal-inner {
+      .instruction {
+        color: #2e7078 !important;
+      }
+
+      .send-btn {
+        background: #2e7078;
+      }
+
+      .sms-input {
+        color: #2e7078;
+      }
+    }
+  }
   &.custom-modal-20 {
     .send-sms-modal-inner {
       .instruction {
@@ -382,6 +396,38 @@ body[venueid="25"] {
     }
   }
 
+  &.custom-modal-27 {
+    .material-icons {
+      font-size: 45px !important;
+    }
+    .send-sms-modal-inner {
+      .instruction {
+        font-size: 26px;
+        color: #2f3181 !important;
+
+        &.blue-emojy:before {
+          background: url("assets/imgs/poria/emojy.svg") no-repeat;
+          background-size: 100%;
+        }
+      }
+
+      .send-btn {
+        background: #00a09f;
+      }
+
+      .sms-input {
+        color: #2f3181;
+
+        &::placeholder {
+          color: #2f3181;
+        }
+      }
+    }
+
+    .key-btn {
+      background-color: #2e7078 !important;
+    }
+  }
   &.custom-modal-24 {
     .material-icons {
       font-size: 45px !important;

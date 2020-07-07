@@ -6,7 +6,7 @@
       enter-mob-number-and-recieve-sms
   </div>
   <div class="d-flex justify-content-between align-items-center pt-3" [ngClass]="{
-              'px-3': venueId !== '25'
+              'px-3': venueId !== '25' && venueId !== '27'
             }">
       <input type="text" class="sms-input px-2" placeholder="{{'enter-mob-number' | translate}}"
           [(ngModel)]="phoneNumber" required>

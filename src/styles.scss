@@ -6,6 +6,7 @@
 @import "variables-yafe";
 @import "ltr";
 @import "rtl-barzilay";
+@import "rtl-bneizion";
 @import "rtl-yafe";
 @import "rtl-hagalil";
 @import "rtl-ziv";
@@ -365,7 +366,13 @@ body[venueid="25"] {
     // transform: translateX(-50%)!important;
     transform: none!important;
   }
-  &.custom-modal-27{
+  &.custom-modal-27 {
+
+    .modal-content {
+      background-color: #fff;
+      padding: 12px 40px 40px;
+    }
+
     .send-sms-modal-inner {
       .instruction {
         color: #2e7078 !important;
@@ -377,6 +384,13 @@ body[venueid="25"] {
 
       .sms-input {
         color: #2e7078;
+      }
+    }
+
+    .instruction {
+
+      &.dark-emojy:before {
+        background: url("assets/imgs/bneizion/emojy.svg") no-repeat !important;
       }
     }
   }
@@ -397,35 +411,107 @@ body[venueid="25"] {
   }
 
   &.custom-modal-27 {
+    // .material-icons {
+    //   font-size: 45px !important;
+    // }
+    // .send-sms-modal-inner {
+    //   .instruction {
+    //     font-size: 26px;
+    //     color: #2f3181 !important;
+
+    //     &.blue-emojy:before {
+    //       background: url("assets/imgs/poria/emojy.svg") no-repeat;
+    //       background-size: 100%;
+    //     }
+    //   }
+
+    //   .send-btn {
+    //     background: #00a09f;
+    //   }
+
+    //   .sms-input {
+    //     color: #2f3181;
+
+    //     &::placeholder {
+    //       color: #2f3181;
+    //     }
+    //   }
+    // }
+
+    // .key-btn {
+    //   background-color: #2e7078 !important;
+    // }
+
+    width: 100%;
+    max-width: 596px;
+    margin-left: 60px;
+
+    .modal-content {
+      border: none;
+    }
+
+    .send-sms-modal-inner {
+      padding: 0!important;
+    }
+
     .material-icons {
       font-size: 45px !important;
     }
     .send-sms-modal-inner {
       .instruction {
-        font-size: 26px;
-        color: #2f3181 !important;
+        padding-top: 0 !important;
 
         &.blue-emojy:before {
-          background: url("assets/imgs/poria/emojy.svg") no-repeat;
+          min-width: 56px;
+          height: 56px;
+          margin-right: 10px;
+          margin-left: 0;
+          background: url("assets/imgs/barzilay/emojy.svg") no-repeat;
           background-size: 100%;
         }
       }
 
       .send-btn {
-        background: #00a09f;
+        background: #c0d4d6;
+        border-radius: 4px;
       }
 
       .sms-input {
-        color: #2f3181;
+        width: 100%;
+        max-width: 340px;
+        margin-right: 10px;
+        color: $venue27;
+        font-size: 40px;
+        background-color: #d8d8d8;
 
         &::placeholder {
-          color: #2f3181;
+          color: $venue27;
+        }
+      }
+    }
+
+    .custom-keyboard {
+      padding: 10px 0 0 !important;
+    }
+
+    .key-row {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .key-btn {
+        &:last-child {
+          margin-right: 0 !important;
         }
       }
     }
 
     .key-btn {
-      background-color: #2e7078 !important;
+      margin-right: 10px !important;
+      background-color: $venue27 !important;
+      font-size: 60px!important;
     }
   }
   &.custom-modal-24 {

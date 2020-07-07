@@ -174,25 +174,25 @@ export const Config = {
     // 0.3.2.1 x
     // 0.2.1.3 x
     // 0.2.3.1 x
-    // 1,0,2,3 flipped/rotated 
+    // 1,0,2,3 flipped/rotated
     // 1.2.0.3 x
     // 1.2.3.0 x
     // 1.0.3.2 x
     // 1.3.0.2 x
     // 1.3.2.0 x
     // 2.1.3.0 x
-    // 2.3.1.0 flipped/rotated 
+    // 2.3.1.0 flipped/rotated
     // 2.3.0.1 x
     // 2.1.0.3 x
     // 2.0.1.3 x
     // 2.0.3.1 x
-    // 3.2.0.1 rotated +132 
+    // 3.2.0.1 rotated +132
     // 3.0.2.1 x
     // 3.0.1.2 x
     // 3.1.0.2 x
     // 3.1.2.0 x
     // 3.2.1.0 x
-    // 
+    //
     homeMapUrl: "assets/bneizion_main.jpg",
     directionMapUrl: "assets/bneizion_nav.png",
     arrowOnRouteUrl: "assets/imgs/barzilay/arrow.png",
@@ -201,7 +201,7 @@ export const Config = {
     mobileInitZoom: 16.5,
     rotation: 49,
     center: [34.9921578168869, 32.80596566673588],
-    routeLineColor: "#005baf",
+    routeLineColor: "#2e7078",
     routeLineWidth: 10,
     borderLineColor: "#ffffff",
     borderLineWidth: 7,

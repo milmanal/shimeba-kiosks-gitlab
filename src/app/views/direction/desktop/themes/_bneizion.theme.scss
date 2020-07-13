@@ -29,13 +29,12 @@
     }
 
     .poi-data-name {
-      max-width: 645px;
-      // width: 100%;
+      width: 100%;
+      max-width: 594px;
       padding-bottom: 30px;
       margin-top: 75px;
       border-bottom: 5px solid #fff;
-      margin-left: 30px;
-      width: 34%;
+      margin-left: 37px;
     }
     .poi-name {
       font-size: 45px;
@@ -54,15 +53,14 @@
     .back-btn {
       width: 210px;
       height: 74px;
-      background-color: #696969;
+      background-color: #2e7078;
       font-size: 45px;
       font-family: $OSHebrewBold;
       color: $color-white;
       border: none;
       position: absolute;
-      right: 54px;
-      top: 0;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5);
+      right: 74px;
+      top: 26px;
 
       img {
         transform: rotate(180deg);
@@ -76,31 +74,37 @@
     background: #2e7078;
   }
 
-  .loaded {
-    left: 18% !important;
-
+  .instructions-container {
     padding-top: 200px;
-    padding-left: 10px;
-    padding-right: 30px;
+    padding-left: 50px;
+    padding-right: 30px !important;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 50%;
-    -webkit-transform: translateX(-49%);
-    transform: translateX(-49%);
+    transform: translateX(-50%);
     width: 700px;
-    transition: all 0.5s ease;
+    opacity: 0;
+    transition: left 0.5s ease, right .5s ease, opacity .5s ease;
+
     z-index: 0;
-  }
-  .instructions-container {
+    transition-delay: 3s;
+
+    &.loaded {
+      left: 0;
+      transform: none;
+      opacity: 1;
+    }
+
     ul {
-      padding-left: 110px !important;
-      height: 90%;
+      padding-right: 16px !important;
+      padding-left: 86px !important;
+      height: 82%;
       direction: rtl;
       overflow-y: auto;
 
       &::-webkit-scrollbar-button:single-button {
-        background-color: #62abd0;
+        background-color: #fff;
         display: block;
         height: 28px;
         width: 28px;
@@ -124,13 +128,13 @@
 
       &::-webkit-scrollbar {
         width: 28px;
-        background: #0e7aa2;
+        background: transparent;
         border-radius: 15px;
       }
 
       &::-webkit-scrollbar-thumb {
         border-radius: 15px;
-        background-color: #62abd0;
+        background-color: #fff;
         background-image: url(https://karafetov.com/images/manu.png);
         background-size: 18px;
         background-repeat: no-repeat;
@@ -139,11 +143,33 @@
     }
 
     .instruction-header {
+      position: relative;
       width: 100%;
-      padding: 0 !important;
+      padding: 0 0 0 134px !important;
+      z-index: 1;
+
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        right: 0;
+        width: calc(100% - 115px);
+        height: 3px;
+        background-color: #2e7078;
+      }
+
+      &-img {
+        position: absolute;
+        top: 5px;
+        left: 91px;
+      }
 
       img {
         display: none;
+
+        &.img-walk {
+          display: block;
+        }
       }
     }
 
@@ -155,7 +181,7 @@
       position: absolute;
       bottom: 0;
       height: 50px;
-      left: 75px;
+      left: 60px;
       padding: 0 10px !important;
 
       .sms-icon {
@@ -173,7 +199,7 @@
       .input-block {
         width: 289px;
         height: 28px;
-        background-color: #9accef;
+        background-color: #c0d4d6;
         font-size: 18px;
         color: #0e7aa2;
         font-family: $OSHebrewRegular;
@@ -185,7 +211,6 @@
       font-weight: bold;
       color: $color-white;
       padding: 0 !important;
-      display: none;
     }
     .instruction {
       display: none;
@@ -198,7 +223,7 @@
         height: 88px;
         border-right: 3px dotted #fff;
         position: absolute;
-        left: -65px;
+        left: -78px;
         top: 50%;
       }
 
@@ -210,7 +235,7 @@
         border-radius: 50%;
         border: 5px solid #fff;
         position: absolute;
-        left: -73px;
+        left: -86px;
         top: 35px;
       }
 
@@ -230,7 +255,7 @@
           }
 
           &:after {
-            left: -34px;
+            left: -46px;
           }
         }
       }
@@ -248,7 +273,7 @@
 
         & ~ .instruction {
           &:after {
-            left: -73px;
+            left: -86px;
           }
 
           &:before {
@@ -259,7 +284,7 @@
 
       .start-text-instruction {
         // padding-left: 80px;
-        padding: 0 0 0 65px;
+        padding: 0 0 0 50px !important;
       }
 
       &:nth-of-type(2) {
@@ -305,6 +330,7 @@
       .text-instr {
         height: 88px;
         padding-right: 32px;
+        padding-left: 0 !important;
         font-family: $OSHebrew;
         font-size: 28px;
         font-weight: 600;
@@ -313,6 +339,10 @@
         line-height: normal;
         letter-spacing: normal;
         color: #ffffff;
+
+        &.start-text-instruction {
+          padding-left: 50px !important;
+        }
       }
       .instruction-number {
         padding: 0 !important;
@@ -355,7 +385,7 @@
           height: 45px;
           padding: 0 !important;
           position: absolute;
-          left: -58px;
+          left: -70px;
         }
 
         & + div {
@@ -365,7 +395,7 @@
       .destination-icon {
         // width: 46px;
         height: 46px;
-        position: absolute;
+        // position: absolute;
 
         + div {
           // padding-right: 70px !important;
@@ -376,6 +406,23 @@
       &:last-child {
         &:before {
           display: none;
+        }
+      }
+
+      &#start-instr {
+        &:before {
+          height: 150%;
+          top: 0;
+        }
+        &:after {
+          position: absolute;
+          top: 0px;
+          left: -75px;
+          width: 200px;
+          background-color: transparent;
+          border: none;
+          border-top: 3px dotted #fff;
+          border-radius: 0;
         }
       }
     }
@@ -398,5 +445,11 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+.custom-modal {
+  &.custom-modal-27 {
+    margin-left: 60px !important;
   }
 }

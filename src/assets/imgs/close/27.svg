@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="prefix__close" width="33.442" height="33.442" viewBox="0 0 33.442 33.442">
+    <defs>
+        <clipPath id="prefix__clip-path">
+            <path id="prefix__Clip_4" d="M0 0h33.442v33.442H0z" class="prefix__cls-1" data-name="Clip 4"/>
+        </clipPath>
+        <style>
+            .prefix__cls-1,.prefix__cls-5{fill:none}.prefix__cls-5{stroke:#fff;stroke-miterlimit:10;stroke-width:2px}
+        </style>
+    </defs>
+    <path id="prefix__Fill_1" d="M15.721 31.442a15.721 15.721 0 1 1 15.721-15.721 15.739 15.739 0 0 1-15.721 15.721" data-name="Fill 1" transform="translate(1 1)" style="fill:#2e7078"/>
+    <g id="prefix__Group_5" data-name="Group 5">
+        <path id="prefix__Clip_4-2" d="M0 0h33.442v33.442H0z" class="prefix__cls-1" data-name="Clip 4"/>
+        <g id="prefix__Group_5-2" data-name="Group 5">
+            <path id="prefix__Fill_3" d="M16.721 33.442a16.721 16.721 0 1 1 16.721-16.721 16.74 16.74 0 0 1-16.721 16.721zm0-31.442A14.721 14.721 0 0 0 6.312 27.13 14.721 14.721 0 1 0 27.13 6.312 14.625 14.625 0 0 0 16.721 2z" data-name="Fill 3" style="fill:#fff"/>
+        </g>
+    </g>
+    <path id="prefix__Stroke_6" d="M0 0l14.689 14.689" class="prefix__cls-5" data-name="Stroke 6" transform="translate(9.376 9.376)"/>
+    <path id="prefix__Stroke_8" d="M14.689 0L0 14.689" class="prefix__cls-5" data-name="Stroke 8" transform="translate(9.377 9.376)"/>
+</svg>

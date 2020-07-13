@@ -2,14 +2,14 @@
   "name": "shimeba",
   "version": "0.0.0",
   "scripts": {
-    "ng": "$(npm bin)/ng",
-    "start": "$(npm bin)/ng serve",
-    "build": "$(npm bin)/ng build --prod",
-    "test": "$(npm bin)/ng test",
-    "lint": "$(npm bin)/ng lint",
-    "e2e": "$(npm bin)/ng e2e",
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --prod",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
     "postinstall": "npm run build",
-    "bundle-report": "$(npm bin)/ng build --prod --stats-json && webpack-bundle-analyzer dist/shimeba/stats.json"
+    "bundle-report": "ng build --prod --stats-json && webpack-bundle-analyzer dist/shimeba/stats.json"
   },
   "engines": {
     "node": ">=9.8.0",

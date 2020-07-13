@@ -100,10 +100,10 @@
       width: 1em;
     }
     &::-webkit-scrollbar-thumb {
-      background-color: $main-color-light;
+      background-color: #fff;
     }
     &::-webkit-scrollbar-track {
-      background-color: #ecedee;
+      background-color: #fff;
     }
   }
 }

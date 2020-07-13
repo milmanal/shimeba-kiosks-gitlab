@@ -59,6 +59,18 @@
             src="assets/imgs/directionswalk.svg"
             alt="directionswalk"
           />
+          <img
+          *ngIf="venueId === '27' && initLanguage.direction === 'ltr'"
+          class="img-walk"
+          src="assets/imgs/walk-right_white.svg"
+          alt="directionswalk-right"
+          />
+          <img
+          *ngIf="venueId === '27' && initLanguage.direction === 'rtl'"
+          class="img-walk"
+          src="assets/imgs/directionswalk_white.svg"
+          alt="directionswalk-left"
+          />
         </div>
         <!-- <img
           *ngIf="initLanguage.direction === 'ltr'"

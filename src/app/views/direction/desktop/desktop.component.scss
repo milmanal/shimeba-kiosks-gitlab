@@ -95,6 +95,9 @@
   left: 0;
   background-color: #eeecec;
 }
+#venue-container[venueid="27"]  .mapboxgl-canvas {
+  background-color: #d5e2e4;
+}
 #destination-point-circle {
   width: 32px;
   height: 32px;

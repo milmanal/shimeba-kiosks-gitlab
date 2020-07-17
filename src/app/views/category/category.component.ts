@@ -9,6 +9,7 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { LanguageService } from './../../services/language.service';
 import { ApiService } from './../../services/api.service';
 import { DeviceService } from './../../services/device.service';
+import { AnalyticsService } from '../../services/analytics.service';
 import { Language, Category } from '../../models';
 import { Subscription } from 'rxjs';
 import { Categories } from './../../configs/categories';
@@ -64,7 +65,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
     private _language: LanguageService,
     private _api: ApiService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _analyticsService: AnalyticsService,
   ) {
     // this._route.params.subscribe(params => {
     //   this.currentCategoryId = Number(params.categoryId);
@@ -77,7 +79,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
     // });
   }
   ngOnInit() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'URL',
       properties: {
         category: 'URL of Current Page',
@@ -115,7 +117,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   }
 
   selectPoi(poiId, poi) {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Select poi from category screen',
       properties: {
         category: 'Poi',
@@ -153,7 +155,7 @@ export class CategoryComponent implements OnInit, OnDestroy {
   back() {
     const kioskId = localStorage.getItem('kioskId');
     console.log(kioskId);
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Click from Category screen',
       properties: {
         category: 'Back Button',

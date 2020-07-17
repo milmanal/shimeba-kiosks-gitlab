@@ -14,6 +14,7 @@ import { InstructionIcon } from './../../../configs/instruction-icon';
 import { Subscription, interval, timer, Subject } from 'rxjs';
 import { LanguageService } from '../../../services/language.service';
 import { MapboxService } from '../../../services/mapbox.service';
+import { AnalyticsService } from '../../../services/analytics.service';
 import { AppErrorModalComponent } from '../../../components/error-modal/error.modal';
 import { AppRestrictModalComponent } from '../../../components/restrict-modal/restrict.modal';
 
@@ -131,7 +132,8 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     private _mapbox: MapboxService,
     private _modalService: BsModalService,
     public ds: DeviceService,
-    private errorService: ErrorService
+    private errorService: ErrorService,
+    private _analyticsService: AnalyticsService,
   ) {
     this.initializeErrors();
     this._route.params.subscribe(params => {
@@ -163,7 +165,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   openModal() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'SMS Modal Appear',
       properties: {
         category: 'SMS Modal'
@@ -191,7 +193,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   backToMain() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Click on Back button from the Direction screen',
       properties: {
         category: 'Back Button',
@@ -392,7 +394,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'URL',
       properties: {
         category: 'URL of Current Page',

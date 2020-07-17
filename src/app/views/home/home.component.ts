@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from './../../services/api.service';
 import { MapboxService } from '../../services/mapbox.service';
 import { DeviceService } from '../../services/device.service';
+import { AnalyticsService } from '../../services/analytics.service';
 import { NgxAnalytics } from 'ngx-analytics';
 import { Subscription, timer } from 'rxjs';
 import { Config } from '../../configs/config';
@@ -38,6 +39,7 @@ export class HomeComponent implements OnInit {
     private _api: ApiService,
     private _router: Router,
     private _mapbox: MapboxService,
+    private _analyticsService: AnalyticsService,
   ) {
   }
 
@@ -45,7 +47,7 @@ export class HomeComponent implements OnInit {
     this._mapbox.clearMap();
     // this.countClick = this.countClick + 1;
     // console.log(this.countClick);
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Home page click action',
       properties: {
         category: 'Begin from home page',
@@ -65,7 +67,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     const pointAppearing = timer(300);
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'URL',
       properties: {
         category: 'URL of Current Page',

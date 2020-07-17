@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ApiService } from '../../services/api.service';
+import { AnalyticsService } from '../../services/analytics.service';
 import { Subject, timer } from 'rxjs';
 import { NgxAnalytics } from 'ngx-analytics';
 
@@ -24,7 +25,8 @@ export class AppSendSmsModalComponent {
         public _router: Router,
         public bsModalRef: BsModalRef,
         public bsModalService: BsModalService,
-        private _api: ApiService
+        private _api: ApiService,
+        private _analyticsService: AnalyticsService,
     ) {
         this.venueId = localStorage.getItem('venueId');
         this.langId = localStorage.getItem('langId');
@@ -48,7 +50,7 @@ export class AppSendSmsModalComponent {
     }
 
     sendSms() {
-        this.ngx_analytics.eventTrack.next({
+        this._analyticsService.event({
             action: 'Click',
             properties: {
                 category: 'Send SMS Button',

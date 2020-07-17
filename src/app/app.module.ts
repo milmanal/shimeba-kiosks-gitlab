@@ -16,6 +16,7 @@ import { AppTranslationModule } from './app-translation.module';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { LoaderInterceptorService } from './services/loader-intercepter.service';
 import { ErrorService } from './services/error.service';
+import { AnalyticsService } from './services/analytics.service';
 import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
 import { AppSuccessModalComponent } from './components/success-modal/success.modal';
@@ -43,7 +44,8 @@ const interceptors = [
 ];
 
 const services = [
-  ErrorService
+  ErrorService,
+  AnalyticsService
 ];
 
 @NgModule({

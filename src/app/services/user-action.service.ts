@@ -3,6 +3,8 @@ import { Subject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { NgxAnalytics } from 'ngx-analytics';
 
+import { AnalyticsService } from './analytics.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -15,6 +17,7 @@ export class UserActionService {
   constructor(
     private ngx_analytics: NgxAnalytics,
     private _router: Router,
+    private _analyticsService: AnalyticsService,
   ) {}
 
   get userActionOccured(): Observable<void> { return this._userActionOccured.asObservable(); }
@@ -24,7 +27,7 @@ export class UserActionService {
   }
 
   goToMainScreen() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'User Inactivity',
       properties: {
         category: 'Back to the main screen',
@@ -35,7 +38,7 @@ export class UserActionService {
   }
 
   reloadApp() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'User Inactivity 5 minutes',
       properties: {
         category: 'Reload the App',

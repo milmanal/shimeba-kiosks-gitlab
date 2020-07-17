@@ -4,6 +4,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxAnalytics } from 'ngx-analytics';
 import { TranslateStore } from '@ngx-translate/core';
 
+import { AnalyticsService } from '../../services/analytics.service';
+
 @Component({
   selector: 'app-error-modal',
   templateUrl: './error.modal.html',
@@ -23,6 +25,7 @@ export class AppErrorModalComponent {
         public _route: ActivatedRoute,
         public bsModalRef: BsModalRef,
         private _translation: TranslateStore,
+        private _analyticsService: AnalyticsService,
     ) {
         this.venueId = localStorage.getItem('venueId');
         this.kioskId = localStorage.getItem('kioskId');
@@ -33,7 +36,7 @@ export class AppErrorModalComponent {
         });
         const { id } = JSON.parse(localStorage.getItem('poiValues'));
 
-        this.ngx_analytics.eventTrack.next({
+        this._analyticsService.event({
             action: 'Error Modal Appear',
             properties: {
                 category: 'Error thrown',
@@ -43,7 +46,7 @@ export class AppErrorModalComponent {
     }
 
     goToSearchScreen() {
-        this.ngx_analytics.eventTrack.next({
+        this._analyticsService.event({
             action: 'Click on Error Modal',
             properties: {
                 category: 'Back to Search screen',

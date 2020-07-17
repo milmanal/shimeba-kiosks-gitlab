@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { NgxAnalytics } from 'ngx-analytics';
 
+import { AnalyticsService } from '../../services/analytics.service';
+
 @Component({
   selector: 'app-success-modal',
   templateUrl: './success.modal.html',
@@ -12,9 +14,10 @@ export class AppSuccessModalComponent {
 
     constructor(
       private ngx_analytics: NgxAnalytics,
-      public bsModalRef: BsModalRef
+      public bsModalRef: BsModalRef,
+      private _analyticsService: AnalyticsService,
     ) {
-      this.ngx_analytics.eventTrack.next({
+      this._analyticsService.event({
         action: 'SMS success message',
       });
     }

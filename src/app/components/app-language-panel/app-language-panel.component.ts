@@ -4,6 +4,7 @@ import { Language } from '../../models';
 import { LanguageService } from './../../services/language.service';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { DeviceService } from './../../services/device.service';
+import { AnalyticsService } from '../../services/analytics.service';
 import { from } from 'rxjs';
 import { filter } from 'rxjs/operators';
 import { NgxAnalyticsGoogleAnalytics } from 'ngx-analytics/ga';
@@ -28,7 +29,8 @@ export class AppLanguagePanelComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _language: LanguageService,
-    public ds: DeviceService
+    public ds: DeviceService,
+    private _analyticsService: AnalyticsService,
   ) {  }
 
   selectLanguage(lang) {
@@ -42,7 +44,7 @@ export class AppLanguagePanelComponent implements OnInit {
       this._router.navigateByUrl(urlWithChangedLangId);
     }
 
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Click on language panel',
       properties: {
         category: 'Switched Language',

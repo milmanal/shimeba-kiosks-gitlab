@@ -14,6 +14,7 @@ import { InstructionIcon } from "../../../configs/instruction-icon";
 import { Subscription, interval } from "rxjs";
 import { LanguageService } from "../../../services/language.service";
 import { MapboxService } from "../../../services/mapbox.service";
+import { AnalyticsService } from '../../../services/analytics.service';
 
 import { BsModalRef } from "ngx-bootstrap/modal/bs-modal-ref.service";
 import { NgxAnalytics } from "ngx-analytics";
@@ -114,7 +115,8 @@ export class MobileComponent implements OnInit, AfterViewInit {
     private _route: ActivatedRoute,
     private _api: ApiService,
     private _mapbox: MapboxService,
-    public ds: DeviceService
+    public ds: DeviceService,
+    private _analyticsService: AnalyticsService,
   ) {
     this._route.params.subscribe(params => {
       localStorage.setItem("kioskId", params.kioskId);
@@ -126,7 +128,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   showHideInstructionList() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: "Click on mobile view - Direction screen",
       properties: {
         category: `${this.instructionListOpen ? "Hide" : "Show"} Instructions`
@@ -152,7 +154,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   selectInstruction(instr, i) {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: "Select the instruction mobile view - Direction screen",
       properties: {
         category: "Click on the instruction",
@@ -166,7 +168,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   nextInstruction() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: "Click Next instruction mobile view",
       properties: {
         category: "Next Instruction",
@@ -193,7 +195,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   prevInstruction() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: "Click Prev instruction mobile view",
       properties: {
         category: "Prev Instruction",
@@ -310,7 +312,7 @@ export class MobileComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: "URL",
       properties: {
         category: "URL of Current Page",

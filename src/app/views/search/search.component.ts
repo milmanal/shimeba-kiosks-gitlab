@@ -6,6 +6,7 @@ import { Language, Category } from '../../models';
 import { LanguageService } from './../../services/language.service';
 import { ApiService } from './../../services/api.service';
 import { DeviceService } from '../../services/device.service';
+import { AnalyticsService } from '../../services/analytics.service';
 
 import { Subscription, timer } from 'rxjs';
 import { Subject } from 'rxjs/Subject';
@@ -16,6 +17,7 @@ import { takeUntil} from 'rxjs/operators';
 
 import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
 import { BsModalService } from 'ngx-bootstrap/modal';
+
 
 @Component({
   templateUrl: 'search.component.html',
@@ -49,6 +51,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _route: ActivatedRoute,
     private _router: Router,
     private _modalService: BsModalService,
+    private _analyticsService: AnalyticsService,
 
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
@@ -71,7 +74,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'URL',
       properties: {
         category: 'URL of Current Page',
@@ -115,7 +118,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe(() => {
         this.selectPoi(poiId, poi);
-        this.ngx_analytics.eventTrack.next({
+        this._analyticsService.event({
           action: 'Auto select',
           properties: {
             category: 'Poi loaded automaticaly',
@@ -136,7 +139,7 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.pois = [];
     }
 
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Search',
       properties: {
         category: 'Search value',
@@ -154,7 +157,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   selectCategory(category) {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Select the Category from Search screen',
       properties: {
         category: 'Category',
@@ -165,7 +168,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   selectPoi(poiId, poi) {
-    this.ngx_analytics.eventTrack.next({
+    this._analyticsService.event({
       action: 'Select Poi by click from Search screen',
       properties: {
         category: 'Poi',

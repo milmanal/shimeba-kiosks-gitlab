@@ -8,5 +8,8 @@ export default {
         messagingSenderId: "72030198638",
         appId: "1:72030198638:web:2e5e024436bff47d977f7f",
         measurementId: "G-FN6Y31XKTK"
+    },
+    appInsights: {
+        instrumentationKey: 'e492c63f-8ba5-4694-9167-3188a718c66e'
     }
 }

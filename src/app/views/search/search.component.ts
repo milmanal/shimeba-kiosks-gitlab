@@ -58,6 +58,13 @@ export class SearchComponent implements OnInit, OnDestroy {
       this.pois = results;
       if (this.pois['length'] === 0) {
         this.noSearchResult = true;
+        this._analyticsService.event({
+          action: 'Search Empty',
+          properties: {
+            category: 'Search value',
+            label: this.searchValue
+          },
+        });
       } else {
         this.noSearchResult = false;
       }

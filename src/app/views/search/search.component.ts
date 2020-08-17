@@ -17,6 +17,7 @@ import { takeUntil} from 'rxjs/operators';
 
 import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { Config } from '../../configs/config';
 
 
 @Component({
@@ -38,6 +39,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   noSearchResult: Boolean;
   langPannelToTheBottom: Boolean = false;
   areEqual = false;
+  hideCategories: Boolean = false;
   modal: any;
 
   private unsubscribe$ = new Subject<void>();
@@ -105,6 +107,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.currentLanguage = lang;
       }
     );
+    if ( typeof Config[this.venueId].hideCategories !== 'undefined') {
+      this.hideCategories = Config[this.venueId].hideCategories;
+    }
   }
 
   doesStringsEqual(s1: string, s2: string) {

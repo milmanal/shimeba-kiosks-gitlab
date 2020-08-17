@@ -32,8 +32,8 @@
                 </li>
             </ul>
         </div>
-        <h1 class="search-instruction mt-5 pt-5" [ngClass]="{'visibility-hidden' : noSearchResult || (pois.length < 2 && pois.length > 0) || pois.length > 2}" translate>placeholder-search</h1>
-        <div class="d-flex categories-wrapper" [ngClass]="{'visibility-hidden' : pois.length > 2}">
+        <h1 class="search-instruction mt-5 pt-5" *ngIf="!hideCategories" [ngClass]="{'visibility-hidden' : noSearchResult || (pois.length < 2 && pois.length > 0) || pois.length > 2}" translate>placeholder-search</h1>
+        <div class="d-flex categories-wrapper" *ngIf="!hideCategories" [ngClass]="{'visibility-hidden' : pois.length > 2}">
             <div class="category mx-2 d-flex flex-column align-items-center justify-content-center" *ngFor="let category of categories"
                 (click)="selectCategory(category)">
                 <img src="assets/imgs/{{category.icon}}" alt="" class="icon">

@@ -260,7 +260,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
             }
             return item;
           });
-          console.log(this.ARRAY);
           
           this.routeLoaded = true;
           res.map(step => {

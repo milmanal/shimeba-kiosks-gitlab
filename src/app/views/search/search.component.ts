@@ -17,6 +17,7 @@ import { takeUntil} from 'rxjs/operators';
 
 import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
 import { BsModalService } from 'ngx-bootstrap/modal';
+import { MatKeyboardService } from '@ngx-material-keyboard/core';
 import { Config } from '../../configs/config';
 
 
@@ -54,6 +55,7 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _modalService: BsModalService,
     private _analyticsService: AnalyticsService,
+    private _matKeyboardService: MatKeyboardService,
 
   ) {
     this._api.search(this.searchTerm$).subscribe(results => {
@@ -83,6 +85,8 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log(this._matKeyboardService);
+    
     this._analyticsService.event({
       action: 'URL',
       properties: {

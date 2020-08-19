@@ -249,22 +249,7 @@ html[lang="ar"] #venue-container[venueid="27"] {
 html[lang="ar"] {
   .direction-component {
     .marker-number.multi-instructions {
-      .child {
-        span {
-          margin-right: 6px !important;
-          margin-left: 0 !important;
-        }
-      }
-
-      .child:first-child {
-        border-right: none !important;
-        border-left: 1px solid #fff !important;
-      }
-
-      .child:last-child {
-        border-left: none !important;
-        border-right: 1px solid #fff !important;
-      }
+      direction: ltr;
     }
   }
 }

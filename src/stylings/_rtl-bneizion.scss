@@ -177,16 +177,6 @@ html[dir="rtl"] {
         margin-left: 25px;
       }
     }
-
-    .marker-number {
-      &.multi-instructions {
-        .child {
-          &:first-child {
-            border-left: none !important;
-          }
-        }
-      }
-    }
   }
 
   .direction-component {

@@ -119,17 +119,6 @@ html[dir="rtl"] {
 					right: 87px !important;
 				}
 			}
-
-			.marker-number.multi-instructions{
-				.child {
-					border-right: none!important;
-					border-left: 1px solid #fff !important;
-
-					&:last-child {
-						border-left: none!important;
-					}
-				}
-			}
 	
 		}
 

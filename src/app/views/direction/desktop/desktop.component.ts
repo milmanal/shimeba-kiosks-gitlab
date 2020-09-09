@@ -55,6 +55,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   ARRAY: any;
   levels: any;
   layersCollection: Array<{}> = this._mapbox.getLayers();
+  pointsCollection: any = [];
   subscribeSmsModal: any;
   modal: any;
   dynamicSmsIcon: String;
@@ -209,8 +210,6 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
     this._router.navigateByUrl(`/home/${this.venueId}/${kioskId}/${langId}`);
   }
   generateInstructions(data, level, index) {
-    console.log('generateInstructions', data, level, index);
-    
     for (let i = index; i < this.instructions[level].length; i++) {
       // @ts-ignore
       const instruction = this.instructions[level][i];
@@ -294,6 +293,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
   }
   routing(instructions, currentInstr) {
     return new Promise((res, rej) => {
+      console.log('routing');
       if (currentInstr === 0) {
         document
           .getElementsByClassName('instructions-container')[0]
@@ -311,14 +311,14 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         this._mapbox.addRouteLine(instructions[currentInstr].points);
         if (instruction) {
           instruction.setAttribute('style', 'display: block');
-          this._mapbox.addInstructionIcon(
+          this.pointsCollection.push(this._mapbox.addInstructionIcon(
             currentInstr + 1,
             [
               Number(instructions[currentInstr].instruction.longitude),
               Number(instructions[currentInstr].instruction.latitude)
             ],
             instructions[currentInstr].instruction.instructionsType
-          );
+          ));
         }
       } else {
         document
@@ -348,6 +348,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
         this.routeSubscribtion.unsubscribe();
         res();
       }
+      console.log('this.pointsCollection', this.pointsCollection);
     });
 
     // TODO functionality where you can add some classes to elements what are close to each other after

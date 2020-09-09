@@ -50,6 +50,7 @@ export class MapboxService {
     ]
   };
   lineDistance: any;
+  pxRation: any;
   currentRouteStepIndex = 0;
   _activeLayer: Layer = {
     layerId: null,
@@ -58,6 +59,8 @@ export class MapboxService {
   };
 
   times = [];
+  points = [];
+  markers = [];
   fps: any;
   steps = 0;
   nextInstructionHandle = Observable.create(observer => {
@@ -185,11 +188,56 @@ export class MapboxService {
           });
         }
       );
-
+      this.map.on('moveend', () => {
+        const clientWidth = window.innerWidth;
+        const distance = this.getDistance();
+        const oneMeter = clientWidth / (distance * 1000);
+        console.log(`1m is ~${oneMeter.toFixed(3)} pixels`, oneMeter, clientWidth, distance);
+        if (oneMeter.toFixed(3) != this.pxRation) {
+          this.pxRation = oneMeter.toFixed(3);
+          this.reDrawPoints();
+        }
+      });
       // this.animateRoute();
     });
   }
 
+  getDistance() {
+    const bounds = this.map.getBounds();
+    const topLeft = turf.point([bounds._ne.lng, bounds._ne.lat]);
+    const topRight = turf.point([bounds._sw.lng, bounds._ne.lat]);
+    const bottomLeft = turf.point([bounds._ne.lng, bounds._sw.lat]);
+    const bottomRight = turf.point([bounds._sw.lng, bounds._sw.lat]);
+    
+    const middleLeft = turf.midpoint(topLeft, bottomLeft);
+    const middleRight = turf.midpoint(topRight, bottomRight);
+    const distance = turf.distance(middleLeft, middleRight, 'kilometers');
+    // this.map.getSource('geo').setData(turf.featureCollection([middleLeft, middleRight]));
+    return distance;
+  }
+
+  reDrawPoints() {
+    console.log(this.points, this.markers);
+    this.markerEl = null;
+    const markers = this.markers.map(item => item);
+    const points = this.points.map(item => item);
+    this.markers = [];
+    this.points = [];
+    if (markers.length) {
+      for (var i = markers.length - 1; i >= 0; i--) {
+        markers[i].remove();
+      }
+    }
+    if (points.length) {
+      for (var i = 0; i < points.length; i++) {
+        const point = points[i];
+        this.addInstructionIcon(point.number, point.coord, point.instructionType, point.prevDistance);
+      }
+    }
+    
+    console.log('Redrawing');
+  }
+  
   clearMap() {
     if (this.interval) {
       this.interval.unsubscribe();
@@ -366,7 +414,8 @@ export class MapboxService {
       flex-direction: row-reverse;
     `;
 
-  addInstructionIcon(number, coord, instructionType) {
+  addInstructionIcon(number, coord, instructionType, prevDistance = null) {
+    console.log('number, coord, instructionType, prevDistance', number, coord, instructionType, prevDistance);
     this.mergeInstructionsWithImage = false;
     this.arePointsNear(coord);
     const hasIcon = InstructionIcon.some(
@@ -376,14 +425,19 @@ export class MapboxService {
     const childSpan = `<span class="child">${number}</span>`;
 
     const mergeDistance = Config[this.venueId].mergeMarkersDistance;
-
+    
+    if (!prevDistance) {
+      prevDistance = this.prevDistance;
+    }
+    const prevDistancePx = prevDistance * 1000 * this.pxRation;
+    
     if (!hasIcon) {
       if (!this.markerEl) {
         this.generateMarker(number);
         this.markerEl.innerHTML = childSpan;
       } else if (
-        this.prevDistance <= mergeDistance ||
-        this.mergeInstructionsWithImage
+        (prevDistancePx <= mergeDistance ||
+        this.mergeInstructionsWithImage)
       ) {
         this.attachMarker(number);
       } else {
@@ -391,7 +445,7 @@ export class MapboxService {
         this.markerEl.innerHTML = childSpan;
       }
     } else {
-      if (this.prevDistance <= mergeDistance) {
+      if (prevDistancePx <= mergeDistance) {
         const prevHtml = this.markerEl.innerHTML;
         let childDiv = this.generateChild(number);
         this.markerEl.innerHTML += childDiv;
@@ -410,15 +464,24 @@ export class MapboxService {
         this.markerEl.innerHTML = `${prevHtml} ${childDiv}`;
 
         if (
-          this.prevDistance <= mergeDistance ||
+          prevDistancePx <= mergeDistance ||
           this.lineDistance <= mergeDistance
         ) {
           this.mergeInstructionsWithImage = true;
         }
       }
     }
+    this.points.push({
+      number,
+      coord,
+      instructionType,
+      prevDistance: prevDistance
+    });
+    console.log(this.markerEl, coord);
     this.prevDistance = this.lineDistance;
-    new mapboxgl.Marker(this.markerEl).setLngLat(coord).addTo(this.map);
+    const marker = new mapboxgl.Marker(this.markerEl).setLngLat(coord).addTo(this.map);
+    this.markers.push(marker);
+    return marker;
   }
 
   setDestinationMarker(lon, lat) {

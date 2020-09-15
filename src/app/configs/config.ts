@@ -129,7 +129,7 @@ export const Config = {
     inactivityDuration: 40,
     reloadAfterIncativity: 300,
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 0.01,
+    mergeMarkersDistance: 50,
     homePagePhoneBadge: true,
   },
 
@@ -156,7 +156,7 @@ export const Config = {
     inactivityDuration: 40000, //40
     reloadAfterIncativity: 300000, //300
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 30,
+    mergeMarkersDistance: 50,
     homePagePhoneBadge: true,
     homePageBadgeImg: "assets/imgs/barzilay/home-badge.png"
   },
@@ -184,7 +184,7 @@ export const Config = {
     inactivityDuration: 40, //40
     reloadAfterIncativity: 300, //300
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 30,
+    mergeMarkersDistance: 50,
     homePagePhoneBadge: true,
     hideCategories: true,
     homePageBadgeImg: "assets/imgs/bneizion/home-badge.png"

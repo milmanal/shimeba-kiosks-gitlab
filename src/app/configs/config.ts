@@ -184,7 +184,7 @@ export const Config = {
     inactivityDuration: 40, //40
     reloadAfterIncativity: 300, //300
     smsModalTimeAppearing: 7000,
-    mergeMarkersDistance: 100,
+    mergeMarkersDistance: 80,
     homePagePhoneBadge: true,
     hideCategories: true,
     homePageBadgeImg: "assets/imgs/bneizion/home-badge.png"

@@ -71,9 +71,17 @@ export class MapboxService {
     mapboxgl.accessToken = "undefined";
   }
 
-  initMap(venueId, isMobile?: Boolean, isDirection?: Boolean) {
+  initMap(venueId, isMobile?: Boolean, isDirection?: Boolean, currentLang?: Boolean) {
     this.isMobile = isMobile;
     this.venueId = venueId;
+    let homeMapUrl = typeof Config[this.venueId].homeMapUrl === 'string' ? Config[this.venueId].homeMapUrl : Config[this.venueId].homeMapUrl.default;
+    if (typeof Config[this.venueId].homeMapUrl === 'object' && typeof Config[this.venueId].homeMapUrl[currentLang] !== 'undefined') {
+      homeMapUrl = Config[this.venueId].homeMapUrl[currentLang];
+    }
+    let directionMapUrl = typeof Config[this.venueId].directionMapUrl === 'string' ? Config[this.venueId].directionMapUrl : Config[this.venueId].directionMapUrl.default;
+    if (typeof Config[this.venueId].directionMapUrl === 'object' && typeof Config[this.venueId].directionMapUrl[currentLang] !== 'undefined') {
+      directionMapUrl = Config[this.venueId].directionMapUrl[currentLang];
+    }
     this.style = {
       version: 8,
       name: "Raster Tiles",
@@ -81,8 +89,8 @@ export class MapboxService {
         overlayMap: {
           type: "image",
           url: isDirection
-            ? Config[this.venueId].directionMapUrl
-            : Config[this.venueId].homeMapUrl,
+            ? directionMapUrl
+            : homeMapUrl,
           coordinates: Config[this.venueId].mapCorners
         }
       },

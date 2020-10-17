@@ -6,7 +6,11 @@ export const Config = {
       [34.78832531057368, 32.07803240327738],
       [34.78863176605523, 32.08222432499814]
     ],
-    homeMapUrl: "assets/map_99_north.jpg",
+    homeMapUrl: {
+      "default": "assets/map_99_north.jpg",
+      "he": "assets/map_99_north.jpg",
+      "en": "assets/maps/venue12/map_99_north_en.jpg"
+    },
     directionMapUrl: "assets/map_99_north.jpg",
     arrowOnRouteUrl: "assets/imgs/route-arrow.png",
     drawTime: 1.5,

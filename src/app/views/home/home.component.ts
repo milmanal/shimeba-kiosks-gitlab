@@ -88,13 +88,15 @@ export class HomeComponent implements OnInit {
       venueAttr.value = params.venueId;
       HTML.setAttributeNode(venueAttr);
       this.phoneNumberBadge = Config[this.venueId].homePagePhoneBadge;
+      const urlString = window.location.href.includes('direction');
+      this._mapbox.initMap(this.venueId, null, urlString, this.langId);
     });
 
     if ( this.phoneNumberBadge && typeof Config[this.venueId].homePageBadgeImg !== 'undefined') {
       this.badgeImg = Config[this.venueId].homePageBadgeImg;
     }
-    const urlString = window.location.href.includes('direction');
-    this._mapbox.initMap(this.venueId, null, urlString);
+    
+    
     this._api.getKioskData().subscribe(res => {
       localStorage.setItem('kioskData', JSON.stringify(res.entrances[0]));
       let offsetOptons = [0, 0];

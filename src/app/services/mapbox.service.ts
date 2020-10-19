@@ -71,7 +71,7 @@ export class MapboxService {
     mapboxgl.accessToken = "undefined";
   }
 
-  initMap(venueId, isMobile?: Boolean, isDirection?: Boolean, currentLang?: String) {
+  initMap(venueId, isMobile?: Boolean, isDirection?: Boolean, currentLang?) {
     this.isMobile = isMobile;
     this.venueId = venueId;
     let homeMapUrl = typeof Config[this.venueId].homeMapUrl === 'string' ? Config[this.venueId].homeMapUrl : Config[this.venueId].homeMapUrl.default;

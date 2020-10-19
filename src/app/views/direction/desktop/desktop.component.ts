@@ -437,7 +437,7 @@ export class DesktopComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngAfterViewInit() {
     const urlString = window.location.href.includes('direction');
-    this._mapbox.initMap(this.venueId, null, urlString);
+    this._mapbox.initMap(this.venueId, null, urlString, this.initLanguage.name);
     this._api
       .getKioskAndPoiData(this.kioskId, this.poiId)
       .subscribe(([kiosk, poi]) => {

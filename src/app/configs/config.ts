@@ -11,7 +11,11 @@ export const Config = {
       "he": "assets/map_99_north.jpg",
       "en": "assets/maps/venue12/map_99_north_en.jpg"
     },
-    directionMapUrl: "assets/map_99_north.jpg",
+    directionMapUrl: {
+      "default": "assets/map_99_north.jpg",
+      "he": "assets/map_99_north.jpg",
+      "en": "assets/maps/venue12/map_99_north_en.jpg"
+    },
     arrowOnRouteUrl: "assets/imgs/route-arrow.png",
     drawTime: 1.5,
     initZoom: 18.08,

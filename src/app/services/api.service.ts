@@ -82,11 +82,13 @@ export class ApiService {
       );
   }
 
-  searchPoi({ value, venueId }) {
+  searchPoi({ value, venueId, isAdvanced }) {
     const currentLanguage = this._language.getCurrentLanguage();
-    return this._httpClient.get(
-      `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`
-    );
+    let theUrl = `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`;
+    if (isAdvanced) {
+      theUrl += '&advanced=1'
+    }
+    return this._httpClient.get(theUrl);
   }
 
   // filterByCategory(pois, categoryId) {

@@ -16,6 +16,7 @@ import { NgxAnalytics } from 'ngx-analytics';
 import { takeUntil} from 'rxjs/operators';
 
 import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
+import { AppLoaderModalComponent } from "../../components/loader-modal/loader.modal";
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { MatKeyboardService } from '@ngx-material-keyboard/core';
 import { Config } from '../../configs/config';
@@ -42,6 +43,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   areEqual = false;
   hideCategories: Boolean = false;
   modal: any;
+  loaderModal: any;
 
   private unsubscribe$ = new Subject<void>();
   private searchActivity: Subscription;
@@ -77,7 +79,9 @@ export class SearchComponent implements OnInit, OnDestroy {
         this.searchActivity.unsubscribe();
         this.areEqual = false;
       }
-
+      if (this.loaderModal) {
+        this.loaderModal.hide();
+      }
       if (this.pois.length === 1 && this.doesStringsEqual(this.pois[0].name, this.searchValue)) {
         this.selectPoiAfterFewMoments(this.pois[0].id, this.pois[0]);
       }
@@ -123,6 +127,31 @@ export class SearchComponent implements OnInit, OnDestroy {
     return this.areEqual;
   }
 
+  advancedSearch() {
+    if (this.searchValue.length >= 1) {
+      this.loaderModal = this._modalService.show(AppLoaderModalComponent, {
+        class: 'loader-modal-outer',
+        ignoreBackdropClick: true,
+        animated: true
+      });
+      this.searchTerm$.next({
+        value: this.searchValue,
+        venueId: this.venueId,
+        isAdvanced: true
+      });
+    } else {
+      this.noSearchResult = false;
+      this.pois = [];
+    }
+    this._analyticsService.event({
+      action: 'Advanced Search',
+      properties: {
+        category: 'Search value',
+        label: this.searchValue
+      },
+    });
+  }
+
   selectPoiAfterFewMoments(poiId: number, poi, action?: string): void {
     const time = timer(3000);
 
@@ -148,7 +177,8 @@ export class SearchComponent implements OnInit, OnDestroy {
     if (this.searchValue.length >= 1) {
       this.searchTerm$.next({
         value: this.searchValue,
-        venueId: this.venueId
+        venueId: this.venueId,
+        isAdvanced: false
       });
     } else {
       this.noSearchResult = false;

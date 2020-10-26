@@ -1,0 +1,55 @@
+@import 'variables.scss';
+
+.loader-modal-inner {
+  padding: 30px;
+  .modal-body {
+    .modal-body-inner {
+      align-items: flex-start;
+    }
+  }
+  .loader {
+    width: 100%;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: #fff;
+    &:before {
+      content: "";
+      display: block;
+      width: 7em;
+      height: 1em;
+      margin: 3em auto;
+      padding: 3em 0;
+      border-radius: 50%;
+      border: 2px solid #2f416f;
+      border-top: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+      animation: rotate 1s ease infinite;
+    }
+    &:after {
+      content: "Loading";
+      position: absolute;
+      top: calc(50% - 12px);
+      color: #2f416f;
+      font-family: Open Sans Hebrew, sans-serif;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      animation: wink 1.4s ease infinite;
+    }
+  }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes wink {
+    50% {
+        opacity: 0
+    }
+}

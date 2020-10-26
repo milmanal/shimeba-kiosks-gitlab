@@ -21,6 +21,7 @@ import { ErrorInterceptor } from './services/error-interceptor.service';
 import { AppErrorModalComponent } from './components/error-modal/error.modal';
 import { AppSuccessModalComponent } from './components/success-modal/success.modal';
 import { AppRestrictModalComponent } from './components/restrict-modal/restrict.modal';
+import { AppLoaderModalComponent } from './components/loader-modal/loader.modal';
 
 
 import {
@@ -55,7 +56,8 @@ const services = [
     AppSuccessModalComponent,
     AppRestrictModalComponent,
     AppInactivityTimerComponent,
-    AppSendSmsModalComponent
+    AppSendSmsModalComponent,
+    AppLoaderModalComponent
   ],
   imports: [
     ModalModule.forRoot(),
@@ -80,7 +82,7 @@ const services = [
     services
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent, AppRestrictModalComponent, AppSendSmsModalComponent],
+  entryComponents: [AppErrorModalComponent, AppSuccessModalComponent, AppRestrictModalComponent, AppSendSmsModalComponent, AppLoaderModalComponent],
   exports: [AppTranslationModule]
 })
 export class AppModule {}

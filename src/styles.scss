@@ -23,7 +23,10 @@ canvas {
   min-width: 100%;
   min-height: 100%;
 }
-
+.loader-modal-outer {
+  top: 50%;
+  margin-top: -145px;
+}
 .error-modal-outer {
   max-width: 1200px;
   margin-top: 21%;

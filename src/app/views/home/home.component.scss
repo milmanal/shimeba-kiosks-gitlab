@@ -109,7 +109,9 @@
         background-repeat: no-repeat;
         background-position: 50% 50%;
       }
-
+      .search-button {
+        cursor: pointer;
+      }
       .search-input {
         width: 90%;
         border: none;

@@ -72,6 +72,8 @@ export class MapboxService {
   }
 
   initMap(venueId, isMobile?: Boolean, isDirection?: Boolean, currentLang?) {
+    this.markers = [];
+    this.points = [];
     this.isMobile = isMobile;
     this.venueId = venueId;
     let homeMapUrl = typeof Config[this.venueId].homeMapUrl === 'string' ? Config[this.venueId].homeMapUrl : Config[this.venueId].homeMapUrl.default;
@@ -200,7 +202,6 @@ export class MapboxService {
         const clientWidth = window.innerWidth;
         const distance = this.getDistance();
         const oneMeter = clientWidth / (distance * 1000);
-        console.log(`1m is ~${oneMeter.toFixed(3)} pixels`, oneMeter, clientWidth, distance);
         if (oneMeter.toFixed(3) != this.pxRation) {
           this.pxRation = oneMeter.toFixed(3);
           this.reDrawPoints();
@@ -225,17 +226,17 @@ export class MapboxService {
   }
 
   reDrawPoints() {
-    console.log(this.points, this.markers);
     this.markerEl = null;
     const markers = this.markers.map(item => item);
     const points = this.points.map(item => item);
-    this.markers = [];
-    this.points = [];
+    console.log(markers, points);
     if (markers.length) {
       for (var i = markers.length - 1; i >= 0; i--) {
         markers[i].remove();
       }
     }
+    this.markers = [];
+    this.points = [];
     if (points.length) {
       for (var i = 0; i < points.length; i++) {
         const point = points[i];
@@ -423,7 +424,7 @@ export class MapboxService {
     `;
 
   addInstructionIcon(number, coord, instructionType, prevDistance = null) {
-    console.log('number, coord, instructionType, prevDistance', number, coord, instructionType, prevDistance);
+    // console.log('number, coord, instructionType, prevDistance', number, coord, instructionType, prevDistance);
     this.mergeInstructionsWithImage = false;
     this.arePointsNear(coord);
     const hasIcon = InstructionIcon.some(

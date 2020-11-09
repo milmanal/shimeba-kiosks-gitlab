@@ -161,8 +161,8 @@ export const Config = {
     borderLineColor: "#ffffff",
     borderLineWidth: 7,
     timeForTheStep: 2000,
-    inactivityDuration: 40000, //40
-    reloadAfterIncativity: 300000, //300
+    inactivityDuration: 40, //40
+    reloadAfterIncativity: 300, //300
     smsModalTimeAppearing: 7000,
     mergeMarkersDistance: 50,
     homePagePhoneBadge: true,

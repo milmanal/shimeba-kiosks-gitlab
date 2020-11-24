@@ -15,11 +15,13 @@ import { Categories } from './../../configs/categories';
 import { NgxAnalytics } from 'ngx-analytics';
 import { takeUntil} from 'rxjs/operators';
 
-import { AppRestrictModalComponent } from "../../components/restrict-modal/restrict.modal";
-import { AppLoaderModalComponent } from "../../components/loader-modal/loader.modal";
+import { AppRestrictModalComponent } from '../../components/restrict-modal/restrict.modal';
+import { AppLoaderModalComponent } from '../../components/loader-modal/loader.modal';
+import { AppErrorModalComponent } from '../../components/error-modal/error.modal';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { MatKeyboardService } from '@ngx-material-keyboard/core';
 import { Config } from '../../configs/config';
+import { ErrorService } from '../../services/error.service';
 
 
 @Component({
@@ -39,6 +41,7 @@ export class SearchComponent implements OnInit, OnDestroy {
   venueId: any;
   langId: any;
   noSearchResult: Boolean;
+  searchResultError: Boolean = false;
   langPannelToTheBottom: Boolean = false;
   areEqual = false;
   hideCategories: Boolean = false;
@@ -47,6 +50,7 @@ export class SearchComponent implements OnInit, OnDestroy {
 
   private unsubscribe$ = new Subject<void>();
   private searchActivity: Subscription;
+  private ngUnsubscribe = new Subject();
 
   constructor(
     private ngx_analytics: NgxAnalytics,
@@ -58,8 +62,13 @@ export class SearchComponent implements OnInit, OnDestroy {
     private _modalService: BsModalService,
     private _analyticsService: AnalyticsService,
     private _matKeyboardService: MatKeyboardService,
-
+    private errorService: ErrorService,
   ) {
+    this.initializeErrors();
+    this.initSearchSubscription();
+  }
+
+  initSearchSubscription() {
     this._api.search(this.searchTerm$).subscribe(results => {
       this.pois = results;
       if (this.pois['length'] === 0) {
@@ -88,9 +97,21 @@ export class SearchComponent implements OnInit, OnDestroy {
     });
   }
 
+  initializeErrors() {
+    this.errorService
+      .getErrors()
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(errors => {
+        this.noSearchResult = false;
+        this.searchResultError = true;
+        if (this.loaderModal) {
+          this.loaderModal.hide();
+        }
+        this.initSearchSubscription();
+      });
+  }
+
   ngOnInit() {
-    console.log(this._matKeyboardService);
-    
     this._analyticsService.event({
       action: 'URL',
       properties: {
@@ -128,12 +149,14 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   advancedSearch() {
+    this.searchResultError = false;
     if (this.searchValue.length >= 1) {
       this.loaderModal = this._modalService.show(AppLoaderModalComponent, {
         class: 'loader-modal-outer',
         ignoreBackdropClick: true,
         animated: true
       });
+      console.log(this.searchTerm$);
       this.searchTerm$.next({
         value: this.searchValue,
         venueId: this.venueId,
@@ -174,7 +197,9 @@ export class SearchComponent implements OnInit, OnDestroy {
   }
 
   search(ev: any) {
+    this.searchResultError = false;
     if (this.searchValue.length >= 1) {
+      console.log(this.searchTerm$);
       this.searchTerm$.next({
         value: this.searchValue,
         venueId: this.venueId,

@@ -14,6 +14,7 @@
             <div class="search-arrow-icon" *ngIf="areEqual" (click)="selectPoiAfterFewMoments(pois[0].id, pois[0], 'click')"></div>
 
             <div class="no-search-result-message" *ngIf="noSearchResult" translate>no-search-result</div>
+            <div class="no-search-result-message" *ngIf="searchResultError" translate>search-result-error</div>
         </div>
 
         <div *ngIf="pois" class="search-results" [ngClass]="{'show-more-results': showMore}">

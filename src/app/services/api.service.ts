@@ -86,9 +86,9 @@ export class ApiService {
     const currentLanguage = this._language.getCurrentLanguage();
     let theUrl = `${this.url}pois?venueid=${venueId}&locale=${currentLanguage.name}&query=${value}`;
     if (isAdvanced) {
-      theUrl += '&advanced=true'
+      theUrl += '&advanced=true';
     } else {
-      theUrl += '&advanced=false'
+      theUrl += '&advanced=false';
     }
     return this._httpClient.get(theUrl);
   }
